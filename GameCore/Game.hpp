@@ -1,6 +1,7 @@
 #pragma once
 #include "ItemGenerator.hpp"
 #include "Board.hpp"
+#include "Location.hpp"
 
 namespace Candies
 {
@@ -11,6 +12,7 @@ namespace Candies
         public:
             Game(ItemGeneratorPtr itemGenerator, unsigned boardWidth, unsigned boardHeight);
             void start();
+            void swapItems(Location loc1, Location loc2);
             Board getBoard() const;
         private:
             ItemGeneratorPtr itemGenerator;

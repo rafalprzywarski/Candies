@@ -13,8 +13,10 @@ namespace Candies
         {
             for (unsigned y = 0; y < board.getWidth(); ++y)
                 for (unsigned x = 0; x < board.getHeight(); ++x)
-                    board(x, y) = itemGenerator->generate();
+                    board[{x, y}] = itemGenerator->generate();
         }
+
+        void Game::swapItems(Location loc1, Location loc2) { }
         
         Board Game::getBoard() const
         {

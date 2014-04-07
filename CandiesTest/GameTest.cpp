@@ -17,7 +17,7 @@ namespace Candies
         {
             for (unsigned y = 0; y < arg.getHeight(); ++y)
                 for (unsigned x = 0; x < arg.getWidth(); ++x)
-                    if (items.at(x + y * arg.getWidth()) != arg(x, y))
+                    if (items.at(x + y * arg.getWidth()) != arg[{x, y}])
                         return false;
             return true;
         }
@@ -55,5 +55,19 @@ namespace Candies
             EXPECT_THAT(board, IsFilledWith(ALL_ITEMS));
         }
         
+        TEST_F(GameTest, should_not_swap_items_between_two_given_location_when_they_are_not_neighbours)
+        {
+            expectGenerationOf(ALL_ITEMS);
+            game->start();
+            Board oldBoard = game->getBoard();
+            const Location LOC1{1, 3}, LOC2{4, 2};
+            ASSERT_NE(oldBoard[LOC1], oldBoard[LOC2]) << "choose different items for comparison";
+            
+            game->swapItems(LOC1, LOC2);
+            
+            auto newBoard = game->getBoard();
+            EXPECT_EQ(oldBoard[LOC1], newBoard[LOC1]);
+            EXPECT_EQ(oldBoard[LOC2], newBoard[LOC2]);
+        }
     }
 }

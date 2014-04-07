@@ -1,5 +1,6 @@
 #pragma once
 #include "ItemId.hpp"
+#include "Location.hpp"
 #include <vector>
 
 namespace Candies
@@ -12,14 +13,14 @@ namespace Candies
             Board(unsigned width, unsigned height)
             : width(width), height(height), items(width * height) { }
             
-            ItemId& operator()(unsigned x, unsigned y)
+            ItemId& operator[](Location loc)
             {
-                return getItem<ItemId&>(items, x, y);
+                return getItem<ItemId&>(items, loc.x, loc.y);
             }
             
-            ItemId operator()(unsigned x, unsigned y) const
+            ItemId operator[](Location loc) const
             {
-                return getItem<ItemId>(items, x, y);
+                return getItem<ItemId>(items, loc.x, loc.y);
             }
             
             unsigned getWidth() const { return width; }
