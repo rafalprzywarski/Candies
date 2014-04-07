@@ -29,5 +29,26 @@ namespace Candies
             board[{0, 1}] = 3;
             ASSERT_TRUE((3 == Const(board)[{0, 1}]));
         }
+        
+        TEST(BoardTest, equality_comparison_should_compare_sizes)
+        {
+            EXPECT_TRUE(Board(2, 3) == Board(2, 3));
+            EXPECT_FALSE(Board(2, 7) == Board(2, 3));
+            EXPECT_FALSE(Board(7, 3) == Board(2, 3));
+        }
+        
+        TEST(BoardTest, equality_comparison_should_compare_items)
+        {
+            Board b1{2, 2}, b2{2, 2};
+            ASSERT_TRUE(b1 == b2);
+            b1[{0, 0}] = 3;
+            ASSERT_FALSE(b1 == b2);
+            b1 = b2; b1[{0, 1}] = 3;
+            ASSERT_FALSE(b1 == b2);
+            b1 = b2; b1[{1, 0}] = 3;
+            ASSERT_FALSE(b1 == b2);
+            b1 = b2; b1[{1, 0}] = 3;
+            ASSERT_FALSE(b1 == b2);
+        }
     }
 }

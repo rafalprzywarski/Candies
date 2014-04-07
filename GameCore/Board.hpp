@@ -36,5 +36,16 @@ namespace Candies
                 return c.at(x + y * width);
             }
         };
+        
+        inline bool operator==(const Board& left, const Board& right)
+        {
+            if (left.getWidth() != right.getWidth() || left.getHeight() != right.getHeight())
+                return false;
+            for (unsigned y = 0; y < left.getHeight(); ++y)
+                for (unsigned x = 0; x < left.getWidth(); ++x)
+                    if (left[{x, y}] != right[{x, y}])
+                        return false;
+            return true;
+        }
     }
 }
