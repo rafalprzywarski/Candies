@@ -9,9 +9,11 @@ namespace Candies
 namespace GameCore
 {
     
-TEST(GameTest, when_created_board_should_be_filled_with_generated_items)
+TEST(GameTest, board_should_be_filled_with_generated_items_when_game_is_started)
 {
     auto itemGenerator = std::make_shared<StrictMock<MockItemGenerator>>();
+    auto game = GameFactory().createGame(itemGenerator);
+
     std::vector<ItemId> items = {
         4,2,3,0,0,1,3,1,
         3,3,0,4,1,4,4,0,
@@ -25,7 +27,7 @@ TEST(GameTest, when_created_board_should_be_filled_with_generated_items)
     for (auto item : items)
         EXPECT_CALL(*itemGenerator, generate()).WillOnce(Return(item)).RetiresOnSaturation();
 
-    auto game = GameFactory().createGame(itemGenerator);
+    game->start();
     auto board = game->getBoard();
     ASSERT_EQ(8u, board.getWidth());
     ASSERT_EQ(8u, board.getHeight());

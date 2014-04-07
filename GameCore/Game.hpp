@@ -10,6 +10,7 @@ namespace Candies
         {
         public:
             Game(ItemGeneratorPtr itemGenerator, unsigned boardWidth, unsigned boardHeight);
+            void start();
             Board getBoard() const;
         private:
             ItemGeneratorPtr itemGenerator;
