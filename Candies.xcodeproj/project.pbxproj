@@ -17,7 +17,6 @@
 		F02A9F0A18F1FB3F008145C2 /* SDL2.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F0518F1FB15008145C2 /* SDL2.framework */; };
 		F02A9F0C18F1FCEE008145C2 /* BackGround.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F02A9F0B18F1FCEE008145C2 /* BackGround.jpg */; };
 		F02A9F1618F1FF65008145C2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F1518F1FF65008145C2 /* main.cpp */; };
-		F02A9F2D18F20036008145C2 /* gmock-gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F2C18F20036008145C2 /* gmock-gtest-all.cc */; };
 		F02A9F3018F201B8008145C2 /* SampleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F2E18F201B8008145C2 /* SampleTest.cpp */; };
 		F02A9F3918F32427008145C2 /* GameTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F3818F32427008145C2 /* GameTest.cpp */; };
 		F02A9F4618F3255C008145C2 /* GameFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F4418F3255C008145C2 /* GameFactory.cpp */; };
@@ -27,6 +26,8 @@
 		F02A9F4C18F327F1008145C2 /* libGameCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F3E18F324C1008145C2 /* libGameCore.a */; };
 		F02A9F5018F32AA4008145C2 /* ItemGenerator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F02A9F4E18F32AA4008145C2 /* ItemGenerator.hpp */; };
 		F02A9F5618F3486B008145C2 /* BoardTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F5518F3486B008145C2 /* BoardTest.cpp */; };
+		F02A9F5F18F35064008145C2 /* gmock-gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F2C18F20036008145C2 /* gmock-gtest-all.cc */; };
+		F02A9F6018F3507C008145C2 /* libGoogleMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F5B18F35056008145C2 /* libGoogleMock.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,6 +84,7 @@
 		F02A9F5318F33318008145C2 /* Board.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Board.hpp; sourceTree = "<group>"; };
 		F02A9F5418F341E5008145C2 /* Location.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Location.hpp; sourceTree = "<group>"; };
 		F02A9F5518F3486B008145C2 /* BoardTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardTest.cpp; sourceTree = "<group>"; };
+		F02A9F5B18F35056008145C2 /* libGoogleMock.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGoogleMock.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +103,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				F02A9F4C18F327F1008145C2 /* libGameCore.a in Frameworks */,
+				F02A9F6018F3507C008145C2 /* libGoogleMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F02A9F3B18F324C1008145C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02A9F5818F35056008145C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -132,6 +142,7 @@
 				F02A9EC818F1FA15008145C2 /* Candies.app */,
 				F02A9F1318F1FF65008145C2 /* CandiesTest */,
 				F02A9F3E18F324C1008145C2 /* libGameCore.a */,
+				F02A9F5B18F35056008145C2 /* libGoogleMock.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -258,6 +269,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F02A9F5918F35056008145C2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -313,6 +331,23 @@
 			productReference = F02A9F3E18F324C1008145C2 /* libGameCore.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		F02A9F5A18F35056008145C2 /* GoogleMock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F02A9F5C18F35056008145C2 /* Build configuration list for PBXNativeTarget "GoogleMock" */;
+			buildPhases = (
+				F02A9F5718F35056008145C2 /* Sources */,
+				F02A9F5818F35056008145C2 /* Frameworks */,
+				F02A9F5918F35056008145C2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GoogleMock;
+			productName = GoogleMock;
+			productReference = F02A9F5B18F35056008145C2 /* libGoogleMock.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -338,6 +373,7 @@
 				F02A9EC718F1FA15008145C2 /* Candies */,
 				F02A9F1218F1FF65008145C2 /* CandiesTest */,
 				F02A9F3D18F324C1008145C2 /* GameCore */,
+				F02A9F5A18F35056008145C2 /* GoogleMock */,
 			);
 		};
 /* End PBXProject section */
@@ -371,7 +407,6 @@
 				F02A9F5618F3486B008145C2 /* BoardTest.cpp in Sources */,
 				F02A9F1618F1FF65008145C2 /* main.cpp in Sources */,
 				F02A9F3018F201B8008145C2 /* SampleTest.cpp in Sources */,
-				F02A9F2D18F20036008145C2 /* gmock-gtest-all.cc in Sources */,
 				F02A9F3918F32427008145C2 /* GameTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,6 +417,14 @@
 			files = (
 				F02A9F4618F3255C008145C2 /* GameFactory.cpp in Sources */,
 				F02A9F4A18F32795008145C2 /* Game.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02A9F5718F35056008145C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F02A9F5F18F35064008145C2 /* gmock-gtest-all.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +523,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "Candies/Candies-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -498,6 +543,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_PEDANTIC = YES;
 				INFOPLIST_FILE = "Candies/Candies-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -512,6 +559,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_PEDANTIC = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -525,6 +574,8 @@
 		F02A9F1B18F1FF65008145C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_PEDANTIC = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -538,11 +589,14 @@
 		F02A9F4018F324C1008145C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
+				GCC_WARN_PEDANTIC = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -550,7 +604,42 @@
 		F02A9F4118F324C1008145C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				EXECUTABLE_PREFIX = lib;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
+				GCC_WARN_PEDANTIC = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F02A9F5D18F35056008145C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/CandiesTest/GoogleMock/include\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F02A9F5E18F35056008145C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/CandiesTest/GoogleMock/include\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -590,6 +679,14 @@
 			buildConfigurations = (
 				F02A9F4018F324C1008145C2 /* Debug */,
 				F02A9F4118F324C1008145C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F02A9F5C18F35056008145C2 /* Build configuration list for PBXNativeTarget "GoogleMock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F02A9F5D18F35056008145C2 /* Debug */,
+				F02A9F5E18F35056008145C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
