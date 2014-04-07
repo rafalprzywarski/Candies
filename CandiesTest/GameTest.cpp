@@ -57,17 +57,21 @@ namespace Candies
         
         TEST_F(GameTest, should_not_swap_items_between_two_given_location_when_they_are_not_neighbours)
         {
-            expectGenerationOf(ALL_ITEMS);
+            expectGenerationOf({
+                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,
+                0,0,0,0,2,0,0,0,
+                0,1,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0 });
             game->start();
             Board oldBoard = game->getBoard();
-            const Location LOC1{1, 3}, LOC2{4, 2};
-            ASSERT_NE(oldBoard[LOC1], oldBoard[LOC2]) << "choose different items for comparison";
             
-            game->swapItems(LOC1, LOC2);
+            game->swapItems({1, 3}, {4, 2});
             
-            auto newBoard = game->getBoard();
-            EXPECT_EQ(oldBoard[LOC1], newBoard[LOC1]);
-            EXPECT_EQ(oldBoard[LOC2], newBoard[LOC2]);
+            ASSERT_TRUE(oldBoard == game->getBoard());
         }
     }
 }
