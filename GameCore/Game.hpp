@@ -16,5 +16,7 @@ namespace Candies
             ItemGeneratorPtr itemGenerator;
             Board board;
         };
+        
+        typedef std::shared_ptr<Game> GamePtr;
     }
 }

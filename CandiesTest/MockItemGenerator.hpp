@@ -11,5 +11,6 @@ namespace Candies
             MOCK_METHOD0(generate, ItemId());
         };
         
+        typedef std::shared_ptr<MockItemGenerator> MockItemGeneratorPtr;
     }
 }

@@ -5,7 +5,7 @@ namespace Candies
     namespace GameCore
     {
         Game::Game(ItemGeneratorPtr itemGenerator, unsigned boardWidth, unsigned boardHeight)
-        : itemGenerator(itemGenerator), board(boardWidth, boardHeight)
+        : itemGenerator(std::move(itemGenerator)), board(boardWidth, boardHeight)
         {
         }
         

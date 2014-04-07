@@ -9,7 +9,7 @@ namespace Candies
         class GameFactory
         {
         public:
-            std::shared_ptr<Game> createGame(ItemGeneratorPtr itemGenerator);
+            GamePtr createGame(ItemGeneratorPtr itemGenerator);
         };
     }
 }

@@ -4,9 +4,10 @@ namespace Candies
 {
     namespace GameCore
     {
-        std::shared_ptr<Game> GameFactory::createGame(ItemGeneratorPtr itemGenerator)
+        GamePtr GameFactory::createGame(ItemGeneratorPtr itemGenerator)
         {
-            return std::make_shared<Game>(itemGenerator, 8, 8);
+            unsigned BOARD_WIDTH = 8, BOARD_HEIGHT = 8;
+            return std::make_shared<Game>(itemGenerator, BOARD_WIDTH, BOARD_HEIGHT);
         }
     }
 
