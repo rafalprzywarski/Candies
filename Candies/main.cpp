@@ -5,6 +5,7 @@
 #include <GameRunner/GameRunner.hpp>
 #include <GameCore/GameFactory.hpp>
 #include "StubItemGenerator.hpp"
+#include "StubMouseEventListener.hpp"
 
 int main(int argc, const char * argv[])
 {
@@ -13,7 +14,8 @@ int main(int argc, const char * argv[])
 
     {
         auto ui = std::make_shared<Candies::UI::SDLGameUI>();
-        auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui);
+        auto mouseEventListener = std::make_shared<Candies::UI::StubMouseEventListener>();
+        auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui, mouseEventListener);
         auto itemGenerator = std::make_shared<Candies::GameCore::StubItemGenerator>();
         auto gameLogic = Candies::GameCore::GameFactory().createGame(itemGenerator);
         auto runner = std::make_shared<Candies::GameRunner>(gameLogic, dispatcher);

@@ -9,11 +9,18 @@ namespace Candies
         {
             SDL_Event event{};
             while (SDL_PollEvent(&event))
-                if (event.type == SDL_QUIT)
+            {
+                switch (event.type)
                 {
-                    finished = true;
-                    return;
+                    case SDL_QUIT:
+                        finished = true;
+                        return;
+                    case SDL_MOUSEBUTTONDOWN:
+                        mouseEventListener->mouseDown(event.button.x, event.button.y);
+                        break;
                 }
+            }
+            
             frameUpdateListener->update();
         }
         
