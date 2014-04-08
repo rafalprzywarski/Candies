@@ -95,6 +95,9 @@
 		F02A9F6E18F45571008145C2 /* GameRunnerTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRunnerTest.cpp; sourceTree = "<group>"; };
 		F02A9F7018F456A5008145C2 /* GameLogic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameLogic.hpp; sourceTree = "<group>"; };
 		F02A9F7118F45721008145C2 /* MockGameLogic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockGameLogic.hpp; sourceTree = "<group>"; };
+		F02A9F7718F45DFE008145C2 /* libGameUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGameUI.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F02A9F7C18F45EAD008145C2 /* EventDispatcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventDispatcher.hpp; sourceTree = "<group>"; };
+		F02A9F7D18F46438008145C2 /* MockEventDispatcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockEventDispatcher.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,12 +142,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F02A9F7418F45DFE008145C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		F02A9EBF18F1FA14008145C2 = {
 			isa = PBXGroup;
 			children = (
+				F02A9F7B18F45E7D008145C2 /* GameUI */,
 				F02A9F6918F45511008145C2 /* GameRunner */,
 				F02A9F4318F32549008145C2 /* GameCore */,
 				F02A9ED118F1FA15008145C2 /* Candies */,
@@ -163,6 +174,7 @@
 				F02A9F3E18F324C1008145C2 /* libGameCore.a */,
 				F02A9F5B18F35056008145C2 /* libGoogleMock.a */,
 				F02A9F6518F454C7008145C2 /* libGameRunner.a */,
+				F02A9F7718F45DFE008145C2 /* libGameUI.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,6 +229,7 @@
 				F02A9F5518F3486B008145C2 /* BoardTest.cpp */,
 				F02A9F6E18F45571008145C2 /* GameRunnerTest.cpp */,
 				F02A9F7118F45721008145C2 /* MockGameLogic.hpp */,
+				F02A9F7D18F46438008145C2 /* MockEventDispatcher.hpp */,
 			);
 			path = CandiesTest;
 			sourceTree = "<group>";
@@ -288,6 +301,14 @@
 			path = GameRunner;
 			sourceTree = "<group>";
 		};
+		F02A9F7B18F45E7D008145C2 /* GameUI */ = {
+			isa = PBXGroup;
+			children = (
+				F02A9F7C18F45EAD008145C2 /* EventDispatcher.hpp */,
+			);
+			path = GameUI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -313,6 +334,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F02A9F6D18F45525008145C2 /* GameRunner.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02A9F7518F45DFE008145C2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +433,23 @@
 			productReference = F02A9F6518F454C7008145C2 /* libGameRunner.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		F02A9F7618F45DFE008145C2 /* GameUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F02A9F7818F45DFE008145C2 /* Build configuration list for PBXNativeTarget "GameUI" */;
+			buildPhases = (
+				F02A9F7318F45DFE008145C2 /* Sources */,
+				F02A9F7418F45DFE008145C2 /* Frameworks */,
+				F02A9F7518F45DFE008145C2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GameUI;
+			productName = GameUI;
+			productReference = F02A9F7718F45DFE008145C2 /* libGameUI.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -432,6 +477,7 @@
 				F02A9F3D18F324C1008145C2 /* GameCore */,
 				F02A9F5A18F35056008145C2 /* GoogleMock */,
 				F02A9F6418F454C7008145C2 /* GameRunner */,
+				F02A9F7618F45DFE008145C2 /* GameUI */,
 			);
 		};
 /* End PBXProject section */
@@ -492,6 +538,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F02A9F6C18F45525008145C2 /* GameRunner.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F02A9F7318F45DFE008145C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,6 +794,26 @@
 			};
 			name = Release;
 		};
+		F02A9F7918F45DFE008145C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F02A9F7A18F45DFE008145C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -792,6 +865,14 @@
 			buildConfigurations = (
 				F02A9F6718F454C7008145C2 /* Debug */,
 				F02A9F6818F454C7008145C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F02A9F7818F45DFE008145C2 /* Build configuration list for PBXNativeTarget "GameUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F02A9F7918F45DFE008145C2 /* Debug */,
+				F02A9F7A18F45DFE008145C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
