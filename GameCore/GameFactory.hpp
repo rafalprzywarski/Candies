@@ -9,7 +9,7 @@ namespace Candies
         class GameFactory
         {
         public:
-            GamePtr createGame(ItemGeneratorPtr itemGenerator);
+            GamePtr createGame(ItemGeneratorPtr itemGenerator, GameObserverPtr observer);
         };
     }
 }

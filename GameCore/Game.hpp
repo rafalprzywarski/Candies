@@ -3,6 +3,7 @@
 #include "Board.hpp"
 #include "Location.hpp"
 #include "GameLogic.hpp"
+#include "GameObserver.hpp"
 
 namespace Candies
 {
@@ -11,12 +12,13 @@ namespace Candies
         class Game : public GameLogic
         {
         public:
-            Game(ItemGeneratorPtr itemGenerator, unsigned boardWidth, unsigned boardHeight);
+            Game(ItemGeneratorPtr itemGenerator, GameObserverPtr observer, unsigned boardWidth, unsigned boardHeight);
             void start();
             void swapItems(Location loc1, Location loc2);
             Board getBoard() const;
         private:
             ItemGeneratorPtr itemGenerator;
+            GameObserverPtr observer;
             Board board;
         };
         

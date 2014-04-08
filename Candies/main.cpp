@@ -7,6 +7,11 @@
 #include "StubItemGenerator.hpp"
 #include "StubMouseEventListener.hpp"
 
+struct StubGameObserver : public Candies::GameCore::GameObserver
+{
+    virtual void itemAdded(Candies::GameCore::ItemId item, Candies::GameCore::Location loc) { }
+};
+
 int main(int argc, const char * argv[])
 {
 	SDL_Init(SDL_INIT_VIDEO);
@@ -17,7 +22,8 @@ int main(int argc, const char * argv[])
         auto mouseEventListener = std::make_shared<Candies::UI::StubMouseEventListener>();
         auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui, mouseEventListener);
         auto itemGenerator = std::make_shared<Candies::GameCore::StubItemGenerator>();
-        auto gameLogic = Candies::GameCore::GameFactory().createGame(itemGenerator);
+        auto gameObserver = std::make_shared<StubGameObserver>();
+        auto gameLogic = Candies::GameCore::GameFactory().createGame(itemGenerator, gameObserver);
         auto runner = std::make_shared<Candies::GameRunner>(gameLogic, dispatcher);
     
         runner->run();

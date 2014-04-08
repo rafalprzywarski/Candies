@@ -121,6 +121,8 @@
 		F0B4497D18F48AEF006C6405 /* MockSprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockSprite.hpp; sourceTree = "<group>"; };
 		F0B4497E18F48BDB006C6405 /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
 		F0B4497F18F49143006C6405 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Position.hpp; sourceTree = "<group>"; };
+		F0B4498018F49689006C6405 /* GameObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameObserver.hpp; sourceTree = "<group>"; };
+		F0B4498118F49899006C6405 /* MockGameObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockGameObserver.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +266,7 @@
 				F02A9F7D18F46438008145C2 /* MockEventDispatcher.hpp */,
 				F0B4497A18F4881D006C6405 /* StaticBoardTest.cpp */,
 				F0B4497D18F48AEF006C6405 /* MockSprite.hpp */,
+				F0B4498118F49899006C6405 /* MockGameObserver.hpp */,
 			);
 			path = CandiesTest;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				F02A9F5318F33318008145C2 /* Board.hpp */,
 				F02A9F5418F341E5008145C2 /* Location.hpp */,
 				F02A9F7018F456A5008145C2 /* GameLogic.hpp */,
+				F0B4498018F49689006C6405 /* GameObserver.hpp */,
 			);
 			path = GameCore;
 			sourceTree = "<group>";

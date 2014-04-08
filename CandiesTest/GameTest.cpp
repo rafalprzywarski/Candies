@@ -1,5 +1,6 @@
 #include <GameCore/GameFactory.hpp>
 #include "MockItemGenerator.hpp"
+#include "MockGameObserver.hpp"
 #include <gtest/gtest.h>
 
 using namespace testing;
@@ -29,7 +30,8 @@ namespace Candies
             const unsigned BOARD_WIDTH = 8, BOARD_HEIGHT = 8;
             
             MockItemGeneratorPtr itemGenerator = std::make_shared<StrictMock<MockItemGenerator>>();
-            GamePtr game = GameFactory().createGame(itemGenerator);
+            MockGameObserverPtr observer = std::make_shared<NiceMock<MockGameObserver>>();
+            GamePtr game = GameFactory().createGame(itemGenerator, observer);
             ItemIds ALL_ITEMS = {
                 4,2,3,0,0,1,3,1,
                 3,3,0,4,1,4,4,0,
@@ -58,6 +60,13 @@ namespace Candies
 
                 ASSERT_EQ(expectedBoard, game->getBoard());
             }
+            
+            void expectItemAddedNotificationsFor(ItemIds items)
+            {
+                for (unsigned y = 0; y < BOARD_HEIGHT; ++y)
+                    for (unsigned x = 0; x < BOARD_WIDTH; ++x)
+                        EXPECT_CALL(*observer, itemAdded(ALL_ITEMS[x + y * BOARD_WIDTH], Location(x, y)));
+            }
         };
         
         TEST_F(GameTest, board_should_be_filled_with_generated_items_when_game_is_started)
@@ -68,7 +77,14 @@ namespace Candies
             EXPECT_THAT(board, HasSize(BOARD_WIDTH, BOARD_HEIGHT));
             EXPECT_THAT(board, IsFilledWith(ALL_ITEMS));
         }
-        
+
+        TEST_F(GameTest, should_notify_observer_about_filling_the_board_with_generated_items_when_game_is_started)
+        {
+            expectGenerationOf(ALL_ITEMS);
+            expectItemAddedNotificationsFor(ALL_ITEMS);
+            game->start();
+        }
+
         TEST_F(GameTest, should_not_swap_items_between_two_given_location_when_they_are_not_neighbours)
         {
             expectGenerationOf({

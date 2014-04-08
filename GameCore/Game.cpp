@@ -4,16 +4,22 @@ namespace Candies
 {
     namespace GameCore
     {
-        Game::Game(ItemGeneratorPtr itemGenerator, unsigned boardWidth, unsigned boardHeight)
-        : itemGenerator(std::move(itemGenerator)), board(boardWidth, boardHeight)
+        Game::Game(ItemGeneratorPtr itemGenerator, GameObserverPtr observer, unsigned boardWidth, unsigned boardHeight)
+        : itemGenerator(std::move(itemGenerator)), observer(observer), board(boardWidth, boardHeight)
         {
         }
         
         void Game::start()
         {
             for (unsigned y = 0; y < board.getWidth(); ++y)
+            {
                 for (unsigned x = 0; x < board.getHeight(); ++x)
-                    board[{x, y}] = itemGenerator->generate();
+                {
+                    auto item = itemGenerator->generate();
+                    board[{x, y}] = item;
+                    observer->itemAdded(item, {x, y});
+                }
+            }
         }
 
         void Game::swapItems(Location loc1, Location loc2)
