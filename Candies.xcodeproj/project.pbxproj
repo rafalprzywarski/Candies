@@ -37,6 +37,10 @@
 		F0B4496F18F4735D006C6405 /* SDLGameUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */; };
 		F0B4497118F47791006C6405 /* libGameCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F3E18F324C1008145C2 /* libGameCore.a */; };
 		F0B4497218F47796006C6405 /* libGameRunner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F6518F454C7008145C2 /* libGameRunner.a */; };
+		F0B4497818F486B8006C6405 /* StaticBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4497618F486B8006C6405 /* StaticBoard.cpp */; };
+		F0B4497918F486B8006C6405 /* StaticBoard.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B4497718F486B8006C6405 /* StaticBoard.hpp */; };
+		F0B4497B18F4881D006C6405 /* StaticBoardTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4497A18F4881D006C6405 /* StaticBoardTest.cpp */; };
+		F0B4497C18F48934006C6405 /* libGameUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F7718F45DFE008145C2 /* libGameUI.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -111,6 +115,9 @@
 		F0B4497318F479E9006C6405 /* FrameUpdateListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FrameUpdateListener.hpp; sourceTree = "<group>"; };
 		F0B4497418F47B0D006C6405 /* MouseEventListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MouseEventListener.hpp; sourceTree = "<group>"; };
 		F0B4497518F47C14006C6405 /* StubMouseEventListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StubMouseEventListener.hpp; sourceTree = "<group>"; };
+		F0B4497618F486B8006C6405 /* StaticBoard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoard.cpp; sourceTree = "<group>"; };
+		F0B4497718F486B8006C6405 /* StaticBoard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StaticBoard.hpp; sourceTree = "<group>"; };
+		F0B4497A18F4881D006C6405 /* StaticBoardTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoardTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +139,7 @@
 			files = (
 				F02A9F4C18F327F1008145C2 /* libGameCore.a in Frameworks */,
 				F02A9F7218F458DE008145C2 /* libGameRunner.a in Frameworks */,
+				F0B4497C18F48934006C6405 /* libGameUI.a in Frameworks */,
 				F02A9F6018F3507C008145C2 /* libGoogleMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,6 +259,7 @@
 				F02A9F6E18F45571008145C2 /* GameRunnerTest.cpp */,
 				F02A9F7118F45721008145C2 /* MockGameLogic.hpp */,
 				F02A9F7D18F46438008145C2 /* MockEventDispatcher.hpp */,
+				F0B4497A18F4881D006C6405 /* StaticBoardTest.cpp */,
 			);
 			path = CandiesTest;
 			sourceTree = "<group>";
@@ -328,6 +337,8 @@
 				F02A9F7C18F45EAD008145C2 /* EventDispatcher.hpp */,
 				F0B4497318F479E9006C6405 /* FrameUpdateListener.hpp */,
 				F0B4497418F47B0D006C6405 /* MouseEventListener.hpp */,
+				F0B4497618F486B8006C6405 /* StaticBoard.cpp */,
+				F0B4497718F486B8006C6405 /* StaticBoard.hpp */,
 			);
 			path = GameUI;
 			sourceTree = "<group>";
@@ -365,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0B4496918F46D30006C6405 /* SDLEventDispatcher.hpp in Headers */,
+				F0B4497918F486B8006C6405 /* StaticBoard.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +550,7 @@
 				F02A9F1618F1FF65008145C2 /* main.cpp in Sources */,
 				F02A9F6F18F45571008145C2 /* GameRunnerTest.cpp in Sources */,
 				F02A9F3018F201B8008145C2 /* SampleTest.cpp in Sources */,
+				F0B4497B18F4881D006C6405 /* StaticBoardTest.cpp in Sources */,
 				F02A9F3918F32427008145C2 /* GameTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B4497818F486B8006C6405 /* StaticBoard.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
