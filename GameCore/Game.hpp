@@ -2,12 +2,13 @@
 #include "ItemGenerator.hpp"
 #include "Board.hpp"
 #include "Location.hpp"
+#include "GameLogic.hpp"
 
 namespace Candies
 {
     namespace GameCore
     {
-        class Game
+        class Game : public GameLogic
         {
         public:
             Game(ItemGeneratorPtr itemGenerator, unsigned boardWidth, unsigned boardHeight);
