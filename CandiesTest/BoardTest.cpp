@@ -25,9 +25,13 @@ namespace Candies
         
         TEST(BoardTest, should_provide_item_access)
         {
-            Board board{2, 2};
+            Board board{2, 3};
             board[{0, 1}] = 3;
+            board[{1, 0}] = 7;
+            board[{1, 2}] = 5;
             ASSERT_TRUE((3 == Const(board)[{0, 1}]));
+            ASSERT_TRUE((7 == Const(board)[{1, 0}]));
+            ASSERT_TRUE((5 == Const(board)[{1, 2}]));
         }
         
         TEST(BoardTest, equality_comparison_should_compare_sizes)
