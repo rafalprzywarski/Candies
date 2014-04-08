@@ -42,6 +42,7 @@
 		F0B4497B18F4881D006C6405 /* StaticBoardTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4497A18F4881D006C6405 /* StaticBoardTest.cpp */; };
 		F0B4497C18F48934006C6405 /* libGameUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F7718F45DFE008145C2 /* libGameUI.a */; };
 		F0B4498718F49DD3006C6405 /* SDLSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4498518F49DD3006C6405 /* SDLSprite.cpp */; };
+		F0B4498A18F4A3BD006C6405 /* GameRunnerFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -126,6 +127,8 @@
 		F0B4498118F49899006C6405 /* MockGameObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockGameObserver.hpp; sourceTree = "<group>"; };
 		F0B4498518F49DD3006C6405 /* SDLSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLSprite.cpp; sourceTree = "<group>"; };
 		F0B4498618F49DD3006C6405 /* SDLSprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLSprite.hpp; sourceTree = "<group>"; };
+		F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRunnerFactory.cpp; sourceTree = "<group>"; };
+		F0B4498918F4A3BD006C6405 /* GameRunnerFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameRunnerFactory.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +239,8 @@
 				F0B4497518F47C14006C6405 /* StubMouseEventListener.hpp */,
 				F0B4498518F49DD3006C6405 /* SDLSprite.cpp */,
 				F0B4498618F49DD3006C6405 /* SDLSprite.hpp */,
+				F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */,
+				F0B4498918F4A3BD006C6405 /* GameRunnerFactory.hpp */,
 			);
 			path = Candies;
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B4498A18F4A3BD006C6405 /* GameRunnerFactory.cpp in Sources */,
 				F02A9F0318F1FAC3008145C2 /* ResourcePath.mm in Sources */,
 				F0B4496F18F4735D006C6405 /* SDLGameUI.cpp in Sources */,
 				F0B4498718F49DD3006C6405 /* SDLSprite.cpp in Sources */,

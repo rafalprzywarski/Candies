@@ -14,4 +14,6 @@ namespace Candies
         GameCore::GameLogicPtr logic;
         UI::EventDispatcherPtr eventDispatcher;
     };
+    
+    typedef std::shared_ptr<GameRunner> GameRunnerPtr;
 }
