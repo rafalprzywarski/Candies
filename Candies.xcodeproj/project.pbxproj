@@ -108,6 +108,7 @@
 		F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLGameUI.cpp; sourceTree = "<group>"; };
 		F0B4496E18F4735D006C6405 /* SDLGameUI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLGameUI.hpp; sourceTree = "<group>"; };
 		F0B4497018F476FD006C6405 /* StubItemGenerator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StubItemGenerator.hpp; sourceTree = "<group>"; };
+		F0B4497318F479E9006C6405 /* FrameUpdateListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FrameUpdateListener.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				F02A9F7C18F45EAD008145C2 /* EventDispatcher.hpp */,
+				F0B4497318F479E9006C6405 /* FrameUpdateListener.hpp */,
 			);
 			path = GameUI;
 			sourceTree = "<group>";

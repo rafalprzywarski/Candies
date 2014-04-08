@@ -14,7 +14,7 @@ namespace Candies
                     finished = true;
                     return;
                 }
-            ui->update();
+            frameUpdateListener->update();
         }
         
         bool SDLEventDispatcher::isFinished() const

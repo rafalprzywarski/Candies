@@ -1,12 +1,12 @@
 #pragma once
-#include "EventDispatcher.hpp"
+#include <GameUI/FrameUpdateListener.hpp>
 #include <SDL2/SDL.h>
 
 namespace Candies
 {
     namespace UI
     {
-        class SDLGameUI
+        class SDLGameUI : public FrameUpdateListener
         {
         public:
             SDLGameUI();
