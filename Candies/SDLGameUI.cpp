@@ -13,7 +13,7 @@ namespace Candies
         
         SDLGameUI::SDLGameUI()
         : window(SDL_CreateWindow("Candies", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN), SDL_DestroyWindow),
-        renderer(SDL_CreateRenderer(&*window, -1, SDL_RENDERER_ACCELERATED), SDL_DestroyRenderer),
+        renderer(SDL_CreateRenderer(&*window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC), SDL_DestroyRenderer),
         background(IMG_LoadTexture(&*renderer, getResourcePath("BackGround.jpg").c_str()), SDL_DestroyTexture)
         {
         }
