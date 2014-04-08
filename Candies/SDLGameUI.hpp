@@ -1,5 +1,6 @@
 #pragma once
 #include <GameUI/FrameUpdateListener.hpp>
+#include <GameUI/Sprite.hpp>
 #include <SDL2/SDL.h>
 
 namespace Candies
@@ -14,7 +15,7 @@ namespace Candies
         private:
             std::shared_ptr<SDL_Window> window;
             std::shared_ptr<SDL_Renderer> renderer;
-            std::shared_ptr<SDL_Texture> background;
+            std::shared_ptr<Sprite> background;
         };
     }
 }
