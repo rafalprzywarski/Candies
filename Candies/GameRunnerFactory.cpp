@@ -3,11 +3,11 @@
 #include "SDLEventDispatcher.hpp"
 #include <GameRunner/GameRunner.hpp>
 #include <GameCore/GameFactory.hpp>
-#include "StubItemGenerator.hpp"
 #include "StubMouseEventListener.hpp"
 #include "SDLRendererFactory.hpp"
 #include "SDLSprite.hpp"
 #include "StaticBoard.hpp"
+#include <GameCore/StdItemGenerator.hpp>
 
 namespace Candies
 {
@@ -45,7 +45,7 @@ namespace Candies
         auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, background, board);
         auto mouseEventListener = std::make_shared<Candies::UI::StubMouseEventListener>();
         auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui, mouseEventListener);
-        auto itemGenerator = std::make_shared<Candies::GameCore::StubItemGenerator>();
+        auto itemGenerator = std::make_shared<Candies::GameCore::StdItemGenerator>(gems.size());
         auto gameObserver = std::make_shared<BoardUpdater>(board);
         auto gameLogic = Candies::GameCore::GameFactory().createGame(itemGenerator, gameObserver);
         auto runner = std::make_shared<Candies::GameRunner>(gameLogic, dispatcher);
