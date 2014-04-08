@@ -11,7 +11,10 @@ namespace Candies
 
         void StaticBoard::addItem(GameCore::ItemId id, GameCore::Location loc)
         {
-            items.push_back({sprites[id], loc});
+            auto found = sprites.find(id);
+            if (found == sprites.end())
+                throw std::out_of_range("Invalid item id");
+            items.push_back({found->second, loc});
         }
 
         void StaticBoard::update()

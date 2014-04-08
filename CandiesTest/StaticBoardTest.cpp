@@ -15,6 +15,7 @@ namespace Candies
             const int GRID_SIZE = 9;
             const Position POSITION = { 23, -17 };
             StaticBoard board{{{3, item3}, {7, item7}}, GRID_SIZE, POSITION};
+            const GameCore::ItemId INVALID_ID = 2;
         };
 
         TEST_F(StaticBoardTest, should_display_nothing_when_created)
@@ -30,6 +31,11 @@ namespace Candies
             EXPECT_CALL(*item7, drawAt(Position(POSITION.x + 3 * GRID_SIZE, POSITION.y + 2 * GRID_SIZE)));
             
             board.update();
+        }
+        
+        TEST_F(StaticBoardTest, should_fail_when_added_item_has_invalid_id)
+        {
+            ASSERT_THROW(board.addItem(INVALID_ID, {0, 0}), std::out_of_range);
         }
     }
 }
