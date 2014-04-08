@@ -4,6 +4,6 @@ namespace Candies
 {
     namespace GameCore
     {
-        typedef char ItemId;
+        typedef int ItemId;
     }
 }

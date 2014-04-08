@@ -44,6 +44,15 @@ namespace Candies
                 for (auto item : items)
                     EXPECT_CALL(*itemGenerator, generate()).WillOnce(Return(item)).RetiresOnSaturation();
             }
+            
+            void expectBoardWith(ItemIds items)
+            {
+                Board expectedBoard{8, 8};
+                for (unsigned y = 0; y < expectedBoard.getHeight(); ++y)
+                    for (unsigned x = 0; x < expectedBoard.getWidth(); ++x)
+                        expectedBoard[{x, y}] = items.at(x + y * expectedBoard.getWidth());
+                ASSERT_EQ(expectedBoard, game->getBoard());
+            }
         };
         
         TEST_F(GameTest, board_should_be_filled_with_generated_items_when_game_is_started)
@@ -72,6 +81,32 @@ namespace Candies
             game->swapItems({1, 3}, {4, 2});
             
             ASSERT_TRUE(oldBoard == game->getBoard());
+        }
+
+        TEST_F(GameTest, should_swap_items_between_two_given_location_when_it_causes_three_items_to_be_aligned_in_a_row)
+        {
+            expectGenerationOf({
+                0,0,0,0,0,0,0,0,
+                0,0,0,1,0,0,0,0,
+                0,1,1,2,0,0,0,0,
+                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0 });
+            game->start();
+            
+            game->swapItems({3, 2}, {3, 1});
+            
+            expectBoardWith({
+                0,0,0,0,0,0,0,0,
+                0,0,0,2,0,0,0,0,
+                0,1,1,1,0,0,0,0,
+                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0 });
         }
     }
 }
