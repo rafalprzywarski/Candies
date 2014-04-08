@@ -26,6 +26,8 @@ namespace Candies
         {
             typedef std::vector<ItemId> ItemIds;
             
+            const unsigned BOARD_WIDTH = 8, BOARD_HEIGHT = 8;
+            
             MockItemGeneratorPtr itemGenerator = std::make_shared<StrictMock<MockItemGenerator>>();
             GamePtr game = GameFactory().createGame(itemGenerator);
             ItemIds ALL_ITEMS = {
@@ -47,10 +49,13 @@ namespace Candies
             
             void expectBoardWith(ItemIds items)
             {
-                Board expectedBoard{8, 8};
+                Board expectedBoard{BOARD_WIDTH, BOARD_HEIGHT};
+                ASSERT_EQ(BOARD_WIDTH * BOARD_HEIGHT, items.size());
+                
                 for (unsigned y = 0; y < expectedBoard.getHeight(); ++y)
                     for (unsigned x = 0; x < expectedBoard.getWidth(); ++x)
                         expectedBoard[{x, y}] = items.at(x + y * expectedBoard.getWidth());
+
                 ASSERT_EQ(expectedBoard, game->getBoard());
             }
         };
@@ -60,7 +65,7 @@ namespace Candies
             expectGenerationOf(ALL_ITEMS);
             game->start();
             auto board = game->getBoard();
-            EXPECT_THAT(board, HasSize(8, 8));
+            EXPECT_THAT(board, HasSize(BOARD_WIDTH, BOARD_HEIGHT));
             EXPECT_THAT(board, IsFilledWith(ALL_ITEMS));
         }
         
