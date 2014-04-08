@@ -6,6 +6,12 @@ namespace Candies
 {
     namespace UI
     {
+        class SpriteNotFound : public std::runtime_error
+        {
+        public:
+            SpriteNotFound(const std::string& filename) : std::runtime_error("Sprite not found " + filename) { }
+        };
+        
         class SDLSprite : public Sprite
         {
         public:

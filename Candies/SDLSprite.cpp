@@ -10,6 +10,8 @@ namespace Candies
         : renderer(renderer),
         texture(IMG_LoadTexture(&*renderer, getResourcePath(filename).c_str()), SDL_DestroyTexture)
         {
+            if (!texture)
+                throw SpriteNotFound(filename);
         }
 
         void SDLSprite::drawAt(Position p)

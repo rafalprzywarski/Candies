@@ -3,6 +3,7 @@
 #include <GameCore/Location.hpp>
 #include "Sprite.hpp"
 #include "Position.hpp"
+#include "FrameUpdateListener.hpp"
 #include <memory>
 #include <unordered_map>
 #include <vector>
@@ -11,7 +12,7 @@ namespace Candies
 {
     namespace UI
     {
-        class StaticBoard
+        class StaticBoard : public FrameUpdateListener
         {
         public:
             StaticBoard(std::vector<std::pair<const GameCore::ItemId, SpritePtr>> sprites, int gridSize, Position position);

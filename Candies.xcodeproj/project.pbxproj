@@ -42,6 +42,13 @@
 		F0B4497C18F48934006C6405 /* libGameUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F7718F45DFE008145C2 /* libGameUI.a */; };
 		F0B4498718F49DD3006C6405 /* SDLSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4498518F49DD3006C6405 /* SDLSprite.cpp */; };
 		F0B4498A18F4A3BD006C6405 /* GameRunnerFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */; };
+		F0B4499118F4A6D0006C6405 /* SDLRendererFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4498F18F4A6D0006C6405 /* SDLRendererFactory.cpp */; };
+		F0B4499718F4ABC0006C6405 /* Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B4499218F4ABC0006C6405 /* Blue.png */; };
+		F0B4499818F4ABC0006C6405 /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B4499318F4ABC0006C6405 /* Green.png */; };
+		F0B4499918F4ABC0006C6405 /* Purple.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B4499418F4ABC0006C6405 /* Purple.png */; };
+		F0B4499A18F4ABC0006C6405 /* Red.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B4499518F4ABC0006C6405 /* Red.png */; };
+		F0B4499B18F4ABC0006C6405 /* Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B4499618F4ABC0006C6405 /* Yellow.png */; };
+		F0B4499C18F4AE04006C6405 /* libGameUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F7718F45DFE008145C2 /* libGameUI.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -127,6 +134,13 @@
 		F0B4498618F49DD3006C6405 /* SDLSprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLSprite.hpp; sourceTree = "<group>"; };
 		F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRunnerFactory.cpp; sourceTree = "<group>"; };
 		F0B4498918F4A3BD006C6405 /* GameRunnerFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameRunnerFactory.hpp; sourceTree = "<group>"; };
+		F0B4498F18F4A6D0006C6405 /* SDLRendererFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLRendererFactory.cpp; sourceTree = "<group>"; };
+		F0B4499018F4A6D0006C6405 /* SDLRendererFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLRendererFactory.hpp; sourceTree = "<group>"; };
+		F0B4499218F4ABC0006C6405 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Blue.png; path = Resources/Blue.png; sourceTree = "<group>"; };
+		F0B4499318F4ABC0006C6405 /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Green.png; path = Resources/Green.png; sourceTree = "<group>"; };
+		F0B4499418F4ABC0006C6405 /* Purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Purple.png; path = Resources/Purple.png; sourceTree = "<group>"; };
+		F0B4499518F4ABC0006C6405 /* Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Red.png; path = Resources/Red.png; sourceTree = "<group>"; };
+		F0B4499618F4ABC0006C6405 /* Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Yellow.png; path = Resources/Yellow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +153,7 @@
 				F02A9F0618F1FB15008145C2 /* SDL2_image.framework in Frameworks */,
 				F0B4497118F47791006C6405 /* libGameCore.a in Frameworks */,
 				F0B4497218F47796006C6405 /* libGameRunner.a in Frameworks */,
+				F0B4499C18F4AE04006C6405 /* libGameUI.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +254,8 @@
 				F0B4498618F49DD3006C6405 /* SDLSprite.hpp */,
 				F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */,
 				F0B4498918F4A3BD006C6405 /* GameRunnerFactory.hpp */,
+				F0B4498F18F4A6D0006C6405 /* SDLRendererFactory.cpp */,
+				F0B4499018F4A6D0006C6405 /* SDLRendererFactory.hpp */,
 			);
 			path = Candies;
 			sourceTree = "<group>";
@@ -255,6 +272,11 @@
 		F02A9F0E18F1FD01008145C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F0B4499218F4ABC0006C6405 /* Blue.png */,
+				F0B4499318F4ABC0006C6405 /* Green.png */,
+				F0B4499418F4ABC0006C6405 /* Purple.png */,
+				F0B4499518F4ABC0006C6405 /* Red.png */,
+				F0B4499618F4ABC0006C6405 /* Yellow.png */,
 				F02A9F0B18F1FCEE008145C2 /* BackGround.jpg */,
 			);
 			name = Resources;
@@ -540,6 +562,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B4499718F4ABC0006C6405 /* Blue.png in Resources */,
+				F0B4499918F4ABC0006C6405 /* Purple.png in Resources */,
+				F0B4499818F4ABC0006C6405 /* Green.png in Resources */,
+				F0B4499B18F4ABC0006C6405 /* Yellow.png in Resources */,
+				F0B4499A18F4ABC0006C6405 /* Red.png in Resources */,
 				F02A9ED618F1FA15008145C2 /* InfoPlist.strings in Resources */,
 				F02A9F0C18F1FCEE008145C2 /* BackGround.jpg in Resources */,
 			);
@@ -552,6 +579,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B4499118F4A6D0006C6405 /* SDLRendererFactory.cpp in Sources */,
 				F0B4498A18F4A3BD006C6405 /* GameRunnerFactory.cpp in Sources */,
 				F02A9F0318F1FAC3008145C2 /* ResourcePath.mm in Sources */,
 				F0B4496F18F4735D006C6405 /* SDLGameUI.cpp in Sources */,

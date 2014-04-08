@@ -10,12 +10,12 @@ namespace Candies
         class SDLGameUI : public FrameUpdateListener
         {
         public:
-            SDLGameUI();
+            SDLGameUI(std::shared_ptr<SDL_Renderer> renderer, SpritePtr background, FrameUpdateListenerPtr board);
             void update();
         private:
-            std::shared_ptr<SDL_Window> window;
             std::shared_ptr<SDL_Renderer> renderer;
-            std::shared_ptr<Sprite> background;
+            SpritePtr background;
+            FrameUpdateListenerPtr board;
         };
     }
 }

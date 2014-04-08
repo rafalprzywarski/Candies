@@ -7,15 +7,8 @@ namespace Candies
 {
     namespace UI
     {
-        namespace
-        {
-            auto const SCREEN_WIDTH = 755, SCREEN_HEIGHT = 600;
-        }
-        
-        SDLGameUI::SDLGameUI()
-        : window(SDL_CreateWindow("Candies", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN), SDL_DestroyWindow),
-        renderer(SDL_CreateRenderer(&*window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC), SDL_DestroyRenderer),
-        background(std::make_shared<SDLSprite>(renderer, "BackGround.jpg"))
+        SDLGameUI::SDLGameUI(std::shared_ptr<SDL_Renderer> renderer, SpritePtr background, FrameUpdateListenerPtr board)
+        : renderer(renderer), background(background), board(board)
         {
         }
         
@@ -23,6 +16,7 @@ namespace Candies
         {
             SDL_RenderClear(&*renderer);
             background->drawAt({0, 0});
+            board->update();
             SDL_RenderPresent(&*renderer);
         }
     }
