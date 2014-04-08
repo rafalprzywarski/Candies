@@ -118,6 +118,9 @@
 		F0B4497618F486B8006C6405 /* StaticBoard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoard.cpp; sourceTree = "<group>"; };
 		F0B4497718F486B8006C6405 /* StaticBoard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StaticBoard.hpp; sourceTree = "<group>"; };
 		F0B4497A18F4881D006C6405 /* StaticBoardTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoardTest.cpp; sourceTree = "<group>"; };
+		F0B4497D18F48AEF006C6405 /* MockSprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockSprite.hpp; sourceTree = "<group>"; };
+		F0B4497E18F48BDB006C6405 /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
+		F0B4497F18F49143006C6405 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Position.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +263,7 @@
 				F02A9F7118F45721008145C2 /* MockGameLogic.hpp */,
 				F02A9F7D18F46438008145C2 /* MockEventDispatcher.hpp */,
 				F0B4497A18F4881D006C6405 /* StaticBoardTest.cpp */,
+				F0B4497D18F48AEF006C6405 /* MockSprite.hpp */,
 			);
 			path = CandiesTest;
 			sourceTree = "<group>";
@@ -339,6 +343,8 @@
 				F0B4497418F47B0D006C6405 /* MouseEventListener.hpp */,
 				F0B4497618F486B8006C6405 /* StaticBoard.cpp */,
 				F0B4497718F486B8006C6405 /* StaticBoard.hpp */,
+				F0B4497E18F48BDB006C6405 /* Sprite.hpp */,
+				F0B4497F18F49143006C6405 /* Position.hpp */,
 			);
 			path = GameUI;
 			sourceTree = "<group>";
@@ -856,6 +862,11 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -867,6 +878,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
