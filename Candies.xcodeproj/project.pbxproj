@@ -17,7 +17,6 @@
 		F02A9F0A18F1FB3F008145C2 /* SDL2.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F0518F1FB15008145C2 /* SDL2.framework */; };
 		F02A9F0C18F1FCEE008145C2 /* BackGround.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F02A9F0B18F1FCEE008145C2 /* BackGround.jpg */; };
 		F02A9F1618F1FF65008145C2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F1518F1FF65008145C2 /* main.cpp */; };
-		F02A9F3018F201B8008145C2 /* SampleTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F2E18F201B8008145C2 /* SampleTest.cpp */; };
 		F02A9F3918F32427008145C2 /* GameTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F3818F32427008145C2 /* GameTest.cpp */; };
 		F02A9F4618F3255C008145C2 /* GameFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F4418F3255C008145C2 /* GameFactory.cpp */; };
 		F02A9F4718F3255C008145C2 /* GameFactory.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F02A9F4518F3255C008145C2 /* GameFactory.hpp */; };
@@ -86,7 +85,6 @@
 		F02A9F2818F20036008145C2 /* gmock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gmock.h; sourceTree = "<group>"; };
 		F02A9F2A18F20036008145C2 /* gtest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gtest.h; sourceTree = "<group>"; };
 		F02A9F2C18F20036008145C2 /* gmock-gtest-all.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "gmock-gtest-all.cc"; sourceTree = "<group>"; };
-		F02A9F2E18F201B8008145C2 /* SampleTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SampleTest.cpp; sourceTree = "<group>"; };
 		F02A9F3818F32427008145C2 /* GameTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameTest.cpp; sourceTree = "<group>"; };
 		F02A9F3E18F324C1008145C2 /* libGameCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGameCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02A9F4418F3255C008145C2 /* GameFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameFactory.cpp; sourceTree = "<group>"; };
@@ -267,7 +265,6 @@
 			children = (
 				F02A9F2518F20036008145C2 /* GoogleMock */,
 				F02A9F1518F1FF65008145C2 /* main.cpp */,
-				F02A9F2E18F201B8008145C2 /* SampleTest.cpp */,
 				F02A9F3818F32427008145C2 /* GameTest.cpp */,
 				F02A9F5218F32BCC008145C2 /* MockItemGenerator.hpp */,
 				F02A9F5518F3486B008145C2 /* BoardTest.cpp */,
@@ -571,7 +568,6 @@
 				F02A9F5618F3486B008145C2 /* BoardTest.cpp in Sources */,
 				F02A9F1618F1FF65008145C2 /* main.cpp in Sources */,
 				F02A9F6F18F45571008145C2 /* GameRunnerTest.cpp in Sources */,
-				F02A9F3018F201B8008145C2 /* SampleTest.cpp in Sources */,
 				F0B4497B18F4881D006C6405 /* StaticBoardTest.cpp in Sources */,
 				F02A9F3918F32427008145C2 /* GameTest.cpp in Sources */,
 			);
