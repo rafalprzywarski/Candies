@@ -4,8 +4,8 @@ namespace Candies
 {
     namespace UI
     {
-        StaticBoard::StaticBoard(std::initializer_list<std::pair<const GameCore::ItemId, SpritePtr>> sprites, int gridSize, Position position)
-        : sprites(sprites), gridSize(gridSize), position(position)
+        StaticBoard::StaticBoard(std::vector<std::pair<const GameCore::ItemId, SpritePtr>> sprites, int gridSize, Position position)
+        : sprites(sprites.begin(), sprites.end()), gridSize(gridSize), position(position)
         {
         }
 

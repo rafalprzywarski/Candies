@@ -14,7 +14,7 @@ namespace Candies
         class StaticBoard
         {
         public:
-            StaticBoard(std::initializer_list<std::pair<const GameCore::ItemId, SpritePtr>> sprites, int gridSize, Position position);
+            StaticBoard(std::vector<std::pair<const GameCore::ItemId, SpritePtr>> sprites, int gridSize, Position position);
             void addItem(GameCore::ItemId id, GameCore::Location loc);
             void update();
         private:
