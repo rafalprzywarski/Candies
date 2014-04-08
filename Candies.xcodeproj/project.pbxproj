@@ -32,6 +32,11 @@
 		F02A9F6D18F45525008145C2 /* GameRunner.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F02A9F6B18F45525008145C2 /* GameRunner.hpp */; };
 		F02A9F6F18F45571008145C2 /* GameRunnerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F6E18F45571008145C2 /* GameRunnerTest.cpp */; };
 		F02A9F7218F458DE008145C2 /* libGameRunner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F6518F454C7008145C2 /* libGameRunner.a */; };
+		F0B4496918F46D30006C6405 /* SDLEventDispatcher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B4496718F46D30006C6405 /* SDLEventDispatcher.hpp */; };
+		F0B4496C18F470C2006C6405 /* SDLEventDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4496618F46D30006C6405 /* SDLEventDispatcher.cpp */; };
+		F0B4496F18F4735D006C6405 /* SDLGameUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */; };
+		F0B4497118F47791006C6405 /* libGameCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F3E18F324C1008145C2 /* libGameCore.a */; };
+		F0B4497218F47796006C6405 /* libGameRunner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F6518F454C7008145C2 /* libGameRunner.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -98,6 +103,11 @@
 		F02A9F7718F45DFE008145C2 /* libGameUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGameUI.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02A9F7C18F45EAD008145C2 /* EventDispatcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventDispatcher.hpp; sourceTree = "<group>"; };
 		F02A9F7D18F46438008145C2 /* MockEventDispatcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockEventDispatcher.hpp; sourceTree = "<group>"; };
+		F0B4496618F46D30006C6405 /* SDLEventDispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SDLEventDispatcher.cpp; path = ../GameUI/SDLEventDispatcher.cpp; sourceTree = "<group>"; };
+		F0B4496718F46D30006C6405 /* SDLEventDispatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SDLEventDispatcher.hpp; path = ../GameUI/SDLEventDispatcher.hpp; sourceTree = "<group>"; };
+		F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLGameUI.cpp; sourceTree = "<group>"; };
+		F0B4496E18F4735D006C6405 /* SDLGameUI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLGameUI.hpp; sourceTree = "<group>"; };
+		F0B4497018F476FD006C6405 /* StubItemGenerator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StubItemGenerator.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +118,8 @@
 				F02A9F0718F1FB15008145C2 /* SDL2.framework in Frameworks */,
 				F02A9ECC18F1FA15008145C2 /* Cocoa.framework in Frameworks */,
 				F02A9F0618F1FB15008145C2 /* SDL2_image.framework in Frameworks */,
+				F0B4497118F47791006C6405 /* libGameCore.a in Frameworks */,
+				F0B4497218F47796006C6405 /* libGameRunner.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,10 +205,15 @@
 		F02A9ED118F1FA15008145C2 /* Candies */ = {
 			isa = PBXGroup;
 			children = (
+				F0B4496618F46D30006C6405 /* SDLEventDispatcher.cpp */,
+				F0B4496718F46D30006C6405 /* SDLEventDispatcher.hpp */,
 				F02A9EFF18F1FAC3008145C2 /* main.cpp */,
 				F02A9F0018F1FAC3008145C2 /* ResourcePath.h */,
 				F02A9F0118F1FAC3008145C2 /* ResourcePath.mm */,
 				F02A9ED218F1FA15008145C2 /* Supporting Files */,
+				F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */,
+				F0B4496E18F4735D006C6405 /* SDLGameUI.hpp */,
+				F0B4497018F476FD006C6405 /* StubItemGenerator.hpp */,
 			);
 			path = Candies;
 			sourceTree = "<group>";
@@ -341,6 +358,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B4496918F46D30006C6405 /* SDLEventDispatcher.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,7 +518,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F02A9F0318F1FAC3008145C2 /* ResourcePath.mm in Sources */,
+				F0B4496F18F4735D006C6405 /* SDLGameUI.cpp in Sources */,
 				F02A9F0218F1FAC3008145C2 /* main.cpp in Sources */,
+				F0B4496C18F470C2006C6405 /* SDLEventDispatcher.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,6 +665,11 @@
 				GCC_PREFIX_HEADER = "";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_PEDANTIC = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)",
+				);
 				INFOPLIST_FILE = "Candies/Candies-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -665,6 +690,11 @@
 				GCC_PREFIX_HEADER = "";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_PEDANTIC = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)",
+				);
 				INFOPLIST_FILE = "Candies/Candies-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -798,6 +828,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -810,6 +844,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -851,6 +889,7 @@
 				F02A9F4118F324C1008145C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F02A9F5C18F35056008145C2 /* Build configuration list for PBXNativeTarget "GoogleMock" */ = {
 			isa = XCConfigurationList;
@@ -859,6 +898,7 @@
 				F02A9F5E18F35056008145C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F02A9F6618F454C7008145C2 /* Build configuration list for PBXNativeTarget "GameRunner" */ = {
 			isa = XCConfigurationList;
@@ -867,6 +907,7 @@
 				F02A9F6818F454C7008145C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F02A9F7818F45DFE008145C2 /* Build configuration list for PBXNativeTarget "GameUI" */ = {
 			isa = XCConfigurationList;
@@ -875,6 +916,7 @@
 				F02A9F7A18F45DFE008145C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

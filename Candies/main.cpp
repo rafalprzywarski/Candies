@@ -1,30 +1,24 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
-#include <memory>
-#include <iostream>
-#include "ResourcePath.h"
+#include "SDLGameUI.hpp"
+#include "SDLEventDispatcher.hpp"
+#include <GameRunner/GameRunner.hpp>
+#include <GameCore/GameFactory.hpp>
+#include "StubItemGenerator.hpp"
 
 int main(int argc, const char * argv[])
 {
-    auto SCREEN_WIDTH = 755, SCREEN_HEIGHT = 600;
-    
 	SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_JPG);
-    std::shared_ptr<SDL_Window> window(SDL_CreateWindow("Candies", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN), SDL_DestroyWindow);
-    std::shared_ptr<SDL_Renderer> renderer(SDL_CreateRenderer(&*window, -1, SDL_RENDERER_ACCELERATED), SDL_DestroyRenderer);
-    
-    std::shared_ptr<SDL_Texture> background(IMG_LoadTexture(&*renderer, getResourcePath("BackGround.jpg").c_str()), SDL_DestroyTexture);
-    
-    auto done = false;
-    while (!done)
+
     {
-        SDL_Event event;
-        while (SDL_PollEvent(&event))
-            if (event.type == SDL_QUIT)
-                done = true;
-        SDL_RenderClear(&*renderer);
-        SDL_RenderCopy(&*renderer, &*background, nullptr, nullptr);
-        SDL_RenderPresent(&*renderer);
+        auto ui = std::make_shared<Candies::UI::SDLGameUI>();
+        auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui);
+        auto itemGenerator = std::make_shared<Candies::GameCore::StubItemGenerator>();
+        auto gameLogic = Candies::GameCore::GameFactory().createGame(itemGenerator);
+        auto runner = std::make_shared<Candies::GameRunner>(gameLogic, dispatcher);
+    
+        runner->run();
     }
     
     IMG_Quit();
