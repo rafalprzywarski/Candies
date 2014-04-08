@@ -11,9 +11,16 @@
 
 namespace Candies
 {
-    struct StubGameObserver : public Candies::GameCore::GameObserver
+    class BoardUpdater : public Candies::GameCore::GameObserver
     {
-        virtual void itemAdded(Candies::GameCore::ItemId item, Candies::GameCore::Location loc) { }
+    public:
+        BoardUpdater(UI::StaticBoardPtr board) : board(board) { }
+        virtual void itemAdded(Candies::GameCore::ItemId item, Candies::GameCore::Location loc)
+        {
+            board->addItem(item, loc);
+        }
+    private:
+        UI::StaticBoardPtr board;
     };
     
     std::vector<std::pair<const GameCore::ItemId, UI::SpritePtr>> loadGems(std::shared_ptr<SDL_Renderer> renderer)
@@ -28,8 +35,8 @@ namespace Candies
     GameRunnerPtr GameRunnerFactory::createRunner()
     {
         auto const SCREEN_WIDTH = 755, SCREEN_HEIGHT = 600;
-        auto const GRID_SIZE = 36;
-        UI::Position BOARD_POSITION = { 20, 40 };
+        auto const GRID_SIZE = 42;
+        UI::Position BOARD_POSITION = { 330, 105 };
 
         auto renderer = UI::SDLRendererFactory().createRenderer(SCREEN_WIDTH, SCREEN_HEIGHT);
         auto background = std::make_shared<UI::SDLSprite>(renderer, "BackGround.jpg");
@@ -39,7 +46,7 @@ namespace Candies
         auto mouseEventListener = std::make_shared<Candies::UI::StubMouseEventListener>();
         auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui, mouseEventListener);
         auto itemGenerator = std::make_shared<Candies::GameCore::StubItemGenerator>();
-        auto gameObserver = std::make_shared<StubGameObserver>();
+        auto gameObserver = std::make_shared<BoardUpdater>(board);
         auto gameLogic = Candies::GameCore::GameFactory().createGame(itemGenerator, gameObserver);
         auto runner = std::make_shared<Candies::GameRunner>(gameLogic, dispatcher);
         return runner;

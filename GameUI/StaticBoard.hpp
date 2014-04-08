@@ -29,5 +29,7 @@ namespace Candies
             int gridSize;
             Position position;
         };
+        
+        typedef std::shared_ptr<StaticBoard> StaticBoardPtr;
     }
 }
