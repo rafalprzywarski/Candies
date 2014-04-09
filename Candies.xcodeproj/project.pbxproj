@@ -39,9 +39,9 @@
 		F0B4496F18F4735D006C6405 /* SDLGameUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */; };
 		F0B4497118F47791006C6405 /* libGameCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F3E18F324C1008145C2 /* libGameCore.a */; };
 		F0B4497218F47796006C6405 /* libGameRunner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F6518F454C7008145C2 /* libGameRunner.a */; };
-		F0B4497818F486B8006C6405 /* StaticBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4497618F486B8006C6405 /* StaticBoard.cpp */; };
-		F0B4497918F486B8006C6405 /* StaticBoard.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B4497718F486B8006C6405 /* StaticBoard.hpp */; };
-		F0B4497B18F4881D006C6405 /* StaticBoardTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4497A18F4881D006C6405 /* StaticBoardTest.cpp */; };
+		F0B4497818F486B8006C6405 /* StaticBoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4497618F486B8006C6405 /* StaticBoardView.cpp */; };
+		F0B4497918F486B8006C6405 /* StaticBoardView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B4497718F486B8006C6405 /* StaticBoardView.hpp */; };
+		F0B4497B18F4881D006C6405 /* StaticBoardViewTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4497A18F4881D006C6405 /* StaticBoardViewTest.cpp */; };
 		F0B4497C18F48934006C6405 /* libGameUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F7718F45DFE008145C2 /* libGameUI.a */; };
 		F0B4498718F49DD3006C6405 /* SDLSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4498518F49DD3006C6405 /* SDLSprite.cpp */; };
 		F0B4498A18F4A3BD006C6405 /* GameRunnerFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */; };
@@ -130,9 +130,9 @@
 		F0B4497318F479E9006C6405 /* FrameUpdateListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FrameUpdateListener.hpp; sourceTree = "<group>"; };
 		F0B4497418F47B0D006C6405 /* MouseEventListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MouseEventListener.hpp; sourceTree = "<group>"; };
 		F0B4497518F47C14006C6405 /* StubMouseEventListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StubMouseEventListener.hpp; sourceTree = "<group>"; };
-		F0B4497618F486B8006C6405 /* StaticBoard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoard.cpp; sourceTree = "<group>"; };
-		F0B4497718F486B8006C6405 /* StaticBoard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StaticBoard.hpp; sourceTree = "<group>"; };
-		F0B4497A18F4881D006C6405 /* StaticBoardTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoardTest.cpp; sourceTree = "<group>"; };
+		F0B4497618F486B8006C6405 /* StaticBoardView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoardView.cpp; sourceTree = "<group>"; };
+		F0B4497718F486B8006C6405 /* StaticBoardView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StaticBoardView.hpp; sourceTree = "<group>"; };
+		F0B4497A18F4881D006C6405 /* StaticBoardViewTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoardViewTest.cpp; sourceTree = "<group>"; };
 		F0B4497D18F48AEF006C6405 /* MockSprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockSprite.hpp; sourceTree = "<group>"; };
 		F0B4497E18F48BDB006C6405 /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
 		F0B4497F18F49143006C6405 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Position.hpp; sourceTree = "<group>"; };
@@ -301,7 +301,7 @@
 				F02A9F6E18F45571008145C2 /* GameRunnerTest.cpp */,
 				F02A9F7118F45721008145C2 /* MockGameLogic.hpp */,
 				F02A9F7D18F46438008145C2 /* MockEventDispatcher.hpp */,
-				F0B4497A18F4881D006C6405 /* StaticBoardTest.cpp */,
+				F0B4497A18F4881D006C6405 /* StaticBoardViewTest.cpp */,
 				F0B4497D18F48AEF006C6405 /* MockSprite.hpp */,
 				F0B4498118F49899006C6405 /* MockGameObserver.hpp */,
 				F057A7A418F51F1F00636C2E /* MouseItemSelectorTest.cpp */,
@@ -385,8 +385,8 @@
 				F02A9F7C18F45EAD008145C2 /* EventDispatcher.hpp */,
 				F0B4497318F479E9006C6405 /* FrameUpdateListener.hpp */,
 				F0B4497418F47B0D006C6405 /* MouseEventListener.hpp */,
-				F0B4497618F486B8006C6405 /* StaticBoard.cpp */,
-				F0B4497718F486B8006C6405 /* StaticBoard.hpp */,
+				F0B4497618F486B8006C6405 /* StaticBoardView.cpp */,
+				F0B4497718F486B8006C6405 /* StaticBoardView.hpp */,
 				F0B4497E18F48BDB006C6405 /* Sprite.hpp */,
 				F0B4497F18F49143006C6405 /* Position.hpp */,
 				F057A7A018F51E7100636C2E /* MouseItemSelector.cpp */,
@@ -431,7 +431,7 @@
 			files = (
 				F0B4496918F46D30006C6405 /* SDLEventDispatcher.hpp in Headers */,
 				F057A7A318F51E7100636C2E /* MouseItemSelector.hpp in Headers */,
-				F0B4497918F486B8006C6405 /* StaticBoard.hpp in Headers */,
+				F0B4497918F486B8006C6405 /* StaticBoardView.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,7 +612,7 @@
 				F02A9F5618F3486B008145C2 /* BoardTest.cpp in Sources */,
 				F02A9F1618F1FF65008145C2 /* main.cpp in Sources */,
 				F02A9F6F18F45571008145C2 /* GameRunnerTest.cpp in Sources */,
-				F0B4497B18F4881D006C6405 /* StaticBoardTest.cpp in Sources */,
+				F0B4497B18F4881D006C6405 /* StaticBoardViewTest.cpp in Sources */,
 				F02A9F3918F32427008145C2 /* GameTest.cpp in Sources */,
 				F057A7A518F51F1F00636C2E /* MouseItemSelectorTest.cpp in Sources */,
 			);
@@ -647,7 +647,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0B4497818F486B8006C6405 /* StaticBoard.cpp in Sources */,
+				F0B4497818F486B8006C6405 /* StaticBoardView.cpp in Sources */,
 				F057A7A218F51E7100636C2E /* MouseItemSelector.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

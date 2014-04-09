@@ -1,15 +1,15 @@
-#include "StaticBoard.hpp"
+#include "StaticBoardView.hpp"
 
 namespace Candies
 {
     namespace UI
     {
-        StaticBoard::StaticBoard(std::vector<std::pair<const GameCore::ItemId, SpritePtr>> sprites, int gridSize, Position position)
+        StaticBoardView::StaticBoardView(std::vector<std::pair<const GameCore::ItemId, SpritePtr>> sprites, int gridSize, Position position)
         : sprites(sprites.begin(), sprites.end()), gridSize(gridSize), position(position)
         {
         }
 
-        void StaticBoard::addItem(GameCore::ItemId id, GameCore::Location loc)
+        void StaticBoardView::addItem(GameCore::ItemId id, GameCore::Location loc)
         {
             auto found = sprites.find(id);
             if (found == sprites.end())
@@ -17,7 +17,7 @@ namespace Candies
             items.push_back({found->second, loc});
         }
 
-        void StaticBoard::update()
+        void StaticBoardView::update()
         {
             for (auto const& item : items)
                 item.sprite->drawAt({int(item.location.x) * gridSize + position.x, int(item.location.y) * gridSize + position.y});

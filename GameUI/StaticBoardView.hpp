@@ -12,11 +12,11 @@ namespace Candies
 {
     namespace UI
     {
-        class StaticBoard : public FrameUpdateListener
+        class StaticBoardView : public FrameUpdateListener
         {
         public:
             typedef std::vector<std::pair<const GameCore::ItemId, SpritePtr>> Sprites;
-            StaticBoard(Sprites sprites, int gridSize, Position position);
+            StaticBoardView(Sprites sprites, int gridSize, Position position);
             void addItem(GameCore::ItemId id, GameCore::Location loc);
             void update();
         private:
@@ -31,6 +31,6 @@ namespace Candies
             Position position;
         };
         
-        typedef std::shared_ptr<StaticBoard> StaticBoardPtr;
+        typedef std::shared_ptr<StaticBoardView> StaticBoardViewPtr;
     }
 }
