@@ -1,6 +1,7 @@
 #pragma once
 #include <ostream>
 #include <vector>
+#include <functional>
 
 namespace Candies
 {
@@ -24,4 +25,17 @@ namespace Candies
             return os << "[" << p.x << " " << p.y << "]";
         }
     }
+}
+
+namespace std
+{
+    template <>
+    struct hash<Candies::GameCore::Location>
+    {
+        std::size_t operator()(const Candies::GameCore::Location& loc) const
+        {
+            std::hash<unsigned> h;
+            return h(loc.x) ^ h(loc.y);
+        }
+    };
 }

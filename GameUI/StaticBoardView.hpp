@@ -23,16 +23,14 @@ namespace Candies
             void selectItemAt(Position pos);
             GameCore::Locations getSelectedItemLocations() const;
         private:
-            struct SpriteWithLocation
-            {
-                SpritePtr sprite;
-                GameCore::Location location;
-            };
             std::unordered_map<GameCore::ItemId, SpritePtr> sprites;
-            std::vector<SpriteWithLocation> items;
+            std::unordered_map<GameCore::Location, SpritePtr> items;
             std::vector<GameCore::Location> selection;
             int gridSize;
             Position origin;
+            
+            Position toPosition(GameCore::Location loc);
+            GameCore::Location toLocation(Position pos);
         };
         
         typedef std::shared_ptr<StaticBoardView> StaticBoardViewPtr;
