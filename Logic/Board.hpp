@@ -34,6 +34,8 @@ namespace Candies
             template <typename As, typename Container>
             As getItem(Container& c, unsigned x, unsigned y) const
             {
+                if (x >= width || y >= height)
+                    throw std::out_of_range("Board access out of bounds");
                 return c.at(x + y * width);
             }
         };

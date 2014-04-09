@@ -54,5 +54,14 @@ namespace Candies
             b1 = b2; b1[{1, 0}] = 3;
             ASSERT_FALSE(b1 == b2);
         }
+        
+        TEST(BoardTest, should_fail_when_accessed_out_of_bounds)
+        {
+            Board b{2, 3};
+            ASSERT_THROW((b[{3, 0}]), std::out_of_range);
+            ASSERT_THROW((b[{4, 0}]), std::out_of_range);
+            ASSERT_THROW((b[{0, 4}]), std::out_of_range);
+            ASSERT_THROW((b[{0, 5}]), std::out_of_range);
+        }
     }
 }

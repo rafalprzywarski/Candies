@@ -51,11 +51,13 @@ namespace Candies
         int Game::countRightAligned(Location loc, ItemId item)
         {
             int count = 0;
-            loc.x++;
-            while (board[loc] == item)
+            
+            while ((loc.x + 1) < board.getWidth())
             {
-                loc.x++;
+                if (board[{loc.x + 1, loc.y}] != item)
+                    return count;
                 count++;
+                loc.x++;
             }
             return count;
         }
