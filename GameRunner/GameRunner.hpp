@@ -1,5 +1,5 @@
 #pragma once
-#include <GameCore/GameLogic.hpp>
+#include <Logic/GameLogic.hpp>
 #include <UI/EventDispatcher.hpp>
 
 namespace Candies
@@ -7,11 +7,11 @@ namespace Candies
     class GameRunner
     {
     public:
-        GameRunner(GameCore::GameLogicPtr logic, UI::EventDispatcherPtr eventDispatcher)
+        GameRunner(Logic::GameLogicPtr logic, UI::EventDispatcherPtr eventDispatcher)
             : logic(logic), eventDispatcher(eventDispatcher) { }
         void run();
     private:
-        GameCore::GameLogicPtr logic;
+        Logic::GameLogicPtr logic;
         UI::EventDispatcherPtr eventDispatcher;
     };
     

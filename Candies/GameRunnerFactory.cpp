@@ -2,20 +2,20 @@
 #include "SDLGameUI.hpp"
 #include "SDLEventDispatcher.hpp"
 #include <GameRunner/GameRunner.hpp>
-#include <GameCore/GameFactory.hpp>
+#include <Logic/GameFactory.hpp>
 #include "MouseItemSelector.hpp"
 #include "SDLRendererFactory.hpp"
 #include "SDLSprite.hpp"
 #include "StaticBoardView.hpp"
-#include <GameCore/StdItemGenerator.hpp>
+#include <Logic/StdItemGenerator.hpp>
 
 namespace Candies
 {
-    class BoardUpdater : public Candies::GameCore::GameObserver
+    class BoardUpdater : public Candies::Logic::GameObserver
     {
     public:
         BoardUpdater(UI::StaticBoardViewPtr board) : board(board) { }
-        virtual void itemAdded(Candies::GameCore::ItemId item, Candies::GameCore::Location loc)
+        virtual void itemAdded(Candies::Logic::ItemId item, Candies::Logic::Location loc)
         {
             board->addItem(item, loc);
         }
@@ -44,9 +44,9 @@ namespace Candies
         auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
         auto board = std::make_shared<UI::StaticBoardView>(gems, selectionMarker, GRID_SIZE, BOARD_POSITION);
         auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, background, board);
-        auto itemGenerator = std::make_shared<Candies::GameCore::StdItemGenerator>(gems.size());
+        auto itemGenerator = std::make_shared<Candies::Logic::StdItemGenerator>(gems.size());
         auto gameObserver = std::make_shared<BoardUpdater>(board);
-        auto gameLogic = Candies::GameCore::GameFactory().createGame(itemGenerator, gameObserver);
+        auto gameLogic = Candies::Logic::GameFactory().createGame(itemGenerator, gameObserver);
         auto mouseItemSelector = std::make_shared<Candies::UI::MouseItemSelector>(board, gameLogic);
         auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui, mouseItemSelector);
         auto runner = std::make_shared<Candies::GameRunner>(gameLogic, dispatcher);

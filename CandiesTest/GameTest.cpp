@@ -1,4 +1,4 @@
-#include <GameCore/GameFactory.hpp>
+#include <Logic/GameFactory.hpp>
 #include "MockItemGenerator.hpp"
 #include "MockGameObserver.hpp"
 #include <gtest/gtest.h>
@@ -7,7 +7,7 @@ using namespace testing;
 
 namespace Candies
 {
-    namespace GameCore
+    namespace Logic
     {
         MATCHER_P2(HasSize, width, height, "has size " + PrintToString(width) + " x " + PrintToString(height))
         {

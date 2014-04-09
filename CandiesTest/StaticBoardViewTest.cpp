@@ -15,11 +15,11 @@ namespace Candies
             MockSpritePtr selection = std::make_shared<StrictMock<MockSprite>>();
             const int GRID_SIZE = 9;
             const Position POSITION = { 23, -17 };
-            const GameCore::Location ITEM3_LOCATION{0, 0}, ITEM7_LOCATION{3, 2};
+            const Logic::Location ITEM3_LOCATION{0, 0}, ITEM7_LOCATION{3, 2};
             const Position ITEM3_POSITION{POSITION.x, POSITION.y};
             const Position ITEM7_POSITION{POSITION.x + GRID_SIZE * 3, POSITION.y + GRID_SIZE * 2};
             StaticBoardView board{{{3, item3}, {7, item7}}, selection, GRID_SIZE, POSITION};
-            const GameCore::ItemId INVALID_ID = 2;
+            const Logic::ItemId INVALID_ID = 2;
         };
 
         TEST_F(StaticBoardViewTest, should_display_nothing_when_created)

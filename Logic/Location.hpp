@@ -5,7 +5,7 @@
 
 namespace Candies
 {
-    namespace GameCore
+    namespace Logic
     {
         struct Location
         {
@@ -30,9 +30,9 @@ namespace Candies
 namespace std
 {
     template <>
-    struct hash<Candies::GameCore::Location>
+    struct hash<Candies::Logic::Location>
     {
-        std::size_t operator()(const Candies::GameCore::Location& loc) const
+        std::size_t operator()(const Candies::Logic::Location& loc) const
         {
             std::hash<unsigned> h;
             return h(loc.x) ^ h(loc.y);

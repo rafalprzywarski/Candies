@@ -2,7 +2,7 @@
 
 namespace Candies
 {
-    namespace GameCore
+    namespace Logic
     {
         Game::Game(ItemGeneratorPtr itemGenerator, GameObserverPtr observer, unsigned boardWidth, unsigned boardHeight)
         : itemGenerator(std::move(itemGenerator)), observer(observer), board(boardWidth, boardHeight)

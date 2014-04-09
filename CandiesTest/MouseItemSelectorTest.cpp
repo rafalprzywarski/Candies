@@ -12,10 +12,10 @@ namespace Candies
         struct MouseItemSelectorTest : Test
         {
             MockBoardViewPtr view = std::make_shared<StrictMock<MockBoardView>>();
-            GameCore::MockGameLogicPtr logic = std::make_shared<StrictMock<GameCore::MockGameLogic>>();
+            Logic::MockGameLogicPtr logic = std::make_shared<StrictMock<Logic::MockGameLogic>>();
             MouseItemSelector selector{view, logic};
             const Position POS{11, 12};
-            const GameCore::Locations NO_SELECTION, TWO_ITEMS{{4, 3}, {1, 2}};
+            const Logic::Locations NO_SELECTION, TWO_ITEMS{{4, 3}, {1, 2}};
         };
         
         TEST_F(MouseItemSelectorTest, should_try_to_select_an_item_from_board_view)

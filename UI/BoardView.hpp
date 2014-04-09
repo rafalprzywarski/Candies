@@ -1,6 +1,6 @@
 #pragma once
 #include "Position.hpp"
-#include <GameCore/Location.hpp>
+#include <Logic/Location.hpp>
 #include <memory>
 
 namespace Candies
@@ -12,7 +12,7 @@ namespace Candies
         public:
             virtual ~BoardView() { }
             virtual void selectItemAt(Position pos) = 0;
-            virtual GameCore::Locations getSelectedItemLocations() const = 0;
+            virtual Logic::Locations getSelectedItemLocations() const = 0;
             virtual void clearSelection() = 0;
         };
         

@@ -1,6 +1,6 @@
 #pragma once
-#include <GameCore/ItemId.hpp>
-#include <GameCore/Location.hpp>
+#include <Logic/ItemId.hpp>
+#include <Logic/Location.hpp>
 #include "Sprite.hpp"
 #include "Position.hpp"
 #include "FrameUpdateListener.hpp"
@@ -16,23 +16,23 @@ namespace Candies
         class StaticBoardView : public FrameUpdateListener, public BoardView
         {
         public:
-            typedef std::vector<std::pair<const GameCore::ItemId, SpritePtr>> Sprites;
+            typedef std::vector<std::pair<const Logic::ItemId, SpritePtr>> Sprites;
             StaticBoardView(Sprites sprites, SpritePtr selectionMarker, int gridSize, Position origin);
-            void addItem(GameCore::ItemId id, GameCore::Location loc);
+            void addItem(Logic::ItemId id, Logic::Location loc);
             void update();
             void selectItemAt(Position pos);
-            GameCore::Locations getSelectedItemLocations() const;
+            Logic::Locations getSelectedItemLocations() const;
             void clearSelection();
         private:
-            std::unordered_map<GameCore::ItemId, SpritePtr> sprites;
+            std::unordered_map<Logic::ItemId, SpritePtr> sprites;
             SpritePtr selectionMarker;
-            std::unordered_map<GameCore::Location, SpritePtr> items;
-            std::vector<GameCore::Location> selection;
+            std::unordered_map<Logic::Location, SpritePtr> items;
+            std::vector<Logic::Location> selection;
             int gridSize;
             Position origin;
             
-            Position toPosition(GameCore::Location loc);
-            GameCore::Location toLocation(Position pos);
+            Position toPosition(Logic::Location loc);
+            Logic::Location toLocation(Position pos);
         };
         
         typedef std::shared_ptr<StaticBoardView> StaticBoardViewPtr;

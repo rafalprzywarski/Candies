@@ -9,7 +9,7 @@ namespace Candies
         struct MockBoardView : BoardView
         {
             MOCK_METHOD1(selectItemAt, void(Position pos));
-            MOCK_CONST_METHOD0(getSelectedItemLocations, GameCore::Locations());
+            MOCK_CONST_METHOD0(getSelectedItemLocations, Logic::Locations());
             MOCK_METHOD0(clearSelection, void());
         };
         

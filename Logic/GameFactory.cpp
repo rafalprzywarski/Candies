@@ -2,7 +2,7 @@
 
 namespace Candies
 {
-    namespace GameCore
+    namespace Logic
     {
         GamePtr GameFactory::createGame(ItemGeneratorPtr itemGenerator, GameObserverPtr observer)
         {

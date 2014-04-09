@@ -10,7 +10,7 @@ namespace Candies
         {
         }
 
-        void StaticBoardView::addItem(GameCore::ItemId id, GameCore::Location loc)
+        void StaticBoardView::addItem(Logic::ItemId id, Logic::Location loc)
         {
             auto found = sprites.find(id);
             if (found == sprites.end())
@@ -36,7 +36,7 @@ namespace Candies
                 selection.push_back(itemLoc);
         }
 
-        GameCore::Locations StaticBoardView::getSelectedItemLocations() const
+        Logic::Locations StaticBoardView::getSelectedItemLocations() const
         {
             return selection;
         }
@@ -46,12 +46,12 @@ namespace Candies
             selection.clear();
         }
 
-        Position StaticBoardView::toPosition(GameCore::Location loc)
+        Position StaticBoardView::toPosition(Logic::Location loc)
         {
             return {int(loc.x) * gridSize + origin.x, int(loc.y) * gridSize + origin.y};
         }
 
-        GameCore::Location StaticBoardView::toLocation(Position pos)
+        Logic::Location StaticBoardView::toLocation(Position pos)
         {
             return {unsigned(pos.x - origin.x) / gridSize, unsigned(pos.y - origin.y) / gridSize};
         }

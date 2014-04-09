@@ -1,10 +1,10 @@
 #pragma once
-#include <GameCore/ItemGenerator.hpp>
+#include <Logic/ItemGenerator.hpp>
 #include <gmock/gmock.h>
 
 namespace Candies
 {
-    namespace GameCore
+    namespace Logic
     {
         struct MockItemGenerator : ItemGenerator
         {

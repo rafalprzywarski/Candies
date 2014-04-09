@@ -1,10 +1,10 @@
 #pragma once
-#include <GameCore/GameLogic.hpp>
+#include <Logic/GameLogic.hpp>
 #include <gmock/gmock.h>
 
 namespace Candies
 {
-    namespace GameCore
+    namespace Logic
     {
         struct MockGameLogic : GameLogic
         {

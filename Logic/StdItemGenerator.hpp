@@ -5,7 +5,7 @@
 
 namespace Candies
 {
-    namespace GameCore
+    namespace Logic
     {
         class StdItemGenerator : public ItemGenerator
         {

@@ -6,7 +6,7 @@
 
 namespace Candies
 {
-    namespace GameCore
+    namespace Logic
     {
         class Game : public GameLogic
         {

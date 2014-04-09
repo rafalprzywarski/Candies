@@ -1,4 +1,4 @@
-#include <GameCore/GameFactory.hpp>
+#include <Logic/GameFactory.hpp>
 #include "MockItemGenerator.hpp"
 #include <gtest/gtest.h>
 
@@ -6,7 +6,7 @@ using namespace testing;
 
 namespace Candies
 {
-    namespace GameCore
+    namespace Logic
     {
         TEST(BoardTest, should_provide_size_accessors)
         {

@@ -9,7 +9,7 @@ namespace Candies
 {
     struct GameRunnerTest : Test
     {
-        GameCore::MockGameLogicPtr gameLogic = std::make_shared<StrictMock<GameCore::MockGameLogic> >();
+        Logic::MockGameLogicPtr gameLogic = std::make_shared<StrictMock<Logic::MockGameLogic> >();
         UI::MockEventDispatcherPtr eventDispatcher = std::make_shared<StrictMock<UI::MockEventDispatcher>>();
         GameRunner runner{gameLogic, eventDispatcher};
     };

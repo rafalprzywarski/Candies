@@ -2,7 +2,7 @@
 
 namespace Candies
 {
-    namespace GameCore
+    namespace Logic
     {
         typedef int ItemId;
     }
