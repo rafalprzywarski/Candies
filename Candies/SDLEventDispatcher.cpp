@@ -16,7 +16,7 @@ namespace Candies
                         finished = true;
                         return;
                     case SDL_MOUSEBUTTONDOWN:
-                        mouseEventListener->mouseDown(event.button.x, event.button.y);
+                        mouseEventListener->mouseDown({event.button.x, event.button.y});
                         break;
                 }
             }

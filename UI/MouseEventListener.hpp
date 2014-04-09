@@ -1,4 +1,5 @@
 #pragma once
+#include "Position.hpp"
 #include <memory>
 
 namespace Candies
@@ -9,7 +10,7 @@ namespace Candies
         {
         public:
             virtual ~MouseEventListener() { }
-            virtual void mouseDown(int x, int y) = 0;
+            virtual void mouseDown(Position pos) = 0;
         };
         
         typedef std::shared_ptr<MouseEventListener> MouseEventListenerPtr;

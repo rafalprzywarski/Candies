@@ -4,9 +4,9 @@ namespace Candies
 {
     namespace UI
     {
-        void MouseItemSelector::mouseDown(int x, int y)
+        void MouseItemSelector::mouseDown(Position pos)
         {
-            board->selectItemAt({x, y});
+            board->selectItemAt(pos);
             auto selected = board->getSelectedItemLocations();
             if (selected.size() == 2u)
             {

@@ -12,7 +12,7 @@ namespace Candies
         public:
             MouseItemSelector(BoardViewPtr board, Logic::GameLogicPtr logic)
             : board(std::move(board)), logic(std::move(logic)) { }
-            void mouseDown(int x, int y);
+            void mouseDown(Position pos);
         private:
             BoardViewPtr board;
             Logic::GameLogicPtr logic;
