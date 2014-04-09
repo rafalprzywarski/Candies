@@ -48,5 +48,27 @@ namespace Candies
         {
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
         }
+        
+        TEST_F(StaticBoardViewTest, should_select_items_at_given_coordinates)
+        {
+            board.addItem(3, {0, 0});
+            board.addItem(7, {3, 2});
+
+            board.selectItemAt(POSITION);
+            ASSERT_EQ(1u, board.getSelectedItemLocations().size());
+            ASSERT_EQ(GameCore::Location(0, 0), board.getSelectedItemLocations().back());
+            
+            board.selectItemAt({POSITION.x + GRID_SIZE - 1, POSITION.y});
+            ASSERT_EQ(2u, board.getSelectedItemLocations().size());
+            ASSERT_EQ(GameCore::Location(0, 0), board.getSelectedItemLocations().back());
+
+            board.selectItemAt({POSITION.x, POSITION.y + GRID_SIZE - 1});
+            ASSERT_EQ(3u, board.getSelectedItemLocations().size());
+            ASSERT_EQ(GameCore::Location(0, 0), board.getSelectedItemLocations().back());
+
+            board.selectItemAt({POSITION.x + GRID_SIZE * 3, POSITION.y + GRID_SIZE * 2});
+            ASSERT_EQ(4u, board.getSelectedItemLocations().size());
+            ASSERT_EQ(GameCore::Location(3, 2), board.getSelectedItemLocations().back());
+        }
     }
 }
