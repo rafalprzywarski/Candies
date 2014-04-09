@@ -36,8 +36,8 @@ namespace Candies
                 4,2,3,0,0,1,3,1,
                 3,3,0,4,1,4,4,0,
                 2,0,4,0,2,0,2,3,
-                4,1,4,1,4,4,4,4,
-                1,2,2,1,4,0,4,0,
+                4,1,4,1,4,2,4,4,
+                1,2,2,3,4,0,4,0,
                 2,3,4,1,1,0,1,4,
                 3,1,4,2,4,1,1,0,
                 1,4,3,2,1,3,3,2 };
@@ -67,6 +67,12 @@ namespace Candies
                     for (unsigned x = 0; x < BOARD_WIDTH; ++x)
                         EXPECT_CALL(*observer, itemAdded(ALL_ITEMS[x + y * BOARD_WIDTH], Location(x, y)));
             }
+            
+            void setBoard(ItemIds items)
+            {
+                expectGenerationOf(items);
+                game->start();
+            }
         };
         
         TEST_F(GameTest, board_should_be_filled_with_generated_items_when_game_is_started)
@@ -87,47 +93,45 @@ namespace Candies
 
         TEST_F(GameTest, should_not_swap_items_between_two_given_location_when_they_are_not_neighbours)
         {
-            expectGenerationOf({
-                0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,
-                0,0,0,0,2,0,0,0,
-                0,1,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0 });
-            game->start();
-            Board oldBoard = game->getBoard();
+            setBoard({
+                4,2,3,0,0,1,3,1,
+                3,3,0,4,1,4,4,0,
+                2,0,4,0,2,0,2,3,
+                4,1,4,1,4,2,4,4,
+                1,2,2,3,4,0,4,0,
+                2,3,4,1,1,0,1,4,
+                3,1,4,2,4,1,1,0,
+                1,4,3,2,1,3,3,2 });
+            Board initialBoard = game->getBoard();
             
-            game->swapItems({1, 3}, {4, 2});
+            game->swapItems({2, 2}, {2, 4});
             
-            ASSERT_TRUE(oldBoard == game->getBoard());
+            ASSERT_TRUE(initialBoard == game->getBoard());
         }
 
         TEST_F(GameTest, should_swap_items_between_two_given_location_when_it_causes_three_items_to_be_aligned_in_a_row)
         {
-            expectGenerationOf({
-                0,0,0,0,0,0,0,0,
-                0,0,0,1,0,0,0,0,
-                0,1,1,2,0,0,0,0,
-                0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0 });
-            game->start();
+            setBoard({
+                4,2,2,0,0,1,3,1,
+                3,3,0,2,1,4,4,0,
+                2,0,4,0,2,0,2,3,
+                4,1,4,1,4,2,4,4,
+                1,2,2,3,4,0,4,0,
+                2,3,4,1,1,0,1,4,
+                3,1,4,2,4,1,1,0,
+                1,4,3,2,1,3,3,2 });
             
-            game->swapItems({3, 2}, {3, 1});
+            game->swapItems({3, 0}, {3, 1});
             
             expectBoardWith({
-                0,0,0,0,0,0,0,0,
-                0,0,0,2,0,0,0,0,
-                0,1,1,1,0,0,0,0,
-                0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0 });
+                4,2,2,2,0,1,3,1,
+                3,3,0,0,1,4,4,0,
+                2,0,4,0,2,0,2,3,
+                4,1,4,1,4,2,4,4,
+                1,2,2,3,4,0,4,0,
+                2,3,4,1,1,0,1,4,
+                3,1,4,2,4,1,1,0,
+                1,4,3,2,1,3,3,2 });
         }
     }
 }
