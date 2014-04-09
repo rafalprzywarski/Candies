@@ -1,4 +1,4 @@
-#include <GameUI/StaticBoardView.hpp>
+#include <UI/StaticBoardView.hpp>
 #include "MockSprite.hpp"
 #include <gtest/gtest.h>
 

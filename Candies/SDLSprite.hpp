@@ -1,5 +1,5 @@
 #pragma once
-#include <GameUI/Sprite.hpp>
+#include <UI/Sprite.hpp>
 #include <SDL2/SDL.h>
 
 namespace Candies

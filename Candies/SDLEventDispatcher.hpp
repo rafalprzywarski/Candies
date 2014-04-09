@@ -1,7 +1,7 @@
 #pragma once
-#include <GameUI/EventDispatcher.hpp>
-#include <GameUI/FrameUpdateListener.hpp>
-#include <GameUI/MouseEventListener.hpp>
+#include <UI/EventDispatcher.hpp>
+#include <UI/FrameUpdateListener.hpp>
+#include <UI/MouseEventListener.hpp>
 
 namespace Candies
 {

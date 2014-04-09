@@ -1,6 +1,6 @@
 #pragma once
 #include <GameCore/GameLogic.hpp>
-#include <GameUI/EventDispatcher.hpp>
+#include <UI/EventDispatcher.hpp>
 
 namespace Candies
 {

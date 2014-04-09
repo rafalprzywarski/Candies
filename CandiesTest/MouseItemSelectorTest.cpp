@@ -1,4 +1,4 @@
-#include <GameUI/MouseItemSelector.hpp>
+#include <UI/MouseItemSelector.hpp>
 #include "MockBoardView.hpp"
 #include "MockGameLogic.hpp"
 #include <gtest/gtest.h>

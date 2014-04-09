@@ -1,5 +1,5 @@
 #pragma once
-#include <GameUI/EventDispatcher.hpp>
+#include <UI/EventDispatcher.hpp>
 #include <gmock/gmock.h>
 
 namespace Candies

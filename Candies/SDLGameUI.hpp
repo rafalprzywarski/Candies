@@ -1,6 +1,6 @@
 #pragma once
-#include <GameUI/FrameUpdateListener.hpp>
-#include <GameUI/Sprite.hpp>
+#include <UI/FrameUpdateListener.hpp>
+#include <UI/Sprite.hpp>
 #include <SDL2/SDL.h>
 
 namespace Candies

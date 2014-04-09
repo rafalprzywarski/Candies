@@ -1,5 +1,5 @@
 #pragma once
-#include <GameUI/BoardView.hpp>
+#include <UI/BoardView.hpp>
 #include <gmock/gmock.h>
 
 namespace Candies

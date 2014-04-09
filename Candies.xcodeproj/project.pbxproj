@@ -31,17 +31,26 @@
 		F02A9F6D18F45525008145C2 /* GameRunner.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F02A9F6B18F45525008145C2 /* GameRunner.hpp */; };
 		F02A9F6F18F45571008145C2 /* GameRunnerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F6E18F45571008145C2 /* GameRunnerTest.cpp */; };
 		F02A9F7218F458DE008145C2 /* libGameRunner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F6518F454C7008145C2 /* libGameRunner.a */; };
-		F057A7A218F51E7100636C2E /* MouseItemSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7A018F51E7100636C2E /* MouseItemSelector.cpp */; };
-		F057A7A318F51E7100636C2E /* MouseItemSelector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7A118F51E7100636C2E /* MouseItemSelector.hpp */; };
 		F057A7A518F51F1F00636C2E /* MouseItemSelectorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7A418F51F1F00636C2E /* MouseItemSelectorTest.cpp */; };
 		F057A7B218F5C03800636C2E /* Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = F057A7B118F5C03800636C2E /* Selected.png */; };
-		F0B4496918F46D30006C6405 /* SDLEventDispatcher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B4496718F46D30006C6405 /* SDLEventDispatcher.hpp */; };
-		F0B4496C18F470C2006C6405 /* SDLEventDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4496618F46D30006C6405 /* SDLEventDispatcher.cpp */; };
+		F057A7C118F5CD1300636C2E /* BoardView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7B718F5CD1300636C2E /* BoardView.hpp */; };
+		F057A7C218F5CD1300636C2E /* EventDispatcher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7B818F5CD1300636C2E /* EventDispatcher.hpp */; };
+		F057A7C318F5CD1300636C2E /* FrameUpdateListener.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7B918F5CD1300636C2E /* FrameUpdateListener.hpp */; };
+		F057A7C418F5CD1300636C2E /* MouseEventListener.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7BA18F5CD1300636C2E /* MouseEventListener.hpp */; };
+		F057A7C518F5CD1300636C2E /* MouseItemSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BB18F5CD1300636C2E /* MouseItemSelector.cpp */; };
+		F057A7C618F5CD1300636C2E /* MouseItemSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BB18F5CD1300636C2E /* MouseItemSelector.cpp */; };
+		F057A7C718F5CD1300636C2E /* MouseItemSelector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7BC18F5CD1300636C2E /* MouseItemSelector.hpp */; };
+		F057A7C818F5CD1300636C2E /* Position.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7BD18F5CD1300636C2E /* Position.hpp */; };
+		F057A7C918F5CD1300636C2E /* Sprite.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7BE18F5CD1300636C2E /* Sprite.hpp */; };
+		F057A7CA18F5CD1300636C2E /* StaticBoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */; };
+		F057A7CB18F5CD1300636C2E /* StaticBoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */; };
+		F057A7CC18F5CD1300636C2E /* StaticBoardView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7C018F5CD1300636C2E /* StaticBoardView.hpp */; };
+		F057A7CF18F5CD2F00636C2E /* SDLEventDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7CD18F5CD2F00636C2E /* SDLEventDispatcher.cpp */; };
+		F057A7D018F5CD2F00636C2E /* SDLEventDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7CD18F5CD2F00636C2E /* SDLEventDispatcher.cpp */; };
+		F057A7D118F5CD2F00636C2E /* SDLEventDispatcher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7CE18F5CD2F00636C2E /* SDLEventDispatcher.hpp */; };
 		F0B4496F18F4735D006C6405 /* SDLGameUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */; };
 		F0B4497118F47791006C6405 /* libGameCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F3E18F324C1008145C2 /* libGameCore.a */; };
 		F0B4497218F47796006C6405 /* libGameRunner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F6518F454C7008145C2 /* libGameRunner.a */; };
-		F0B4497818F486B8006C6405 /* StaticBoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4497618F486B8006C6405 /* StaticBoardView.cpp */; };
-		F0B4497918F486B8006C6405 /* StaticBoardView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B4497718F486B8006C6405 /* StaticBoardView.hpp */; };
 		F0B4497B18F4881D006C6405 /* StaticBoardViewTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4497A18F4881D006C6405 /* StaticBoardViewTest.cpp */; };
 		F0B4497C18F48934006C6405 /* libGameUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F7718F45DFE008145C2 /* libGameUI.a */; };
 		F0B4498718F49DD3006C6405 /* SDLSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4498518F49DD3006C6405 /* SDLSprite.cpp */; };
@@ -117,27 +126,27 @@
 		F02A9F7018F456A5008145C2 /* GameLogic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameLogic.hpp; sourceTree = "<group>"; };
 		F02A9F7118F45721008145C2 /* MockGameLogic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockGameLogic.hpp; sourceTree = "<group>"; };
 		F02A9F7718F45DFE008145C2 /* libGameUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGameUI.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F02A9F7C18F45EAD008145C2 /* EventDispatcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventDispatcher.hpp; sourceTree = "<group>"; };
 		F02A9F7D18F46438008145C2 /* MockEventDispatcher.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockEventDispatcher.hpp; sourceTree = "<group>"; };
-		F057A7A018F51E7100636C2E /* MouseItemSelector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseItemSelector.cpp; sourceTree = "<group>"; };
-		F057A7A118F51E7100636C2E /* MouseItemSelector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MouseItemSelector.hpp; sourceTree = "<group>"; };
 		F057A7A418F51F1F00636C2E /* MouseItemSelectorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseItemSelectorTest.cpp; sourceTree = "<group>"; };
-		F057A7A618F59D0800636C2E /* BoardView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoardView.hpp; sourceTree = "<group>"; };
 		F057A7A718F59DB500636C2E /* MockBoardView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockBoardView.hpp; sourceTree = "<group>"; };
 		F057A7B118F5C03800636C2E /* Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Selected.png; path = Resources/Selected.png; sourceTree = "<group>"; };
-		F0B4496618F46D30006C6405 /* SDLEventDispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SDLEventDispatcher.cpp; path = ../GameUI/SDLEventDispatcher.cpp; sourceTree = "<group>"; };
-		F0B4496718F46D30006C6405 /* SDLEventDispatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SDLEventDispatcher.hpp; path = ../GameUI/SDLEventDispatcher.hpp; sourceTree = "<group>"; };
+		F057A7B718F5CD1300636C2E /* BoardView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoardView.hpp; sourceTree = "<group>"; };
+		F057A7B818F5CD1300636C2E /* EventDispatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EventDispatcher.hpp; sourceTree = "<group>"; };
+		F057A7B918F5CD1300636C2E /* FrameUpdateListener.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrameUpdateListener.hpp; sourceTree = "<group>"; };
+		F057A7BA18F5CD1300636C2E /* MouseEventListener.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MouseEventListener.hpp; sourceTree = "<group>"; };
+		F057A7BB18F5CD1300636C2E /* MouseItemSelector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseItemSelector.cpp; sourceTree = "<group>"; };
+		F057A7BC18F5CD1300636C2E /* MouseItemSelector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MouseItemSelector.hpp; sourceTree = "<group>"; };
+		F057A7BD18F5CD1300636C2E /* Position.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Position.hpp; sourceTree = "<group>"; };
+		F057A7BE18F5CD1300636C2E /* Sprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
+		F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoardView.cpp; sourceTree = "<group>"; };
+		F057A7C018F5CD1300636C2E /* StaticBoardView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StaticBoardView.hpp; sourceTree = "<group>"; };
+		F057A7CD18F5CD2F00636C2E /* SDLEventDispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLEventDispatcher.cpp; sourceTree = "<group>"; };
+		F057A7CE18F5CD2F00636C2E /* SDLEventDispatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLEventDispatcher.hpp; sourceTree = "<group>"; };
 		F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLGameUI.cpp; sourceTree = "<group>"; };
 		F0B4496E18F4735D006C6405 /* SDLGameUI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLGameUI.hpp; sourceTree = "<group>"; };
-		F0B4497318F479E9006C6405 /* FrameUpdateListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FrameUpdateListener.hpp; sourceTree = "<group>"; };
-		F0B4497418F47B0D006C6405 /* MouseEventListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MouseEventListener.hpp; sourceTree = "<group>"; };
 		F0B4497518F47C14006C6405 /* StubMouseEventListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StubMouseEventListener.hpp; sourceTree = "<group>"; };
-		F0B4497618F486B8006C6405 /* StaticBoardView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoardView.cpp; sourceTree = "<group>"; };
-		F0B4497718F486B8006C6405 /* StaticBoardView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StaticBoardView.hpp; sourceTree = "<group>"; };
 		F0B4497A18F4881D006C6405 /* StaticBoardViewTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoardViewTest.cpp; sourceTree = "<group>"; };
 		F0B4497D18F48AEF006C6405 /* MockSprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockSprite.hpp; sourceTree = "<group>"; };
-		F0B4497E18F48BDB006C6405 /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
-		F0B4497F18F49143006C6405 /* Position.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Position.hpp; sourceTree = "<group>"; };
 		F0B4498018F49689006C6405 /* GameObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameObserver.hpp; sourceTree = "<group>"; };
 		F0B4498118F49899006C6405 /* MockGameObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockGameObserver.hpp; sourceTree = "<group>"; };
 		F0B4498518F49DD3006C6405 /* SDLSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLSprite.cpp; sourceTree = "<group>"; };
@@ -213,7 +222,7 @@
 		F02A9EBF18F1FA14008145C2 = {
 			isa = PBXGroup;
 			children = (
-				F02A9F7B18F45E7D008145C2 /* GameUI */,
+				F057A7B618F5CD1300636C2E /* UI */,
 				F02A9F6918F45511008145C2 /* GameRunner */,
 				F02A9F4318F32549008145C2 /* GameCore */,
 				F02A9ED118F1FA15008145C2 /* Candies */,
@@ -251,8 +260,8 @@
 		F02A9ED118F1FA15008145C2 /* Candies */ = {
 			isa = PBXGroup;
 			children = (
-				F0B4496618F46D30006C6405 /* SDLEventDispatcher.cpp */,
-				F0B4496718F46D30006C6405 /* SDLEventDispatcher.hpp */,
+				F057A7CD18F5CD2F00636C2E /* SDLEventDispatcher.cpp */,
+				F057A7CE18F5CD2F00636C2E /* SDLEventDispatcher.hpp */,
 				F02A9EFF18F1FAC3008145C2 /* main.cpp */,
 				F02A9F0018F1FAC3008145C2 /* ResourcePath.h */,
 				F02A9F0118F1FAC3008145C2 /* ResourcePath.mm */,
@@ -382,21 +391,21 @@
 			path = GameRunner;
 			sourceTree = "<group>";
 		};
-		F02A9F7B18F45E7D008145C2 /* GameUI */ = {
+		F057A7B618F5CD1300636C2E /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				F02A9F7C18F45EAD008145C2 /* EventDispatcher.hpp */,
-				F0B4497318F479E9006C6405 /* FrameUpdateListener.hpp */,
-				F0B4497418F47B0D006C6405 /* MouseEventListener.hpp */,
-				F0B4497618F486B8006C6405 /* StaticBoardView.cpp */,
-				F0B4497718F486B8006C6405 /* StaticBoardView.hpp */,
-				F0B4497E18F48BDB006C6405 /* Sprite.hpp */,
-				F0B4497F18F49143006C6405 /* Position.hpp */,
-				F057A7A018F51E7100636C2E /* MouseItemSelector.cpp */,
-				F057A7A118F51E7100636C2E /* MouseItemSelector.hpp */,
-				F057A7A618F59D0800636C2E /* BoardView.hpp */,
+				F057A7B718F5CD1300636C2E /* BoardView.hpp */,
+				F057A7B818F5CD1300636C2E /* EventDispatcher.hpp */,
+				F057A7B918F5CD1300636C2E /* FrameUpdateListener.hpp */,
+				F057A7BA18F5CD1300636C2E /* MouseEventListener.hpp */,
+				F057A7BB18F5CD1300636C2E /* MouseItemSelector.cpp */,
+				F057A7BC18F5CD1300636C2E /* MouseItemSelector.hpp */,
+				F057A7BD18F5CD1300636C2E /* Position.hpp */,
+				F057A7BE18F5CD1300636C2E /* Sprite.hpp */,
+				F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */,
+				F057A7C018F5CD1300636C2E /* StaticBoardView.hpp */,
 			);
-			path = GameUI;
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -432,9 +441,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0B4496918F46D30006C6405 /* SDLEventDispatcher.hpp in Headers */,
-				F057A7A318F51E7100636C2E /* MouseItemSelector.hpp in Headers */,
-				F0B4497918F486B8006C6405 /* StaticBoardView.hpp in Headers */,
+				F057A7C218F5CD1300636C2E /* EventDispatcher.hpp in Headers */,
+				F057A7C318F5CD1300636C2E /* FrameUpdateListener.hpp in Headers */,
+				F057A7C418F5CD1300636C2E /* MouseEventListener.hpp in Headers */,
+				F057A7D118F5CD2F00636C2E /* SDLEventDispatcher.hpp in Headers */,
+				F057A7C818F5CD1300636C2E /* Position.hpp in Headers */,
+				F057A7C118F5CD1300636C2E /* BoardView.hpp in Headers */,
+				F057A7C718F5CD1300636C2E /* MouseItemSelector.hpp in Headers */,
+				F057A7C918F5CD1300636C2E /* Sprite.hpp in Headers */,
+				F057A7CC18F5CD1300636C2E /* StaticBoardView.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,11 +616,13 @@
 			files = (
 				F0B4499118F4A6D0006C6405 /* SDLRendererFactory.cpp in Sources */,
 				F0B4498A18F4A3BD006C6405 /* GameRunnerFactory.cpp in Sources */,
+				F057A7CF18F5CD2F00636C2E /* SDLEventDispatcher.cpp in Sources */,
+				F057A7CA18F5CD1300636C2E /* StaticBoardView.cpp in Sources */,
 				F02A9F0318F1FAC3008145C2 /* ResourcePath.mm in Sources */,
 				F0B4496F18F4735D006C6405 /* SDLGameUI.cpp in Sources */,
 				F0B4498718F49DD3006C6405 /* SDLSprite.cpp in Sources */,
 				F02A9F0218F1FAC3008145C2 /* main.cpp in Sources */,
-				F0B4496C18F470C2006C6405 /* SDLEventDispatcher.cpp in Sources */,
+				F057A7C518F5CD1300636C2E /* MouseItemSelector.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,8 +668,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0B4497818F486B8006C6405 /* StaticBoardView.cpp in Sources */,
-				F057A7A218F51E7100636C2E /* MouseItemSelector.cpp in Sources */,
+				F057A7C618F5CD1300636C2E /* MouseItemSelector.cpp in Sources */,
+				F057A7CB18F5CD1300636C2E /* StaticBoardView.cpp in Sources */,
+				F057A7D018F5CD2F00636C2E /* SDLEventDispatcher.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
