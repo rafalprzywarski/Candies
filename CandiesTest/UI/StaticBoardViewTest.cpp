@@ -62,6 +62,10 @@ namespace Candies
             ASSERT_EQ(1u, board.getSelectedItemLocations().size());
             ASSERT_EQ(ITEM3_LOCATION, board.getSelectedItemLocations().back());
             
+            board.selectItemAt({POSITION.x + GRID_SIZE * 3, POSITION.y + GRID_SIZE * 2});
+            ASSERT_EQ(2u, board.getSelectedItemLocations().size());
+            ASSERT_EQ(ITEM7_LOCATION, board.getSelectedItemLocations().at(1));
+
             board.clearSelection();
             board.selectItemAt({POSITION.x + GRID_SIZE - 1, POSITION.y});
             ASSERT_EQ(ITEM3_LOCATION, board.getSelectedItemLocations().at(0));
@@ -70,9 +74,6 @@ namespace Candies
             board.selectItemAt({POSITION.x, POSITION.y + GRID_SIZE - 1});
             ASSERT_EQ(ITEM3_LOCATION, board.getSelectedItemLocations().at(0));
 
-            board.clearSelection();
-            board.selectItemAt({POSITION.x + GRID_SIZE * 3, POSITION.y + GRID_SIZE * 2});
-            ASSERT_EQ(ITEM7_LOCATION, board.getSelectedItemLocations().at(0));
         }
         
         TEST_F(StaticBoardViewTest, should_not_select_items_not_touching_given_coordinates)
