@@ -23,6 +23,11 @@ namespace Candies
             void addItem(ItemId item, Location loc);
             int countLeftAligned(Location loc, ItemId item);
             int countRightAligned(Location loc, ItemId item);
+            template <typename F>
+            bool trySwapWithHorizontalAlignment(Location loc1, Location loc2, F doSwap);
+            void removeItemsHorizontally(int leftCount, int rightCount, Location loc);
+            void addItemsHorizontally(int leftCount, int rightCount, Location loc);
+            bool shouldSwap(int count1, int count2);
         };
         
         typedef std::shared_ptr<Game> GamePtr;
