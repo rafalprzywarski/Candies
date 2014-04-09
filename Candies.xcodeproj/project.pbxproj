@@ -20,7 +20,6 @@
 		F02A9F3918F32427008145C2 /* GameTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F3818F32427008145C2 /* GameTest.cpp */; };
 		F02A9F4C18F327F1008145C2 /* libGameCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F3E18F324C1008145C2 /* libGameCore.a */; };
 		F02A9F5618F3486B008145C2 /* BoardTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F5518F3486B008145C2 /* BoardTest.cpp */; };
-		F02A9F5F18F35064008145C2 /* gmock-gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F2C18F20036008145C2 /* gmock-gtest-all.cc */; };
 		F02A9F6018F3507C008145C2 /* libGoogleMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F5B18F35056008145C2 /* libGoogleMock.a */; };
 		F02A9F6C18F45525008145C2 /* GameRunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F6A18F45525008145C2 /* GameRunner.cpp */; };
 		F02A9F6D18F45525008145C2 /* GameRunner.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F02A9F6B18F45525008145C2 /* GameRunner.hpp */; };
@@ -54,6 +53,9 @@
 		F057A7E618F5CFC000636C2E /* ItemId.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7DB18F5CFC000636C2E /* ItemId.hpp */; };
 		F057A7E718F5CFC000636C2E /* Location.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7DC18F5CFC000636C2E /* Location.hpp */; };
 		F057A7E818F5CFC000636C2E /* StdItemGenerator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7DD18F5CFC000636C2E /* StdItemGenerator.hpp */; };
+		F057A7F218F5D1DF00636C2E /* gmock.h in Headers */ = {isa = PBXBuildFile; fileRef = F057A7ED18F5D1DF00636C2E /* gmock.h */; };
+		F057A7F318F5D1DF00636C2E /* gtest.h in Headers */ = {isa = PBXBuildFile; fileRef = F057A7EF18F5D1DF00636C2E /* gtest.h */; };
+		F057A7F418F5D1DF00636C2E /* gmock-gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = F057A7F118F5D1DF00636C2E /* gmock-gtest-all.cc */; };
 		F0B4496F18F4735D006C6405 /* SDLGameUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */; };
 		F0B4497118F47791006C6405 /* libGameCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F3E18F324C1008145C2 /* libGameCore.a */; };
 		F0B4497218F47796006C6405 /* libGameRunner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F6518F454C7008145C2 /* libGameRunner.a */; };
@@ -108,9 +110,6 @@
 		F02A9F0B18F1FCEE008145C2 /* BackGround.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = BackGround.jpg; path = Resources/BackGround.jpg; sourceTree = "<group>"; };
 		F02A9F1318F1FF65008145C2 /* CandiesTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CandiesTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02A9F1518F1FF65008145C2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		F02A9F2818F20036008145C2 /* gmock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gmock.h; sourceTree = "<group>"; };
-		F02A9F2A18F20036008145C2 /* gtest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gtest.h; sourceTree = "<group>"; };
-		F02A9F2C18F20036008145C2 /* gmock-gtest-all.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "gmock-gtest-all.cc"; sourceTree = "<group>"; };
 		F02A9F3818F32427008145C2 /* GameTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameTest.cpp; sourceTree = "<group>"; };
 		F02A9F3E18F324C1008145C2 /* libGameCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGameCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02A9F5218F32BCC008145C2 /* MockItemGenerator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockItemGenerator.hpp; sourceTree = "<group>"; };
@@ -149,6 +148,9 @@
 		F057A7DB18F5CFC000636C2E /* ItemId.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ItemId.hpp; sourceTree = "<group>"; };
 		F057A7DC18F5CFC000636C2E /* Location.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Location.hpp; sourceTree = "<group>"; };
 		F057A7DD18F5CFC000636C2E /* StdItemGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StdItemGenerator.hpp; sourceTree = "<group>"; };
+		F057A7ED18F5D1DF00636C2E /* gmock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gmock.h; sourceTree = "<group>"; };
+		F057A7EF18F5D1DF00636C2E /* gtest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gtest.h; sourceTree = "<group>"; };
+		F057A7F118F5D1DF00636C2E /* gmock-gtest-all.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "gmock-gtest-all.cc"; sourceTree = "<group>"; };
 		F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLGameUI.cpp; sourceTree = "<group>"; };
 		F0B4496E18F4735D006C6405 /* SDLGameUI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLGameUI.hpp; sourceTree = "<group>"; };
 		F0B4497518F47C14006C6405 /* StubMouseEventListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StubMouseEventListener.hpp; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				F02A9F6918F45511008145C2 /* GameRunner */,
 				F02A9ED118F1FA15008145C2 /* Candies */,
 				F02A9F1418F1FF65008145C2 /* CandiesTest */,
+				F057A7E918F5D1DF00636C2E /* Libraries */,
 				F02A9ECA18F1FA15008145C2 /* Frameworks */,
 				F02A9F0E18F1FD01008145C2 /* Resources */,
 				F02A9EC918F1FA15008145C2 /* Products */,
@@ -310,7 +313,6 @@
 		F02A9F1418F1FF65008145C2 /* CandiesTest */ = {
 			isa = PBXGroup;
 			children = (
-				F02A9F2518F20036008145C2 /* GoogleMock */,
 				F02A9F1518F1FF65008145C2 /* main.cpp */,
 				F02A9F3818F32427008145C2 /* GameTest.cpp */,
 				F02A9F5218F32BCC008145C2 /* MockItemGenerator.hpp */,
@@ -325,48 +327,6 @@
 				F057A7A718F59DB500636C2E /* MockBoardView.hpp */,
 			);
 			path = CandiesTest;
-			sourceTree = "<group>";
-		};
-		F02A9F2518F20036008145C2 /* GoogleMock */ = {
-			isa = PBXGroup;
-			children = (
-				F02A9F2618F20036008145C2 /* include */,
-				F02A9F2B18F20036008145C2 /* src */,
-			);
-			path = GoogleMock;
-			sourceTree = "<group>";
-		};
-		F02A9F2618F20036008145C2 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				F02A9F2718F20036008145C2 /* gmock */,
-				F02A9F2918F20036008145C2 /* gtest */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		F02A9F2718F20036008145C2 /* gmock */ = {
-			isa = PBXGroup;
-			children = (
-				F02A9F2818F20036008145C2 /* gmock.h */,
-			);
-			path = gmock;
-			sourceTree = "<group>";
-		};
-		F02A9F2918F20036008145C2 /* gtest */ = {
-			isa = PBXGroup;
-			children = (
-				F02A9F2A18F20036008145C2 /* gtest.h */,
-			);
-			path = gtest;
-			sourceTree = "<group>";
-		};
-		F02A9F2B18F20036008145C2 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				F02A9F2C18F20036008145C2 /* gmock-gtest-all.cc */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		F02A9F6918F45511008145C2 /* GameRunner */ = {
@@ -413,6 +373,56 @@
 			path = Logic;
 			sourceTree = "<group>";
 		};
+		F057A7E918F5D1DF00636C2E /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				F057A7EA18F5D1DF00636C2E /* GoogleMock */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		F057A7EA18F5D1DF00636C2E /* GoogleMock */ = {
+			isa = PBXGroup;
+			children = (
+				F057A7EB18F5D1DF00636C2E /* include */,
+				F057A7F018F5D1DF00636C2E /* src */,
+			);
+			path = GoogleMock;
+			sourceTree = "<group>";
+		};
+		F057A7EB18F5D1DF00636C2E /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F057A7EC18F5D1DF00636C2E /* gmock */,
+				F057A7EE18F5D1DF00636C2E /* gtest */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		F057A7EC18F5D1DF00636C2E /* gmock */ = {
+			isa = PBXGroup;
+			children = (
+				F057A7ED18F5D1DF00636C2E /* gmock.h */,
+			);
+			path = gmock;
+			sourceTree = "<group>";
+		};
+		F057A7EE18F5D1DF00636C2E /* gtest */ = {
+			isa = PBXGroup;
+			children = (
+				F057A7EF18F5D1DF00636C2E /* gtest.h */,
+			);
+			path = gtest;
+			sourceTree = "<group>";
+		};
+		F057A7F018F5D1DF00636C2E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F057A7F118F5D1DF00636C2E /* gmock-gtest-all.cc */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -436,6 +446,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F057A7F318F5D1DF00636C2E /* gtest.h in Headers */,
+				F057A7F218F5D1DF00636C2E /* gmock.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,7 +674,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F02A9F5F18F35064008145C2 /* gmock-gtest-all.cc in Sources */,
+				F057A7F418F5D1DF00636C2E /* gmock-gtest-all.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,7 +842,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"\"$(SRCROOT)/CandiesTest/GoogleMock/include\"",
+					"\"$(SRCROOT)/Libraries/GoogleMock/include\"",
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -845,7 +857,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"\"$(SRCROOT)/CandiesTest/GoogleMock/include\"",
+					"\"$(SRCROOT)/Libraries/GoogleMock/include\"",
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -890,7 +902,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"\"$(SRCROOT)/CandiesTest/GoogleMock/include\"",
+					"\"$(SRCROOT)/Libraries/GoogleMock/include\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -904,7 +916,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"\"$(SRCROOT)/CandiesTest/GoogleMock/include\"",
+					"\"$(SRCROOT)/Libraries/GoogleMock/include\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
