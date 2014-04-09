@@ -14,6 +14,9 @@ namespace Candies
             MockSpritePtr item7 = std::make_shared<StrictMock<MockSprite>>();
             const int GRID_SIZE = 9;
             const Position POSITION = { 23, -17 };
+            const GameCore::Location ITEM3_LOCATION{0, 0}, ITEM7_LOCATION{3, 2};
+            const Position ITEM3_POSITION{POSITION.x, POSITION.y};
+            const Position ITEM7_POSITION{POSITION.x + GRID_SIZE * 3, POSITION.y + GRID_SIZE * 2};
             StaticBoardView board{{{3, item3}, {7, item7}}, GRID_SIZE, POSITION};
             const GameCore::ItemId INVALID_ID = 2;
         };
@@ -25,10 +28,10 @@ namespace Candies
         
         TEST_F(StaticBoardViewTest, should_display_added_items_according_to_board_position_and_grid_size)
         {
-            board.addItem(3, {0, 0});
-            board.addItem(7, {3, 2});
-            EXPECT_CALL(*item3, drawAt(Position(POSITION.x, POSITION.y)));
-            EXPECT_CALL(*item7, drawAt(Position(POSITION.x + 3 * GRID_SIZE, POSITION.y + 2 * GRID_SIZE)));
+            board.addItem(3, ITEM3_LOCATION);
+            board.addItem(7, ITEM7_LOCATION);
+            EXPECT_CALL(*item3, drawAt(ITEM3_POSITION));
+            EXPECT_CALL(*item7, drawAt(ITEM7_POSITION));
             
             board.update();
         }
@@ -51,30 +54,30 @@ namespace Candies
         
         TEST_F(StaticBoardViewTest, should_select_items_at_given_coordinates)
         {
-            board.addItem(3, {0, 0});
-            board.addItem(7, {3, 2});
+            board.addItem(3, ITEM3_LOCATION);
+            board.addItem(7, ITEM7_LOCATION);
 
             board.selectItemAt(POSITION);
             ASSERT_EQ(1u, board.getSelectedItemLocations().size());
-            ASSERT_EQ(GameCore::Location(0, 0), board.getSelectedItemLocations().back());
+            ASSERT_EQ(ITEM3_LOCATION, board.getSelectedItemLocations().back());
             
             board.selectItemAt({POSITION.x + GRID_SIZE - 1, POSITION.y});
             ASSERT_EQ(2u, board.getSelectedItemLocations().size());
-            ASSERT_EQ(GameCore::Location(0, 0), board.getSelectedItemLocations().back());
+            ASSERT_EQ(ITEM3_LOCATION, board.getSelectedItemLocations().back());
 
             board.selectItemAt({POSITION.x, POSITION.y + GRID_SIZE - 1});
             ASSERT_EQ(3u, board.getSelectedItemLocations().size());
-            ASSERT_EQ(GameCore::Location(0, 0), board.getSelectedItemLocations().back());
+            ASSERT_EQ(ITEM3_LOCATION, board.getSelectedItemLocations().back());
 
             board.selectItemAt({POSITION.x + GRID_SIZE * 3, POSITION.y + GRID_SIZE * 2});
             ASSERT_EQ(4u, board.getSelectedItemLocations().size());
-            ASSERT_EQ(GameCore::Location(3, 2), board.getSelectedItemLocations().back());
+            ASSERT_EQ(ITEM7_LOCATION, board.getSelectedItemLocations().back());
         }
         
         TEST_F(StaticBoardViewTest, should_not_select_items_not_touching_given_coordinates)
         {
-            board.addItem(3, {0, 0});
-            board.addItem(7, {3, 2});
+            board.addItem(3, ITEM3_LOCATION);
+            board.addItem(7, ITEM7_LOCATION);
             
             board.selectItemAt({POSITION.x - 1, POSITION.y});
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
@@ -83,6 +86,18 @@ namespace Candies
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
             
             board.selectItemAt({POSITION.x + GRID_SIZE * 2, POSITION.y + GRID_SIZE});
+            ASSERT_TRUE(board.getSelectedItemLocations().empty());
+        }
+        
+        TEST_F(StaticBoardViewTest, should_clear_selection)
+        {
+            board.addItem(3, ITEM3_LOCATION);
+            board.addItem(7, ITEM7_LOCATION);
+
+            board.selectItemAt(ITEM3_POSITION);
+            board.selectItemAt(ITEM7_POSITION);
+            board.clearSelection();
+            
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
         }
     }

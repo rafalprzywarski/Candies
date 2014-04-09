@@ -22,6 +22,7 @@ namespace Candies
             void update();
             void selectItemAt(Position pos);
             GameCore::Locations getSelectedItemLocations() const;
+            void clearSelection();
         private:
             std::unordered_map<GameCore::ItemId, SpritePtr> sprites;
             std::unordered_map<GameCore::Location, SpritePtr> items;

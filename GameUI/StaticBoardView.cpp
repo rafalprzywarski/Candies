@@ -37,6 +37,11 @@ namespace Candies
         {
             return selection;
         }
+        
+        void StaticBoardView::clearSelection()
+        {
+            selection.clear();
+        }
 
         Position StaticBoardView::toPosition(GameCore::Location loc)
         {
