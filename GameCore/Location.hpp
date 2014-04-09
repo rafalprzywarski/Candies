@@ -1,5 +1,6 @@
 #pragma once
 #include <ostream>
+#include <vector>
 
 namespace Candies
 {
@@ -10,6 +11,8 @@ namespace Candies
             unsigned x, y;
             Location(unsigned x, unsigned y) : x(x), y(y) { }
         };
+        
+        typedef std::vector<Location> Locations;
 
         inline bool operator==(const Location& left, const Location& right)
         {
