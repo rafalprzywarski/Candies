@@ -109,7 +109,7 @@ namespace Candies
             ASSERT_TRUE(initialBoard == game->getBoard());
         }
 
-        TEST_F(GameTest, should_replace_3_aligned_items_with_3_new_items)
+        TEST_F(GameTest, should_replace_3_aligned_items_with_3_new_items_right_side)
         {
             setBoard({
                 3,4,4,0,0,1,3,1,
@@ -134,6 +134,40 @@ namespace Candies
             
             expectBoardWith({
                 3,1,2,3,0,1,3,1,
+                3,3,0,0,1,4,4,0,
+                2,0,4,0,2,0,2,3,
+                4,1,4,1,4,2,4,4,
+                1,2,2,3,4,0,4,0,
+                2,3,4,1,1,0,1,4,
+                3,1,4,2,4,1,1,0,
+                1,4,3,2,1,3,3,2 });
+        }
+
+        TEST_F(GameTest, should_replace_3_aligned_items_with_3_new_items_left_side)
+        {
+            setBoard({
+                3,2,2,0,4,4,3,1,
+                3,3,0,4,1,4,4,0,
+                2,0,4,0,2,0,2,3,
+                4,1,4,1,4,2,4,4,
+                1,2,2,3,4,0,4,0,
+                2,3,4,1,1,0,1,4,
+                3,1,4,2,4,1,1,0,
+                1,4,3,2,1,3,3,2 });
+            
+            expectGenerationOf({1, 2, 3});
+            Expectation swapping = EXPECT_CALL(*observer, itemsSwapped(Location(3, 0), Location(3, 1)));
+            ExpectationSet removal;
+            removal += EXPECT_CALL(*observer, itemRemoved(Location(3, 0))).After(swapping);
+            removal += EXPECT_CALL(*observer, itemRemoved(Location(4, 0))).After(swapping);
+            removal += EXPECT_CALL(*observer, itemRemoved(Location(5, 0))).After(swapping);
+            EXPECT_CALL(*observer, itemAdded(1, Location(3, 0))).After(removal);
+            EXPECT_CALL(*observer, itemAdded(2, Location(4, 0))).After(removal);
+            EXPECT_CALL(*observer, itemAdded(3, Location(5, 0))).After(removal);
+            game->swapItems({3, 0}, {3, 1});
+            
+            expectBoardWith({
+                3,2,2,1,2,3,3,1,
                 3,3,0,0,1,4,4,0,
                 2,0,4,0,2,0,2,3,
                 4,1,4,1,4,2,4,4,
