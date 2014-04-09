@@ -156,7 +156,6 @@
 		F057A80218F5D38A00636C2E /* StaticBoardViewTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoardViewTest.cpp; sourceTree = "<group>"; };
 		F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLGameUI.cpp; sourceTree = "<group>"; };
 		F0B4496E18F4735D006C6405 /* SDLGameUI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLGameUI.hpp; sourceTree = "<group>"; };
-		F0B4497518F47C14006C6405 /* StubMouseEventListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StubMouseEventListener.hpp; sourceTree = "<group>"; };
 		F0B4498518F49DD3006C6405 /* SDLSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLSprite.cpp; sourceTree = "<group>"; };
 		F0B4498618F49DD3006C6405 /* SDLSprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLSprite.hpp; sourceTree = "<group>"; };
 		F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRunnerFactory.cpp; sourceTree = "<group>"; };
@@ -276,7 +275,6 @@
 				F02A9ED218F1FA15008145C2 /* Supporting Files */,
 				F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */,
 				F0B4496E18F4735D006C6405 /* SDLGameUI.hpp */,
-				F0B4497518F47C14006C6405 /* StubMouseEventListener.hpp */,
 				F0B4498518F49DD3006C6405 /* SDLSprite.cpp */,
 				F0B4498618F49DD3006C6405 /* SDLSprite.hpp */,
 				F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */,
