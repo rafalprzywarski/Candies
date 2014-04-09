@@ -22,5 +22,16 @@ namespace Candies
             for (auto const& item : items)
                 item.sprite->drawAt({int(item.location.x) * gridSize + position.x, int(item.location.y) * gridSize + position.y});
         }
+        
+        void StaticBoardView::selectItemAt(Position pos)
+        {
+            
+        }
+
+        GameCore::Locations StaticBoardView::getSelectedItemLocations() const
+        {
+            return {};
+        }
+
     }
 }

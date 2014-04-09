@@ -37,5 +37,11 @@ namespace Candies
         {
             ASSERT_THROW(board.addItem(INVALID_ID, {0, 0}), std::out_of_range);
         }
+        
+        TEST_F(StaticBoardViewTest, should_not_select_anything_when_there_are_no_items)
+        {
+            board.selectItemAt({2, 3});
+            ASSERT_TRUE(board.getSelectedItemLocations().empty());
+        }
     }
 }
