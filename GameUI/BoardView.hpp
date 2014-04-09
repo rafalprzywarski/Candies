@@ -13,6 +13,7 @@ namespace Candies
             virtual ~BoardView() { }
             virtual void selectItemAt(Position pos) = 0;
             virtual GameCore::Locations getSelectedItemLocations() const = 0;
+            virtual void clearSelection() = 0;
         };
         
         typedef std::shared_ptr<BoardView> BoardViewPtr;

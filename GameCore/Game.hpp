@@ -1,7 +1,6 @@
 #pragma once
 #include "ItemGenerator.hpp"
 #include "Board.hpp"
-#include "Location.hpp"
 #include "GameLogic.hpp"
 #include "GameObserver.hpp"
 

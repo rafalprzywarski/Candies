@@ -10,6 +10,7 @@ namespace Candies
         {
         public:
             MOCK_METHOD0(start, void());
+            MOCK_METHOD2(swapItems, void(Location, Location));
         };
         
         typedef std::shared_ptr<MockGameLogic> MockGameLogicPtr;

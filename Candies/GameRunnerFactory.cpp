@@ -44,11 +44,11 @@ namespace Candies
         auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
         auto board = std::make_shared<UI::StaticBoardView>(gems, selectionMarker, GRID_SIZE, BOARD_POSITION);
         auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, background, board);
-        auto mouseItemSelector = std::make_shared<Candies::UI::MouseItemSelector>(board);
-        auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui, mouseItemSelector);
         auto itemGenerator = std::make_shared<Candies::GameCore::StdItemGenerator>(gems.size());
         auto gameObserver = std::make_shared<BoardUpdater>(board);
         auto gameLogic = Candies::GameCore::GameFactory().createGame(itemGenerator, gameObserver);
+        auto mouseItemSelector = std::make_shared<Candies::UI::MouseItemSelector>(board, gameLogic);
+        auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui, mouseItemSelector);
         auto runner = std::make_shared<Candies::GameRunner>(gameLogic, dispatcher);
         return runner;
     }
