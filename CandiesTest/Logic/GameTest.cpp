@@ -91,25 +91,20 @@ namespace Candies
             game->start();
         }
 
-        TEST_F(GameTest, should_not_swap_items_between_two_given_location_when_they_are_not_neighbours)
+        struct FailingExample
         {
-            setBoard({
-                4,2,3,0,0,1,3,1,
-                3,3,0,4,1,4,4,0,
-                2,0,4,0,2,0,2,3,
-                4,1,4,1,4,2,4,4,
-                1,2,2,3,4,0,4,0,
-                2,3,4,1,1,0,1,4,
-                3,1,4,2,4,1,1,0,
-                1,4,3,2,1,3,3,2 });
-            Board initialBoard = game->getBoard();
-            
-            game->swapItems({2, 2}, {2, 4});
-            
-            ASSERT_TRUE(initialBoard == game->getBoard());
+            std::string name;
+            ItemIds board;
+            Location from;
+            Location to;
+        };
+        
+        std::ostream& operator<<(std::ostream& os, const FailingExample& example)
+        {
+            return os << example.name;
         }
 
-        struct Example
+        struct SuccessfulExample
         {
             std::string name;
             ItemIds board;
@@ -119,7 +114,7 @@ namespace Candies
             ItemIds added;
         };
         
-        std::ostream& operator<<(std::ostream& os, const Example& example)
+        std::ostream& operator<<(std::ostream& os, const SuccessfulExample& example)
         {
             return os << example.name;
         }
@@ -129,7 +124,99 @@ namespace Candies
         Locations Removed(Locations l) { return l; }
         ItemIds Added(ItemIds l) { return l; }
 
-        struct GameSuccessfulSwappingTest : GameTest, WithParamInterface<Example> {};
+        struct GameFailingSwappingTest : GameTest, WithParamInterface<FailingExample> {};
+        
+        TEST_P(GameFailingSwappingTest, should_not_swap)
+        {
+            setBoard(GetParam().board);
+            Board initialBoard = game->getBoard();
+            
+            game->swapItems(GetParam().from, GetParam().to);
+            
+            ASSERT_TRUE(initialBoard == game->getBoard());
+        }
+        
+        INSTANTIATE_TEST_CASE_P(
+            Examples, GameFailingSwappingTest,
+            Values(
+                FailingExample{
+                    "not neighbours",
+                    {
+                        4,2,3,0,0,1,3,1,
+                        3,3,0,4,1,4,4,0,
+                        2,0,4,0,2,0,2,3,
+                        4,1,4,1,4,2,4,4,
+                        1,2,2,3,4,0,4,0,
+                        2,3,4,1,1,0,1,4,
+                        3,1,4,2,4,1,1,0,
+                        1,4,3,2,1,3,3,2 },
+                    From({2, 2}), To({2, 4})},
+                FailingExample{
+                    "not neighbours, reverse",
+                    {
+                        4,2,3,0,0,1,3,1,
+                        3,3,0,4,1,4,4,0,
+                        2,0,4,0,2,0,2,3,
+                        4,1,4,1,4,2,4,4,
+                        1,2,2,3,4,0,4,0,
+                        2,3,4,1,1,0,1,4,
+                        3,1,4,2,4,1,1,0,
+                        1,4,3,2,1,3,3,2 },
+                    From({2, 4}), To({2, 2})},
+                FailingExample{
+                    "2 horizontal right",
+                    {
+                        4,2,3,0,0,1,3,1,
+                        3,3,0,4,1,4,4,0,
+                        2,0,4,0,2,0,2,3,
+                        4,1,4,1,4,2,4,4,
+                        1,2,2,3,4,0,4,0,
+                        2,3,4,1,1,0,1,4,
+                        3,1,4,2,4,1,1,0,
+                        1,4,3,2,1,3,3,2 },
+                    From({4, 1}), To({4, 0})},
+                FailingExample{
+                    "2 horizontal right, reverse",
+                    {
+                        4,2,3,0,0,1,3,1,
+                        3,3,0,4,1,4,4,0,
+                        2,0,4,0,2,0,2,3,
+                        4,1,4,1,4,2,4,4,
+                        1,2,2,3,4,0,4,0,
+                        2,3,4,1,1,0,1,4,
+                        3,1,4,2,4,1,1,0,
+                        1,4,3,2,1,3,3,2 },
+                    From({4, 0}), To({4, 1})},
+                                FailingExample{
+                    "2 horizontal left",
+                    {
+                        4,2,3,1,0,2,3,1,
+                        3,3,0,4,1,4,4,0,
+                        2,0,4,0,2,0,2,3,
+                        4,1,4,1,4,2,4,4,
+                        1,2,2,3,4,0,4,0,
+                        2,3,4,1,1,0,1,4,
+                        3,1,4,2,4,1,1,0,
+                        1,4,3,2,1,3,3,2 },
+                    From({4, 1}), To({4, 0})},
+                FailingExample{
+                    "2 horizontal left, reverse",
+                    {
+                        4,2,3,1,0,2,3,1,
+                        3,3,0,4,1,4,4,0,
+                        2,0,4,0,2,0,2,3,
+                        4,1,4,1,4,2,4,4,
+                        1,2,2,3,4,0,4,0,
+                        2,3,4,1,1,0,1,4,
+                        3,1,4,2,4,1,1,0,
+                        1,4,3,2,1,3,3,2 },
+                    From({4, 0}), To({4, 1})}
+
+            )
+        );
+
+
+        struct GameSuccessfulSwappingTest : GameTest, WithParamInterface<SuccessfulExample> {};
         
         TEST_P(GameSuccessfulSwappingTest, should_replace_3_aligned_items_with_3_new_items)
         {
@@ -151,7 +238,7 @@ namespace Candies
         INSTANTIATE_TEST_CASE_P(
             Examples, GameSuccessfulSwappingTest,
             Values(
-                Example{
+                SuccessfulExample{
                     "3 horizontal right",
                     {
                         3,4,4,0,0,1,3,1,
@@ -165,7 +252,7 @@ namespace Candies
                     From({3, 0}), To({3, 1}),
                     Removed({{1, 0}, {2, 0}, {3, 0}}),
                     Added({1, 2, 3})},
-                Example{
+                SuccessfulExample{
                     "3 horizontal left",
                     {
                         3,2,2,0,4,4,3,1,
