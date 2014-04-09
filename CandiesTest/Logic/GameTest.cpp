@@ -23,10 +23,10 @@ namespace Candies
             return true;
         }
 
+        typedef std::vector<ItemId> ItemIds;
+
         struct GameTest : Test
         {
-            typedef std::vector<ItemId> ItemIds;
-            
             const unsigned BOARD_WIDTH = 8, BOARD_HEIGHT = 8;
             
             MockItemGeneratorPtr itemGenerator = std::make_shared<StrictMock<MockItemGenerator>>();
@@ -109,72 +109,77 @@ namespace Candies
             ASSERT_TRUE(initialBoard == game->getBoard());
         }
 
-        TEST_F(GameTest, should_replace_3_aligned_items_with_3_new_items_right_side)
+        struct Example
         {
-            setBoard({
-                3,4,4,0,0,1,3,1,
-                3,3,0,4,1,4,4,0,
-                2,0,4,0,2,0,2,3,
-                4,1,4,1,4,2,4,4,
-                1,2,2,3,4,0,4,0,
-                2,3,4,1,1,0,1,4,
-                3,1,4,2,4,1,1,0,
-                1,4,3,2,1,3,3,2 });
+            std::string name;
+            ItemIds board;
+            Location from;
+            Location to;
+            Locations removed;
+            ItemIds added;
+        };
+        
+        std::ostream& operator<<(std::ostream& os, const Example& example)
+        {
+            return os << example.name;
+        }
+        
+        Location From(Location l) { return l; }
+        Location To(Location l) { return l; }
+        Locations Removed(Locations l) { return l; }
+        ItemIds Added(ItemIds l) { return l; }
+
+        struct GameSuccessfulSwappingTest : GameTest, WithParamInterface<Example> {};
+        
+        TEST_P(GameSuccessfulSwappingTest, should_replace_3_aligned_items_with_3_new_items)
+        {
+            ASSERT_EQ(GetParam().added.size(), GetParam().removed.size()) << "must add and remove the same number of elements";
+
+            setBoard(GetParam().board);
+            expectGenerationOf(GetParam().added);
             
-            expectGenerationOf({1, 2, 3});
-            Expectation swapping = EXPECT_CALL(*observer, itemsSwapped(Location(3, 0), Location(3, 1)));
+            Expectation swapping = EXPECT_CALL(*observer, itemsSwapped(GetParam().from, GetParam().to));
             ExpectationSet removal;
-            removal += EXPECT_CALL(*observer, itemRemoved(Location(1, 0))).After(swapping);
-            removal += EXPECT_CALL(*observer, itemRemoved(Location(2, 0))).After(swapping);
-            removal += EXPECT_CALL(*observer, itemRemoved(Location(3, 0))).After(swapping);
-            EXPECT_CALL(*observer, itemAdded(1, Location(1, 0))).After(removal);
-            EXPECT_CALL(*observer, itemAdded(2, Location(2, 0))).After(removal);
-            EXPECT_CALL(*observer, itemAdded(3, Location(3, 0))).After(removal);
-            game->swapItems({3, 0}, {3, 1});
+            for (auto loc : GetParam().removed)
+                removal += EXPECT_CALL(*observer, itemRemoved(loc)).After(swapping);
+            for (std::size_t i = 0; i < GetParam().added.size(); ++i)
+                EXPECT_CALL(*observer, itemAdded(GetParam().added[i], GetParam().removed[i])).After(removal);
             
-            expectBoardWith({
-                3,1,2,3,0,1,3,1,
-                3,3,0,0,1,4,4,0,
-                2,0,4,0,2,0,2,3,
-                4,1,4,1,4,2,4,4,
-                1,2,2,3,4,0,4,0,
-                2,3,4,1,1,0,1,4,
-                3,1,4,2,4,1,1,0,
-                1,4,3,2,1,3,3,2 });
+            game->swapItems(GetParam().from, GetParam().to);
         }
 
-        TEST_F(GameTest, should_replace_3_aligned_items_with_3_new_items_left_side)
-        {
-            setBoard({
-                3,2,2,0,4,4,3,1,
-                3,3,0,4,1,4,4,0,
-                2,0,4,0,2,0,2,3,
-                4,1,4,1,4,2,4,4,
-                1,2,2,3,4,0,4,0,
-                2,3,4,1,1,0,1,4,
-                3,1,4,2,4,1,1,0,
-                1,4,3,2,1,3,3,2 });
-            
-            expectGenerationOf({1, 2, 3});
-            Expectation swapping = EXPECT_CALL(*observer, itemsSwapped(Location(3, 0), Location(3, 1)));
-            ExpectationSet removal;
-            removal += EXPECT_CALL(*observer, itemRemoved(Location(3, 0))).After(swapping);
-            removal += EXPECT_CALL(*observer, itemRemoved(Location(4, 0))).After(swapping);
-            removal += EXPECT_CALL(*observer, itemRemoved(Location(5, 0))).After(swapping);
-            EXPECT_CALL(*observer, itemAdded(1, Location(3, 0))).After(removal);
-            EXPECT_CALL(*observer, itemAdded(2, Location(4, 0))).After(removal);
-            EXPECT_CALL(*observer, itemAdded(3, Location(5, 0))).After(removal);
-            game->swapItems({3, 0}, {3, 1});
-            
-            expectBoardWith({
-                3,2,2,1,2,3,3,1,
-                3,3,0,0,1,4,4,0,
-                2,0,4,0,2,0,2,3,
-                4,1,4,1,4,2,4,4,
-                1,2,2,3,4,0,4,0,
-                2,3,4,1,1,0,1,4,
-                3,1,4,2,4,1,1,0,
-                1,4,3,2,1,3,3,2 });
-        }
+        INSTANTIATE_TEST_CASE_P(
+            Examples, GameSuccessfulSwappingTest,
+            Values(
+                Example{
+                    "3 horizontal right",
+                    {
+                        3,4,4,0,0,1,3,1,
+                        3,3,0,4,1,4,4,0,
+                        2,0,4,0,2,0,2,3,
+                        4,1,4,1,4,2,4,4,
+                        1,2,2,3,4,0,4,0,
+                        2,3,4,1,1,0,1,4,
+                        3,1,4,2,4,1,1,0,
+                        1,4,3,2,1,3,3,2 },
+                    From({3, 0}), To({3, 1}),
+                    Removed({{1, 0}, {2, 0}, {3, 0}}),
+                    Added({1, 2, 3})},
+                Example{
+                    "3 horizontal left",
+                    {
+                        3,2,2,0,4,4,3,1,
+                        3,3,0,4,1,4,4,0,
+                        2,0,4,0,2,0,2,3,
+                        4,1,4,1,4,2,4,4,
+                        1,2,2,3,4,0,4,0,
+                        2,3,4,1,1,0,1,4,
+                        3,1,4,2,4,1,1,0,
+                        1,4,3,2,1,3,3,2 },
+                    From({3, 0}), To({3, 1}),
+                    Removed({{3, 0}, {4, 0}, {5, 0}}),
+                    Added({1, 2, 3})}
+            )
+        );
     }
 }
