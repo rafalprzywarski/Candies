@@ -21,6 +21,8 @@ namespace Candies
             Board board;
             
             void addItem(ItemId item, Location loc);
+            int countLeftAligned(Location loc, ItemId item);
+            int countRightAligned(Location loc, ItemId item);
         };
         
         typedef std::shared_ptr<Game> GamePtr;

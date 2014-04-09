@@ -18,35 +18,16 @@ namespace Candies
 
         void Game::swapItems(Location loc1, Location loc2)
         {
-            if (board[loc2] == board[{loc1.x - 1, loc1.y}] && board[loc2] == board[{loc1.x - 2, loc1.y}])
+            auto leftAligned = countLeftAligned(loc1, board[loc2]);
+            auto rightAligned = countRightAligned(loc1, board[loc2]);
+            
+            if (leftAligned + rightAligned >= 2)
             {
                 observer->itemsSwapped(loc1, loc2);
-                observer->itemRemoved({loc1.x - 2, loc1.y});
-                observer->itemRemoved({loc1.x - 1, loc1.y});
-                observer->itemRemoved(loc1);
-                addItem(itemGenerator->generate(), {loc1.x - 2, loc1.y});
-                addItem(itemGenerator->generate(), {loc1.x - 1, loc1.y});
-                addItem(itemGenerator->generate(), loc1);
-            }
-            else if (board[loc2] == board[{loc1.x + 1, loc1.y}] && board[loc2] == board[{loc1.x + 2, loc1.y}])
-            {
-                observer->itemsSwapped(loc1, loc2);
-                observer->itemRemoved({loc1.x + 2, loc1.y});
-                observer->itemRemoved({loc1.x + 1, loc1.y});
-                observer->itemRemoved(loc1);
-                addItem(itemGenerator->generate(), loc1);
-                addItem(itemGenerator->generate(), {loc1.x + 1, loc1.y});
-                addItem(itemGenerator->generate(), {loc1.x + 2, loc1.y});
-            }
-            else if (board[loc2] == board[{loc1.x + 1, loc1.y}] && board[loc2] == board[{loc1.x - 1, loc1.y}])
-            {
-                observer->itemsSwapped(loc1, loc2);
-                observer->itemRemoved({loc1.x - 1, loc1.y});
-                observer->itemRemoved({loc1.x + 1, loc1.y});
-                observer->itemRemoved(loc1);
-                addItem(itemGenerator->generate(), {loc1.x - 1, loc1.y});
-                addItem(itemGenerator->generate(), loc1);
-                addItem(itemGenerator->generate(), {loc1.x + 1, loc1.y});
+                for (int i = -leftAligned; i <= rightAligned; ++i)
+                    observer->itemRemoved({unsigned(int(loc1.x) + i), loc1.y});
+                for (int i = -leftAligned; i <= rightAligned; ++i)
+                    observer->itemAdded(itemGenerator->generate(), {unsigned(int(loc1.x) + i), loc1.y});
             }
         }
         
@@ -60,6 +41,29 @@ namespace Candies
             board[loc] = item;
             observer->itemAdded(item, loc);
         }
-
+        
+        int Game::countLeftAligned(Location loc, ItemId item)
+        {
+            int count = 0;
+            loc.x--;
+            while (board[loc] == item)
+            {
+                loc.x--;
+                count++;
+            }
+            return count;
+        }
+        
+        int Game::countRightAligned(Location loc, ItemId item)
+        {
+            int count = 0;
+            loc.x++;
+            while (board[loc] == item)
+            {
+                loc.x++;
+                count++;
+            }
+            return count;
+        }
     }
 }
