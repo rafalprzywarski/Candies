@@ -38,6 +38,16 @@ namespace Candies
                 addItem(itemGenerator->generate(), {loc1.x + 1, loc1.y});
                 addItem(itemGenerator->generate(), {loc1.x + 2, loc1.y});
             }
+            else if (board[loc2] == board[{loc1.x + 1, loc1.y}] && board[loc2] == board[{loc1.x - 1, loc1.y}])
+            {
+                observer->itemsSwapped(loc1, loc2);
+                observer->itemRemoved({loc1.x - 1, loc1.y});
+                observer->itemRemoved({loc1.x + 1, loc1.y});
+                observer->itemRemoved(loc1);
+                addItem(itemGenerator->generate(), {loc1.x - 1, loc1.y});
+                addItem(itemGenerator->generate(), loc1);
+                addItem(itemGenerator->generate(), {loc1.x + 1, loc1.y});
+            }
         }
         
         Board Game::getBoard() const
