@@ -33,6 +33,8 @@ namespace Candies
             
             Position toPosition(Logic::Location loc);
             Logic::Location toLocation(Position pos);
+            bool itemExists(Logic::Location loc);
+            bool isItemAlreadySelected(Logic::Location loc);
         };
         
         typedef std::shared_ptr<StaticBoardView> StaticBoardViewPtr;

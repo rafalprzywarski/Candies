@@ -32,7 +32,7 @@ namespace Candies
                 return;
 
             auto itemLoc = toLocation(pos);
-            if (items.count(itemLoc) && std::find(selection.begin(), selection.end(), itemLoc) == selection.end())
+            if (itemExists(itemLoc) && !isItemAlreadySelected(itemLoc))
                 selection.push_back(itemLoc);
         }
 
@@ -56,5 +56,14 @@ namespace Candies
             return {unsigned(pos.x - origin.x) / gridSize, unsigned(pos.y - origin.y) / gridSize};
         }
 
+        bool StaticBoardView::itemExists(Logic::Location loc)
+        {
+            return items.count(loc) != 0;
+        }
+        
+        bool StaticBoardView::isItemAlreadySelected(Logic::Location loc)
+        {
+            return std::find(selection.begin(), selection.end(), loc) != selection.end();
+        }
     }
 }
