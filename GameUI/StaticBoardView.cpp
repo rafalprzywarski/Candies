@@ -1,11 +1,12 @@
 #include "StaticBoardView.hpp"
+#include <algorithm>
 
 namespace Candies
 {
     namespace UI
     {
-        StaticBoardView::StaticBoardView(std::vector<std::pair<const GameCore::ItemId, SpritePtr>> sprites, int gridSize, Position origin)
-        : sprites(sprites.begin(), sprites.end()), gridSize(gridSize), origin(origin)
+        StaticBoardView::StaticBoardView(Sprites sprites, SpritePtr selectionMarker, int gridSize, Position origin)
+        : sprites(sprites.begin(), sprites.end()), selectionMarker(selectionMarker), gridSize(gridSize), origin(origin)
         {
         }
 
@@ -21,6 +22,8 @@ namespace Candies
         {
             for (auto const& item : items)
                 item.second->drawAt(toPosition(item.first));
+            for (auto const& itemLoc : selection)
+                selectionMarker->drawAt(toPosition(itemLoc));
         }
         
         void StaticBoardView::selectItemAt(Position pos)
@@ -29,7 +32,7 @@ namespace Candies
                 return;
 
             auto itemLoc = toLocation(pos);
-            if (items.count(itemLoc))
+            if (items.count(itemLoc) && std::find(selection.begin(), selection.end(), itemLoc) == selection.end())
                 selection.push_back(itemLoc);
         }
 

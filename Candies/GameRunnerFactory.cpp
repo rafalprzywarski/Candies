@@ -41,7 +41,8 @@ namespace Candies
         auto renderer = UI::SDLRendererFactory().createRenderer(SCREEN_WIDTH, SCREEN_HEIGHT);
         auto background = std::make_shared<UI::SDLSprite>(renderer, "BackGround.jpg");
         auto gems = loadGems(renderer);
-        auto board = std::make_shared<UI::StaticBoardView>(gems, GRID_SIZE, BOARD_POSITION);
+        auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
+        auto board = std::make_shared<UI::StaticBoardView>(gems, selectionMarker, GRID_SIZE, BOARD_POSITION);
         auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, background, board);
         auto mouseEventListener = std::make_shared<Candies::UI::StubMouseEventListener>();
         auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui, mouseEventListener);

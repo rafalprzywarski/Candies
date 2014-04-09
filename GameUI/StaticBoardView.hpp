@@ -17,7 +17,7 @@ namespace Candies
         {
         public:
             typedef std::vector<std::pair<const GameCore::ItemId, SpritePtr>> Sprites;
-            StaticBoardView(Sprites sprites, int gridSize, Position origin);
+            StaticBoardView(Sprites sprites, SpritePtr selectionMarker, int gridSize, Position origin);
             void addItem(GameCore::ItemId id, GameCore::Location loc);
             void update();
             void selectItemAt(Position pos);
@@ -25,6 +25,7 @@ namespace Candies
             void clearSelection();
         private:
             std::unordered_map<GameCore::ItemId, SpritePtr> sprites;
+            SpritePtr selectionMarker;
             std::unordered_map<GameCore::Location, SpritePtr> items;
             std::vector<GameCore::Location> selection;
             int gridSize;

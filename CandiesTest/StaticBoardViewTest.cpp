@@ -12,12 +12,13 @@ namespace Candies
         {
             MockSpritePtr item3 = std::make_shared<StrictMock<MockSprite>>();
             MockSpritePtr item7 = std::make_shared<StrictMock<MockSprite>>();
+            MockSpritePtr selection = std::make_shared<StrictMock<MockSprite>>();
             const int GRID_SIZE = 9;
             const Position POSITION = { 23, -17 };
             const GameCore::Location ITEM3_LOCATION{0, 0}, ITEM7_LOCATION{3, 2};
             const Position ITEM3_POSITION{POSITION.x, POSITION.y};
             const Position ITEM7_POSITION{POSITION.x + GRID_SIZE * 3, POSITION.y + GRID_SIZE * 2};
-            StaticBoardView board{{{3, item3}, {7, item7}}, GRID_SIZE, POSITION};
+            StaticBoardView board{{{3, item3}, {7, item7}}, selection, GRID_SIZE, POSITION};
             const GameCore::ItemId INVALID_ID = 2;
         };
 
@@ -61,17 +62,17 @@ namespace Candies
             ASSERT_EQ(1u, board.getSelectedItemLocations().size());
             ASSERT_EQ(ITEM3_LOCATION, board.getSelectedItemLocations().back());
             
+            board.clearSelection();
             board.selectItemAt({POSITION.x + GRID_SIZE - 1, POSITION.y});
-            ASSERT_EQ(2u, board.getSelectedItemLocations().size());
-            ASSERT_EQ(ITEM3_LOCATION, board.getSelectedItemLocations().back());
+            ASSERT_EQ(ITEM3_LOCATION, board.getSelectedItemLocations().at(0));
 
+            board.clearSelection();
             board.selectItemAt({POSITION.x, POSITION.y + GRID_SIZE - 1});
-            ASSERT_EQ(3u, board.getSelectedItemLocations().size());
-            ASSERT_EQ(ITEM3_LOCATION, board.getSelectedItemLocations().back());
+            ASSERT_EQ(ITEM3_LOCATION, board.getSelectedItemLocations().at(0));
 
+            board.clearSelection();
             board.selectItemAt({POSITION.x + GRID_SIZE * 3, POSITION.y + GRID_SIZE * 2});
-            ASSERT_EQ(4u, board.getSelectedItemLocations().size());
-            ASSERT_EQ(ITEM7_LOCATION, board.getSelectedItemLocations().back());
+            ASSERT_EQ(ITEM7_LOCATION, board.getSelectedItemLocations().at(0));
         }
         
         TEST_F(StaticBoardViewTest, should_not_select_items_not_touching_given_coordinates)
@@ -99,6 +100,31 @@ namespace Candies
             board.clearSelection();
             
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
+        }
+
+        TEST_F(StaticBoardViewTest, should_not_select_the_same_item_twice)
+        {
+            board.addItem(3, ITEM3_LOCATION);
+
+            board.selectItemAt(ITEM3_POSITION);
+            board.selectItemAt(ITEM3_POSITION);
+            ASSERT_EQ(1u, board.getSelectedItemLocations().size());
+        }
+        
+        TEST_F(StaticBoardViewTest, should_display_item_selection)
+        {
+            board.addItem(3, ITEM3_LOCATION);
+            board.addItem(7, ITEM7_LOCATION);
+            board.selectItemAt(ITEM3_POSITION);
+            board.selectItemAt(ITEM7_POSITION);
+
+            Sequence item3WithMarker, item7WithMarker;
+            EXPECT_CALL(*item3, drawAt(_)).InSequence(item3WithMarker);
+            EXPECT_CALL(*selection, drawAt(ITEM3_POSITION)).InSequence(item3WithMarker);
+            EXPECT_CALL(*item7, drawAt(_)).InSequence(item7WithMarker);
+            EXPECT_CALL(*selection, drawAt(ITEM7_POSITION)).InSequence(item7WithMarker);
+            
+            board.update();
         }
     }
 }

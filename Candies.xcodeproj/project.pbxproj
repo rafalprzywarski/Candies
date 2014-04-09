@@ -34,6 +34,7 @@
 		F057A7A218F51E7100636C2E /* MouseItemSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7A018F51E7100636C2E /* MouseItemSelector.cpp */; };
 		F057A7A318F51E7100636C2E /* MouseItemSelector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7A118F51E7100636C2E /* MouseItemSelector.hpp */; };
 		F057A7A518F51F1F00636C2E /* MouseItemSelectorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7A418F51F1F00636C2E /* MouseItemSelectorTest.cpp */; };
+		F057A7B218F5C03800636C2E /* Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = F057A7B118F5C03800636C2E /* Selected.png */; };
 		F0B4496918F46D30006C6405 /* SDLEventDispatcher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0B4496718F46D30006C6405 /* SDLEventDispatcher.hpp */; };
 		F0B4496C18F470C2006C6405 /* SDLEventDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4496618F46D30006C6405 /* SDLEventDispatcher.cpp */; };
 		F0B4496F18F4735D006C6405 /* SDLGameUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */; };
@@ -123,6 +124,7 @@
 		F057A7A418F51F1F00636C2E /* MouseItemSelectorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseItemSelectorTest.cpp; sourceTree = "<group>"; };
 		F057A7A618F59D0800636C2E /* BoardView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoardView.hpp; sourceTree = "<group>"; };
 		F057A7A718F59DB500636C2E /* MockBoardView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockBoardView.hpp; sourceTree = "<group>"; };
+		F057A7B118F5C03800636C2E /* Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Selected.png; path = Resources/Selected.png; sourceTree = "<group>"; };
 		F0B4496618F46D30006C6405 /* SDLEventDispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SDLEventDispatcher.cpp; path = ../GameUI/SDLEventDispatcher.cpp; sourceTree = "<group>"; };
 		F0B4496718F46D30006C6405 /* SDLEventDispatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SDLEventDispatcher.hpp; path = ../GameUI/SDLEventDispatcher.hpp; sourceTree = "<group>"; };
 		F0B4496D18F4735D006C6405 /* SDLGameUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLGameUI.cpp; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 		F02A9F0E18F1FD01008145C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F057A7B118F5C03800636C2E /* Selected.png */,
 				F0B4499218F4ABC0006C6405 /* Blue.png */,
 				F0B4499318F4ABC0006C6405 /* Green.png */,
 				F0B4499418F4ABC0006C6405 /* Purple.png */,
@@ -578,6 +581,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F057A7B218F5C03800636C2E /* Selected.png in Resources */,
 				F0B4499718F4ABC0006C6405 /* Blue.png in Resources */,
 				F0B4499918F4ABC0006C6405 /* Purple.png in Resources */,
 				F0B4499818F4ABC0006C6405 /* Green.png in Resources */,
