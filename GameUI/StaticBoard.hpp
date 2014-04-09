@@ -15,7 +15,8 @@ namespace Candies
         class StaticBoard : public FrameUpdateListener
         {
         public:
-            StaticBoard(std::vector<std::pair<const GameCore::ItemId, SpritePtr>> sprites, int gridSize, Position position);
+            typedef std::vector<std::pair<const GameCore::ItemId, SpritePtr>> Sprites;
+            StaticBoard(Sprites sprites, int gridSize, Position position);
             void addItem(GameCore::ItemId id, GameCore::Location loc);
             void update();
         private:

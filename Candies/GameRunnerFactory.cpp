@@ -23,10 +23,10 @@ namespace Candies
         UI::StaticBoardPtr board;
     };
     
-    std::vector<std::pair<const GameCore::ItemId, UI::SpritePtr>> loadGems(std::shared_ptr<SDL_Renderer> renderer)
+    UI::StaticBoard::Sprites loadGems(std::shared_ptr<SDL_Renderer> renderer)
     {
         std::vector<std::string> files = { "Blue.png", "Green.png", "Purple.png", "Red.png", "Yellow.png" };
-        std::vector<std::pair<const GameCore::ItemId, UI::SpritePtr>> gems;
+        UI::StaticBoard::Sprites gems;
         for (auto& file : files)
             gems.push_back({gems.size(), std::make_shared<UI::SDLSprite>(renderer, file)});
         return gems;
