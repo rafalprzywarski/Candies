@@ -43,5 +43,10 @@ namespace Candies
             board.selectItemAt({2, 3});
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
         }
+        
+        TEST_F(StaticBoardViewTest, should_select_nothing_when_created)
+        {
+            ASSERT_TRUE(board.getSelectedItemLocations().empty());
+        }
     }
 }
