@@ -4,7 +4,7 @@
 
 int main(int argc, const char * argv[])
 {
-	SDL_Init(SDL_INIT_VIDEO);
+    SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_JPG);
 
     {
@@ -13,6 +13,6 @@ int main(int argc, const char * argv[])
     }
     
     IMG_Quit();
-	SDL_Quit();
+    SDL_Quit();
 }
 
