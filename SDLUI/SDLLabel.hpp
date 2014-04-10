@@ -17,13 +17,14 @@ namespace Candies
         class SDLLabel : public Label
         {
         public:
-            SDLLabel(std::shared_ptr<SDL_Renderer> renderer, const std::string& fontFile, int fontHeight, Position position);
+            SDLLabel(std::shared_ptr<SDL_Renderer> renderer, const std::string& fontFile, int fontHeight, SDL_Color color, Position position);
             virtual void update();
             virtual void setText(const std::string& text);
         private:
             std::shared_ptr<TTF_Font> font;
             std::shared_ptr<SDL_Renderer> renderer;
             std::shared_ptr<SDL_Texture> texture;
+            SDL_Color color;
             Position position;
         };
     }

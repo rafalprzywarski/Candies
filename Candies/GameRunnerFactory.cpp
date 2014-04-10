@@ -7,6 +7,7 @@
 #include "SDLRendererFactory.hpp"
 #include "SDLSprite.hpp"
 #include "StaticBoardView.hpp"
+#include <SDLUI/SDLLabel.hpp>
 #include <Logic/StdItemGenerator.hpp>
 
 namespace Candies
@@ -51,13 +52,19 @@ namespace Candies
         auto const SCREEN_WIDTH = 755, SCREEN_HEIGHT = 600;
         auto const GRID_SIZE = 42;
         UI::Position BOARD_POSITION = { 330, 105 };
+        std::string const FONT = "comicate.ttf";
+        auto const FONT_SIZE = 60;
+        SDL_Color FONT_COLOR = {230, 45, 25};
+        UI::Position const TIMER_POSITION = { 80, 435 };
 
         auto renderer = UI::SDLRendererFactory().createRenderer(SCREEN_WIDTH, SCREEN_HEIGHT);
         auto background = std::make_shared<UI::SDLSprite>(renderer, "BackGround.jpg");
         auto gems = loadGems(renderer);
         auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
         auto board = std::make_shared<UI::StaticBoardView>(gems, selectionMarker, GRID_SIZE, BOARD_POSITION);
-        auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, background, board);
+        auto timerLabel = std::make_shared<UI::SDLLabel>(renderer, FONT, FONT_SIZE, FONT_COLOR, TIMER_POSITION);
+        timerLabel->setText("60");
+        auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, background, board, timerLabel);
         auto itemGenerator = std::make_shared<Candies::Logic::StdItemGenerator>(gems.size());
         auto gameObserver = std::make_shared<BoardViewConnector>(board);
         auto gameLogic = Candies::Logic::GameFactory().createGame(itemGenerator, gameObserver);

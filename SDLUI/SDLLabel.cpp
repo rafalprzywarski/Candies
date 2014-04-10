@@ -5,11 +5,11 @@ namespace Candies
 {
     namespace UI
     {
-        SDLLabel::SDLLabel(std::shared_ptr<SDL_Renderer> renderer, const std::string& fontFile, int fontHeight, Position position)
-        : renderer(renderer), font(TTF_OpenFont(getResourcePath(fontFile).c_str(), fontHeight), TTF_CloseFont), position(position)
+        SDLLabel::SDLLabel(std::shared_ptr<SDL_Renderer> renderer, const std::string& fontFile, int fontHeight, SDL_Color color, Position position)
+        : renderer(renderer), font(TTF_OpenFont(getResourcePath(fontFile).c_str(), fontHeight), TTF_CloseFont), color(color), position(position)
         {
             if (!font)
-                throw FontNotFound(fontFile);
+                throw FontNotFound(fontFile + TTF_GetError());
             setText({});
         }
         
@@ -24,7 +24,6 @@ namespace Candies
         
         void SDLLabel::setText(const std::string& text)
         {
-            SDL_Color color = {220, 245, 255};
             std::shared_ptr<SDL_Surface> surface(TTF_RenderText_Blended(&*font, text.c_str(), color), SDL_FreeSurface);
             texture.reset(SDL_CreateTextureFromSurface(&*renderer, surface.get()), SDL_DestroyTexture);
         }
