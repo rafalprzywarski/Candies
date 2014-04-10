@@ -18,6 +18,9 @@ namespace Candies
             BoardViewPtr board;
             Logic::GameLogicPtr logic;
             Position downPosition;
+            
+            void swapItemsAndClearSelection(const Logic::Locations& selected);
+            bool selectAndSwap(Position position);
         };
     }
 }
