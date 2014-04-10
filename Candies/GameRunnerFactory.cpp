@@ -38,6 +38,12 @@ namespace Candies
         UI::StaticBoardViewPtr board;
     };
     
+    struct StubTimer : Logic::Timer
+    {
+        void start() { }
+        int getTime() const { return 0; }
+    };
+    
     UI::StaticBoardView::Sprites loadGems(std::shared_ptr<SDL_Renderer> renderer)
     {
         std::vector<std::string> files = { "Blue.png", "Green.png", "Purple.png", "Red.png", "Yellow.png" };
@@ -70,7 +76,8 @@ namespace Candies
         auto gameLogic = Candies::Logic::GameFactory().createGame(itemGenerator, gameObserver);
         auto mouseItemSelector = std::make_shared<Candies::UI::MouseItemSwapper>(board, gameLogic);
         auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui, mouseItemSelector);
-        auto runner = std::make_shared<Candies::GameRunner>(gameLogic, dispatcher);
+        auto timer = std::make_shared<StubTimer>();
+        auto runner = std::make_shared<Candies::GameRunner>(gameLogic, timer, dispatcher);
         return runner;
     }
 }

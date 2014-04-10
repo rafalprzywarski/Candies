@@ -5,6 +5,7 @@ namespace Candies
     void GameRunner::run()
     {
         logic->start();
+        timer->start();
         do
         {
             eventDispatcher->dispatch();
