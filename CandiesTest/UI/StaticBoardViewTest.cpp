@@ -155,5 +155,15 @@ namespace Candies
             EXPECT_CALL(*item3, drawAt(ITEM3_POSITION));
             board.update();
         }
+        
+        TEST_F(StaticBoardViewTest, should_remove_items)
+        {
+            board.addItem(3, ITEM3_LOCATION);
+            board.addItem(7, ITEM7_LOCATION);
+            board.removeItem(ITEM7_LOCATION);
+            
+            EXPECT_CALL(*item3, drawAt(ITEM3_POSITION));
+            board.update();
+        }
     }
 }

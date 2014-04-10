@@ -20,6 +20,7 @@ namespace Candies
             StaticBoardView(Sprites sprites, SpritePtr selectionMarker, int gridSize, Position origin);
             void addItem(Logic::ItemId id, Logic::Location loc);
             void swapItems(Logic::Location loc1, Logic::Location loc2);
+            void removeItem(Logic::Location loc);
             void update();
             void selectItemAt(Position pos);
             Logic::Locations getSelectedItemLocations() const;

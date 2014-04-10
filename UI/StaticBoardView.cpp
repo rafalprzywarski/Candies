@@ -26,6 +26,11 @@ namespace Candies
             std::swap(item1->second, item2->second);
         }
 
+        void StaticBoardView::removeItem(Logic::Location loc)
+        {
+            items.erase(loc);
+        }
+
         void StaticBoardView::update()
         {
             for (auto const& item : items)
