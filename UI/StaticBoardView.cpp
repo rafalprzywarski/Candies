@@ -18,6 +18,11 @@ namespace Candies
             items.insert({loc, found->second});
         }
 
+        void StaticBoardView::swapItems(Logic::Location loc1, Logic::Location loc2)
+        {
+            std::swap(items.find(loc1)->second, items.find(loc2)->second);
+        }
+
         void StaticBoardView::update()
         {
             for (auto const& item : items)
