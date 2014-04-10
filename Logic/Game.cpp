@@ -20,11 +20,14 @@ namespace Candies
         {
             if (!areNeighbours(loc1, loc2))
                 return;
+            auto boardWithSwappedItems = board;
+            boardWithSwappedItems.swapItems(loc1, loc2);
+
             auto signalSwap = [=]{ observer->itemsSwapped(loc1, loc2); };
-            trySwapWithAlignmentAlong<&Location::x>(loc1, loc2, signalSwap) ||
-            trySwapWithAlignmentAlong<&Location::x>(loc2, loc1, signalSwap) ||
-            trySwapWithAlignmentAlong<&Location::y>(loc1, loc2, signalSwap) ||
-            trySwapWithAlignmentAlong<&Location::y>(loc2, loc1, signalSwap);
+            trySwapWithAlignmentAlong<&Location::x>(boardWithSwappedItems, loc1, loc2, signalSwap) ||
+            trySwapWithAlignmentAlong<&Location::x>(boardWithSwappedItems, loc2, loc1, signalSwap) ||
+            trySwapWithAlignmentAlong<&Location::y>(boardWithSwappedItems, loc1, loc2, signalSwap) ||
+            trySwapWithAlignmentAlong<&Location::y>(boardWithSwappedItems, loc2, loc1, signalSwap);
         }
         
         Board Game::getBoard() const
@@ -40,17 +43,15 @@ namespace Candies
         }
         
         template <unsigned Location:: *Coord, typename F>
-        bool Game::trySwapWithAlignmentAlong(Location loc1, Location loc2, F signalSwap)
+        bool Game::trySwapWithAlignmentAlong(const Board& boardWithSwappedItems, Location loc1, Location loc2, F signalSwap)
         {
-            auto boardCopy = board;
-            boardCopy.swapItems(loc1, loc2);
-            auto leftAligned = boardCopy.countAlignedInNegativeDirection<Coord>(loc2, board[loc1]);
-            auto rightAligned = boardCopy.countAlignedInPositiveDirection<Coord>(loc2, board[loc1]);
+            auto leftAligned = boardWithSwappedItems.countAlignedInNegativeDirection<Coord>(loc2, board[loc1]);
+            auto rightAligned = boardWithSwappedItems.countAlignedInPositiveDirection<Coord>(loc2, board[loc1]);
             
             if (!shouldSwap(leftAligned, rightAligned))
                 return false;
             
-            board = boardCopy;
+            board = boardWithSwappedItems;
             signalSwap();
             removeItemsAlong<Coord>(leftAligned, rightAligned, loc2);
             addItemsAlong<Coord>(leftAligned, rightAligned, loc2);

@@ -28,7 +28,7 @@ namespace Candies
             unsigned getHeight() const { return height; }
             
             template <unsigned Location:: *Coord>
-            unsigned countAlignedInNegativeDirection(Location loc, ItemId item)
+            unsigned countAlignedInNegativeDirection(Location loc, ItemId item) const
             {
                 unsigned count = 0;
                 
@@ -43,7 +43,7 @@ namespace Candies
             }
             
             template <unsigned Location:: *Coord>
-            unsigned countAlignedInPositiveDirection(Location loc, ItemId item)
+            unsigned countAlignedInPositiveDirection(Location loc, ItemId item) const
             {
                 unsigned count = 0;
                 

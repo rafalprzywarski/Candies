@@ -22,7 +22,7 @@ namespace Candies
             
             void addItemAt(Location loc);
             template <unsigned Location:: *Coord, typename F>
-            bool trySwapWithAlignmentAlong(Location loc1, Location loc2, F signalSwap);
+            bool trySwapWithAlignmentAlong(const Board& boardWithSwappedItems, Location loc1, Location loc2, F signalSwap);
             template <unsigned Location:: *Coord>
             void removeItemsAlong(unsigned leftCount, unsigned rightCount, Location loc);
             template <unsigned Location:: *Coord>
