@@ -90,6 +90,45 @@ namespace Candies
             expectItemAddedNotificationsFor(ALL_ITEMS);
             game->start();
         }
+        
+        TEST_F(GameTest, successful_swap_should_update_the_board)
+        {
+            setBoard({
+                4,3,3,0,0,1,3,1,
+                3,2,0,4,1,4,4,0,
+                2,0,4,0,2,0,2,3,
+                4,1,4,1,4,2,4,4,
+                1,2,2,3,4,0,4,0,
+                2,3,4,1,1,0,1,4,
+                3,1,4,2,4,1,1,0,
+                1,4,3,2,1,3,3,2 });
+            expectGenerationOf({0, 0, 1});
+            game->swapItems({0, 0}, {0, 1});
+            
+            expectBoardWith({
+                0,0,1,0,0,1,3,1,
+                4,2,0,4,1,4,4,0,
+                2,0,4,0,2,0,2,3,
+                4,1,4,1,4,2,4,4,
+                1,2,2,3,4,0,4,0,
+                2,3,4,1,1,0,1,4,
+                3,1,4,2,4,1,1,0,
+                1,4,3,2,1,3,3,2 });
+
+            expectGenerationOf({1, 3, 1, 3, 1});
+            game->swapItems({2, 0}, {2, 1});
+
+            expectBoardWith({
+                1,3,1,3,1,1,3,1,
+                4,2,1,4,1,4,4,0,
+                2,0,4,0,2,0,2,3,
+                4,1,4,1,4,2,4,4,
+                1,2,2,3,4,0,4,0,
+                2,3,4,1,1,0,1,4,
+                3,1,4,2,4,1,1,0,
+                1,4,3,2,1,3,3,2 });
+            
+        }
 
         struct FailingExample
         {

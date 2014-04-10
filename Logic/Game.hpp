@@ -20,7 +20,7 @@ namespace Candies
             GameObserverPtr observer;
             Board board;
             
-            void addItem(ItemId item, Location loc);
+            void addItemAt(Location loc);
             template <unsigned Location:: *Coord>
             int countAlignedInNegativeDirection(Location loc, ItemId item);
             template <unsigned Location:: *Coord>

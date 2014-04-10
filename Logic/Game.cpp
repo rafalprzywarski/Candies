@@ -13,7 +13,7 @@ namespace Candies
         {
             for (unsigned y = 0; y < board.getWidth(); ++y)
                 for (unsigned x = 0; x < board.getHeight(); ++x)
-                    addItem(itemGenerator->generate(), {x, y});
+                    addItemAt({x, y});
         }
 
         void Game::swapItems(Location loc1, Location loc2)
@@ -32,8 +32,9 @@ namespace Candies
             return board;
         }
         
-        void Game::addItem(ItemId item, Location loc)
+        void Game::addItemAt(Location loc)
         {
+            auto item = itemGenerator->generate();
             board[loc] = item;
             observer->itemAdded(item, loc);
         }
@@ -77,6 +78,7 @@ namespace Candies
             if (!shouldSwap(leftAligned, rightAligned))
                 return false;
             
+            board[loc2] = board[loc1];
             signalSwap();
             removeItemsAlong<Coord>(leftAligned, rightAligned, loc1);
             addItemsAlong<Coord>(leftAligned, rightAligned, loc1);
@@ -96,7 +98,7 @@ namespace Candies
         {
             loc.*Coord -= unsigned(leftCount);
             for (int i = -leftCount; i <= rightCount; ++i, (loc.*Coord)++)
-                observer->itemAdded(itemGenerator->generate(), loc);
+                addItemAt(loc);
         }
 
         bool Game::shouldSwap(int count1, int count2)
