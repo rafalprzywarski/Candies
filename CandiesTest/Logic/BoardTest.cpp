@@ -1,6 +1,5 @@
-#include <Logic/GameFactory.hpp>
-#include "MockItemGenerator.hpp"
-#include <gtest/gtest.h>
+#include <Logic/Board.hpp>
+#include <gmock/gmock.h>
 
 using namespace testing;
 

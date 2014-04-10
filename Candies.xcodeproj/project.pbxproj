@@ -34,7 +34,7 @@
 		F057A7CA18F5CD1300636C2E /* StaticBoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */; };
 		F057A7CB18F5CD1300636C2E /* StaticBoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */; };
 		F057A7CC18F5CD1300636C2E /* StaticBoardView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7C018F5CD1300636C2E /* StaticBoardView.hpp */; };
-		F057A7DE18F5CFC000636C2E /* Board.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7D318F5CFC000636C2E /* Board.hpp */; };
+		F057A7DE18F5CFC000636C2E /* GenericBoard.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7D318F5CFC000636C2E /* GenericBoard.hpp */; };
 		F057A7DF18F5CFC000636C2E /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7D418F5CFC000636C2E /* Game.cpp */; };
 		F057A7E018F5CFC000636C2E /* Game.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7D518F5CFC000636C2E /* Game.hpp */; };
 		F057A7E118F5CFC000636C2E /* GameFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7D618F5CFC000636C2E /* GameFactory.cpp */; };
@@ -123,7 +123,7 @@
 		F057A7BE18F5CD1300636C2E /* Sprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
 		F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoardView.cpp; sourceTree = "<group>"; };
 		F057A7C018F5CD1300636C2E /* StaticBoardView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StaticBoardView.hpp; sourceTree = "<group>"; };
-		F057A7D318F5CFC000636C2E /* Board.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Board.hpp; sourceTree = "<group>"; };
+		F057A7D318F5CFC000636C2E /* GenericBoard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GenericBoard.hpp; sourceTree = "<group>"; };
 		F057A7D418F5CFC000636C2E /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		F057A7D518F5CFC000636C2E /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		F057A7D618F5CFC000636C2E /* GameFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameFactory.cpp; sourceTree = "<group>"; };
@@ -158,6 +158,7 @@
 		F057A81018F5D4BC00636C2E /* SDLRendererFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLRendererFactory.hpp; sourceTree = "<group>"; };
 		F057A81118F5D4BC00636C2E /* SDLSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLSprite.cpp; sourceTree = "<group>"; };
 		F057A81218F5D4BC00636C2E /* SDLSprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDLSprite.hpp; sourceTree = "<group>"; };
+		F057A81918F6F7C400636C2E /* Board.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Board.hpp; sourceTree = "<group>"; };
 		F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRunnerFactory.cpp; sourceTree = "<group>"; };
 		F0B4498918F4A3BD006C6405 /* GameRunnerFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameRunnerFactory.hpp; sourceTree = "<group>"; };
 		F0B4499218F4ABC0006C6405 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Blue.png; path = Resources/Blue.png; sourceTree = "<group>"; };
@@ -337,7 +338,7 @@
 		F057A7D218F5CFC000636C2E /* Logic */ = {
 			isa = PBXGroup;
 			children = (
-				F057A7D318F5CFC000636C2E /* Board.hpp */,
+				F057A7D318F5CFC000636C2E /* GenericBoard.hpp */,
 				F057A7D418F5CFC000636C2E /* Game.cpp */,
 				F057A7D518F5CFC000636C2E /* Game.hpp */,
 				F057A7D618F5CFC000636C2E /* GameFactory.cpp */,
@@ -348,6 +349,7 @@
 				F057A7DB18F5CFC000636C2E /* ItemId.hpp */,
 				F057A7DC18F5CFC000636C2E /* Location.hpp */,
 				F057A7DD18F5CFC000636C2E /* StdItemGenerator.hpp */,
+				F057A81918F6F7C400636C2E /* Board.hpp */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -463,7 +465,7 @@
 				F057A7E218F5CFC000636C2E /* GameFactory.hpp in Headers */,
 				F057A7E718F5CFC000636C2E /* Location.hpp in Headers */,
 				F057A7E818F5CFC000636C2E /* StdItemGenerator.hpp in Headers */,
-				F057A7DE18F5CFC000636C2E /* Board.hpp in Headers */,
+				F057A7DE18F5CFC000636C2E /* GenericBoard.hpp in Headers */,
 				F057A7E318F5CFC000636C2E /* GameLogic.hpp in Headers */,
 				F057A7E618F5CFC000636C2E /* ItemId.hpp in Headers */,
 				F057A7E418F5CFC000636C2E /* GameObserver.hpp in Headers */,
