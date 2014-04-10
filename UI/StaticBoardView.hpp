@@ -21,6 +21,7 @@ namespace Candies
             void addItem(Logic::ItemId id, Logic::Location loc);
             void swapItems(Logic::Location loc1, Logic::Location loc2);
             void removeItem(Logic::Location loc);
+            void moveItem(Logic::Location from, Logic::Location to);
             void update();
             void selectItemAt(Position pos);
             Logic::Locations getSelectedItemLocations() const;
