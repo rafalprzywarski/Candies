@@ -1,10 +1,10 @@
-#include "MouseItemSelector.hpp"
+#include "MouseItemSwapper.hpp"
 
 namespace Candies
 {
     namespace UI
     {
-        void MouseItemSelector::mouseDown(Position pos)
+        void MouseItemSwapper::mouseDown(Position pos)
         {
             board->selectItemAt(pos);
             auto selected = board->getSelectedItemLocations();

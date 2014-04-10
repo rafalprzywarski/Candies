@@ -7,10 +7,10 @@ namespace Candies
 {
     namespace UI
     {
-        class MouseItemSelector : public MouseEventListener
+        class MouseItemSwapper : public MouseEventListener
         {
         public:
-            MouseItemSelector(BoardViewPtr board, Logic::GameLogicPtr logic)
+            MouseItemSwapper(BoardViewPtr board, Logic::GameLogicPtr logic)
             : board(std::move(board)), logic(std::move(logic)) { }
             void mouseDown(Position pos);
         private:

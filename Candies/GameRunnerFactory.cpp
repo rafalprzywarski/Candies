@@ -3,7 +3,7 @@
 #include "SDLEventDispatcher.hpp"
 #include <GameRunner/GameRunner.hpp>
 #include <Logic/GameFactory.hpp>
-#include "MouseItemSelector.hpp"
+#include "MouseItemSwapper.hpp"
 #include "SDLRendererFactory.hpp"
 #include "SDLSprite.hpp"
 #include "StaticBoardView.hpp"
@@ -50,7 +50,7 @@ namespace Candies
         auto itemGenerator = std::make_shared<Candies::Logic::StdItemGenerator>(gems.size());
         auto gameObserver = std::make_shared<BoardUpdater>(board);
         auto gameLogic = Candies::Logic::GameFactory().createGame(itemGenerator, gameObserver);
-        auto mouseItemSelector = std::make_shared<Candies::UI::MouseItemSelector>(board, gameLogic);
+        auto mouseItemSelector = std::make_shared<Candies::UI::MouseItemSwapper>(board, gameLogic);
         auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui, mouseItemSelector);
         auto runner = std::make_shared<Candies::GameRunner>(gameLogic, dispatcher);
         return runner;

@@ -26,9 +26,9 @@
 		F057A7C218F5CD1300636C2E /* EventDispatcher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7B818F5CD1300636C2E /* EventDispatcher.hpp */; };
 		F057A7C318F5CD1300636C2E /* FrameUpdateListener.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7B918F5CD1300636C2E /* FrameUpdateListener.hpp */; };
 		F057A7C418F5CD1300636C2E /* MouseEventListener.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7BA18F5CD1300636C2E /* MouseEventListener.hpp */; };
-		F057A7C518F5CD1300636C2E /* MouseItemSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BB18F5CD1300636C2E /* MouseItemSelector.cpp */; };
-		F057A7C618F5CD1300636C2E /* MouseItemSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BB18F5CD1300636C2E /* MouseItemSelector.cpp */; };
-		F057A7C718F5CD1300636C2E /* MouseItemSelector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7BC18F5CD1300636C2E /* MouseItemSelector.hpp */; };
+		F057A7C518F5CD1300636C2E /* MouseItemSwapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BB18F5CD1300636C2E /* MouseItemSwapper.cpp */; };
+		F057A7C618F5CD1300636C2E /* MouseItemSwapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BB18F5CD1300636C2E /* MouseItemSwapper.cpp */; };
+		F057A7C718F5CD1300636C2E /* MouseItemSwapper.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7BC18F5CD1300636C2E /* MouseItemSwapper.hpp */; };
 		F057A7C818F5CD1300636C2E /* Position.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7BD18F5CD1300636C2E /* Position.hpp */; };
 		F057A7C918F5CD1300636C2E /* Sprite.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7BE18F5CD1300636C2E /* Sprite.hpp */; };
 		F057A7CA18F5CD1300636C2E /* StaticBoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */; };
@@ -117,8 +117,8 @@
 		F057A7B818F5CD1300636C2E /* EventDispatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EventDispatcher.hpp; sourceTree = "<group>"; };
 		F057A7B918F5CD1300636C2E /* FrameUpdateListener.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrameUpdateListener.hpp; sourceTree = "<group>"; };
 		F057A7BA18F5CD1300636C2E /* MouseEventListener.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MouseEventListener.hpp; sourceTree = "<group>"; };
-		F057A7BB18F5CD1300636C2E /* MouseItemSelector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseItemSelector.cpp; sourceTree = "<group>"; };
-		F057A7BC18F5CD1300636C2E /* MouseItemSelector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MouseItemSelector.hpp; sourceTree = "<group>"; };
+		F057A7BB18F5CD1300636C2E /* MouseItemSwapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseItemSwapper.cpp; sourceTree = "<group>"; };
+		F057A7BC18F5CD1300636C2E /* MouseItemSwapper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MouseItemSwapper.hpp; sourceTree = "<group>"; };
 		F057A7BD18F5CD1300636C2E /* Position.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Position.hpp; sourceTree = "<group>"; };
 		F057A7BE18F5CD1300636C2E /* Sprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
 		F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoardView.cpp; sourceTree = "<group>"; };
@@ -324,8 +324,8 @@
 				F057A7B818F5CD1300636C2E /* EventDispatcher.hpp */,
 				F057A7B918F5CD1300636C2E /* FrameUpdateListener.hpp */,
 				F057A7BA18F5CD1300636C2E /* MouseEventListener.hpp */,
-				F057A7BB18F5CD1300636C2E /* MouseItemSelector.cpp */,
-				F057A7BC18F5CD1300636C2E /* MouseItemSelector.hpp */,
+				F057A7BB18F5CD1300636C2E /* MouseItemSwapper.cpp */,
+				F057A7BC18F5CD1300636C2E /* MouseItemSwapper.hpp */,
 				F057A7BD18F5CD1300636C2E /* Position.hpp */,
 				F057A7BE18F5CD1300636C2E /* Sprite.hpp */,
 				F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */,
@@ -496,7 +496,7 @@
 				F057A7C418F5CD1300636C2E /* MouseEventListener.hpp in Headers */,
 				F057A7C818F5CD1300636C2E /* Position.hpp in Headers */,
 				F057A7C118F5CD1300636C2E /* BoardView.hpp in Headers */,
-				F057A7C718F5CD1300636C2E /* MouseItemSelector.hpp in Headers */,
+				F057A7C718F5CD1300636C2E /* MouseItemSwapper.hpp in Headers */,
 				F057A7C918F5CD1300636C2E /* Sprite.hpp in Headers */,
 				F057A7CC18F5CD1300636C2E /* StaticBoardView.hpp in Headers */,
 			);
@@ -669,7 +669,7 @@
 				F057A7CA18F5CD1300636C2E /* StaticBoardView.cpp in Sources */,
 				F057A81318F5D4BC00636C2E /* ResourcePath.mm in Sources */,
 				F02A9F0218F1FAC3008145C2 /* main.cpp in Sources */,
-				F057A7C518F5CD1300636C2E /* MouseItemSelector.cpp in Sources */,
+				F057A7C518F5CD1300636C2E /* MouseItemSwapper.cpp in Sources */,
 				F057A81518F5D4BC00636C2E /* SDLGameUI.cpp in Sources */,
 				F057A81418F5D4BC00636C2E /* SDLEventDispatcher.cpp in Sources */,
 			);
@@ -717,7 +717,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F057A7C618F5CD1300636C2E /* MouseItemSelector.cpp in Sources */,
+				F057A7C618F5CD1300636C2E /* MouseItemSwapper.cpp in Sources */,
 				F057A7CB18F5CD1300636C2E /* StaticBoardView.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
