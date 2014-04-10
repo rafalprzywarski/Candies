@@ -131,6 +131,9 @@ namespace Candies
             setBoard(GetParam().board);
             Board initialBoard = game->getBoard();
             
+            EXPECT_CALL(*observer, itemsSwapped(_, _)).Times(0);
+            EXPECT_CALL(*observer, itemRemoved(_)).Times(0);
+            EXPECT_CALL(*observer, itemAdded(_, _)).Times(0);
             game->swapItems(GetParam().from, GetParam().to);
             
             ASSERT_TRUE(initialBoard == game->getBoard());
