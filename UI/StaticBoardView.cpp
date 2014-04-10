@@ -33,9 +33,12 @@ namespace Candies
 
         void StaticBoardView::moveItem(Logic::Location from, Logic::Location to)
         {
-            auto item = items.find(from)->second;
+            auto it = items.find(from);
+            if (it == items.end())
+                return;
+            auto item = it->second;
+            items.erase(it);
             items.insert({to, item});
-            items.erase(from);
         }
 
         void StaticBoardView::update()

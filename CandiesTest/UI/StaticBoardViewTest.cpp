@@ -183,5 +183,14 @@ namespace Candies
             EXPECT_CALL(*item3, drawAt(ITEM7_POSITION));
             board.update();
         }
+        
+        TEST_F(StaticBoardViewTest, should_ignore_invalid_moves)
+        {
+            board.addItem(3, ITEM3_LOCATION);
+            board.moveItem(ITEM7_LOCATION, ITEM3_LOCATION);
+
+            EXPECT_CALL(*item3, drawAt(ITEM3_POSITION));
+            board.update();
+        }
     }
 }
