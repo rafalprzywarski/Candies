@@ -53,5 +53,12 @@ namespace Candies
             selector.mouseUp(UP_POS);
         }
         
+        TEST_F(MouseItemSwapperTest, should_do_nothing_when_disabled)
+        {
+            selector.disable();
+            selector.mouseDown(DOWN_POS);
+            selector.mouseUp(UP_POS);
+        }
+        
     }
 }

@@ -12,10 +12,17 @@ namespace Candies
         
         void MouseItemSwapper::mouseUp(Position upPosition)
         {
+            if (!enabled)
+                return;
             std::array<Position, 2> events{downPosition, upPosition};
             for (auto position : events)
                 if (selectAndSwap(position))
                     return;
+        }
+        
+        void MouseItemSwapper::disable()
+        {
+            enabled = false;
         }
 
         void MouseItemSwapper::swapItemsAndClearSelection(const Logic::Locations& selected)
