@@ -23,7 +23,8 @@ namespace Candies
                 }
             }
             
-            frameUpdateListener->update();
+            for (auto& listener : frameUpdateListeners)
+                listener->update();
         }
         
         bool SDLEventDispatcher::isFinished() const

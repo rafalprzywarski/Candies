@@ -75,7 +75,8 @@ namespace Candies
         auto gameObserver = std::make_shared<BoardViewConnector>(board);
         auto gameLogic = Candies::Logic::GameFactory().createGame(itemGenerator, gameObserver);
         auto mouseItemSelector = std::make_shared<Candies::UI::MouseItemSwapper>(board, gameLogic);
-        auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui, mouseItemSelector);
+        UI::FrameUpdateListeners frameListeners = { ui };
+        auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(frameListeners, mouseItemSelector);
         auto timer = std::make_shared<StubTimer>();
         auto runner = std::make_shared<Candies::GameRunner>(gameLogic, timer, dispatcher);
         return runner;
