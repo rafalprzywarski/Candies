@@ -1,13 +1,14 @@
 #pragma once
 #include "MouseEventListener.hpp"
 #include "BoardView.hpp"
+#include "Switch.hpp"
 #include <Logic/GameLogic.hpp>
 
 namespace Candies
 {
     namespace UI
     {
-        class MouseItemSwapper : public MouseEventListener
+        class MouseItemSwapper : public MouseEventListener, public Switch
         {
         public:
             MouseItemSwapper(BoardViewPtr board, Logic::GameLogicPtr logic)

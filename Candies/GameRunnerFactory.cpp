@@ -8,6 +8,7 @@
 #include "SDLSprite.hpp"
 #include "StaticBoardView.hpp"
 #include <SDLUI/SDLLabel.hpp>
+#include <UI/TimeMonitor.hpp>
 #include <Logic/StdItemGenerator.hpp>
 
 namespace Candies
@@ -69,15 +70,15 @@ namespace Candies
         auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
         auto board = std::make_shared<UI::StaticBoardView>(gems, selectionMarker, GRID_SIZE, BOARD_POSITION);
         auto timerLabel = std::make_shared<UI::SDLLabel>(renderer, FONT, FONT_SIZE, FONT_COLOR, TIMER_POSITION);
-        timerLabel->setText("60");
         auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, background, board, timerLabel);
         auto itemGenerator = std::make_shared<Candies::Logic::StdItemGenerator>(gems.size());
         auto gameObserver = std::make_shared<BoardViewConnector>(board);
         auto gameLogic = Candies::Logic::GameFactory().createGame(itemGenerator, gameObserver);
-        auto mouseItemSelector = std::make_shared<Candies::UI::MouseItemSwapper>(board, gameLogic);
-        UI::FrameUpdateListeners frameListeners = { ui };
-        auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(frameListeners, mouseItemSelector);
+        auto mouseItemSwapper = std::make_shared<Candies::UI::MouseItemSwapper>(board, gameLogic);
         auto timer = std::make_shared<StubTimer>();
+        auto timeMonitor = std::make_shared<UI::TimeMonitor>(timer, timerLabel, mouseItemSwapper);
+        UI::FrameUpdateListeners frameListeners = { ui, timeMonitor };
+        auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(frameListeners, mouseItemSwapper);
         auto runner = std::make_shared<Candies::GameRunner>(gameLogic, timer, dispatcher);
         return runner;
     }
