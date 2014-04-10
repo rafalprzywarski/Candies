@@ -30,6 +30,7 @@ namespace Candies
         
         virtual void itemMoved(Logic::Location from, Logic::Location to)
         {
+            board->moveItem(from, to);
         }
 
     private:
