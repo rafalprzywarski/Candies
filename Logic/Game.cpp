@@ -20,11 +20,11 @@ namespace Candies
         {
             if (!areNeighbours(loc1, loc2))
                 return;
-            auto doSwap = [=]{ observer->itemsSwapped(loc1, loc2); };
-            trySwapWithAlignmentAlong<&Location::x>(loc1, loc2, doSwap) ||
-            trySwapWithAlignmentAlong<&Location::x>(loc2, loc1, doSwap) ||
-            trySwapWithAlignmentAlong<&Location::y>(loc1, loc2, doSwap) ||
-            trySwapWithAlignmentAlong<&Location::y>(loc2, loc1, doSwap);
+            auto signalSwap = [=]{ observer->itemsSwapped(loc1, loc2); };
+            trySwapWithAlignmentAlong<&Location::x>(loc1, loc2, signalSwap) ||
+            trySwapWithAlignmentAlong<&Location::x>(loc2, loc1, signalSwap) ||
+            trySwapWithAlignmentAlong<&Location::y>(loc1, loc2, signalSwap) ||
+            trySwapWithAlignmentAlong<&Location::y>(loc2, loc1, signalSwap);
         }
         
         Board Game::getBoard() const
@@ -69,7 +69,7 @@ namespace Candies
         }
 
         template <unsigned Location:: *Coord, typename F>
-        bool Game::trySwapWithAlignmentAlong(Location loc1, Location loc2, F doSwap)
+        bool Game::trySwapWithAlignmentAlong(Location loc1, Location loc2, F signalSwap)
         {
             auto leftAligned = countAlignedInNegativeDirection<Coord>(loc1, board[loc2]);
             auto rightAligned = countAlignedInPositiveDirection<Coord>(loc1, board[loc2]);
@@ -77,7 +77,7 @@ namespace Candies
             if (!shouldSwap(leftAligned, rightAligned))
                 return false;
             
-            doSwap();
+            signalSwap();
             removeItemsAlong<Coord>(leftAligned, rightAligned, loc1);
             addItemsAlong<Coord>(leftAligned, rightAligned, loc1);
             return true;

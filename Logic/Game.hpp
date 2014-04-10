@@ -26,7 +26,7 @@ namespace Candies
             template <unsigned Location:: *Coord>
             int countAlignedInPositiveDirection(Location loc, ItemId item);
             template <unsigned Location:: *Coord, typename F>
-            bool trySwapWithAlignmentAlong(Location loc1, Location loc2, F doSwap);
+            bool trySwapWithAlignmentAlong(Location loc1, Location loc2, F signalSwap);
             template <unsigned Location:: *Coord>
             void removeItemsAlong(int leftCount, int rightCount, Location loc);
             template <unsigned Location:: *Coord>
