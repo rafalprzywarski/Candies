@@ -56,22 +56,22 @@ namespace Candies
         }
 
         template <unsigned Location:: *Coord>
-        void Game::removeItemsAlong(int leftCount, int rightCount, Location loc)
+        void Game::removeItemsAlong(unsigned leftCount, unsigned rightCount, Location loc)
         {
-            loc.*Coord -= unsigned(leftCount);
-            for (int i = -leftCount; i <= rightCount; ++i, (loc.*Coord)++)
+            loc.*Coord -= leftCount;
+            for (int i = -int(leftCount); i <= int(rightCount); ++i, (loc.*Coord)++)
                 observer->itemRemoved(loc);
         }
         
         template <unsigned Location:: *Coord>
-        void Game::addItemsAlong(int leftCount, int rightCount, Location loc)
+        void Game::addItemsAlong(unsigned leftCount, unsigned rightCount, Location loc)
         {
-            loc.*Coord -= unsigned(leftCount);
-            for (int i = -leftCount; i <= rightCount; ++i, (loc.*Coord)++)
+            loc.*Coord -= leftCount;
+            for (int i = -int(leftCount); i <= int(rightCount); ++i, (loc.*Coord)++)
                 addItemAt(loc);
         }
 
-        bool Game::shouldSwap(int count1, int count2)
+        bool Game::shouldSwap(unsigned count1, unsigned count2)
         {
             return count1 + count2 >= 2;
         }

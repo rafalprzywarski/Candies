@@ -24,10 +24,10 @@ namespace Candies
             template <unsigned Location:: *Coord, typename F>
             bool trySwapWithAlignmentAlong(Location loc1, Location loc2, F signalSwap);
             template <unsigned Location:: *Coord>
-            void removeItemsAlong(int leftCount, int rightCount, Location loc);
+            void removeItemsAlong(unsigned leftCount, unsigned rightCount, Location loc);
             template <unsigned Location:: *Coord>
-            void addItemsAlong(int leftCount, int rightCount, Location loc);
-            bool shouldSwap(int count1, int count2);
+            void addItemsAlong(unsigned leftCount, unsigned rightCount, Location loc);
+            bool shouldSwap(unsigned count1, unsigned count2);
             bool areNeighbours(Location loc1, Location loc2);
         };
         
