@@ -57,6 +57,11 @@ namespace Candies
                 return count;
             }
             
+            void swapItems(Location loc1, Location loc2)
+            {
+                std::swap((*this)[loc1], (*this)[loc2]);
+            }
+            
         private:
             unsigned width, height;
             std::vector<ItemId> items;

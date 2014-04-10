@@ -120,5 +120,16 @@ namespace Candies
             ASSERT_EQ(3, b.countAlignedInPositiveDirection<&Location::y>({1, 1}, 3));
         }
         
+        TEST(BoardTest, should_swap_items_between_given_locations)
+        {
+            Board b{3, 3};
+            const Location LOC1{1, 2}, LOC2{0, 1};
+            b[LOC1] = 7;
+            b[LOC2] = 4;
+            b.swapItems(LOC1, LOC2);
+            ASSERT_EQ(4, b[LOC1]);
+            ASSERT_EQ(7, b[LOC2]);
+        }
+        
     }
 }

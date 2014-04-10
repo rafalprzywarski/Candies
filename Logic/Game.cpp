@@ -42,16 +42,18 @@ namespace Candies
         template <unsigned Location:: *Coord, typename F>
         bool Game::trySwapWithAlignmentAlong(Location loc1, Location loc2, F signalSwap)
         {
-            auto leftAligned = board.countAlignedInNegativeDirection<Coord>(loc1, board[loc2]);
-            auto rightAligned = board.countAlignedInPositiveDirection<Coord>(loc1, board[loc2]);
+            auto boardCopy = board;
+            boardCopy.swapItems(loc1, loc2);
+            auto leftAligned = boardCopy.countAlignedInNegativeDirection<Coord>(loc2, board[loc1]);
+            auto rightAligned = boardCopy.countAlignedInPositiveDirection<Coord>(loc2, board[loc1]);
             
             if (!shouldSwap(leftAligned, rightAligned))
                 return false;
             
-            board[loc2] = board[loc1];
+            board = boardCopy;
             signalSwap();
-            removeItemsAlong<Coord>(leftAligned, rightAligned, loc1);
-            addItemsAlong<Coord>(leftAligned, rightAligned, loc1);
+            removeItemsAlong<Coord>(leftAligned, rightAligned, loc2);
+            addItemsAlong<Coord>(leftAligned, rightAligned, loc2);
             return true;
         }
 
