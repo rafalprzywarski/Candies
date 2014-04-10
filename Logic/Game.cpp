@@ -23,11 +23,11 @@ namespace Candies
             auto boardWithSwappedItems = board;
             boardWithSwappedItems.swapItems(loc1, loc2);
 
-            auto signalSwap = [=]{ observer->itemsSwapped(loc1, loc2); };
-            trySwapWithAlignmentAlong<&Location::x>(boardWithSwappedItems, loc1, loc2, signalSwap) ||
-            trySwapWithAlignmentAlong<&Location::x>(boardWithSwappedItems, loc2, loc1, signalSwap) ||
-            trySwapWithAlignmentAlong<&Location::y>(boardWithSwappedItems, loc1, loc2, signalSwap) ||
-            trySwapWithAlignmentAlong<&Location::y>(boardWithSwappedItems, loc2, loc1, signalSwap);
+            Mask itemsToRemove = findAlignedItems(boardWithSwappedItems, loc1, loc2);
+            if (itemsToRemove.isEmpty())
+                return;
+            board = boardWithSwappedItems;
+            notifyObserver(loc1, loc2, itemsToRemove);
         }
         
         Board Game::getBoard() const
@@ -42,38 +42,44 @@ namespace Candies
             observer->itemAdded(item, loc);
         }
         
-        template <unsigned Location:: *Coord, typename F>
-        bool Game::trySwapWithAlignmentAlong(const Board& boardWithSwappedItems, Location loc1, Location loc2, F signalSwap)
+        void Game::notifyObserver(Location loc1, Location loc2, const Mask& itemsToRemove)
         {
-            auto leftAligned = boardWithSwappedItems.countAlignedInNegativeDirection<Coord>(loc2, board[loc1]);
-            auto rightAligned = boardWithSwappedItems.countAlignedInPositiveDirection<Coord>(loc2, board[loc1]);
-            
-            if (!shouldSwap(leftAligned, rightAligned))
-                return false;
-            
-            board = boardWithSwappedItems;
-            signalSwap();
-            removeItemsAlong<Coord>(leftAligned, rightAligned, loc2);
-            addItemsAlong<Coord>(leftAligned, rightAligned, loc2);
-            return true;
-        }
-
-        template <unsigned Location:: *Coord>
-        void Game::removeItemsAlong(unsigned leftCount, unsigned rightCount, Location loc)
-        {
-            loc.*Coord -= leftCount;
-            for (int i = -int(leftCount); i <= int(rightCount); ++i, (loc.*Coord)++)
-                observer->itemRemoved(loc);
+            observer->itemsSwapped(loc1, loc2);
+            itemsToRemove.forEachLocation([=](Location loc){ observer->itemRemoved(loc); });
+            itemsToRemove.forEachLocation([=](Location loc){ addItemAt(loc); });
         }
         
+        Game::Mask Game::findAlignedItems(const Board& boardWithSwappedItems, Location loc1, Location loc2)
+        {
+            Mask itemsToRemove{boardWithSwappedItems.getWidth(), boardWithSwappedItems.getHeight()};
+            markAlignedLocationsAlong<&Location::x>(boardWithSwappedItems, loc2, itemsToRemove);
+            markAlignedLocationsAlong<&Location::x>(boardWithSwappedItems, loc1, itemsToRemove);
+            markAlignedLocationsAlong<&Location::y>(boardWithSwappedItems, loc2, itemsToRemove);
+            markAlignedLocationsAlong<&Location::y>(boardWithSwappedItems, loc1, itemsToRemove);
+            return std::move(itemsToRemove);
+        }
+
+
         template <unsigned Location:: *Coord>
-        void Game::addItemsAlong(unsigned leftCount, unsigned rightCount, Location loc)
+        void Game::markLocationsAlong(unsigned leftCount, unsigned rightCount, Location loc, Mask& mask)
         {
             loc.*Coord -= leftCount;
             for (int i = -int(leftCount); i <= int(rightCount); ++i, (loc.*Coord)++)
-                addItemAt(loc);
+                mask.mark(loc);
         }
 
+        template <unsigned Location:: *Coord>
+        void Game::markAlignedLocationsAlong(const Board& boardWithSwappedItems, Location loc, Mask& mask)
+        {
+            auto leftAligned = boardWithSwappedItems.countAlignedInNegativeDirection<Coord>(loc, boardWithSwappedItems[loc]);
+            auto rightAligned = boardWithSwappedItems.countAlignedInPositiveDirection<Coord>(loc, boardWithSwappedItems[loc]);
+            
+            if (!shouldSwap(leftAligned, rightAligned))
+                return;
+
+            markLocationsAlong<Coord>(leftAligned, rightAligned, loc, mask);
+        }
+        
         bool Game::shouldSwap(unsigned count1, unsigned count2)
         {
             return count1 + count2 >= 2;
