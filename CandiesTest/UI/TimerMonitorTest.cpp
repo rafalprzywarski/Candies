@@ -20,8 +20,16 @@ namespace Candies
         
         TEST_F(TimeMonitorTest, should_update_the_time_on_the_label)
         {
-            EXPECT_CALL(*timer, getTime()).WillRepeatedly(Return(55));
+            EXPECT_CALL(*timer, getTime()).WillOnce(Return(55));
             EXPECT_CALL(*label, setText("55"));
+            monitor.update();
+        }
+        
+        TEST_F(TimeMonitorTest, should_disable_the_switch_when_time_runs_out)
+        {
+            EXPECT_CALL(*timer, getTime()).WillOnce(Return(0));
+            EXPECT_CALL(*label, setText(_));
+            EXPECT_CALL(*switch_, disable());
             monitor.update();
         }
     }

@@ -7,9 +7,17 @@ namespace Candies
     {
         void TimeMonitor::update()
         {
-            std::ostringstream time;
-            time << timer->getTime();
-            label->setText(time.str());
+            auto time = timer->getTime();
+            label->setText(toString(time));
+            if (time == 0)
+                switch_->disable();
+        }
+        
+        std::string TimeMonitor::toString(int n)
+        {
+            std::ostringstream text;
+            text << n;
+            return text.str();
         }
     }
 }

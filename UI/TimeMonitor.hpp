@@ -19,6 +19,7 @@ namespace Candies
             Logic::TimerPtr timer;
             LabelPtr label;
             SwitchPtr switch_;
+            std::string toString(int n);
         };
     }
 }
