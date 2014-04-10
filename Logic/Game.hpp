@@ -32,6 +32,7 @@ namespace Candies
             template <unsigned Location:: *Coord>
             void addItemsAlong(int leftCount, int rightCount, Location loc);
             bool shouldSwap(int count1, int count2);
+            bool areNeighbours(Location loc1, Location loc2);
         };
         
         typedef std::shared_ptr<Game> GamePtr;

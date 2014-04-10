@@ -140,7 +140,7 @@ namespace Candies
             Examples, GameFailingSwappingTest,
             Values(
                 FailingExample{
-                    "not neighbours",
+                    "not neighbours, vertical",
                     {
                         4,2,3,0,0,1,3,1,
                         3,3,0,4,1,4,4,0,
@@ -152,7 +152,7 @@ namespace Candies
                         1,4,3,2,1,3,3,2 },
                     From({2, 2}), To({2, 4})},
                 FailingExample{
-                    "not neighbours, reverse",
+                    "not neighbours, vertical, reverse swap",
                     {
                         4,2,3,0,0,1,3,1,
                         3,3,0,4,1,4,4,0,
@@ -163,6 +163,42 @@ namespace Candies
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
                     From({2, 4}), To({2, 2})},
+                FailingExample{
+                    "not neighbours, horizontal",
+                    {
+                        4,4,3,0,4,1,3,1,
+                        3,3,0,4,1,4,4,0,
+                        2,0,4,0,2,0,2,3,
+                        4,1,4,1,4,2,4,4,
+                        1,2,2,3,4,0,4,0,
+                        2,3,4,1,1,0,1,4,
+                        3,1,4,2,4,1,1,0,
+                        1,4,3,2,1,3,3,2 },
+                    From({2, 0}), To({4, 0})},
+                FailingExample{
+                    "not neighbours, horizontal, reverse swap",
+                    {
+                        4,4,3,0,4,1,3,1,
+                        3,3,0,4,1,4,4,0,
+                        2,0,4,0,2,0,2,3,
+                        4,1,4,1,4,2,4,4,
+                        1,2,2,3,4,0,4,0,
+                        2,3,4,1,1,0,1,4,
+                        3,1,4,2,4,1,1,0,
+                        1,4,3,2,1,3,3,2 },
+                    From({4, 0}), To({2, 0})},
+                FailingExample{
+                    "not neighbours, touching corners",
+                    {
+                        4,4,3,0,4,1,3,1,
+                        3,3,0,4,1,4,4,0,
+                        2,0,4,0,2,0,2,3,
+                        4,1,4,1,4,2,4,4,
+                        1,2,2,3,4,0,4,0,
+                        2,3,4,1,1,0,1,4,
+                        3,1,4,2,4,1,1,0,
+                        1,4,3,2,1,3,3,2 },
+                    From({2, 0}), To({3, 1})},
                 FailingExample{
                     "2 horizontal right",
                     {

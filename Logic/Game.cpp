@@ -18,7 +18,7 @@ namespace Candies
 
         void Game::swapItems(Location loc1, Location loc2)
         {
-            if (std::abs(int(loc1.y) - int(loc2.y)) > 1)
+            if (!areNeighbours(loc1, loc2))
                 return;
             auto doSwap = [=]{ observer->itemsSwapped(loc1, loc2); };
             trySwapWithAlignmentAlong<&Location::x>(loc1, loc2, doSwap) ||
@@ -104,5 +104,9 @@ namespace Candies
             return count1 + count2 >= 2;
         }
 
+        bool Game::areNeighbours(Location loc1, Location loc2)
+        {
+            return std::abs(int(loc1.y) - int(loc2.y)) + std::abs(int(loc1.x) - int(loc2.x)) == 1;
+        }
     }
 }
