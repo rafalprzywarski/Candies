@@ -65,6 +65,8 @@
 		F057A82718F756D000636C2E /* TimeMonitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A82518F756D000636C2E /* TimeMonitor.cpp */; };
 		F057A82818F756D000636C2E /* TimeMonitor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A82618F756D000636C2E /* TimeMonitor.hpp */; };
 		F057A82B18F7588500636C2E /* TimerMonitorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A82A18F7588500636C2E /* TimerMonitorTest.cpp */; };
+		F057A83018F75CBC00636C2E /* ChronoTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A82E18F75CBC00636C2E /* ChronoTimer.cpp */; };
+		F057A83118F75CBC00636C2E /* ChronoTimer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A82F18F75CBC00636C2E /* ChronoTimer.hpp */; };
 		F0B4497118F47791006C6405 /* libGameCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F3E18F324C1008145C2 /* libGameCore.a */; };
 		F0B4497218F47796006C6405 /* libGameRunner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F6518F454C7008145C2 /* libGameRunner.a */; };
 		F0B4497C18F48934006C6405 /* libGameUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F7718F45DFE008145C2 /* libGameUI.a */; };
@@ -179,6 +181,8 @@
 		F057A82A18F7588500636C2E /* TimerMonitorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimerMonitorTest.cpp; sourceTree = "<group>"; };
 		F057A82C18F7591000636C2E /* MockLabel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockLabel.hpp; sourceTree = "<group>"; };
 		F057A82D18F7598C00636C2E /* MockSwitch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockSwitch.hpp; sourceTree = "<group>"; };
+		F057A82E18F75CBC00636C2E /* ChronoTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChronoTimer.cpp; sourceTree = "<group>"; };
+		F057A82F18F75CBC00636C2E /* ChronoTimer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChronoTimer.hpp; sourceTree = "<group>"; };
 		F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRunnerFactory.cpp; sourceTree = "<group>"; };
 		F0B4498918F4A3BD006C6405 /* GameRunnerFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameRunnerFactory.hpp; sourceTree = "<group>"; };
 		F0B4499218F4ABC0006C6405 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Blue.png; path = Resources/Blue.png; sourceTree = "<group>"; };
@@ -377,6 +381,8 @@
 				F057A7DC18F5CFC000636C2E /* Location.hpp */,
 				F057A7DD18F5CFC000636C2E /* StdItemGenerator.hpp */,
 				F057A82318F7522D00636C2E /* Timer.hpp */,
+				F057A82E18F75CBC00636C2E /* ChronoTimer.cpp */,
+				F057A82F18F75CBC00636C2E /* ChronoTimer.hpp */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -494,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F057A7E018F5CFC000636C2E /* Game.hpp in Headers */,
+				F057A83118F75CBC00636C2E /* ChronoTimer.hpp in Headers */,
 				F057A7E518F5CFC000636C2E /* ItemGenerator.hpp in Headers */,
 				F057A7E218F5CFC000636C2E /* GameFactory.hpp in Headers */,
 				F057A7E718F5CFC000636C2E /* Location.hpp in Headers */,
@@ -733,6 +740,7 @@
 			files = (
 				F057A7E118F5CFC000636C2E /* GameFactory.cpp in Sources */,
 				F057A7DF18F5CFC000636C2E /* Game.cpp in Sources */,
+				F057A83018F75CBC00636C2E /* ChronoTimer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 #include "StaticBoardView.hpp"
 #include <SDLUI/SDLLabel.hpp>
 #include <UI/TimeMonitor.hpp>
+#include <Logic/ChronoTimer.hpp>
 #include <Logic/StdItemGenerator.hpp>
 
 namespace Candies
@@ -39,12 +40,6 @@ namespace Candies
         UI::StaticBoardViewPtr board;
     };
     
-    struct StubTimer : Logic::Timer
-    {
-        void start() { }
-        int getTime() const { return 0; }
-    };
-    
     UI::StaticBoardView::Sprites loadGems(std::shared_ptr<SDL_Renderer> renderer)
     {
         std::vector<std::string> files = { "Blue.png", "Green.png", "Purple.png", "Red.png", "Yellow.png" };
@@ -63,6 +58,7 @@ namespace Candies
         auto const FONT_SIZE = 60;
         SDL_Color FONT_COLOR = {230, 45, 25};
         UI::Position const TIMER_POSITION = { 80, 435 };
+        std::chrono::seconds const GAME_TIME(60);
 
         auto renderer = UI::SDLRendererFactory().createRenderer(SCREEN_WIDTH, SCREEN_HEIGHT);
         auto background = std::make_shared<UI::SDLSprite>(renderer, "BackGround.jpg");
@@ -75,7 +71,7 @@ namespace Candies
         auto gameObserver = std::make_shared<BoardViewConnector>(board);
         auto gameLogic = Candies::Logic::GameFactory().createGame(itemGenerator, gameObserver);
         auto mouseItemSwapper = std::make_shared<Candies::UI::MouseItemSwapper>(board, gameLogic);
-        auto timer = std::make_shared<StubTimer>();
+        auto timer = std::make_shared<Logic::ChronoTimer>(GAME_TIME);
         auto timeMonitor = std::make_shared<UI::TimeMonitor>(timer, timerLabel, mouseItemSwapper);
         UI::FrameUpdateListeners frameListeners = { ui, timeMonitor };
         auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(frameListeners, mouseItemSwapper);
