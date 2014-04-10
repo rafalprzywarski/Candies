@@ -23,7 +23,10 @@ namespace Candies
         {
             board->swapItems(loc1, loc2);
         }
-        virtual void itemRemoved(Logic::Location loc) { }
+        virtual void itemRemoved(Logic::Location loc)
+        {
+            board->removeItem(loc);
+        }
 
     private:
         UI::StaticBoardViewPtr board;
