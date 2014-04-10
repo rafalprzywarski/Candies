@@ -53,7 +53,7 @@ namespace Candies
                     ColumnRange range;
                     while (range.y < height && !isMarked({x, range.y}))
                         ++range.y;
-                    while (range.y < height && isMarked({x, range.y + range.count}))
+                    while ((range.y + range.count) < height && isMarked({x, range.y + range.count}))
                         ++range.count;
                     return range;
                 }
