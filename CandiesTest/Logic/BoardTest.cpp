@@ -63,5 +63,62 @@ namespace Candies
             ASSERT_THROW((b[{0, 4}]), std::out_of_range);
             ASSERT_THROW((b[{0, 5}]), std::out_of_range);
         }
+        
+        TEST(BoardTest, should_count_items_with_given_id_in_negative_direction_from_x)
+        {
+            Board b{5, 4};
+            ASSERT_EQ(0, b.countAlignedInNegativeDirection<&Location::x>({0, 1}, 3));
+            b[{2, 1}] = 3;
+            ASSERT_EQ(1, b.countAlignedInNegativeDirection<&Location::x>({3, 1}, 3));
+            b[{3, 1}] = 3;
+            ASSERT_EQ(1, b.countAlignedInNegativeDirection<&Location::x>({3, 1}, 3));
+            b[{1, 1}] = 3;
+            ASSERT_EQ(2, b.countAlignedInNegativeDirection<&Location::x>({3, 1}, 3));
+            b[{0, 1}] = 3;
+            ASSERT_EQ(3, b.countAlignedInNegativeDirection<&Location::x>({3, 1}, 3));
+        }
+
+        TEST(BoardTest, should_count_items_with_given_id_in_negative_direction_from_y)
+        {
+            Board b{4, 5};
+            ASSERT_EQ(0, b.countAlignedInNegativeDirection<&Location::y>({1, 0}, 3));
+            b[{1, 2}] = 3;
+            ASSERT_EQ(1, b.countAlignedInNegativeDirection<&Location::y>({1, 3}, 3));
+            b[{1, 3}] = 3;
+            ASSERT_EQ(1, b.countAlignedInNegativeDirection<&Location::y>({1, 3}, 3));
+            b[{1, 1}] = 3;
+            ASSERT_EQ(2, b.countAlignedInNegativeDirection<&Location::y>({1, 3}, 3));
+            b[{1, 0}] = 3;
+            ASSERT_EQ(3, b.countAlignedInNegativeDirection<&Location::y>({1, 3}, 3));
+        }
+
+        TEST(BoardTest, should_count_items_with_given_id_in_positive_direction_from_x)
+        {
+            Board b{5, 4};
+            ASSERT_EQ(0, b.countAlignedInPositiveDirection<&Location::x>({4, 1}, 3));
+            b[{2, 1}] = 3;
+            ASSERT_EQ(1, b.countAlignedInPositiveDirection<&Location::x>({1, 1}, 3));
+            b[{1, 1}] = 3;
+            ASSERT_EQ(1, b.countAlignedInPositiveDirection<&Location::x>({1, 1}, 3));
+            b[{3, 1}] = 3;
+            ASSERT_EQ(2, b.countAlignedInPositiveDirection<&Location::x>({1, 1}, 3));
+            b[{4, 1}] = 3;
+            ASSERT_EQ(3, b.countAlignedInPositiveDirection<&Location::x>({1, 1}, 3));
+        }
+        
+        TEST(BoardTest, should_count_items_with_given_id_in_positive_direction_from_y)
+        {
+            Board b{4, 5};
+            ASSERT_EQ(0, b.countAlignedInPositiveDirection<&Location::y>({1, 4}, 3));
+            b[{1, 2}] = 3;
+            ASSERT_EQ(1, b.countAlignedInPositiveDirection<&Location::y>({1, 1}, 3));
+            b[{1, 1}] = 3;
+            ASSERT_EQ(1, b.countAlignedInPositiveDirection<&Location::y>({1, 1}, 3));
+            b[{1, 3}] = 3;
+            ASSERT_EQ(2, b.countAlignedInPositiveDirection<&Location::y>({1, 1}, 3));
+            b[{1, 4}] = 3;
+            ASSERT_EQ(3, b.countAlignedInPositiveDirection<&Location::y>({1, 1}, 3));
+        }
+        
     }
 }

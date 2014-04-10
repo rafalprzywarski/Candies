@@ -39,41 +39,11 @@ namespace Candies
             observer->itemAdded(item, loc);
         }
         
-        template <unsigned Location:: *Coord>
-        int Game::countAlignedInNegativeDirection(Location loc, ItemId item)
-        {
-            int count = 0;
-            
-            while (loc.*Coord != 0)
-            {
-                (loc.*Coord)--;
-                if (board[loc] != item)
-                    return count;
-                count++;
-            }
-            return count;
-        }
-        
-        template <unsigned Location:: *Coord>
-        int Game::countAlignedInPositiveDirection(Location loc, ItemId item)
-        {
-            int count = 0;
-            
-            while ((loc.*Coord + 1) != board.getWidth())
-            {
-                (loc.*Coord)++;
-                if (board[loc] != item)
-                    return count;
-                count++;
-            }
-            return count;
-        }
-
         template <unsigned Location:: *Coord, typename F>
         bool Game::trySwapWithAlignmentAlong(Location loc1, Location loc2, F signalSwap)
         {
-            auto leftAligned = countAlignedInNegativeDirection<Coord>(loc1, board[loc2]);
-            auto rightAligned = countAlignedInPositiveDirection<Coord>(loc1, board[loc2]);
+            auto leftAligned = board.countAlignedInNegativeDirection<Coord>(loc1, board[loc2]);
+            auto rightAligned = board.countAlignedInPositiveDirection<Coord>(loc1, board[loc2]);
             
             if (!shouldSwap(leftAligned, rightAligned))
                 return false;

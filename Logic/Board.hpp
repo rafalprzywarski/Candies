@@ -27,6 +27,36 @@ namespace Candies
             unsigned getWidth() const { return width; }
             unsigned getHeight() const { return height; }
             
+            template <unsigned Location:: *Coord>
+            int countAlignedInNegativeDirection(Location loc, ItemId item)
+            {
+                int count = 0;
+                
+                while (loc.*Coord != 0)
+                {
+                    (loc.*Coord)--;
+                    if ((*this)[loc] != item)
+                        return count;
+                    count++;
+                }
+                return count;
+            }
+            
+            template <unsigned Location:: *Coord>
+            int countAlignedInPositiveDirection(Location loc, ItemId item)
+            {
+                int count = 0;
+                
+                while ((loc.*Coord + 1) != getSize().*Coord)
+                {
+                    (loc.*Coord)++;
+                    if ((*this)[loc] != item)
+                        return count;
+                    count++;
+                }
+                return count;
+            }
+            
         private:
             unsigned width, height;
             std::vector<ItemId> items;
@@ -37,6 +67,11 @@ namespace Candies
                 if (x >= width || y >= height)
                     throw std::out_of_range("Board access out of bounds");
                 return c.at(x + y * width);
+            }
+            
+            Location getSize() const
+            {
+                return {getWidth(), getHeight()};
             }
         };
         
