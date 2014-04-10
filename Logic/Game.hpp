@@ -21,12 +21,16 @@ namespace Candies
             Board board;
             
             void addItem(ItemId item, Location loc);
-            int countLeftAligned(Location loc, ItemId item);
-            int countRightAligned(Location loc, ItemId item);
-            template <typename F>
-            bool trySwapWithHorizontalAlignment(Location loc1, Location loc2, F doSwap);
-            void removeItemsHorizontally(int leftCount, int rightCount, Location loc);
-            void addItemsHorizontally(int leftCount, int rightCount, Location loc);
+            template <unsigned Location:: *Coord>
+            int countAlignedInNegativeDirection(Location loc, ItemId item);
+            template <unsigned Location:: *Coord>
+            int countAlignedInPositiveDirection(Location loc, ItemId item);
+            template <unsigned Location:: *Coord, typename F>
+            bool trySwapWithAlignmentAlong(Location loc1, Location loc2, F doSwap);
+            template <unsigned Location:: *Coord>
+            void removeItemsAlong(int leftCount, int rightCount, Location loc);
+            template <unsigned Location:: *Coord>
+            void addItemsAlong(int leftCount, int rightCount, Location loc);
             bool shouldSwap(int count1, int count2);
         };
         

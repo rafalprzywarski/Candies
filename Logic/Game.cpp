@@ -18,9 +18,13 @@ namespace Candies
 
         void Game::swapItems(Location loc1, Location loc2)
         {
+            if (std::abs(int(loc1.y) - int(loc2.y)) > 1)
+                return;
             auto doSwap = [=]{ observer->itemsSwapped(loc1, loc2); };
-            trySwapWithHorizontalAlignment(loc1, loc2, doSwap) ||
-            trySwapWithHorizontalAlignment(loc2, loc1, doSwap);
+            trySwapWithAlignmentAlong<&Location::x>(loc1, loc2, doSwap) ||
+            trySwapWithAlignmentAlong<&Location::x>(loc2, loc1, doSwap) ||
+            trySwapWithAlignmentAlong<&Location::y>(loc1, loc2, doSwap) ||
+            trySwapWithAlignmentAlong<&Location::y>(loc2, loc1, doSwap);
         }
         
         Board Game::getBoard() const
@@ -34,59 +38,65 @@ namespace Candies
             observer->itemAdded(item, loc);
         }
         
-        int Game::countLeftAligned(Location loc, ItemId item)
+        template <unsigned Location:: *Coord>
+        int Game::countAlignedInNegativeDirection(Location loc, ItemId item)
         {
             int count = 0;
-
-            while (loc.x > 0)
+            
+            while (loc.*Coord != 0)
             {
-                if (board[{loc.x - 1, loc.y}] != item)
+                (loc.*Coord)--;
+                if (board[loc] != item)
                     return count;
                 count++;
-                loc.x--;
             }
             return count;
         }
         
-        int Game::countRightAligned(Location loc, ItemId item)
+        template <unsigned Location:: *Coord>
+        int Game::countAlignedInPositiveDirection(Location loc, ItemId item)
         {
             int count = 0;
             
-            while ((loc.x + 1) < board.getWidth())
+            while ((loc.*Coord + 1) != board.getWidth())
             {
-                if (board[{loc.x + 1, loc.y}] != item)
+                (loc.*Coord)++;
+                if (board[loc] != item)
                     return count;
                 count++;
-                loc.x++;
             }
             return count;
         }
-    
-        template <typename F>
-        bool Game::trySwapWithHorizontalAlignment(Location loc1, Location loc2, F doSwap)
+
+        template <unsigned Location:: *Coord, typename F>
+        bool Game::trySwapWithAlignmentAlong(Location loc1, Location loc2, F doSwap)
         {
-            auto leftAligned = countLeftAligned(loc1, board[loc2]);
-            auto rightAligned = countRightAligned(loc1, board[loc2]);
+            auto leftAligned = countAlignedInNegativeDirection<Coord>(loc1, board[loc2]);
+            auto rightAligned = countAlignedInPositiveDirection<Coord>(loc1, board[loc2]);
             
             if (!shouldSwap(leftAligned, rightAligned))
                 return false;
             
             doSwap();
-            removeItemsHorizontally(leftAligned, rightAligned, loc1);
-            addItemsHorizontally(leftAligned, rightAligned, loc1);
+            removeItemsAlong<Coord>(leftAligned, rightAligned, loc1);
+            addItemsAlong<Coord>(leftAligned, rightAligned, loc1);
             return true;
         }
 
-        void Game::removeItemsHorizontally(int leftCount, int rightCount, Location loc)
+        template <unsigned Location:: *Coord>
+        void Game::removeItemsAlong(int leftCount, int rightCount, Location loc)
         {
-            for (int i = -leftCount; i <= rightCount; ++i)
-                observer->itemRemoved({unsigned(int(loc.x) + i), loc.y});
+            loc.*Coord -= unsigned(leftCount);
+            for (int i = -leftCount; i <= rightCount; ++i, (loc.*Coord)++)
+                observer->itemRemoved(loc);
         }
         
-        void Game::addItemsHorizontally(int leftCount, int rightCount, Location loc)
+        template <unsigned Location:: *Coord>
+        void Game::addItemsAlong(int leftCount, int rightCount, Location loc)
         {
-            for (int i = -leftCount; i <= rightCount; ++i)
-                observer->itemAdded(itemGenerator->generate(), {unsigned(int(loc.x) + i), loc.y});
+            loc.*Coord -= unsigned(leftCount);
+            for (int i = -leftCount; i <= rightCount; ++i, (loc.*Coord)++)
+                observer->itemAdded(itemGenerator->generate(), loc);
         }
 
         bool Game::shouldSwap(int count1, int count2)
