@@ -418,6 +418,20 @@ namespace Candies
                     Removed({{3, 0}, {4, 0}, {5, 0}}),
                     Added({1, 2, 3})},
                 SuccessfulExample{
+                    "3 horizontal, left horizontal move",
+                    {
+                        3,2,4,0,4,4,3,1,
+                        3,3,0,2,1,4,4,0,
+                        2,0,4,0,2,0,2,3,
+                        4,1,4,1,4,2,4,4,
+                        1,2,2,3,4,0,4,0,
+                        2,3,4,1,1,0,1,4,
+                        3,1,4,2,4,1,1,0,
+                        1,4,3,2,1,3,3,2 },
+                    From({2, 0}), To({3, 0}),
+                    Removed({{3, 0}, {4, 0}, {5, 0}}),
+                    Added({1, 2, 3})},
+                SuccessfulExample{
                     "5 horizontal middle",
                     {
                         3,4,4,0,4,4,3,4,
