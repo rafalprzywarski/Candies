@@ -11,6 +11,7 @@ namespace Candies
         public:
             virtual ~MouseEventListener() { }
             virtual void mouseDown(Position pos) = 0;
+            virtual void mouseUp(Position pos) = 0;
         };
         
         typedef std::shared_ptr<MouseEventListener> MouseEventListenerPtr;

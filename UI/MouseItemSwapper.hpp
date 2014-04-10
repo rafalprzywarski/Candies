@@ -13,6 +13,7 @@ namespace Candies
             MouseItemSwapper(BoardViewPtr board, Logic::GameLogicPtr logic)
             : board(std::move(board)), logic(std::move(logic)) { }
             void mouseDown(Position pos);
+            void mouseUp(Position pos) { }
         private:
             BoardViewPtr board;
             Logic::GameLogicPtr logic;

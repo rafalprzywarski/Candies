@@ -18,6 +18,8 @@ namespace Candies
                     case SDL_MOUSEBUTTONDOWN:
                         mouseEventListener->mouseDown({event.button.x, event.button.y});
                         break;
+                    case SDL_MOUSEBUTTONUP:
+                        mouseEventListener->mouseUp({event.button.x, event.button.y});
                 }
             }
             
