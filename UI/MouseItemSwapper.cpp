@@ -6,7 +6,13 @@ namespace Candies
     {
         void MouseItemSwapper::mouseDown(Position pos)
         {
-            board->selectItemAt(pos);
+            downPosition = pos;
+        }
+        
+        void MouseItemSwapper::mouseUp(Position upPosition)
+        {
+            board->selectItemAt(downPosition);
+            board->selectItemAt(upPosition);
             auto selected = board->getSelectedItemLocations();
             if (selected.size() == 2u)
             {
