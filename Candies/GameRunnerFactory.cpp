@@ -11,15 +11,18 @@
 
 namespace Candies
 {
-    class BoardUpdater : public Candies::Logic::GameObserver
+    class BoardViewConnector : public Candies::Logic::GameObserver
     {
     public:
-        BoardUpdater(UI::StaticBoardViewPtr board) : board(board) { }
+        BoardViewConnector(UI::StaticBoardViewPtr board) : board(board) { }
         virtual void itemAdded(Candies::Logic::ItemId item, Candies::Logic::Location loc)
         {
             board->addItem(item, loc);
         }
-        virtual void itemsSwapped(Logic::Location loc1, Logic::Location loc2) { }
+        virtual void itemsSwapped(Logic::Location loc1, Logic::Location loc2)
+        {
+            board->swapItems(loc1, loc2);
+        }
         virtual void itemRemoved(Logic::Location loc) { }
 
     private:
@@ -48,7 +51,7 @@ namespace Candies
         auto board = std::make_shared<UI::StaticBoardView>(gems, selectionMarker, GRID_SIZE, BOARD_POSITION);
         auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, background, board);
         auto itemGenerator = std::make_shared<Candies::Logic::StdItemGenerator>(gems.size());
-        auto gameObserver = std::make_shared<BoardUpdater>(board);
+        auto gameObserver = std::make_shared<BoardViewConnector>(board);
         auto gameLogic = Candies::Logic::GameFactory().createGame(itemGenerator, gameObserver);
         auto mouseItemSelector = std::make_shared<Candies::UI::MouseItemSwapper>(board, gameLogic);
         auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(ui, mouseItemSelector);
