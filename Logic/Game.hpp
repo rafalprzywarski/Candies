@@ -16,6 +16,12 @@ namespace Candies
             void swapItems(Location loc1, Location loc2);
             Board getBoard() const;
         private:
+            
+            struct ColumnRange
+            {
+                unsigned y{}, count{};
+            };
+            
             class Mask
             {
             public:
@@ -42,17 +48,32 @@ namespace Candies
                             if (*it++)
                                 f({x, y});
                 }
+                ColumnRange findMarkedRange(unsigned x) const
+                {
+                    ColumnRange range;
+                    while (range.y < height && !isMarked({x, range.y}))
+                        ++range.y;
+                    while (range.y < height && isMarked({x, range.y + range.count}))
+                        ++range.count;
+                    return range;
+                }
             private:
                 unsigned width, height;
                 std::vector<bool> mask;
             };
+            
+            typedef std::vector<unsigned> Heights;
 
             ItemGeneratorPtr itemGenerator;
             GameObserverPtr observer;
             Board board;
             
             void addItemAt(Location loc);
-            void notifyObserver(Location loc1, Location loc2, const Mask& itemsToRemove);
+            void applyChanges(const Board& boardWithSwappedItems, Location loc1, Location loc2, const Mask& itemsToRemove);
+            void addItems(const Heights& itemsToAdd);
+            unsigned moveItemsDown(unsigned x, const Mask& itemsToRemove);
+            Heights moveItemsDown(const Mask& itemsToRemove);
+            void moveItem(Location from, Location to);
             Mask findAlignedItems(const Board& boardWithSwappedItems, Location loc1, Location loc2);
             template <unsigned Location:: *Coord>
             void markLocationsAlong(unsigned leftCount, unsigned rightCount, Location loc, Mask& mask);

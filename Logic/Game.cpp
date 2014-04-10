@@ -18,6 +18,7 @@ namespace Candies
 
         void Game::swapItems(Location loc1, Location loc2)
         {
+            //TODO: expose hidden classes
             if (!areNeighbours(loc1, loc2))
                 return;
             auto boardWithSwappedItems = board;
@@ -27,8 +28,7 @@ namespace Candies
             if (itemsToRemove.isEmpty())
                 return;
             
-            board = boardWithSwappedItems;
-            notifyObserver(loc1, loc2, itemsToRemove);
+            applyChanges(boardWithSwappedItems, loc1, loc2, itemsToRemove);
         }
         
         Board Game::getBoard() const
@@ -43,37 +43,46 @@ namespace Candies
             observer->itemAdded(item, loc);
         }
         
-        void Game::notifyObserver(Location loc1, Location loc2, const Mask& itemsToRemove)
+        void Game::applyChanges(const Board& boardWithSwappedItems, Location loc1, Location loc2, const Mask& itemsToRemove)
         {
+            board = boardWithSwappedItems;
             observer->itemsSwapped(loc1, loc2);
             itemsToRemove.forEachLocation([=](Location loc){ observer->itemRemoved(loc); });
-
-            Mask itemsToAdd{board.getWidth(), board.getHeight()};
-            for (unsigned x = 0; x < board.getWidth(); ++x)
-            {
-                unsigned firstRemoved = 0;
-                while (firstRemoved < board.getHeight() && !itemsToRemove.isMarked({x, firstRemoved}))
-                    ++firstRemoved;
-                unsigned lastRemoved = firstRemoved;
-                while (lastRemoved < board.getHeight() && itemsToRemove.isMarked({x, lastRemoved}))
-                    ++lastRemoved;
-                if (firstRemoved == board.getHeight())
-                    continue;
-                unsigned d = lastRemoved - firstRemoved;
-                
-                for (unsigned y = firstRemoved; y < lastRemoved; ++y)
-                    itemsToAdd.mark({x, y - firstRemoved});
-                for (unsigned y = firstRemoved; y > 0; --y)
-                {
-                    Location to{x, y - 1 + d}, from{x, y - 1};
-                    board[to] = board[from];
-                    observer->itemMoved(from, to);
-                }
-            }
-            
-            itemsToAdd.forEachLocation([=](Location loc){ addItemAt(loc); });
+            auto itemsToAdd = moveItemsDown(itemsToRemove);
+            addItems(itemsToAdd);
         }
         
+        void Game::addItems(const Heights& itemsToAdd)
+        {
+            for (unsigned x = 0; x < board.getWidth(); ++x)
+                for (unsigned y = 0; y < itemsToAdd[x]; ++y)
+                    addItemAt({x, y});
+        }
+        
+        Game::Heights Game::moveItemsDown(const Mask& itemsToRemove)
+        {
+            Heights itemsToAdd(board.getWidth(), 0);
+            for (unsigned x = 0; x < board.getWidth(); ++x)
+                itemsToAdd[x] = moveItemsDown(x, itemsToRemove);
+            return std::move(itemsToAdd);
+        }
+
+        unsigned Game::moveItemsDown(unsigned x, const Mask& itemsToRemove)
+        {
+            auto markedRange = itemsToRemove.findMarkedRange(x);
+            if (markedRange.count == 0)
+                return 0;
+            for (unsigned y = markedRange.y; y > 0; --y)
+                moveItem({x, y - 1}, {x, y - 1 + markedRange.count});
+            return markedRange.count;
+        }
+        
+        void Game::moveItem(Location from, Location to)
+        {
+            board[to] = board[from];
+            observer->itemMoved(from, to);
+        }
+
         Game::Mask Game::findAlignedItems(const Board& boardWithSwappedItems, Location loc1, Location loc2)
         {
             Mask itemsToRemove{boardWithSwappedItems.getWidth(), boardWithSwappedItems.getHeight()};
