@@ -140,5 +140,20 @@ namespace Candies
             
             board.update();
         }
+        
+        TEST_F(StaticBoardViewTest, should_ignore_invalid_swaps)
+        {
+            board.addItem(3, ITEM3_LOCATION);
+            
+            board.swapItems(ITEM7_LOCATION, ITEM3_LOCATION);
+
+            EXPECT_CALL(*item3, drawAt(ITEM3_POSITION));
+            board.update();
+            
+            board.swapItems(ITEM3_LOCATION, ITEM7_LOCATION);
+
+            EXPECT_CALL(*item3, drawAt(ITEM3_POSITION));
+            board.update();
+        }
     }
 }

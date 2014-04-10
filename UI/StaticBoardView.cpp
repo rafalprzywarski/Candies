@@ -20,7 +20,10 @@ namespace Candies
 
         void StaticBoardView::swapItems(Logic::Location loc1, Logic::Location loc2)
         {
-            std::swap(items.find(loc1)->second, items.find(loc2)->second);
+            auto item1 = items.find(loc1), item2 = items.find(loc2);
+            if (item1 == items.end() || item2 == items.end())
+                return;
+            std::swap(item1->second, item2->second);
         }
 
         void StaticBoardView::update()
