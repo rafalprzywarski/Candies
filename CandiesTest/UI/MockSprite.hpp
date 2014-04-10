@@ -1,4 +1,5 @@
 #pragma once
+#include <UI/Sprite.hpp>
 #include <gmock/gmock.h>
 
 namespace Candies

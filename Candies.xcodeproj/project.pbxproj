@@ -62,6 +62,9 @@
 		F057A81F18F7474400636C2E /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F057A81E18F7474400636C2E /* SDL2_ttf.framework */; };
 		F057A82018F74B4400636C2E /* SDL2_ttf.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = F057A81E18F7474400636C2E /* SDL2_ttf.framework */; };
 		F057A82218F74BF100636C2E /* comicate.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F057A82118F74BF100636C2E /* comicate.ttf */; };
+		F057A82718F756D000636C2E /* TimeMonitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A82518F756D000636C2E /* TimeMonitor.cpp */; };
+		F057A82818F756D000636C2E /* TimeMonitor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A82618F756D000636C2E /* TimeMonitor.hpp */; };
+		F057A82B18F7588500636C2E /* TimerMonitorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A82A18F7588500636C2E /* TimerMonitorTest.cpp */; };
 		F0B4497118F47791006C6405 /* libGameCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F3E18F324C1008145C2 /* libGameCore.a */; };
 		F0B4497218F47796006C6405 /* libGameRunner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F6518F454C7008145C2 /* libGameRunner.a */; };
 		F0B4497C18F48934006C6405 /* libGameUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F7718F45DFE008145C2 /* libGameUI.a */; };
@@ -170,6 +173,12 @@
 		F057A82118F74BF100636C2E /* comicate.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = comicate.ttf; path = Resources/comicate.ttf; sourceTree = "<group>"; };
 		F057A82318F7522D00636C2E /* Timer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
 		F057A82418F7530700636C2E /* MockTimer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockTimer.hpp; sourceTree = "<group>"; };
+		F057A82518F756D000636C2E /* TimeMonitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeMonitor.cpp; sourceTree = "<group>"; };
+		F057A82618F756D000636C2E /* TimeMonitor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TimeMonitor.hpp; sourceTree = "<group>"; };
+		F057A82918F7581700636C2E /* Switch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Switch.hpp; sourceTree = "<group>"; };
+		F057A82A18F7588500636C2E /* TimerMonitorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimerMonitorTest.cpp; sourceTree = "<group>"; };
+		F057A82C18F7591000636C2E /* MockLabel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockLabel.hpp; sourceTree = "<group>"; };
+		F057A82D18F7598C00636C2E /* MockSwitch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockSwitch.hpp; sourceTree = "<group>"; };
 		F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRunnerFactory.cpp; sourceTree = "<group>"; };
 		F0B4498918F4A3BD006C6405 /* GameRunnerFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameRunnerFactory.hpp; sourceTree = "<group>"; };
 		F0B4499218F4ABC0006C6405 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Blue.png; path = Resources/Blue.png; sourceTree = "<group>"; };
@@ -346,6 +355,9 @@
 				F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */,
 				F057A7C018F5CD1300636C2E /* StaticBoardView.hpp */,
 				F057A81A18F7451300636C2E /* Label.hpp */,
+				F057A82518F756D000636C2E /* TimeMonitor.cpp */,
+				F057A82618F756D000636C2E /* TimeMonitor.hpp */,
+				F057A82918F7581700636C2E /* Switch.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -448,6 +460,9 @@
 				F057A80018F5D38A00636C2E /* MockSprite.hpp */,
 				F057A80118F5D38A00636C2E /* MouseItemSwapperTest.cpp */,
 				F057A80218F5D38A00636C2E /* StaticBoardViewTest.cpp */,
+				F057A82A18F7588500636C2E /* TimerMonitorTest.cpp */,
+				F057A82C18F7591000636C2E /* MockLabel.hpp */,
+				F057A82D18F7598C00636C2E /* MockSwitch.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -517,6 +532,7 @@
 				F057A7C818F5CD1300636C2E /* Position.hpp in Headers */,
 				F057A7C118F5CD1300636C2E /* BoardView.hpp in Headers */,
 				F057A7C718F5CD1300636C2E /* MouseItemSwapper.hpp in Headers */,
+				F057A82818F756D000636C2E /* TimeMonitor.hpp in Headers */,
 				F057A7C918F5CD1300636C2E /* Sprite.hpp in Headers */,
 				F057A7CC18F5CD1300636C2E /* StaticBoardView.hpp in Headers */,
 			);
@@ -707,6 +723,7 @@
 				F02A9F1618F1FF65008145C2 /* main.cpp in Sources */,
 				F057A80418F5D38A00636C2E /* GameTest.cpp in Sources */,
 				F057A80518F5D38A00636C2E /* GameRunnerTest.cpp in Sources */,
+				F057A82B18F7588500636C2E /* TimerMonitorTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,6 +757,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F057A7C618F5CD1300636C2E /* MouseItemSwapper.cpp in Sources */,
+				F057A82718F756D000636C2E /* TimeMonitor.cpp in Sources */,
 				F057A7CB18F5CD1300636C2E /* StaticBoardView.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
