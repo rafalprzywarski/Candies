@@ -27,6 +27,10 @@ namespace Candies
         {
             board->removeItem(loc);
         }
+        
+        virtual void itemMoved(Logic::Location from, Logic::Location to)
+        {
+        }
 
     private:
         UI::StaticBoardViewPtr board;

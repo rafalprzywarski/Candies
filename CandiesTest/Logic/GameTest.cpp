@@ -73,6 +73,19 @@ namespace Candies
                 expectGenerationOf(items);
                 game->start();
             }
+            
+            struct FromTo
+            {
+                Location from, to;
+            };
+
+            ExpectationSet expectItemsMoved(std::vector<FromTo> moves, ExpectationSet removal)
+            {
+                ExpectationSet moving;
+                for (auto const& move : moves)
+                    moving += EXPECT_CALL(*observer, itemMoved(move.from, move.to)).After(removal);
+                return moving;
+            }
         };
         
         TEST_F(GameTest, board_should_be_filled_with_generated_items_when_game_is_started)
@@ -127,7 +140,43 @@ namespace Candies
                 2,3,4,1,1,0,1,4,
                 3,1,4,2,4,1,1,0,
                 1,4,3,2,1,3,3,2 });
+        }
+        
+        TEST_F(GameTest, items_should_fall_down_when_other_items_below_them_are_removed_and_new_items_should_be_added_above_them)
+        {
+            setBoard({
+                4,3,3,0,0,1,3,1,
+                2,2,0,1,2,4,4,0,
+                2,1,1,0,1,0,2,3,
+                4,1,4,1,4,2,4,4,
+                1,2,2,3,4,0,4,0,
+                2,3,4,4,1,4,1,4,
+                3,1,4,2,4,1,1,0,
+                1,4,3,2,1,3,3,2 });
+
+            Expectation removal = EXPECT_CALL(*observer, itemRemoved(_)).Times(5);
             
+            auto moving = expectItemsMoved({
+                {{1, 1}, {1, 2}},
+                {{1, 0}, {1, 1}},
+                {{2, 1}, {2, 2}},
+                {{2, 0}, {2, 1}},
+                {{3, 0}, {3, 3}}}, removal);
+                
+            expectGenerationOf({1, 2, 3, 4, 3});
+            EXPECT_CALL(*observer, itemAdded(_, _)).Times(5).After(moving);
+
+            game->swapItems({4, 2}, {3, 2});
+
+            expectBoardWith({
+                4,1,2,3,0,1,3,1,
+                2,3,3,4,2,4,4,0,
+                2,2,0,3,0,0,2,3,
+                4,1,4,0,4,2,4,4,
+                1,2,2,3,4,0,4,0,
+                2,3,4,4,1,4,1,4,
+                3,1,4,2,4,1,1,0,
+                1,4,3,2,1,3,3,2 });
         }
 
         struct FailingExample
@@ -173,6 +222,7 @@ namespace Candies
             EXPECT_CALL(*observer, itemsSwapped(_, _)).Times(0);
             EXPECT_CALL(*observer, itemRemoved(_)).Times(0);
             EXPECT_CALL(*observer, itemAdded(_, _)).Times(0);
+            EXPECT_CALL(*observer, itemMoved(_, _)).Times(0);
             game->swapItems(GetParam().from, GetParam().to);
             
             ASSERT_TRUE(initialBoard == game->getBoard());
@@ -366,6 +416,7 @@ namespace Candies
             ExpectationSet removal;
             for (auto loc : GetParam().removed)
                 removal += EXPECT_CALL(*observer, itemRemoved(loc)).After(swapping);
+            EXPECT_CALL(*observer, itemMoved(_, _)).Times(0);
             for (std::size_t i = 0; i < GetParam().added.size(); ++i)
                 EXPECT_CALL(*observer, itemAdded(GetParam().added[i], GetParam().removed[i])).After(removal);
             

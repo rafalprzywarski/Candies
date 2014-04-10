@@ -23,7 +23,11 @@ namespace Candies
                 : width(width), height(height), mask(width * height, false) { }
                 void mark(Location loc)
                 {
-                    mask[loc.x + loc.y * width] = true;
+                    mask.at(loc.x + loc.y * width) = true;
+                }
+                bool isMarked(Location loc) const
+                {
+                    return mask.at(loc.x + loc.y * width);
                 }
                 bool isEmpty() const
                 {

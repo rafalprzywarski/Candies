@@ -26,6 +26,7 @@ namespace Candies
             Mask itemsToRemove = findAlignedItems(boardWithSwappedItems, loc1, loc2);
             if (itemsToRemove.isEmpty())
                 return;
+            
             board = boardWithSwappedItems;
             notifyObserver(loc1, loc2, itemsToRemove);
         }
@@ -46,7 +47,31 @@ namespace Candies
         {
             observer->itemsSwapped(loc1, loc2);
             itemsToRemove.forEachLocation([=](Location loc){ observer->itemRemoved(loc); });
-            itemsToRemove.forEachLocation([=](Location loc){ addItemAt(loc); });
+
+            Mask itemsToAdd{board.getWidth(), board.getHeight()};
+            for (unsigned x = 0; x < board.getWidth(); ++x)
+            {
+                unsigned firstRemoved = 0;
+                while (firstRemoved < board.getHeight() && !itemsToRemove.isMarked({x, firstRemoved}))
+                    ++firstRemoved;
+                unsigned lastRemoved = firstRemoved;
+                while (lastRemoved < board.getHeight() && itemsToRemove.isMarked({x, lastRemoved}))
+                    ++lastRemoved;
+                if (firstRemoved == board.getHeight())
+                    continue;
+                unsigned d = lastRemoved - firstRemoved;
+                
+                for (unsigned y = firstRemoved; y < lastRemoved; ++y)
+                    itemsToAdd.mark({x, y - firstRemoved});
+                for (unsigned y = firstRemoved; y > 0; --y)
+                {
+                    Location to{x, y - 1 + d}, from{x, y - 1};
+                    board[to] = board[from];
+                    observer->itemMoved(from, to);
+                }
+            }
+            
+            itemsToAdd.forEachLocation([=](Location loc){ addItemAt(loc); });
         }
         
         Game::Mask Game::findAlignedItems(const Board& boardWithSwappedItems, Location loc1, Location loc2)
