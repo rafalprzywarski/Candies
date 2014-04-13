@@ -8,10 +8,11 @@ namespace Candies
 {
     namespace UI
     {
-        class FontNotFound : public std::runtime_error
+        class FontLoadError : public std::runtime_error
         {
         public:
-            FontNotFound(const std::string& filename) : std::runtime_error("Font not found " + filename) { }
+            FontLoadError(const std::string& filename, const std::string& message)
+            : std::runtime_error("Error while loading " + filename + ": " + message) { }
         };
 
         class SDLLabel : public Label

@@ -9,7 +9,7 @@ namespace Candies
         : renderer(renderer), font(TTF_OpenFont(getResourcePath(fontFile).c_str(), fontHeight), TTF_CloseFont), color(color), position(position)
         {
             if (!font)
-                throw FontNotFound(fontFile + TTF_GetError());
+                throw FontLoadError(fontFile, TTF_GetError());
             setText({});
         }
         
