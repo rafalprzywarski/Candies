@@ -69,7 +69,7 @@ namespace Candies
             GameObserverPtr observer;
             Board board;
             
-            void addItemAt(Location loc);
+            void addItemAt(Location loc, ItemIdsWithLocations& addedItems);
             void applyChanges(const Board& boardWithSwappedItems, Location loc1, Location loc2, const Mask& itemsToRemove);
             void addItems(const Heights& itemsToAdd);
             unsigned moveItemsDown(unsigned x, const Mask& itemsToRemove, Movements& movedItems);

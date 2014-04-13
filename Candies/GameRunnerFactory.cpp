@@ -21,9 +21,10 @@ namespace Candies
     {
     public:
         BoardViewConnector(UI::AnimatedBoardViewPtr board) : board(board) { }
-        virtual void itemAdded(Candies::Logic::ItemId item, Candies::Logic::Location loc)
+        virtual void itemsAdded(const Logic::ItemIdsWithLocations& items)
         {
-            board->addItem(item, loc);
+            for (auto& item : items)
+                board->addItem(item.item, item.location);
         }
         virtual void itemsSwapped(Logic::Location loc1, Logic::Location loc2)
         {

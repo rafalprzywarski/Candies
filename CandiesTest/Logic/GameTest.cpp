@@ -61,11 +61,13 @@ namespace Candies
                 ASSERT_EQ(expectedBoard, game->getBoard());
             }
             
-            void expectItemAddedNotificationsFor(ItemIds items)
+            void expectItemsAddedNotificationFor(ItemIds items)
             {
+                ItemIdsWithLocations expectedItems;
                 for (unsigned y = 0; y < BOARD_HEIGHT; ++y)
                     for (unsigned x = 0; x < BOARD_WIDTH; ++x)
-                        EXPECT_CALL(*observer, itemAdded(ALL_ITEMS[x + y * BOARD_WIDTH], Location(x, y)));
+                        expectedItems.emplace_back(ALL_ITEMS[x + y * BOARD_WIDTH], Location(x, y));
+                EXPECT_CALL(*observer, itemsAdded(expectedItems));
             }
             
             void setBoard(ItemIds items)
@@ -85,6 +87,14 @@ namespace Candies
                 std::sort(c.begin(), c.end());
                 return std::move(c);
             }
+            
+            ItemIdsWithLocations merged(const ItemIds& ids, const Locations& locs)
+            {
+                ItemIdsWithLocations items;
+                for (std::size_t i = 0; i != ids.size(); ++i)
+                    items.emplace_back(ids[i], locs[i]);
+                return items;
+            }
         };
         
         TEST_F(GameTest, board_should_be_filled_with_generated_items_when_game_is_started)
@@ -99,7 +109,7 @@ namespace Candies
         TEST_F(GameTest, should_notify_observer_about_filling_the_board_with_generated_items_when_game_is_started)
         {
             expectGenerationOf(ALL_ITEMS);
-            expectItemAddedNotificationsFor(ALL_ITEMS);
+            expectItemsAddedNotificationFor(ALL_ITEMS);
             game->start();
         }
         
@@ -163,7 +173,7 @@ namespace Candies
                 {{3, 0}, {3, 3}}}, removal);
                 
             expectGenerationOf({1, 2, 3, 4, 3});
-            EXPECT_CALL(*observer, itemAdded(_, _)).Times(5).After(moving);
+            EXPECT_CALL(*observer, itemsAdded(SizeIs(5))).After(moving);
 
             game->swapItems({4, 2}, {3, 2});
 
@@ -246,7 +256,7 @@ namespace Candies
             
             EXPECT_CALL(*observer, itemsSwapped(_, _)).Times(0);
             EXPECT_CALL(*observer, itemsRemoved(_)).Times(0);
-            EXPECT_CALL(*observer, itemAdded(_, _)).Times(0);
+            EXPECT_CALL(*observer, itemsAdded(_)).Times(0);
             EXPECT_CALL(*observer, itemsMoved(_)).Times(0);
             game->swapItems(GetParam().from, GetParam().to);
             
@@ -440,8 +450,8 @@ namespace Candies
             Expectation swapping = EXPECT_CALL(*observer, itemsSwapped(GetParam().from, GetParam().to));
             Expectation removal = EXPECT_CALL(*observer, itemsRemoved(WhenSorted(sorted(GetParam().removed)))).After(swapping);
             EXPECT_CALL(*observer, itemsMoved(_)).Times(0);
-            for (std::size_t i = 0; i < GetParam().added.size(); ++i)
-                EXPECT_CALL(*observer, itemAdded(GetParam().added[i], GetParam().removed[i])).After(removal);
+            auto expectedItems = sorted(merged(GetParam().added, GetParam().removed));
+            EXPECT_CALL(*observer, itemsAdded(WhenSorted(expectedItems))).After(removal);
             
             game->swapItems(GetParam().from, GetParam().to);
         }

@@ -11,9 +11,11 @@ namespace Candies
         
         void Game::start()
         {
+            ItemIdsWithLocations addedItems;
             for (unsigned y = 0; y < board.getWidth(); ++y)
                 for (unsigned x = 0; x < board.getHeight(); ++x)
-                    addItemAt({x, y});
+                    addItemAt({x, y}, addedItems);
+            observer->itemsAdded(addedItems);
         }
 
         void Game::swapItems(Location loc1, Location loc2)
@@ -36,11 +38,11 @@ namespace Candies
             return board;
         }
         
-        void Game::addItemAt(Location loc)
+        void Game::addItemAt(Location loc, ItemIdsWithLocations& addedItems)
         {
             auto item = itemGenerator->generate();
             board[loc] = item;
-            observer->itemAdded(item, loc);
+            addedItems.emplace_back(item, loc);
         }
         
         void Game::applyChanges(const Board& boardWithSwappedItems, Location loc1, Location loc2, const Mask& itemsToRemove)
@@ -57,9 +59,11 @@ namespace Candies
         
         void Game::addItems(const Heights& itemsToAdd)
         {
+            ItemIdsWithLocations addedItems;
             for (unsigned x = 0; x < board.getWidth(); ++x)
                 for (unsigned y = 0; y < itemsToAdd[x]; ++y)
-                    addItemAt({x, y});
+                    addItemAt({x, y}, addedItems);
+            observer->itemsAdded(addedItems);
         }
         
         Game::Heights Game::moveItemsDown(const Mask& itemsToRemove, Movements& movedItems)
