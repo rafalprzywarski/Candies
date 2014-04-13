@@ -2,7 +2,7 @@
 #include "SpriteAnimator.hpp"
 #include "UpdateFrameListener.hpp"
 #include "AnimationTimer.hpp"
-#include <memory>
+#include <vector>
 
 namespace Candies
 {
@@ -19,10 +19,22 @@ namespace Candies
             void draw() const;
             void updateFrame();
         private:
+            struct SpriteState
+            {
+                SpritePtr sprite;
+                Position from, to, position;
+
+                SpriteState(SpritePtr sprite, Position from, Position to)
+                : sprite(sprite), from(from), to(to), position(from)
+                { }
+                
+                void draw() const;
+                void update(float completionFactor);
+            };
+
             AnimationTimerPtr timer;
             float animationTime;
-            SpritePtr sprite;
-            Position from{0, 0}, to{0, 0}, position{0, 0};
+            std::vector<SpriteState> sprites;
             float startTime{0};
             
             static int lerp(int from, int to, float t);

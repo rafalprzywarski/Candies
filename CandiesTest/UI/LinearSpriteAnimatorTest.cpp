@@ -14,13 +14,15 @@ namespace Candies
             const float ANIMATION_TIME = 1;
             const float CURRENT_TIME = 100;
             Position FROM{3, 4}, TO{5, 7};
+            Position FROM2{2, 1}, TO2{13, 4};
             MockSpritePtr sprite = std::make_shared<StrictMock<MockSprite>>();
+            MockSpritePtr sprite2 = std::make_shared<StrictMock<MockSprite>>();
             MockAnimationTimerPtr timer = std::make_shared<StrictMock<MockAnimationTimer>>();
             LinearSpriteAnimator animator{timer, ANIMATION_TIME};
             
             void setTime(float time)
             {
-                EXPECT_CALL(*timer, getTime()).Times(AtMost(1)).WillRepeatedly(Return(time));
+                EXPECT_CALL(*timer, getTime()).Times(AtMost(1)).WillRepeatedly(Return(time)).RetiresOnSaturation();
             }
             
             LinearSpriteAnimatorTest()
@@ -65,6 +67,20 @@ namespace Candies
             
             setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME / 2);
             EXPECT_CALL(*sprite, drawAt(Position((FROM.x + TO.x) / 2, (FROM.y + TO.y) / 2)));
+            
+            animator.draw();
+        }
+        
+        TEST_F(LinearSpriteAnimatorTest, should_animate_multiple_sprites_at_the_same_time)
+        {
+            animator.moveSprite(sprite, FROM, TO);
+            setTime(CURRENT_TIME);
+            animator.moveSprite(sprite2, FROM2, TO2);
+            
+            EXPECT_CALL(*sprite, drawAt(TO));
+            EXPECT_CALL(*sprite2, drawAt(TO2));
+            
+            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME);
             
             animator.draw();
         }
