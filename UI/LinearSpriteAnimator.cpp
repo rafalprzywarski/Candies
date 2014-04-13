@@ -1,6 +1,5 @@
 #include "LinearSpriteAnimator.hpp"
 #include <algorithm>
-#include <functional>
 
 namespace Candies
 {
@@ -22,7 +21,7 @@ namespace Candies
             for (auto& s : sprites)
                 if (s.shouldChainWith(at))
                 {
-                    s.shouldBeDestroyed = true;
+                    s.markForDestruction();
                     return;
                 }
         }
@@ -43,7 +42,7 @@ namespace Candies
             float currentTime = timer->getTime() / animationTime;
             for (auto& sprite : sprites)
                 sprite.update(currentTime);
-            sprites.erase(std::remove_if(sprites.begin(), sprites.end(), std::bind(&SpriteState::isDestroyed, std::placeholders::_1)), sprites.end());
+            sprites.erase(std::remove_if(sprites.begin(), sprites.end(), [](const AnimatedSprite& s) { return s.isDestroyed(); }), sprites.end());
         }
         
         int LinearSpriteAnimator::lerp(int from, int to, float t)
@@ -56,12 +55,12 @@ namespace Candies
             return {lerp(from.x, to.x, t), lerp(from.y, to.y, t)};
         }
 
-        void LinearSpriteAnimator::SpriteState::draw() const
+        void LinearSpriteAnimator::AnimatedSprite::draw() const
         {
             sprite->drawAt(position);
         }
         
-        void LinearSpriteAnimator::SpriteState::update(float currentTime)
+        void LinearSpriteAnimator::AnimatedSprite::update(float currentTime)
         {
             float completionFactor = currentTime - startTime;
             while (completionFactor >= 1 && !destinations.empty())
@@ -75,7 +74,7 @@ namespace Candies
                 position = lerp(from, destinations.at(0), completionFactor);
         }
 
-        bool LinearSpriteAnimator::SpriteState::isDestroyed() const
+        bool LinearSpriteAnimator::AnimatedSprite::isDestroyed() const
         {
             return destinations.empty() && shouldBeDestroyed;
         }

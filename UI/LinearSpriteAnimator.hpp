@@ -19,15 +19,10 @@ namespace Candies
             void draw() const;
             void updateFrame();
         private:
-            struct SpriteState
+            class AnimatedSprite
             {
-                SpritePtr sprite;
-                Position from, position;
-                std::vector<Position> destinations;
-                float startTime;
-                bool shouldBeDestroyed;
-
-                SpriteState(SpritePtr sprite, Position from, Position to, float startTime)
+            public:
+                AnimatedSprite(SpritePtr sprite, Position from, Position to, float startTime)
                 : sprite(sprite), from(from), destinations({to}), position(from), startTime(startTime), shouldBeDestroyed(false)
                 { }
                 
@@ -42,11 +37,21 @@ namespace Candies
                 {
                     destinations.push_back(to);
                 }
+                void markForDestruction()
+                {
+                    shouldBeDestroyed = true;
+                }
+            private:
+                SpritePtr sprite;
+                Position from, position;
+                std::vector<Position> destinations;
+                float startTime;
+                bool shouldBeDestroyed;
             };
 
             AnimationTimerPtr timer;
             float animationTime;
-            std::vector<SpriteState> sprites;
+            std::vector<AnimatedSprite> sprites;
             
             static int lerp(int from, int to, float t);
             static Position lerp(Position from, Position to, float t);
