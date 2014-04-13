@@ -10,9 +10,9 @@ namespace Candies
         public:
             InfiniteGrid(Position origin, int gridSize)
             : origin(origin), gridSize(gridSize) { }
-            Position toPosition(Logic::Location loc);
-            bool isValid(Position pos);
-            Logic::Location toLocation(Position pos);
+            Position toPosition(Logic::Location loc) const;
+            bool isValid(Position pos) const;
+            Logic::Location toLocation(Position pos) const;
         private:
             Position origin;
             int gridSize;

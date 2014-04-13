@@ -11,9 +11,9 @@ namespace Candies
         {
         public:
             virtual ~Grid() { }
-            virtual Position toPosition(Logic::Location loc) = 0;
-            virtual bool isValid(Position pos) = 0;
-            virtual Logic::Location toLocation(Position pos) = 0;
+            virtual Position toPosition(Logic::Location loc) const = 0;
+            virtual bool isValid(Position pos) const = 0;
+            virtual Logic::Location toLocation(Position pos) const = 0;
         };
         
         typedef std::shared_ptr<Grid> GridPtr;
