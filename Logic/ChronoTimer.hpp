@@ -16,7 +16,5 @@ namespace Candies
             std::chrono::seconds time;
             std::chrono::steady_clock::time_point to;
         };
-        
-        typedef std::shared_ptr<Timer> TimerPtr;
     }
 }
