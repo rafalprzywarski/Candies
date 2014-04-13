@@ -77,10 +77,9 @@ namespace Candies
             setTime(CURRENT_TIME);
             animator.moveSprite(sprite2, FROM2, TO2);
             
+            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME);
             EXPECT_CALL(*sprite, drawAt(TO));
             EXPECT_CALL(*sprite2, drawAt(TO2));
-            
-            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME);
             
             animator.draw();
         }
@@ -91,10 +90,10 @@ namespace Candies
             setTime(CURRENT_TIME + ANIMATION_TIME / 2);
             animator.moveSprite(sprite2, FROM2, TO2);
             
+            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME / 2);
             EXPECT_CALL(*sprite, drawAt(Not(FROM)));
             EXPECT_CALL(*sprite2, drawAt(FROM2));
 
-            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME / 2);
             animator.draw();
         }
     }
