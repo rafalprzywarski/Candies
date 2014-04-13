@@ -11,7 +11,7 @@
 #include <UI/TimeMonitor.hpp>
 #include <Logic/ChronoTimer.hpp>
 #include <Logic/StdItemGenerator.hpp>
-#include <UI/InfiniteGrid.hpp>
+#include <UI/BoundedGrid.hpp>
 #include <UI/InstantSpriteAnimator.hpp>
 #include <UI/Background.hpp>
 
@@ -58,7 +58,7 @@ namespace Candies
     GameRunnerPtr GameRunnerFactory::createRunner()
     {
         auto const SCREEN_WIDTH = 755, SCREEN_HEIGHT = 600;
-        auto const GRID_SIZE = 42;
+        auto const GRID_SIZE = 42, BOARD_WIDTH = 8, BOARD_HEIGHT = 8;
         UI::Position BOARD_POSITION = { 330, 105 };
         std::string const FONT = "comicate.ttf";
         auto const FONT_SIZE = 60;
@@ -70,7 +70,7 @@ namespace Candies
         auto backgroundSprite = std::make_shared<UI::SDLSprite>(renderer, "BackGround.jpg");
         auto gems = loadGems(renderer);
         auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
-        auto grid = std::make_shared<UI::InfiniteGrid>(BOARD_POSITION, GRID_SIZE);
+        auto grid = std::make_shared<UI::BoundedGrid>(BOARD_POSITION, GRID_SIZE, BOARD_WIDTH, BOARD_HEIGHT);
         auto spriteAnimator = std::make_shared<UI::InstantSpriteAnimator>();
         auto board = std::make_shared<UI::AnimatedBoardView>(gems, selectionMarker, grid, spriteAnimator);
         auto timerLabel = std::make_shared<UI::SDLLabel>(renderer, FONT, FONT_SIZE, FONT_COLOR, TIMER_POSITION);

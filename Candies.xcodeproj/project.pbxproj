@@ -67,9 +67,9 @@
 		F057A82B18F7588500636C2E /* TimerMonitorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A82A18F7588500636C2E /* TimerMonitorTest.cpp */; };
 		F057A83018F75CBC00636C2E /* ChronoTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A82E18F75CBC00636C2E /* ChronoTimer.cpp */; };
 		F057A83118F75CBC00636C2E /* ChronoTimer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A82F18F75CBC00636C2E /* ChronoTimer.hpp */; };
-		F057A83518FA9FE800636C2E /* InfiniteGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A83318FA9FE800636C2E /* InfiniteGrid.cpp */; };
-		F057A83618FA9FE800636C2E /* InfiniteGrid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A83418FA9FE800636C2E /* InfiniteGrid.hpp */; };
-		F057A83818FAA3C200636C2E /* InfiniteGridTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A83718FAA3C200636C2E /* InfiniteGridTest.cpp */; };
+		F057A83518FA9FE800636C2E /* BoundedGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A83318FA9FE800636C2E /* BoundedGrid.cpp */; };
+		F057A83618FA9FE800636C2E /* BoundedGrid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A83418FA9FE800636C2E /* BoundedGrid.hpp */; };
+		F057A83818FAA3C200636C2E /* BoundedGridTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A83718FAA3C200636C2E /* BoundedGridTest.cpp */; };
 		F07AFB1118FAD002004B1126 /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F07AFB0F18FAD002004B1126 /* Background.cpp */; };
 		F07AFB1218FAD002004B1126 /* Background.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F07AFB1018FAD002004B1126 /* Background.hpp */; };
 		F07AFB1518FADAE9004B1126 /* LinearSpriteAnimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F07AFB1318FADAE9004B1126 /* LinearSpriteAnimator.cpp */; };
@@ -192,9 +192,9 @@
 		F057A82E18F75CBC00636C2E /* ChronoTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChronoTimer.cpp; sourceTree = "<group>"; };
 		F057A82F18F75CBC00636C2E /* ChronoTimer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChronoTimer.hpp; sourceTree = "<group>"; };
 		F057A83218FA9EA400636C2E /* Grid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Grid.hpp; sourceTree = "<group>"; };
-		F057A83318FA9FE800636C2E /* InfiniteGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InfiniteGrid.cpp; sourceTree = "<group>"; };
-		F057A83418FA9FE800636C2E /* InfiniteGrid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InfiniteGrid.hpp; sourceTree = "<group>"; };
-		F057A83718FAA3C200636C2E /* InfiniteGridTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InfiniteGridTest.cpp; sourceTree = "<group>"; };
+		F057A83318FA9FE800636C2E /* BoundedGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoundedGrid.cpp; sourceTree = "<group>"; };
+		F057A83418FA9FE800636C2E /* BoundedGrid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BoundedGrid.hpp; sourceTree = "<group>"; };
+		F057A83718FAA3C200636C2E /* BoundedGridTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoundedGridTest.cpp; sourceTree = "<group>"; };
 		F057A83918FAAB4500636C2E /* MockGrid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockGrid.hpp; sourceTree = "<group>"; };
 		F07AFB0B18FAC12A004B1126 /* InstantSpriteAnimator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InstantSpriteAnimator.hpp; sourceTree = "<group>"; };
 		F07AFB0C18FAC171004B1126 /* SpriteAnimator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SpriteAnimator.hpp; sourceTree = "<group>"; };
@@ -387,8 +387,8 @@
 				F057A82618F756D000636C2E /* TimeMonitor.hpp */,
 				F057A82918F7581700636C2E /* Switch.hpp */,
 				F057A83218FA9EA400636C2E /* Grid.hpp */,
-				F057A83318FA9FE800636C2E /* InfiniteGrid.cpp */,
-				F057A83418FA9FE800636C2E /* InfiniteGrid.hpp */,
+				F057A83318FA9FE800636C2E /* BoundedGrid.cpp */,
+				F057A83418FA9FE800636C2E /* BoundedGrid.hpp */,
 				F07AFB0B18FAC12A004B1126 /* InstantSpriteAnimator.hpp */,
 				F07AFB0C18FAC171004B1126 /* SpriteAnimator.hpp */,
 				F07AFB0E18FACB51004B1126 /* DrawFrameListener.hpp */,
@@ -504,7 +504,7 @@
 				F057A82A18F7588500636C2E /* TimerMonitorTest.cpp */,
 				F057A82C18F7591000636C2E /* MockLabel.hpp */,
 				F057A82D18F7598C00636C2E /* MockSwitch.hpp */,
-				F057A83718FAA3C200636C2E /* InfiniteGridTest.cpp */,
+				F057A83718FAA3C200636C2E /* BoundedGridTest.cpp */,
 				F057A83918FAAB4500636C2E /* MockGrid.hpp */,
 				F07AFB0D18FAC3FE004B1126 /* MockSpriteAnimator.hpp */,
 				F07AFB1718FADB59004B1126 /* LinearSpriteAnimatorTest.cpp */,
@@ -581,7 +581,7 @@
 				F057A7C818F5CD1300636C2E /* Position.hpp in Headers */,
 				F057A7C118F5CD1300636C2E /* BoardView.hpp in Headers */,
 				F057A7C718F5CD1300636C2E /* MouseItemSwapper.hpp in Headers */,
-				F057A83618FA9FE800636C2E /* InfiniteGrid.hpp in Headers */,
+				F057A83618FA9FE800636C2E /* BoundedGrid.hpp in Headers */,
 				F057A82818F756D000636C2E /* TimeMonitor.hpp in Headers */,
 				F057A7C918F5CD1300636C2E /* Sprite.hpp in Headers */,
 				F057A7CC18F5CD1300636C2E /* AnimatedBoardView.hpp in Headers */,
@@ -768,7 +768,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F057A80618F5D38A00636C2E /* MouseItemSwapperTest.cpp in Sources */,
-				F057A83818FAA3C200636C2E /* InfiniteGridTest.cpp in Sources */,
+				F057A83818FAA3C200636C2E /* BoundedGridTest.cpp in Sources */,
 				F057A80718F5D38A00636C2E /* AnimatedBoardViewTest.cpp in Sources */,
 				F057A80318F5D38A00636C2E /* BoardTest.cpp in Sources */,
 				F02A9F1618F1FF65008145C2 /* main.cpp in Sources */,
@@ -810,7 +810,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F057A7C618F5CD1300636C2E /* MouseItemSwapper.cpp in Sources */,
-				F057A83518FA9FE800636C2E /* InfiniteGrid.cpp in Sources */,
+				F057A83518FA9FE800636C2E /* BoundedGrid.cpp in Sources */,
 				F07AFB1518FADAE9004B1126 /* LinearSpriteAnimator.cpp in Sources */,
 				F057A82718F756D000636C2E /* TimeMonitor.cpp in Sources */,
 				F057A7CB18F5CD1300636C2E /* AnimatedBoardView.cpp in Sources */,
