@@ -72,6 +72,9 @@
 		F057A83818FAA3C200636C2E /* InfiniteGridTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A83718FAA3C200636C2E /* InfiniteGridTest.cpp */; };
 		F07AFB1118FAD002004B1126 /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F07AFB0F18FAD002004B1126 /* Background.cpp */; };
 		F07AFB1218FAD002004B1126 /* Background.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F07AFB1018FAD002004B1126 /* Background.hpp */; };
+		F07AFB1518FADAE9004B1126 /* LinearSpriteAnimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F07AFB1318FADAE9004B1126 /* LinearSpriteAnimator.cpp */; };
+		F07AFB1618FADAE9004B1126 /* LinearSpriteAnimator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F07AFB1418FADAE9004B1126 /* LinearSpriteAnimator.hpp */; };
+		F07AFB1818FADB59004B1126 /* LinearSpriteAnimatorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F07AFB1718FADB59004B1126 /* LinearSpriteAnimatorTest.cpp */; };
 		F0B4497118F47791006C6405 /* libGameCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F3E18F324C1008145C2 /* libGameCore.a */; };
 		F0B4497218F47796006C6405 /* libGameRunner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F6518F454C7008145C2 /* libGameRunner.a */; };
 		F0B4497C18F48934006C6405 /* libGameUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F7718F45DFE008145C2 /* libGameUI.a */; };
@@ -199,6 +202,9 @@
 		F07AFB0E18FACB51004B1126 /* DrawFrameListener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DrawFrameListener.hpp; sourceTree = "<group>"; };
 		F07AFB0F18FAD002004B1126 /* Background.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Background.cpp; sourceTree = "<group>"; };
 		F07AFB1018FAD002004B1126 /* Background.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Background.hpp; sourceTree = "<group>"; };
+		F07AFB1318FADAE9004B1126 /* LinearSpriteAnimator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinearSpriteAnimator.cpp; sourceTree = "<group>"; };
+		F07AFB1418FADAE9004B1126 /* LinearSpriteAnimator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LinearSpriteAnimator.hpp; sourceTree = "<group>"; };
+		F07AFB1718FADB59004B1126 /* LinearSpriteAnimatorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinearSpriteAnimatorTest.cpp; sourceTree = "<group>"; };
 		F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRunnerFactory.cpp; sourceTree = "<group>"; };
 		F0B4498918F4A3BD006C6405 /* GameRunnerFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameRunnerFactory.hpp; sourceTree = "<group>"; };
 		F0B4499218F4ABC0006C6405 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Blue.png; path = Resources/Blue.png; sourceTree = "<group>"; };
@@ -386,6 +392,8 @@
 				F07AFB0E18FACB51004B1126 /* DrawFrameListener.hpp */,
 				F07AFB0F18FAD002004B1126 /* Background.cpp */,
 				F07AFB1018FAD002004B1126 /* Background.hpp */,
+				F07AFB1318FADAE9004B1126 /* LinearSpriteAnimator.cpp */,
+				F07AFB1418FADAE9004B1126 /* LinearSpriteAnimator.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -496,6 +504,7 @@
 				F057A83718FAA3C200636C2E /* InfiniteGridTest.cpp */,
 				F057A83918FAAB4500636C2E /* MockGrid.hpp */,
 				F07AFB0D18FAC3FE004B1126 /* MockSpriteAnimator.hpp */,
+				F07AFB1718FADB59004B1126 /* LinearSpriteAnimatorTest.cpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -561,6 +570,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F057A7C218F5CD1300636C2E /* EventDispatcher.hpp in Headers */,
+				F07AFB1618FADAE9004B1126 /* LinearSpriteAnimator.hpp in Headers */,
 				F057A7C318F5CD1300636C2E /* UpdateFrameListener.hpp in Headers */,
 				F057A7C418F5CD1300636C2E /* MouseEventListener.hpp in Headers */,
 				F07AFB1218FAD002004B1126 /* Background.hpp in Headers */,
@@ -761,6 +771,7 @@
 				F057A80418F5D38A00636C2E /* GameTest.cpp in Sources */,
 				F057A80518F5D38A00636C2E /* GameRunnerTest.cpp in Sources */,
 				F057A82B18F7588500636C2E /* TimerMonitorTest.cpp in Sources */,
+				F07AFB1818FADB59004B1126 /* LinearSpriteAnimatorTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,6 +807,7 @@
 			files = (
 				F057A7C618F5CD1300636C2E /* MouseItemSwapper.cpp in Sources */,
 				F057A83518FA9FE800636C2E /* InfiniteGrid.cpp in Sources */,
+				F07AFB1518FADAE9004B1126 /* LinearSpriteAnimator.cpp in Sources */,
 				F057A82718F756D000636C2E /* TimeMonitor.cpp in Sources */,
 				F057A7CB18F5CD1300636C2E /* AnimatedBoardView.cpp in Sources */,
 				F07AFB1118FAD002004B1126 /* Background.cpp in Sources */,
