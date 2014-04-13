@@ -1,7 +1,6 @@
 #pragma once
 #include "Position.hpp"
 #include <memory>
-#include <string>
 
 namespace Candies
 {

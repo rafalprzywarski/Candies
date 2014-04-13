@@ -5,8 +5,8 @@ namespace Candies
 {
     namespace UI
     {
-        StaticBoardView::StaticBoardView(Sprites sprites, SpritePtr selectionMarker, int gridSize, Position origin)
-        : sprites(sprites.begin(), sprites.end()), selectionMarker(selectionMarker), gridSize(gridSize), origin(origin)
+        StaticBoardView::StaticBoardView(Sprites sprites, SpritePtr selectionMarker, GridPtr grid)
+        : sprites(sprites.begin(), sprites.end()), selectionMarker(selectionMarker), grid(grid)
         {
         }
 
@@ -44,17 +44,17 @@ namespace Candies
         void StaticBoardView::update()
         {
             for (auto const& item : items)
-                item.second->drawAt(toPosition(item.first));
+                item.second->drawAt(grid->toPosition(item.first));
             for (auto const& itemLoc : selection)
-                selectionMarker->drawAt(toPosition(itemLoc));
+                selectionMarker->drawAt(grid->toPosition(itemLoc));
         }
         
         void StaticBoardView::selectItemAt(Position pos)
         {
-            if (pos.x < origin.x || pos.y < origin.y)
+            if (!grid->isValid(pos))
                 return;
 
-            auto itemLoc = toLocation(pos);
+            auto itemLoc = grid->toLocation(pos);
             if (itemExists(itemLoc) && !isItemAlreadySelected(itemLoc))
                 selection.push_back(itemLoc);
         }
@@ -67,16 +67,6 @@ namespace Candies
         void StaticBoardView::clearSelection()
         {
             selection.clear();
-        }
-
-        Position StaticBoardView::toPosition(Logic::Location loc)
-        {
-            return {int(loc.x) * gridSize + origin.x, int(loc.y) * gridSize + origin.y};
-        }
-
-        Logic::Location StaticBoardView::toLocation(Position pos)
-        {
-            return {unsigned(pos.x - origin.x) / gridSize, unsigned(pos.y - origin.y) / gridSize};
         }
 
         bool StaticBoardView::itemExists(Logic::Location loc)

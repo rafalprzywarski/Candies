@@ -2,6 +2,8 @@
 #include "MockSprite.hpp"
 #include <gtest/gtest.h>
 
+#include "InfiniteGrid.hpp"
+
 using namespace testing;
 
 namespace Candies
@@ -18,7 +20,7 @@ namespace Candies
             const Logic::Location ITEM3_LOCATION{0, 0}, ITEM7_LOCATION{3, 2};
             const Position ITEM3_POSITION{POSITION.x, POSITION.y};
             const Position ITEM7_POSITION{POSITION.x + GRID_SIZE * 3, POSITION.y + GRID_SIZE * 2};
-            StaticBoardView board{{{3, item3}, {7, item7}}, selection, GRID_SIZE, POSITION};
+            StaticBoardView board{{{3, item3}, {7, item7}}, selection, std::make_shared<InfiniteGrid>(POSITION, GRID_SIZE)};
             const Logic::ItemId INVALID_ID = 2;
         };
 

@@ -11,6 +11,7 @@
 #include <UI/TimeMonitor.hpp>
 #include <Logic/ChronoTimer.hpp>
 #include <Logic/StdItemGenerator.hpp>
+#include <UI/InfiniteGrid.hpp>
 
 namespace Candies
 {
@@ -64,7 +65,8 @@ namespace Candies
         auto background = std::make_shared<UI::SDLSprite>(renderer, "BackGround.jpg");
         auto gems = loadGems(renderer);
         auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
-        auto board = std::make_shared<UI::StaticBoardView>(gems, selectionMarker, GRID_SIZE, BOARD_POSITION);
+        auto grid = std::make_shared<UI::InfiniteGrid>(BOARD_POSITION, GRID_SIZE);
+        auto board = std::make_shared<UI::StaticBoardView>(gems, selectionMarker, grid);
         auto timerLabel = std::make_shared<UI::SDLLabel>(renderer, FONT, FONT_SIZE, FONT_COLOR, TIMER_POSITION);
         auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, background, board, timerLabel);
         auto itemGenerator = std::make_shared<Candies::Logic::StdItemGenerator>(gems.size());
