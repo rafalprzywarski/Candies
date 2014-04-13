@@ -7,7 +7,8 @@ namespace Candies
         void LinearSpriteAnimator::moveSprite(SpritePtr sprite, Position from, Position to)
         {
             this->sprite = sprite;
-            this->from = from;
+            this->position = from;
+            this->to = to;
         }
         
         void LinearSpriteAnimator::destroySpriteAt(SpritePtr sprite, Position at)
@@ -21,7 +22,12 @@ namespace Candies
         
         void LinearSpriteAnimator::draw() const
         {
-            sprite->drawAt(from);
+            sprite->drawAt(position);
+        }
+        
+        void LinearSpriteAnimator::updateFrame()
+        {
+            position = to;
         }
     }
 }
