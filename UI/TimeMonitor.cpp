@@ -5,7 +5,7 @@ namespace Candies
 {
     namespace UI
     {
-        void TimeMonitor::update()
+        void TimeMonitor::updateFrame()
         {
             auto time = timer->getTime();
             label->setText(toString(time));

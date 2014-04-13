@@ -22,7 +22,7 @@ namespace Candies
         {
             EXPECT_CALL(*timer, getTime()).WillOnce(Return(55));
             EXPECT_CALL(*label, setText("55"));
-            monitor.update();
+            monitor.updateFrame();
         }
         
         TEST_F(TimeMonitorTest, should_disable_the_switch_when_time_runs_out)
@@ -30,7 +30,7 @@ namespace Candies
             EXPECT_CALL(*timer, getTime()).WillOnce(Return(0));
             EXPECT_CALL(*label, setText(_));
             EXPECT_CALL(*switch_, disable());
-            monitor.update();
+            monitor.updateFrame();
         }
     }
 }

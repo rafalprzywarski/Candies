@@ -23,8 +23,10 @@ namespace Candies
                 }
             }
             
-            for (auto& listener : frameUpdateListeners)
-                listener->update();
+            for (auto& listener : updateFrameListeners)
+                listener->updateFrame();
+            
+            gameUI->drawFrame();
         }
         
         bool SDLEventDispatcher::isFinished() const

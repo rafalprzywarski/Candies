@@ -1,25 +1,27 @@
 #pragma once
 #include <UI/EventDispatcher.hpp>
-#include <UI/FrameUpdateListener.hpp>
+#include <UI/UpdateFrameListener.hpp>
 #include <UI/MouseEventListener.hpp>
+#include <SDLUI/SDLGameUI.hpp>
 #include <vector>
 
 namespace Candies
 {
     namespace UI
     {
-        typedef std::vector<FrameUpdateListenerPtr> FrameUpdateListeners;
+        typedef std::vector<UpdateFrameListenerPtr> UpdateFrameListeners;
 
         class SDLEventDispatcher : public EventDispatcher
         {
         public:
-            SDLEventDispatcher(FrameUpdateListeners frameUpdateListeners, MouseEventListenerPtr mouseEventListener)
-            : frameUpdateListeners(frameUpdateListeners), mouseEventListener(mouseEventListener) { }
+            SDLEventDispatcher(UpdateFrameListeners updateFrameListeners, SDLGameUIPtr gameUI, MouseEventListenerPtr mouseEventListener)
+            : updateFrameListeners(updateFrameListeners), gameUI(gameUI), mouseEventListener(mouseEventListener) { }
             virtual void dispatch();
             virtual bool isFinished() const;
         private:
             bool finished = false;
-            FrameUpdateListeners frameUpdateListeners;
+            UpdateFrameListeners updateFrameListeners;
+            SDLGameUIPtr gameUI;
             MouseEventListenerPtr mouseEventListener;
         };
     }

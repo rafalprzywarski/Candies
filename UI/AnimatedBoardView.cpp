@@ -49,7 +49,7 @@ namespace Candies
             animator->moveSprite(item, grid->toPosition(from), grid->toPosition(to));
         }
 
-        void AnimatedBoardView::update()
+        void AnimatedBoardView::drawFrame() const
         {
             animator->draw();
             for (auto const& itemLoc : selection)

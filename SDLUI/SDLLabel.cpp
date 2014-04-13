@@ -13,7 +13,7 @@ namespace Candies
             setText({});
         }
         
-        void SDLLabel::update()
+        void SDLLabel::drawFrame() const
         {
             SDL_Rect target{};
             target.x = position.x;

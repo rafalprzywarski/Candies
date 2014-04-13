@@ -2,19 +2,19 @@
 #include <Logic/Timer.hpp>
 #include "Label.hpp"
 #include "Switch.hpp"
-#include "FrameUpdateListener.hpp"
+#include "UpdateFrameListener.hpp"
 #include <memory>
 
 namespace Candies
 {
     namespace UI
     {
-        class TimeMonitor : public FrameUpdateListener
+        class TimeMonitor : public UpdateFrameListener
         {
         public:
             TimeMonitor(Logic::TimerPtr timer, LabelPtr label, SwitchPtr switch_)
             : timer(timer), label(label), switch_(switch_) { }
-            virtual void update();
+            virtual void updateFrame();
         private:
             Logic::TimerPtr timer;
             LabelPtr label;

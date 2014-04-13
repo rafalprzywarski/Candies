@@ -1,6 +1,7 @@
 #pragma once
 #include <UI/Label.hpp>
 #include <UI/Position.hpp>
+#include <UI/DrawFrameListener.hpp>
 #include <SDL2/SDL.h>
 #include <SDL2_ttf/SDL_ttf.h>
 
@@ -15,11 +16,11 @@ namespace Candies
             : std::runtime_error("Error while loading " + filename + ": " + message) { }
         };
 
-        class SDLLabel : public Label
+        class SDLLabel : public Label, public DrawFrameListener
         {
         public:
             SDLLabel(std::shared_ptr<SDL_Renderer> renderer, const std::string& fontFile, int fontHeight, SDL_Color color, Position position);
-            virtual void update();
+            virtual void drawFrame() const;
             virtual void setText(const std::string& text);
         private:
             std::shared_ptr<TTF_Font> font;

@@ -11,7 +11,6 @@ namespace Candies
         {
         public:
             virtual ~Label() { }
-            virtual void update() = 0;
             virtual void setText(const std::string& text) = 0;
         };
         

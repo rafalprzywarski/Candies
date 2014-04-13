@@ -3,7 +3,7 @@
 #include <Logic/Location.hpp>
 #include "Sprite.hpp"
 #include "Position.hpp"
-#include "FrameUpdateListener.hpp"
+#include "DrawFrameListener.hpp"
 #include "BoardView.hpp"
 #include "Grid.hpp"
 #include "SpriteAnimator.hpp"
@@ -16,7 +16,7 @@ namespace Candies
 {
     namespace UI
     {
-        class AnimatedBoardView : public FrameUpdateListener, public BoardView
+        class AnimatedBoardView : public DrawFrameListener, public BoardView
         {
         public:
             typedef std::vector<std::pair<const Logic::ItemId, SpritePtr>> Sprites;
@@ -25,7 +25,7 @@ namespace Candies
             void swapItems(Logic::Location loc1, Logic::Location loc2);
             void removeItem(Logic::Location loc);
             void moveItem(Logic::Location from, Logic::Location to);
-            void update();
+            void drawFrame() const;
             void selectItemAt(Position pos);
             Logic::Locations getSelectedItemLocations() const;
             void clearSelection();

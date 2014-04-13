@@ -7,17 +7,16 @@ namespace Candies
 {
     namespace UI
     {
-        SDLGameUI::SDLGameUI(std::shared_ptr<SDL_Renderer> renderer, SpritePtr background, FrameUpdateListenerPtr board, LabelPtr timer)
-        : renderer(renderer), background(background), board(board), timer(timer)
+        SDLGameUI::SDLGameUI(std::shared_ptr<SDL_Renderer> renderer, DrawFrameListeners drawListeners)
+        : renderer(renderer), drawListeners(drawListeners)
         {
         }
         
-        void SDLGameUI::update()
+        void SDLGameUI::drawFrame() const
         {
             SDL_RenderClear(&*renderer);
-            background->drawAt({0, 0});
-            board->update();
-            timer->update();
+            for (auto& l : drawListeners)
+                l->drawFrame();
             SDL_RenderPresent(&*renderer);
         }
     }

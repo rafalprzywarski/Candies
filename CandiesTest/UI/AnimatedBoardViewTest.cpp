@@ -44,9 +44,9 @@ namespace Candies
             }
         };
 
-        TEST_F(AnimatedBoardViewTest, should_display_nothing_when_created)
+        TEST_F(AnimatedBoardViewTest, should_draw_nothing_when_created)
         {
-            board.update();
+            board.drawFrame();
         }
         
         TEST_F(AnimatedBoardViewTest, should_fail_when_added_item_has_invalid_id)
@@ -131,7 +131,7 @@ namespace Candies
             ASSERT_EQ(1u, board.getSelectedItemLocations().size());
         }
         
-        TEST_F(AnimatedBoardViewTest, should_display_items_then_the_selection)
+        TEST_F(AnimatedBoardViewTest, should_draw_items_then_the_selection)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
@@ -142,7 +142,7 @@ namespace Candies
             EXPECT_CALL(*selection, drawAt(ITEM3_POSITION)).After(sprites);
             EXPECT_CALL(*selection, drawAt(ITEM7_POSITION)).After(sprites);
             
-            board.update();
+            board.drawFrame();
         }
         
         TEST_F(AnimatedBoardViewTest, should_swap_items)

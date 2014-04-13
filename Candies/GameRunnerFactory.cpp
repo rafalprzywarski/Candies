@@ -13,6 +13,7 @@
 #include <Logic/StdItemGenerator.hpp>
 #include <UI/InfiniteGrid.hpp>
 #include <UI/InstantSpriteAnimator.hpp>
+#include <UI/Background.hpp>
 
 namespace Candies
 {
@@ -63,22 +64,24 @@ namespace Candies
         std::chrono::seconds const GAME_TIME(60);
 
         auto renderer = UI::SDLRendererFactory().createRenderer(SCREEN_WIDTH, SCREEN_HEIGHT);
-        auto background = std::make_shared<UI::SDLSprite>(renderer, "BackGround.jpg");
+        auto backgroundSprite = std::make_shared<UI::SDLSprite>(renderer, "BackGround.jpg");
         auto gems = loadGems(renderer);
         auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
         auto grid = std::make_shared<UI::InfiniteGrid>(BOARD_POSITION, GRID_SIZE);
         auto spriteAnimator = std::make_shared<UI::InstantSpriteAnimator>();
         auto board = std::make_shared<UI::AnimatedBoardView>(gems, selectionMarker, grid, spriteAnimator);
         auto timerLabel = std::make_shared<UI::SDLLabel>(renderer, FONT, FONT_SIZE, FONT_COLOR, TIMER_POSITION);
-        auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, background, board, timerLabel);
+        auto background = std::make_shared<UI::Background>(backgroundSprite);
+        UI::DrawFrameListeners uiElements = { background, board, timerLabel };
+        auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, uiElements);
         auto itemGenerator = std::make_shared<Candies::Logic::StdItemGenerator>(gems.size());
         auto gameObserver = std::make_shared<BoardViewConnector>(board);
         auto gameLogic = Candies::Logic::GameFactory().createGame(itemGenerator, gameObserver);
         auto mouseItemSwapper = std::make_shared<Candies::UI::MouseItemSwapper>(board, gameLogic);
         auto timer = std::make_shared<Logic::ChronoTimer>(GAME_TIME);
         auto timeMonitor = std::make_shared<UI::TimeMonitor>(timer, timerLabel, mouseItemSwapper);
-        UI::FrameUpdateListeners frameListeners = { ui, timeMonitor };
-        auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(frameListeners, mouseItemSwapper);
+        UI::UpdateFrameListeners updateListeners = { timeMonitor };
+        auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(updateListeners, ui, mouseItemSwapper);
         auto runner = std::make_shared<Candies::GameRunner>(gameLogic, timer, dispatcher);
         return runner;
     }
