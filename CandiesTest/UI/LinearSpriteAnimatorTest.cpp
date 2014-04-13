@@ -100,7 +100,6 @@ namespace Candies
         TEST_F(LinearSpriteAnimatorTest, should_chain_moving_animations_by_sprite_and_final_position)
         {
             animator.moveSprite(sprite, FROM, TO);
-            setTime(CURRENT_TIME + ANIMATION_TIME / 2);
             animator.moveSprite(sprite, TO, TO2);
             
             setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME / 2);
