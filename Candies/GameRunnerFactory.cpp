@@ -6,7 +6,7 @@
 #include "MouseItemSwapper.hpp"
 #include "SDLRendererFactory.hpp"
 #include "SDLSprite.hpp"
-#include "StaticBoardView.hpp"
+#include "AnimatedBoardView.hpp"
 #include <SDLUI/SDLLabel.hpp>
 #include <UI/TimeMonitor.hpp>
 #include <Logic/ChronoTimer.hpp>
@@ -19,7 +19,7 @@ namespace Candies
     class BoardViewConnector : public Candies::Logic::GameObserver
     {
     public:
-        BoardViewConnector(UI::StaticBoardViewPtr board) : board(board) { }
+        BoardViewConnector(UI::AnimatedBoardViewPtr board) : board(board) { }
         virtual void itemAdded(Candies::Logic::ItemId item, Candies::Logic::Location loc)
         {
             board->addItem(item, loc);
@@ -39,13 +39,13 @@ namespace Candies
         }
 
     private:
-        UI::StaticBoardViewPtr board;
+        UI::AnimatedBoardViewPtr board;
     };
     
-    UI::StaticBoardView::Sprites loadGems(std::shared_ptr<SDL_Renderer> renderer)
+    UI::AnimatedBoardView::Sprites loadGems(std::shared_ptr<SDL_Renderer> renderer)
     {
         std::vector<std::string> files = { "Blue.png", "Green.png", "Purple.png", "Red.png", "Yellow.png" };
-        UI::StaticBoardView::Sprites gems;
+        UI::AnimatedBoardView::Sprites gems;
         for (auto& file : files)
             gems.push_back({gems.size(), std::make_shared<UI::SDLSprite>(renderer, file)});
         return gems;
@@ -68,7 +68,7 @@ namespace Candies
         auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
         auto grid = std::make_shared<UI::InfiniteGrid>(BOARD_POSITION, GRID_SIZE);
         auto spriteAnimator = std::make_shared<UI::InstantSpriteAnimator>();
-        auto board = std::make_shared<UI::StaticBoardView>(gems, selectionMarker, grid, spriteAnimator);
+        auto board = std::make_shared<UI::AnimatedBoardView>(gems, selectionMarker, grid, spriteAnimator);
         auto timerLabel = std::make_shared<UI::SDLLabel>(renderer, FONT, FONT_SIZE, FONT_COLOR, TIMER_POSITION);
         auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, background, board, timerLabel);
         auto itemGenerator = std::make_shared<Candies::Logic::StdItemGenerator>(gems.size());

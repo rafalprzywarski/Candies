@@ -31,9 +31,9 @@
 		F057A7C718F5CD1300636C2E /* MouseItemSwapper.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7BC18F5CD1300636C2E /* MouseItemSwapper.hpp */; };
 		F057A7C818F5CD1300636C2E /* Position.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7BD18F5CD1300636C2E /* Position.hpp */; };
 		F057A7C918F5CD1300636C2E /* Sprite.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7BE18F5CD1300636C2E /* Sprite.hpp */; };
-		F057A7CA18F5CD1300636C2E /* StaticBoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */; };
-		F057A7CB18F5CD1300636C2E /* StaticBoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */; };
-		F057A7CC18F5CD1300636C2E /* StaticBoardView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7C018F5CD1300636C2E /* StaticBoardView.hpp */; };
+		F057A7CA18F5CD1300636C2E /* AnimatedBoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BF18F5CD1300636C2E /* AnimatedBoardView.cpp */; };
+		F057A7CB18F5CD1300636C2E /* AnimatedBoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7BF18F5CD1300636C2E /* AnimatedBoardView.cpp */; };
+		F057A7CC18F5CD1300636C2E /* AnimatedBoardView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7C018F5CD1300636C2E /* AnimatedBoardView.hpp */; };
 		F057A7DE18F5CFC000636C2E /* Board.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7D318F5CFC000636C2E /* Board.hpp */; };
 		F057A7DF18F5CFC000636C2E /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7D418F5CFC000636C2E /* Game.cpp */; };
 		F057A7E018F5CFC000636C2E /* Game.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F057A7D518F5CFC000636C2E /* Game.hpp */; };
@@ -52,7 +52,7 @@
 		F057A80418F5D38A00636C2E /* GameTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7F718F5D38A00636C2E /* GameTest.cpp */; };
 		F057A80518F5D38A00636C2E /* GameRunnerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7FC18F5D38A00636C2E /* GameRunnerTest.cpp */; };
 		F057A80618F5D38A00636C2E /* MouseItemSwapperTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A80118F5D38A00636C2E /* MouseItemSwapperTest.cpp */; };
-		F057A80718F5D38A00636C2E /* StaticBoardViewTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A80218F5D38A00636C2E /* StaticBoardViewTest.cpp */; };
+		F057A80718F5D38A00636C2E /* AnimatedBoardViewTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A80218F5D38A00636C2E /* AnimatedBoardViewTest.cpp */; };
 		F057A81318F5D4BC00636C2E /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = F057A80A18F5D4BC00636C2E /* ResourcePath.mm */; };
 		F057A81418F5D4BC00636C2E /* SDLEventDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A80B18F5D4BC00636C2E /* SDLEventDispatcher.cpp */; };
 		F057A81518F5D4BC00636C2E /* SDLGameUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A80D18F5D4BC00636C2E /* SDLGameUI.cpp */; };
@@ -134,8 +134,8 @@
 		F057A7BC18F5CD1300636C2E /* MouseItemSwapper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MouseItemSwapper.hpp; sourceTree = "<group>"; };
 		F057A7BD18F5CD1300636C2E /* Position.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Position.hpp; sourceTree = "<group>"; };
 		F057A7BE18F5CD1300636C2E /* Sprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
-		F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoardView.cpp; sourceTree = "<group>"; };
-		F057A7C018F5CD1300636C2E /* StaticBoardView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StaticBoardView.hpp; sourceTree = "<group>"; };
+		F057A7BF18F5CD1300636C2E /* AnimatedBoardView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedBoardView.cpp; sourceTree = "<group>"; };
+		F057A7C018F5CD1300636C2E /* AnimatedBoardView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimatedBoardView.hpp; sourceTree = "<group>"; };
 		F057A7D318F5CFC000636C2E /* Board.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Board.hpp; sourceTree = "<group>"; };
 		F057A7D418F5CFC000636C2E /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		F057A7D518F5CFC000636C2E /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 		F057A7FF18F5D38A00636C2E /* MockEventDispatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MockEventDispatcher.hpp; sourceTree = "<group>"; };
 		F057A80018F5D38A00636C2E /* MockSprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MockSprite.hpp; sourceTree = "<group>"; };
 		F057A80118F5D38A00636C2E /* MouseItemSwapperTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseItemSwapperTest.cpp; sourceTree = "<group>"; };
-		F057A80218F5D38A00636C2E /* StaticBoardViewTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticBoardViewTest.cpp; sourceTree = "<group>"; };
+		F057A80218F5D38A00636C2E /* AnimatedBoardViewTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedBoardViewTest.cpp; sourceTree = "<group>"; };
 		F057A80918F5D4BC00636C2E /* ResourcePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourcePath.h; sourceTree = "<group>"; };
 		F057A80A18F5D4BC00636C2E /* ResourcePath.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
 		F057A80B18F5D4BC00636C2E /* SDLEventDispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDLEventDispatcher.cpp; sourceTree = "<group>"; };
@@ -366,8 +366,8 @@
 				F057A7BC18F5CD1300636C2E /* MouseItemSwapper.hpp */,
 				F057A7BD18F5CD1300636C2E /* Position.hpp */,
 				F057A7BE18F5CD1300636C2E /* Sprite.hpp */,
-				F057A7BF18F5CD1300636C2E /* StaticBoardView.cpp */,
-				F057A7C018F5CD1300636C2E /* StaticBoardView.hpp */,
+				F057A7BF18F5CD1300636C2E /* AnimatedBoardView.cpp */,
+				F057A7C018F5CD1300636C2E /* AnimatedBoardView.hpp */,
 				F057A81A18F7451300636C2E /* Label.hpp */,
 				F057A82518F756D000636C2E /* TimeMonitor.cpp */,
 				F057A82618F756D000636C2E /* TimeMonitor.hpp */,
@@ -480,7 +480,7 @@
 				F057A7FF18F5D38A00636C2E /* MockEventDispatcher.hpp */,
 				F057A80018F5D38A00636C2E /* MockSprite.hpp */,
 				F057A80118F5D38A00636C2E /* MouseItemSwapperTest.cpp */,
-				F057A80218F5D38A00636C2E /* StaticBoardViewTest.cpp */,
+				F057A80218F5D38A00636C2E /* AnimatedBoardViewTest.cpp */,
 				F057A82A18F7588500636C2E /* TimerMonitorTest.cpp */,
 				F057A82C18F7591000636C2E /* MockLabel.hpp */,
 				F057A82D18F7598C00636C2E /* MockSwitch.hpp */,
@@ -559,7 +559,7 @@
 				F057A83618FA9FE800636C2E /* InfiniteGrid.hpp in Headers */,
 				F057A82818F756D000636C2E /* TimeMonitor.hpp in Headers */,
 				F057A7C918F5CD1300636C2E /* Sprite.hpp in Headers */,
-				F057A7CC18F5CD1300636C2E /* StaticBoardView.hpp in Headers */,
+				F057A7CC18F5CD1300636C2E /* AnimatedBoardView.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,7 +728,7 @@
 				F0B4498A18F4A3BD006C6405 /* GameRunnerFactory.cpp in Sources */,
 				F057A81718F5D4BC00636C2E /* SDLSprite.cpp in Sources */,
 				F057A81618F5D4BC00636C2E /* SDLRendererFactory.cpp in Sources */,
-				F057A7CA18F5CD1300636C2E /* StaticBoardView.cpp in Sources */,
+				F057A7CA18F5CD1300636C2E /* AnimatedBoardView.cpp in Sources */,
 				F057A81318F5D4BC00636C2E /* ResourcePath.mm in Sources */,
 				F02A9F0218F1FAC3008145C2 /* main.cpp in Sources */,
 				F057A7C518F5CD1300636C2E /* MouseItemSwapper.cpp in Sources */,
@@ -744,7 +744,7 @@
 			files = (
 				F057A80618F5D38A00636C2E /* MouseItemSwapperTest.cpp in Sources */,
 				F057A83818FAA3C200636C2E /* InfiniteGridTest.cpp in Sources */,
-				F057A80718F5D38A00636C2E /* StaticBoardViewTest.cpp in Sources */,
+				F057A80718F5D38A00636C2E /* AnimatedBoardViewTest.cpp in Sources */,
 				F057A80318F5D38A00636C2E /* BoardTest.cpp in Sources */,
 				F02A9F1618F1FF65008145C2 /* main.cpp in Sources */,
 				F057A80418F5D38A00636C2E /* GameTest.cpp in Sources */,
@@ -786,7 +786,7 @@
 				F057A7C618F5CD1300636C2E /* MouseItemSwapper.cpp in Sources */,
 				F057A83518FA9FE800636C2E /* InfiniteGrid.cpp in Sources */,
 				F057A82718F756D000636C2E /* TimeMonitor.cpp in Sources */,
-				F057A7CB18F5CD1300636C2E /* StaticBoardView.cpp in Sources */,
+				F057A7CB18F5CD1300636C2E /* AnimatedBoardView.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

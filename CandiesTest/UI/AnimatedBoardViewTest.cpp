@@ -1,4 +1,4 @@
-#include <UI/StaticBoardView.hpp>
+#include <UI/AnimatedBoardView.hpp>
 #include "MockSprite.hpp"
 #include "MockGrid.hpp"
 #include <gtest/gtest.h>
@@ -11,7 +11,7 @@ namespace Candies
 {
     namespace UI
     {
-        struct StaticBoardViewTest : Test
+        struct AnimatedBoardViewTest : Test
         {
             MockSpritePtr item3 = std::make_shared<StrictMock<MockSprite>>();
             MockSpritePtr item7 = std::make_shared<StrictMock<MockSprite>>();
@@ -25,7 +25,7 @@ namespace Candies
             MockGridPtr grid = std::make_shared<StrictMock<MockGrid>>();
             SpriteAnimatorPtr animator = std::make_shared<StrictMock<InstantSpriteAnimator>>();
             
-            StaticBoardView board{{{3, item3}, {7, item7}}, selection, grid, animator};
+            AnimatedBoardView board{{{3, item3}, {7, item7}}, selection, grid, animator};
             const Logic::ItemId INVALID_ID = 2;
             
             void expectGridConversions(Logic::Location loc, Position pos)
@@ -35,7 +35,7 @@ namespace Candies
                 EXPECT_CALL(*grid, isValid(pos)).WillRepeatedly(Return(true));
             }
             
-            StaticBoardViewTest()
+            AnimatedBoardViewTest()
             {
                 EXPECT_CALL(*grid, isValid(_)).WillRepeatedly(Return(true));
                 expectGridConversions(ITEM3_LOCATION, ITEM3_POSITION);
@@ -44,12 +44,12 @@ namespace Candies
             }
         };
 
-        TEST_F(StaticBoardViewTest, should_display_nothing_when_created)
+        TEST_F(AnimatedBoardViewTest, should_display_nothing_when_created)
         {
             board.update();
         }
         
-        TEST_F(StaticBoardViewTest, should_display_added_items_according_to_grid_position)
+        TEST_F(AnimatedBoardViewTest, should_display_added_items_according_to_grid_position)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
@@ -60,12 +60,12 @@ namespace Candies
             board.update();
         }
         
-        TEST_F(StaticBoardViewTest, should_fail_when_added_item_has_invalid_id)
+        TEST_F(AnimatedBoardViewTest, should_fail_when_added_item_has_invalid_id)
         {
             ASSERT_THROW(board.addItem(INVALID_ID, {0, 0}), std::out_of_range);
         }
         
-        TEST_F(StaticBoardViewTest, should_not_select_anything_when_position_is_not_valid)
+        TEST_F(AnimatedBoardViewTest, should_not_select_anything_when_position_is_not_valid)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
@@ -78,7 +78,7 @@ namespace Candies
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
         }
 
-        TEST_F(StaticBoardViewTest, should_not_select_anything_when_there_are_no_items)
+        TEST_F(AnimatedBoardViewTest, should_not_select_anything_when_there_are_no_items)
         {
             EXPECT_CALL(*grid, toLocation(_)).WillRepeatedly(Return(ANY_LOCATION));
 
@@ -87,12 +87,12 @@ namespace Candies
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
         }
         
-        TEST_F(StaticBoardViewTest, should_select_nothing_when_created)
+        TEST_F(AnimatedBoardViewTest, should_select_nothing_when_created)
         {
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
         }
         
-        TEST_F(StaticBoardViewTest, should_select_items_at_given_coordinates_based_on_grid)
+        TEST_F(AnimatedBoardViewTest, should_select_items_at_given_coordinates_based_on_grid)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
@@ -112,7 +112,7 @@ namespace Candies
             ASSERT_EQ(ITEM7_LOCATION, board.getSelectedItemLocations().at(1));
         }
         
-        TEST_F(StaticBoardViewTest, should_only_select_existing_items)
+        TEST_F(AnimatedBoardViewTest, should_only_select_existing_items)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
@@ -121,7 +121,7 @@ namespace Candies
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
         }
         
-        TEST_F(StaticBoardViewTest, should_clear_selection)
+        TEST_F(AnimatedBoardViewTest, should_clear_selection)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
@@ -133,7 +133,7 @@ namespace Candies
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
         }
 
-        TEST_F(StaticBoardViewTest, should_not_select_the_same_item_twice)
+        TEST_F(AnimatedBoardViewTest, should_not_select_the_same_item_twice)
         {
             board.addItem(3, ITEM3_LOCATION);
 
@@ -142,7 +142,7 @@ namespace Candies
             ASSERT_EQ(1u, board.getSelectedItemLocations().size());
         }
         
-        TEST_F(StaticBoardViewTest, should_display_item_selection)
+        TEST_F(AnimatedBoardViewTest, should_display_item_selection)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
@@ -158,7 +158,7 @@ namespace Candies
             board.update();
         }
         
-        TEST_F(StaticBoardViewTest, should_swap_items)
+        TEST_F(AnimatedBoardViewTest, should_swap_items)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
@@ -171,7 +171,7 @@ namespace Candies
             board.update();
         }
         
-        TEST_F(StaticBoardViewTest, should_ignore_invalid_swaps)
+        TEST_F(AnimatedBoardViewTest, should_ignore_invalid_swaps)
         {
             board.addItem(3, ITEM3_LOCATION);
             
@@ -186,7 +186,7 @@ namespace Candies
             board.update();
         }
         
-        TEST_F(StaticBoardViewTest, should_remove_items)
+        TEST_F(AnimatedBoardViewTest, should_remove_items)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
@@ -196,7 +196,7 @@ namespace Candies
             board.update();
         }
         
-        TEST_F(StaticBoardViewTest, should_ignore_invalid_removals)
+        TEST_F(AnimatedBoardViewTest, should_ignore_invalid_removals)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.removeItem(ITEM7_LOCATION);
@@ -205,7 +205,7 @@ namespace Candies
             board.update();
         }
         
-        TEST_F(StaticBoardViewTest, should_move_items)
+        TEST_F(AnimatedBoardViewTest, should_move_items)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.moveItem(ITEM3_LOCATION, ITEM7_LOCATION);
@@ -214,7 +214,7 @@ namespace Candies
             board.update();
         }
         
-        TEST_F(StaticBoardViewTest, should_ignore_invalid_moves)
+        TEST_F(AnimatedBoardViewTest, should_ignore_invalid_moves)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.moveItem(ITEM7_LOCATION, ITEM3_LOCATION);

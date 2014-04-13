@@ -16,11 +16,11 @@ namespace Candies
 {
     namespace UI
     {
-        class StaticBoardView : public FrameUpdateListener, public BoardView
+        class AnimatedBoardView : public FrameUpdateListener, public BoardView
         {
         public:
             typedef std::vector<std::pair<const Logic::ItemId, SpritePtr>> Sprites;
-            StaticBoardView(Sprites sprites, SpritePtr selectionMarker, GridPtr grid, SpriteAnimatorPtr animator);
+            AnimatedBoardView(Sprites sprites, SpritePtr selectionMarker, GridPtr grid, SpriteAnimatorPtr animator);
             void addItem(Logic::ItemId id, Logic::Location loc);
             void swapItems(Logic::Location loc1, Logic::Location loc2);
             void removeItem(Logic::Location loc);
@@ -42,6 +42,6 @@ namespace Candies
             bool isItemAlreadySelected(Logic::Location loc);
         };
         
-        typedef std::shared_ptr<StaticBoardView> StaticBoardViewPtr;
+        typedef std::shared_ptr<AnimatedBoardView> AnimatedBoardViewPtr;
     }
 }
