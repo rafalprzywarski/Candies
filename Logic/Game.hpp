@@ -39,14 +39,15 @@ namespace Candies
                 {
                     return std::count(mask.begin(), mask.end(), true) == 0;
                 }
-                template <typename F1>
-                void forEachLocation(F1 f) const
+                Locations getLocations() const
                 {
+                    Locations locs;
                     auto it = mask.begin();
                     for (unsigned y = 0; y < height; ++y)
                         for (unsigned x = 0; x < width; ++x)
                             if (*it++)
-                                f({x, y});
+                                locs.emplace_back(x, y);
+                    return locs;
                 }
                 ColumnRange findMarkedRange(unsigned x) const
                 {

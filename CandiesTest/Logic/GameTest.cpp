@@ -154,7 +154,7 @@ namespace Candies
                 3,1,4,2,4,1,1,0,
                 1,4,3,2,1,3,3,2 });
 
-            Expectation removal = EXPECT_CALL(*observer, itemRemoved(_)).Times(5);
+            Expectation removal = EXPECT_CALL(*observer, itemsRemoved(SizeIs(5)));
             
             auto moving = expectItemsMoved({
                 {{1, 1}, {1, 2}},
@@ -246,7 +246,7 @@ namespace Candies
             Board initialBoard = game->getBoard();
             
             EXPECT_CALL(*observer, itemsSwapped(_, _)).Times(0);
-            EXPECT_CALL(*observer, itemRemoved(_)).Times(0);
+            EXPECT_CALL(*observer, itemsRemoved(_)).Times(0);
             EXPECT_CALL(*observer, itemAdded(_, _)).Times(0);
             EXPECT_CALL(*observer, itemMoved(_, _)).Times(0);
             game->swapItems(GetParam().from, GetParam().to);
@@ -439,9 +439,7 @@ namespace Candies
             expectGenerationOf(GetParam().added);
             
             Expectation swapping = EXPECT_CALL(*observer, itemsSwapped(GetParam().from, GetParam().to));
-            ExpectationSet removal;
-            for (auto loc : GetParam().removed)
-                removal += EXPECT_CALL(*observer, itemRemoved(loc)).After(swapping);
+            Expectation removal = EXPECT_CALL(*observer, itemsRemoved(WhenSorted(GetParam().removed))).After(swapping);
             EXPECT_CALL(*observer, itemMoved(_, _)).Times(0);
             for (std::size_t i = 0; i < GetParam().added.size(); ++i)
                 EXPECT_CALL(*observer, itemAdded(GetParam().added[i], GetParam().removed[i])).After(removal);

@@ -20,6 +20,11 @@ namespace Candies
             return left.x == right.x && left.y == right.y;
         }
         
+        inline bool operator<(const Location& left, const Location& right)
+        {
+            return std::make_pair(left.x, left.y) < std::make_pair(right.x, right.y);
+        }
+        
         inline std::ostream& operator<<(std::ostream& os, const Location& p)
         {
             return os << "[" << p.x << " " << p.y << "]";

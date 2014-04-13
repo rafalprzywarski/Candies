@@ -47,7 +47,7 @@ namespace Candies
         {
             board = boardWithSwappedItems;
             observer->itemsSwapped(loc1, loc2);
-            itemsToRemove.forEachLocation([=](Location loc){ observer->itemRemoved(loc); });
+            observer->itemsRemoved(itemsToRemove.getLocations());
             auto itemsToAdd = moveItemsDown(itemsToRemove);
             addItems(itemsToAdd);
         }
