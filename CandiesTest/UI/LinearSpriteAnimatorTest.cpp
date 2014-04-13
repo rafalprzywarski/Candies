@@ -97,7 +97,7 @@ namespace Candies
             animator.draw();
         }
         
-        TEST_F(LinearSpriteAnimatorTest, should_chain_moving_animations_by_sprite_and_final_position)
+        TEST_F(LinearSpriteAnimatorTest, should_chain_moving_animations_by_sprite_final_position)
         {
             animator.moveSprite(sprite, FROM, TO);
             animator.moveSprite(sprite, TO, TO2);
