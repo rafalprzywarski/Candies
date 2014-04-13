@@ -5,8 +5,8 @@ namespace Candies
 {
     namespace UI
     {
-        StaticBoardView::StaticBoardView(Sprites sprites, SpritePtr selectionMarker, GridPtr grid)
-        : sprites(sprites.begin(), sprites.end()), selectionMarker(selectionMarker), grid(grid)
+        StaticBoardView::StaticBoardView(Sprites sprites, SpritePtr selectionMarker, GridPtr grid, SpriteAnimatorPtr animator)
+        : sprites(sprites.begin(), sprites.end()), selectionMarker(selectionMarker), grid(grid), animator(animator)
         {
         }
 
@@ -16,6 +16,7 @@ namespace Candies
             if (found == sprites.end())
                 throw std::out_of_range("Invalid item id");
             items.insert({loc, found->second});
+            animator->moveSprite(found->second, grid->toPosition(loc), grid->toPosition(loc));
         }
 
         void StaticBoardView::swapItems(Logic::Location loc1, Logic::Location loc2)
@@ -23,12 +24,18 @@ namespace Candies
             auto item1 = items.find(loc1), item2 = items.find(loc2);
             if (item1 == items.end() || item2 == items.end())
                 return;
+            animator->moveSprite(item1->second, grid->toPosition(loc1), grid->toPosition(loc2));
+            animator->moveSprite(item2->second, grid->toPosition(loc2), grid->toPosition(loc1));
             std::swap(item1->second, item2->second);
         }
 
         void StaticBoardView::removeItem(Logic::Location loc)
         {
-            items.erase(loc);
+            auto it = items.find(loc);
+            if (it == items.end())
+                return;
+            animator->destroySpriteAt(it->second, grid->toPosition(loc));
+            items.erase(it);
         }
 
         void StaticBoardView::moveItem(Logic::Location from, Logic::Location to)
@@ -39,12 +46,12 @@ namespace Candies
             auto item = it->second;
             items.erase(it);
             items.insert({to, item});
+            animator->moveSprite(item, grid->toPosition(from), grid->toPosition(to));
         }
 
         void StaticBoardView::update()
         {
-            for (auto const& item : items)
-                item.second->drawAt(grid->toPosition(item.first));
+            animator->draw();
             for (auto const& itemLoc : selection)
                 selectionMarker->drawAt(grid->toPosition(itemLoc));
         }

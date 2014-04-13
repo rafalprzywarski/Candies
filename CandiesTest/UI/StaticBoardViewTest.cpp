@@ -3,6 +3,8 @@
 #include "MockGrid.hpp"
 #include <gtest/gtest.h>
 
+#include "InstantSpriteAnimator.hpp"
+
 using namespace testing;
 
 namespace Candies
@@ -21,8 +23,9 @@ namespace Candies
             const Position ITEM3_POSITION{311, 322};
             const Position ITEM7_POSITION{711, 722};
             MockGridPtr grid = std::make_shared<StrictMock<MockGrid>>();
+            SpriteAnimatorPtr animator = std::make_shared<StrictMock<InstantSpriteAnimator>>();
             
-            StaticBoardView board{{{3, item3}, {7, item7}}, selection, grid};
+            StaticBoardView board{{{3, item3}, {7, item7}}, selection, grid, animator};
             const Logic::ItemId INVALID_ID = 2;
             
             void expectGridConversions(Logic::Location loc, Position pos)

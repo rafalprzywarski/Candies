@@ -22,3 +22,16 @@ namespace Candies
         }
     }
 }
+
+namespace std
+{
+    template <>
+    struct hash<Candies::UI::Position>
+    {
+        std::size_t operator()(const Candies::UI::Position& loc) const
+        {
+            std::hash<unsigned> h;
+            return h(loc.x) ^ h(loc.y);
+        }
+    };
+}

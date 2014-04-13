@@ -191,6 +191,8 @@
 		F057A83418FA9FE800636C2E /* InfiniteGrid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InfiniteGrid.hpp; sourceTree = "<group>"; };
 		F057A83718FAA3C200636C2E /* InfiniteGridTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InfiniteGridTest.cpp; sourceTree = "<group>"; };
 		F057A83918FAAB4500636C2E /* MockGrid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockGrid.hpp; sourceTree = "<group>"; };
+		F07AFB0B18FAC12A004B1126 /* InstantSpriteAnimator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InstantSpriteAnimator.hpp; sourceTree = "<group>"; };
+		F07AFB0C18FAC171004B1126 /* SpriteAnimator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SpriteAnimator.hpp; sourceTree = "<group>"; };
 		F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRunnerFactory.cpp; sourceTree = "<group>"; };
 		F0B4498918F4A3BD006C6405 /* GameRunnerFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameRunnerFactory.hpp; sourceTree = "<group>"; };
 		F0B4499218F4ABC0006C6405 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Blue.png; path = Resources/Blue.png; sourceTree = "<group>"; };
@@ -373,6 +375,8 @@
 				F057A83218FA9EA400636C2E /* Grid.hpp */,
 				F057A83318FA9FE800636C2E /* InfiniteGrid.cpp */,
 				F057A83418FA9FE800636C2E /* InfiniteGrid.hpp */,
+				F07AFB0B18FAC12A004B1126 /* InstantSpriteAnimator.hpp */,
+				F07AFB0C18FAC171004B1126 /* SpriteAnimator.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";

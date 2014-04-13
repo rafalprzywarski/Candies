@@ -6,8 +6,10 @@
 #include "FrameUpdateListener.hpp"
 #include "BoardView.hpp"
 #include "Grid.hpp"
+#include "SpriteAnimator.hpp"
 #include <memory>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 namespace Candies
@@ -18,7 +20,7 @@ namespace Candies
         {
         public:
             typedef std::vector<std::pair<const Logic::ItemId, SpritePtr>> Sprites;
-            StaticBoardView(Sprites sprites, SpritePtr selectionMarker, GridPtr grid);
+            StaticBoardView(Sprites sprites, SpritePtr selectionMarker, GridPtr grid, SpriteAnimatorPtr animator);
             void addItem(Logic::ItemId id, Logic::Location loc);
             void swapItems(Logic::Location loc1, Logic::Location loc2);
             void removeItem(Logic::Location loc);
@@ -34,6 +36,7 @@ namespace Candies
             GridPtr grid;
             std::unordered_map<Logic::Location, SpritePtr> items;
             std::vector<Logic::Location> selection;
+            SpriteAnimatorPtr animator;
             
             bool itemExists(Logic::Location loc);
             bool isItemAlreadySelected(Logic::Location loc);
