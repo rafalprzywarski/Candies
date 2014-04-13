@@ -22,25 +22,25 @@ namespace Candies
             const Logic::Location LOCATION_WITH_NO_ITEM{5, 7};
             const Position ITEM3_POSITION{311, 322};
             const Position ITEM7_POSITION{711, 722};
-            MockGridPtr grid = std::make_shared<StrictMock<MockGrid>>();
+            MockGridPtr grid = std::make_shared<NiceMock<MockGrid>>();
             MockSpriteAnimatorPtr animator = std::make_shared<NiceMock<MockSpriteAnimator>>();
             
             AnimatedBoardView board{{{3, item3}, {7, item7}}, selection, grid, animator};
             const Logic::ItemId INVALID_ID = 2;
             
-            void expectGridConversions(Logic::Location loc, Position pos)
+            void defaultGridConversion(Logic::Location loc, Position pos)
             {
-                EXPECT_CALL(*grid, toPosition(loc)).WillRepeatedly(Return(pos));
-                EXPECT_CALL(*grid, toLocation(pos)).WillRepeatedly(Return(loc));
-                EXPECT_CALL(*grid, isValid(pos)).WillRepeatedly(Return(true));
+                ON_CALL(*grid, toPosition(loc)).WillByDefault(Return(pos));
+                ON_CALL(*grid, toLocation(pos)).WillByDefault(Return(loc));
+                ON_CALL(*grid, isValid(pos)).WillByDefault(Return(true));
             }
             
             AnimatedBoardViewTest()
             {
-                EXPECT_CALL(*grid, isValid(_)).WillRepeatedly(Return(true));
-                expectGridConversions(ITEM3_LOCATION, ITEM3_POSITION);
-                expectGridConversions(ITEM7_LOCATION, ITEM7_POSITION);
-                expectGridConversions(LOCATION_WITH_NO_ITEM, POSITION_WITH_NO_ITEM);
+                ON_CALL(*grid, isValid(_)).WillByDefault(Return(true));
+                defaultGridConversion(ITEM3_LOCATION, ITEM3_POSITION);
+                defaultGridConversion(ITEM7_LOCATION, ITEM7_POSITION);
+                defaultGridConversion(LOCATION_WITH_NO_ITEM, POSITION_WITH_NO_ITEM);
                 ON_CALL(*animator, isAnimating()).WillByDefault(Return(false));
             }
         };
