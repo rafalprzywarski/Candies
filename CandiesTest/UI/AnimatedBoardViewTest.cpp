@@ -1,9 +1,9 @@
 #include <UI/AnimatedBoardView.hpp>
 #include "MockSprite.hpp"
 #include "MockGrid.hpp"
+#include "MockSpriteAnimator.hpp"
 #include <gtest/gtest.h>
 
-#include "InstantSpriteAnimator.hpp"
 
 using namespace testing;
 
@@ -13,8 +13,8 @@ namespace Candies
     {
         struct AnimatedBoardViewTest : Test
         {
-            MockSpritePtr item3 = std::make_shared<StrictMock<MockSprite>>();
-            MockSpritePtr item7 = std::make_shared<StrictMock<MockSprite>>();
+            SpritePtr item3 = std::make_shared<StrictMock<MockSprite>>();
+            SpritePtr item7 = std::make_shared<StrictMock<MockSprite>>();
             MockSpritePtr selection = std::make_shared<StrictMock<MockSprite>>();
             const Logic::Location ANY_LOCATION{55, 12};
             const Logic::Location ITEM3_LOCATION{0, 0}, ITEM7_LOCATION{3, 2};
@@ -23,7 +23,7 @@ namespace Candies
             const Position ITEM3_POSITION{311, 322};
             const Position ITEM7_POSITION{711, 722};
             MockGridPtr grid = std::make_shared<StrictMock<MockGrid>>();
-            SpriteAnimatorPtr animator = std::make_shared<StrictMock<InstantSpriteAnimator>>();
+            MockSpriteAnimatorPtr animator = std::make_shared<NiceMock<MockSpriteAnimator>>();
             
             AnimatedBoardView board{{{3, item3}, {7, item7}}, selection, grid, animator};
             const Logic::ItemId INVALID_ID = 2;
@@ -46,17 +46,6 @@ namespace Candies
 
         TEST_F(AnimatedBoardViewTest, should_display_nothing_when_created)
         {
-            board.update();
-        }
-        
-        TEST_F(AnimatedBoardViewTest, should_display_added_items_according_to_grid_position)
-        {
-            board.addItem(3, ITEM3_LOCATION);
-            board.addItem(7, ITEM7_LOCATION);
-            
-            EXPECT_CALL(*item3, drawAt(ITEM3_POSITION));
-            EXPECT_CALL(*item7, drawAt(ITEM7_POSITION));
-            
             board.update();
         }
         
@@ -142,18 +131,16 @@ namespace Candies
             ASSERT_EQ(1u, board.getSelectedItemLocations().size());
         }
         
-        TEST_F(AnimatedBoardViewTest, should_display_item_selection)
+        TEST_F(AnimatedBoardViewTest, should_display_items_then_the_selection)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
             board.selectItemAt(ITEM3_POSITION);
             board.selectItemAt(ITEM7_POSITION);
 
-            Sequence item3WithMarker, item7WithMarker;
-            EXPECT_CALL(*item3, drawAt(_)).InSequence(item3WithMarker);
-            EXPECT_CALL(*selection, drawAt(ITEM3_POSITION)).InSequence(item3WithMarker);
-            EXPECT_CALL(*item7, drawAt(_)).InSequence(item7WithMarker);
-            EXPECT_CALL(*selection, drawAt(ITEM7_POSITION)).InSequence(item7WithMarker);
+            Expectation sprites = EXPECT_CALL(*animator, draw());
+            EXPECT_CALL(*selection, drawAt(ITEM3_POSITION)).After(sprites);
+            EXPECT_CALL(*selection, drawAt(ITEM7_POSITION)).After(sprites);
             
             board.update();
         }
@@ -163,64 +150,66 @@ namespace Candies
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
             
+            EXPECT_CALL(*animator, moveSprite(item3, ITEM3_POSITION, ITEM7_POSITION));
+            EXPECT_CALL(*animator, moveSprite(item7, ITEM7_POSITION, ITEM3_POSITION));
+            
             board.swapItems(ITEM3_LOCATION, ITEM7_LOCATION);
             
-            EXPECT_CALL(*item3, drawAt(ITEM7_POSITION));
-            EXPECT_CALL(*item7, drawAt(ITEM3_POSITION));
-            
-            board.update();
+            EXPECT_CALL(*animator, moveSprite(item3, ITEM7_POSITION, ITEM3_POSITION));
+            EXPECT_CALL(*animator, moveSprite(item7, ITEM3_POSITION, ITEM7_POSITION));
+
+            board.swapItems(ITEM3_LOCATION, ITEM7_LOCATION);
         }
         
         TEST_F(AnimatedBoardViewTest, should_ignore_invalid_swaps)
         {
             board.addItem(3, ITEM3_LOCATION);
             
+            EXPECT_CALL(*animator, moveSprite(_, _, _)).Times(0);
+
             board.swapItems(ITEM7_LOCATION, ITEM3_LOCATION);
-
-            EXPECT_CALL(*item3, drawAt(ITEM3_POSITION));
-            board.update();
-            
             board.swapItems(ITEM3_LOCATION, ITEM7_LOCATION);
-
-            EXPECT_CALL(*item3, drawAt(ITEM3_POSITION));
-            board.update();
         }
         
         TEST_F(AnimatedBoardViewTest, should_remove_items)
         {
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
-            board.removeItem(ITEM7_LOCATION);
             
-            EXPECT_CALL(*item3, drawAt(ITEM3_POSITION));
-            board.update();
+            EXPECT_CALL(*animator, destroySpriteAt(item7, ITEM7_POSITION));
+            
+            board.removeItem(ITEM7_LOCATION);
+
+            EXPECT_CALL(*animator, destroySpriteAt(_, _)).Times(0);
+            board.removeItem(ITEM7_LOCATION);
         }
         
         TEST_F(AnimatedBoardViewTest, should_ignore_invalid_removals)
         {
             board.addItem(3, ITEM3_LOCATION);
-            board.removeItem(ITEM7_LOCATION);
+            board.addItem(7, ITEM7_LOCATION);
             
-            EXPECT_CALL(*item3, drawAt(ITEM3_POSITION));
-            board.update();
+            EXPECT_CALL(*animator, destroySpriteAt(_, _)).Times(0);
+            board.removeItem(LOCATION_WITH_NO_ITEM);
         }
         
         TEST_F(AnimatedBoardViewTest, should_move_items)
         {
             board.addItem(3, ITEM3_LOCATION);
+            
+            EXPECT_CALL(*animator, moveSprite(item3, ITEM3_POSITION, ITEM7_POSITION));
             board.moveItem(ITEM3_LOCATION, ITEM7_LOCATION);
             
-            EXPECT_CALL(*item3, drawAt(ITEM7_POSITION));
-            board.update();
+            EXPECT_CALL(*animator, destroySpriteAt(_, _));
+            board.removeItem(ITEM7_LOCATION);
         }
         
         TEST_F(AnimatedBoardViewTest, should_ignore_invalid_moves)
         {
             board.addItem(3, ITEM3_LOCATION);
+            
+            EXPECT_CALL(*animator, moveSprite(_, _, _)).Times(0);
             board.moveItem(ITEM7_LOCATION, ITEM3_LOCATION);
-
-            EXPECT_CALL(*item3, drawAt(ITEM3_POSITION));
-            board.update();
         }
     }
 }
