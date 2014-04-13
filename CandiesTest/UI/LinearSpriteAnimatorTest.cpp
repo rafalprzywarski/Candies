@@ -140,15 +140,16 @@ namespace Candies
         TEST_F(LinearSpriteAnimatorTest, should_chain_destruction_of_sprites)
         {
             animator.moveSprite(sprite, FROM, TO);
+            animator.moveSprite(sprite, TO, TO2);
             setTime(CURRENT_TIME);
-            animator.moveSprite(sprite, FROM2, TO2);
+            animator.moveSprite(sprite, FROM2, TO);
 
-            animator.destroySpriteAt(sprite, TO);
+            animator.destroySpriteAt(sprite, TO2);
             EXPECT_CALL(*sprite, drawAt(_)).Times(2);
             
             animator.draw();
             
-            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME);
+            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME * 2);
             EXPECT_CALL(*sprite, drawAt(_)).Times(1);
             
             animator.draw();

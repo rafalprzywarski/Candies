@@ -20,7 +20,7 @@ namespace Candies
         void LinearSpriteAnimator::destroySpriteAt(SpritePtr sprite, Position at)
         {
             for (auto& s : sprites)
-                if (s.destinations.at(0) == at)
+                if (s.destinations.back() == at)
                 {
                     s.shouldBeDestroyed = true;
                     return;
