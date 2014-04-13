@@ -9,9 +9,9 @@ namespace Candies
         void LinearSpriteAnimator::moveSprite(SpritePtr sprite, Position from, Position to)
         {
             for (auto& s : sprites)
-                if (s.destinations.back() == from)
+                if (s.shouldChainWith(from))
                 {
-                    s.destinations.push_back(to);
+                    s.chain(to);
                     return;
                 }
             sprites.emplace_back(sprite, from, to, timer->getTime() / animationTime);
@@ -20,7 +20,7 @@ namespace Candies
         void LinearSpriteAnimator::destroySpriteAt(SpritePtr sprite, Position at)
         {
             for (auto& s : sprites)
-                if (s.destinations.back() == at)
+                if (s.shouldChainWith(at))
                 {
                     s.shouldBeDestroyed = true;
                     return;
