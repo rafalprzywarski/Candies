@@ -14,6 +14,7 @@ namespace Candies
             LinearSpriteAnimator(AnimationTimerPtr timer, float animationVelocity)
             : timer(timer), animationVelocity(animationVelocity) { }
             void moveSprite(SpritePtr sprite, Position from, Position to);
+            void swapSprites(SpritePtr sprite1, Position from1, SpritePtr sprite2, Position from2);
             void destroySpriteAt(SpritePtr sprite, Position at);
             bool isAnimating() const;
             void draw() const;
@@ -48,7 +49,7 @@ namespace Candies
             std::vector<AnimatedSprite> sprites;
             
             bool chainSprite(SpritePtr sprite, Position from, Position to);
-            void addNewSprite(SpritePtr sprite, Position from, Position to);
+            void addNewSprite(SpritePtr sprite, Position from, Position to, float currentTime);
             static int lerp(int from, int to, float t);
             static Position lerp(Position from, Position to, float t);
             static float distance(Position from, Position to);

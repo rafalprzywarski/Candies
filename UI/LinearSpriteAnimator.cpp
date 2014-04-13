@@ -9,7 +9,14 @@ namespace Candies
         void LinearSpriteAnimator::moveSprite(SpritePtr sprite, Position from, Position to)
         {
             if (!chainSprite(sprite, from, to))
-                addNewSprite(sprite, from, to);
+                addNewSprite(sprite, from, to, timer->getTime());
+        }
+        
+        void LinearSpriteAnimator::swapSprites(SpritePtr sprite1, Position from1, SpritePtr sprite2, Position from2)
+        {
+            float currentTime = timer->getTime();
+            addNewSprite(sprite1, from1, from2, currentTime);
+            addNewSprite(sprite2, from2, from1, currentTime);
         }
         
         void LinearSpriteAnimator::destroySpriteAt(SpritePtr sprite, Position at)
@@ -50,9 +57,9 @@ namespace Candies
             return true;
         }
         
-        void LinearSpriteAnimator::addNewSprite(SpritePtr sprite, Position from, Position to)
+        void LinearSpriteAnimator::addNewSprite(SpritePtr sprite, Position from, Position to, float currentTime)
         {
-            sprites.emplace_back(sprite, from, timer->getTime(), animationVelocity);
+            sprites.emplace_back(sprite, from, currentTime, animationVelocity);
             sprites.back().addTransition(to);
         }
 

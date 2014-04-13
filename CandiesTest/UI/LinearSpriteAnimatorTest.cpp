@@ -21,6 +21,7 @@ namespace Candies
             const float ANIMATION_TIME = DISTANCE / ANIMATION_VELOCITY;
             const float ANIMATION_TIME_TO_TO2 = 130.384048104053f / ANIMATION_VELOCITY;
             const float ANIMATION_TIME_TO_FROM2 = 89.44271909999159f / ANIMATION_VELOCITY;
+            const float ANIMATION_TIME_FROM_FROM2 = 50.00999900019995f / ANIMATION_VELOCITY;
             MockSpritePtr sprite = std::make_shared<StrictMock<MockSprite>>();
             MockSpritePtr sprite2 = std::make_shared<StrictMock<MockSprite>>();
             MockAnimationTimerPtr timer = std::make_shared<StrictMock<MockAnimationTimer>>();
@@ -170,6 +171,23 @@ namespace Candies
             setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME + ANIMATION_TIME_TO_TO2);
             EXPECT_CALL(*sprite, drawAt(_)).Times(1);
             
+            animator.draw();
+        }
+        
+        TEST_F(LinearSpriteAnimatorTest, should_animate_swapping)
+        {
+            animator.swapSprites(sprite, FROM, sprite2, FROM2);
+            setTimeAndUpdateFrame(CURRENT_TIME);
+
+            EXPECT_CALL(*sprite, drawAt(FROM));
+            EXPECT_CALL(*sprite2, drawAt(FROM2));
+
+            animator.draw();
+            
+            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME_FROM_FROM2);
+            EXPECT_CALL(*sprite, drawAt(FROM2));
+            EXPECT_CALL(*sprite2, drawAt(FROM));
+
             animator.draw();
         }
     }
