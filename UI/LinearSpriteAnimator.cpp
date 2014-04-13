@@ -7,7 +7,7 @@ namespace Candies
         void LinearSpriteAnimator::moveSprite(SpritePtr sprite, Position from, Position to)
         {
             for (auto& s : sprites)
-                if (s.sprite == sprite)
+                if (s.destinations.at(0) == from)
                 {
                     s.destinations.push_back(to);
                     return;

@@ -113,5 +113,17 @@ namespace Candies
             
             animator.draw();
         }
+        
+        TEST_F(LinearSpriteAnimatorTest, should_allowing_moving_different_instances_of_the_same_sprite)
+        {
+            animator.moveSprite(sprite, FROM, TO);
+            setTime(CURRENT_TIME);
+            animator.moveSprite(sprite, FROM2, TO2);
+            
+            EXPECT_CALL(*sprite, drawAt(FROM));
+            EXPECT_CALL(*sprite, drawAt(FROM2));
+            
+            animator.draw();
+        }
     }
 }
