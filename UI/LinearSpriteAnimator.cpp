@@ -9,7 +9,7 @@ namespace Candies
         void LinearSpriteAnimator::moveSprite(SpritePtr sprite, Position from, Position to)
         {
             for (auto& s : sprites)
-                if (s.destinations.at(0) == from)
+                if (s.destinations.back() == from)
                 {
                     s.destinations.push_back(to);
                     return;
@@ -64,7 +64,7 @@ namespace Candies
         void LinearSpriteAnimator::SpriteState::update(float currentTime)
         {
             float completionFactor = currentTime - startTime;
-            if (completionFactor >= 1)
+            while (completionFactor >= 1 && !destinations.empty())
             {
                 position = from = destinations.at(0);
                 from = destinations.at(0);
