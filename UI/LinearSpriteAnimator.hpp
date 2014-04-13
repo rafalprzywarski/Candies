@@ -22,15 +22,15 @@ namespace Candies
             class AnimatedSprite
             {
             public:
-                AnimatedSprite(SpritePtr sprite, Position from, Position to, float fromTime, float velocity)
-                : sprite(sprite), from(from), destinations({to}), position(from), fromTime(fromTime), velocity(velocity), shouldBeDestroyed(false)
+                AnimatedSprite(SpritePtr sprite, Position from, float fromTime, float velocity)
+                : sprite(sprite), from(from), position(from), fromTime(fromTime), velocity(velocity), shouldBeDestroyed(false)
                 { }
                 
                 void draw() const;
                 void update(float currentTime);
                 bool isDestroyed() const;
-                bool shouldChainWith(Position from);
-                void chain(Position to);
+                bool shouldChainWith(Position from) const;
+                void addTransition(Position to);
                 void markForDestruction();
             private:
                 SpritePtr sprite;
@@ -47,6 +47,8 @@ namespace Candies
             float animationVelocity;
             std::vector<AnimatedSprite> sprites;
             
+            bool chainSprite(SpritePtr sprite, Position from, Position to);
+            void addNewSprite(SpritePtr sprite, Position from, Position to);
             static int lerp(int from, int to, float t);
             static Position lerp(Position from, Position to, float t);
             static float distance(Position from, Position to);

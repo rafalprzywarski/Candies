@@ -8,13 +8,8 @@ namespace Candies
     {
         void LinearSpriteAnimator::moveSprite(SpritePtr sprite, Position from, Position to)
         {
-            for (auto& s : sprites)
-                if (s.shouldChainWith(from))
-                {
-                    s.chain(to);
-                    return;
-                }
-            sprites.emplace_back(sprite, from, to, timer->getTime(), animationVelocity);
+            if (!chainSprite(sprite, from, to))
+                addNewSprite(sprite, from, to);
         }
         
         void LinearSpriteAnimator::destroySpriteAt(SpritePtr sprite, Position at)
@@ -46,6 +41,21 @@ namespace Candies
             sprites.erase(std::remove_if(sprites.begin(), sprites.end(), [](const AnimatedSprite& s) { return s.isDestroyed(); }), sprites.end());
         }
         
+        bool LinearSpriteAnimator::chainSprite(SpritePtr sprite, Position from, Position to)
+        {
+            auto it = std::find_if(sprites.begin(), sprites.end(), [=](const AnimatedSprite& s) { return s.shouldChainWith(from); });
+            if (it == sprites.end())
+                return false;
+            it->addTransition(to);
+            return true;
+        }
+        
+        void LinearSpriteAnimator::addNewSprite(SpritePtr sprite, Position from, Position to)
+        {
+            sprites.emplace_back(sprite, from, timer->getTime(), animationVelocity);
+            sprites.back().addTransition(to);
+        }
+
         int LinearSpriteAnimator::lerp(int from, int to, float t)
         {
             return int(std::round(from + (to - from) * t));
@@ -85,12 +95,12 @@ namespace Candies
             return destinations.empty() && shouldBeDestroyed;
         }
 
-        bool LinearSpriteAnimator::AnimatedSprite::shouldChainWith(Position from)
+        bool LinearSpriteAnimator::AnimatedSprite::shouldChainWith(Position from) const
         {
             return (!destinations.empty() && destinations.back() == from) || position == from;
         }
 
-        void LinearSpriteAnimator::AnimatedSprite::chain(Position to)
+        void LinearSpriteAnimator::AnimatedSprite::addTransition(Position to)
         {
             destinations.push_back(to);
         }
