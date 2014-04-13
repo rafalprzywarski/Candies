@@ -1,5 +1,6 @@
 #pragma once
 #include "SpriteAnimator.hpp"
+#include <unordered_map>
 #include <memory>
 
 namespace Candies
@@ -11,13 +12,13 @@ namespace Candies
         public:
             void moveSprite(SpritePtr sprite, Position from, Position to)
             {
-                sprites.erase(SpriteWithPosition{sprite, from});
-                sprites.insert({sprite, to});
+                sprites.erase(from);
+                sprites.insert({to, sprite});
             }
             
-            void destroySpriteAt(SpritePtr sprite, Position at)
+            void destroySpriteAt(Position at)
             {
-                sprites.erase({sprite, at});
+                sprites.erase(at);
             }
             
             bool isAnimating() const
@@ -28,7 +29,7 @@ namespace Candies
             void draw() const
             {
                 for (auto const& s : sprites)
-                    s.sprite->drawAt(s.position);
+                    s.second->drawAt(s.first);
             }
         private:
             
@@ -39,7 +40,7 @@ namespace Candies
                 
                 bool operator==(const SpriteWithPosition& right) const
                 {
-                    return sprite == right.sprite && position == right.position;
+                    return position == right.position;
                 }
             };
             
@@ -47,11 +48,11 @@ namespace Candies
             {
                 std::size_t operator()(const SpriteWithPosition& s) const
                 {
-                    return std::hash<SpritePtr>()(s.sprite) ^ std::hash<Position>()(s.position);
+                    return std::hash<Position>()(s.position);
                 }
             };
             
-            std::unordered_set<SpriteWithPosition, SpriteWithPositionHash> sprites;
+            std::unordered_map<Position, SpritePtr> sprites;
         };
     }
 }

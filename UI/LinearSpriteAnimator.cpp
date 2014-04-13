@@ -22,7 +22,7 @@ namespace Candies
             chainOrAddNewSprite(spriteFrom2, sprite2, from2, from1, currentTime);
         }
         
-        void LinearSpriteAnimator::destroySpriteAt(SpritePtr sprite, Position at)
+        void LinearSpriteAnimator::destroySpriteAt(Position at)
         {
             for (auto& s : sprites)
                 if (s.shouldChainWith(at))

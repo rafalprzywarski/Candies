@@ -163,7 +163,7 @@ namespace Candies
             setTime(CURRENT_TIME);
             animator.moveSprite(sprite, FROM2, TO);
 
-            animator.destroySpriteAt(sprite, TO2);
+            animator.destroySpriteAt(TO2);
             EXPECT_CALL(*sprite, drawAt(_)).Times(2);
             
             animator.draw();

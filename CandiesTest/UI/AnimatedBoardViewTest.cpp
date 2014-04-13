@@ -187,11 +187,11 @@ namespace Candies
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
             
-            EXPECT_CALL(*animator, destroySpriteAt(item7, ITEM7_POSITION));
+            EXPECT_CALL(*animator, destroySpriteAt(ITEM7_POSITION));
             
             board.removeItem(ITEM7_LOCATION);
 
-            EXPECT_CALL(*animator, destroySpriteAt(_, _)).Times(0);
+            EXPECT_CALL(*animator, destroySpriteAt(_)).Times(0);
             board.removeItem(ITEM7_LOCATION);
         }
         
@@ -200,7 +200,7 @@ namespace Candies
             board.addItem(3, ITEM3_LOCATION);
             board.addItem(7, ITEM7_LOCATION);
             
-            EXPECT_CALL(*animator, destroySpriteAt(_, _)).Times(0);
+            EXPECT_CALL(*animator, destroySpriteAt(_)).Times(0);
             board.removeItem(LOCATION_WITH_NO_ITEM);
         }
         
@@ -211,7 +211,7 @@ namespace Candies
             EXPECT_CALL(*animator, moveSprite(item3, ITEM3_POSITION, ITEM7_POSITION));
             board.moveItem(ITEM3_LOCATION, ITEM7_LOCATION);
             
-            EXPECT_CALL(*animator, destroySpriteAt(_, _));
+            EXPECT_CALL(*animator, destroySpriteAt(_));
             board.removeItem(ITEM7_LOCATION);
         }
         

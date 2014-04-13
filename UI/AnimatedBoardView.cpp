@@ -34,7 +34,7 @@ namespace Candies
             auto it = items.find(loc);
             if (it == items.end())
                 return;
-            animator->destroySpriteAt(it->second, grid->toPosition(loc));
+            animator->destroySpriteAt(grid->toPosition(loc));
             items.erase(it);
         }
 

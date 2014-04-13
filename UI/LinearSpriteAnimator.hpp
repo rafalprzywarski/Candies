@@ -16,7 +16,7 @@ namespace Candies
             : timer(timer), animationVelocity(animationVelocity) { }
             void moveSprite(SpritePtr sprite, Position from, Position to);
             void swapSprites(SpritePtr sprite1, Position from1, SpritePtr sprite2, Position from2);
-            void destroySpriteAt(SpritePtr sprite, Position at);
+            void destroySpriteAt(Position at);
             bool isAnimating() const;
             void draw() const;
             void updateFrame();
