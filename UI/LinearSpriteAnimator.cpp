@@ -15,8 +15,11 @@ namespace Candies
         void LinearSpriteAnimator::swapSprites(SpritePtr sprite1, Position from1, SpritePtr sprite2, Position from2)
         {
             float currentTime = timer->getTime();
-            addNewSprite(sprite1, from1, from2, currentTime);
-            addNewSprite(sprite2, from2, from1, currentTime);
+            auto spriteFrom1 = findSpriteForChaining(from1);
+            auto spriteFrom2 = findSpriteForChaining(from2);
+            
+            chainOrAddNewSprite(spriteFrom1, sprite1, from1, from2, currentTime);
+            chainOrAddNewSprite(spriteFrom2, sprite2, from2, from1, currentTime);
         }
         
         void LinearSpriteAnimator::destroySpriteAt(SpritePtr sprite, Position at)
@@ -48,9 +51,22 @@ namespace Candies
             sprites.erase(std::remove_if(sprites.begin(), sprites.end(), [](const AnimatedSprite& s) { return s.isDestroyed(); }), sprites.end());
         }
         
+        LinearSpriteAnimator::Sprites::iterator LinearSpriteAnimator::findSpriteForChaining(Position from)
+        {
+            return std::find_if(sprites.begin(), sprites.end(), [=](const AnimatedSprite& s) { return s.shouldChainWith(from); });
+        }
+        
+        void LinearSpriteAnimator::chainOrAddNewSprite(Sprites::iterator at, SpritePtr sprite, Position from, Position to, float currentTime)
+        {
+            if (at == sprites.end())
+                addNewSprite(sprite, from, to, currentTime);
+            else
+                at->addTransition(to);
+        }
+        
         bool LinearSpriteAnimator::chainSprite(SpritePtr sprite, Position from, Position to)
         {
-            auto it = std::find_if(sprites.begin(), sprites.end(), [=](const AnimatedSprite& s) { return s.shouldChainWith(from); });
+            auto it = findSpriteForChaining(from);
             if (it == sprites.end())
                 return false;
             it->addTransition(to);

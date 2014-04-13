@@ -2,6 +2,7 @@
 #include "SpriteAnimator.hpp"
 #include "UpdateFrameListener.hpp"
 #include "AnimationTimer.hpp"
+#include <list>
 #include <vector>
 
 namespace Candies
@@ -43,11 +44,15 @@ namespace Candies
                 void finishCurrentTransition(float currentTransitionLength);
                 float getCurrentDistance(float currentTime) const;
             };
+            
+            typedef std::list<AnimatedSprite> Sprites;
 
             AnimationTimerPtr timer;
             float animationVelocity;
-            std::vector<AnimatedSprite> sprites;
+            Sprites sprites;
             
+            Sprites::iterator findSpriteForChaining(Position from);
+            void chainOrAddNewSprite(Sprites::iterator at, SpritePtr sprite, Position from, Position to, float currentTime);
             bool chainSprite(SpritePtr sprite, Position from, Position to);
             void addNewSprite(SpritePtr sprite, Position from, Position to, float currentTime);
             static int lerp(int from, int to, float t);
