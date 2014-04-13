@@ -11,8 +11,8 @@ namespace Candies
         class LinearSpriteAnimator : public SpriteAnimator, public UpdateFrameListener
         {
         public:
-            LinearSpriteAnimator(AnimationTimerPtr timer, float animationTimer)
-            : timer(timer) { }
+            LinearSpriteAnimator(AnimationTimerPtr timer, float animationTime)
+            : timer(timer), animationTime(animationTime) { }
             void moveSprite(SpritePtr sprite, Position from, Position to);
             void destroySpriteAt(SpritePtr sprite, Position at);
             bool isAnimating() const;
@@ -20,8 +20,13 @@ namespace Candies
             void updateFrame();
         private:
             AnimationTimerPtr timer;
+            float animationTime;
             SpritePtr sprite;
-            Position position{0, 0}, to{0, 0};
+            Position from{0, 0}, to{0, 0}, position{0, 0};
+            float startTime{0};
+            
+            static int lerp(int from, int to, float t);
+            static Position lerp(Position from, Position to, float t);
         };
     }
 }
