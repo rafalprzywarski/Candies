@@ -23,19 +23,19 @@ namespace Candies
             {
                 SpritePtr sprite;
                 Position from, to, position;
+                float startTime;
 
-                SpriteState(SpritePtr sprite, Position from, Position to)
-                : sprite(sprite), from(from), to(to), position(from)
+                SpriteState(SpritePtr sprite, Position from, Position to, float startTime)
+                : sprite(sprite), from(from), to(to), position(from), startTime(startTime)
                 { }
                 
                 void draw() const;
-                void update(float completionFactor);
+                void update(float currentTime);
             };
 
             AnimationTimerPtr timer;
             float animationTime;
             std::vector<SpriteState> sprites;
-            float startTime{0};
             
             static int lerp(int from, int to, float t);
             static Position lerp(Position from, Position to, float t);

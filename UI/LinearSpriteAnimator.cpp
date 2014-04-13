@@ -6,8 +6,7 @@ namespace Candies
     {
         void LinearSpriteAnimator::moveSprite(SpritePtr sprite, Position from, Position to)
         {
-            sprites.emplace_back(sprite, from, to);
-            startTime = timer->getTime();
+            sprites.emplace_back(sprite, from, to, timer->getTime() / animationTime);
         }
         
         void LinearSpriteAnimator::destroySpriteAt(SpritePtr sprite, Position at)
@@ -27,9 +26,9 @@ namespace Candies
         
         void LinearSpriteAnimator::updateFrame()
         {
-            float elapsedTime = timer->getTime() - startTime;
+            float currentTime = timer->getTime() / animationTime;
             for (auto& sprite : sprites)
-                sprite.update(elapsedTime / animationTime);
+                sprite.update(currentTime);
         }
         
         int LinearSpriteAnimator::lerp(int from, int to, float t)
@@ -47,8 +46,9 @@ namespace Candies
             sprite->drawAt(position);
         }
         
-        void LinearSpriteAnimator::SpriteState::update(float completionFactor)
+        void LinearSpriteAnimator::SpriteState::update(float currentTime)
         {
+            float completionFactor = currentTime - startTime;
             if (completionFactor >= 1)
             {
                 position = to;
