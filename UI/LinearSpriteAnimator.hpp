@@ -22,11 +22,12 @@ namespace Candies
             struct SpriteState
             {
                 SpritePtr sprite;
-                Position from, to, position;
+                Position from, position;
+                std::vector<Position> destinations;
                 float startTime;
 
                 SpriteState(SpritePtr sprite, Position from, Position to, float startTime)
-                : sprite(sprite), from(from), to(to), position(from), startTime(startTime)
+                : sprite(sprite), from(from), destinations({to}), position(from), startTime(startTime)
                 { }
                 
                 void draw() const;

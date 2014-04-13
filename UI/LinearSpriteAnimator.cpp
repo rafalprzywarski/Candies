@@ -6,6 +6,12 @@ namespace Candies
     {
         void LinearSpriteAnimator::moveSprite(SpritePtr sprite, Position from, Position to)
         {
+            for (auto& s : sprites)
+                if (s.sprite == sprite)
+                {
+                    s.destinations.push_back(to);
+                    return;
+                }
             sprites.emplace_back(sprite, from, to, timer->getTime() / animationTime);
         }
         
@@ -51,10 +57,13 @@ namespace Candies
             float completionFactor = currentTime - startTime;
             if (completionFactor >= 1)
             {
-                position = to;
-                return;
+                position = from = destinations.at(0);
+                from = destinations.at(0);
+                destinations.erase(destinations.begin());
+                completionFactor -= 1;
             }
-            position = lerp(from, to, completionFactor);
+            if (!destinations.empty())
+                position = lerp(from, destinations.at(0), completionFactor);
         }
 
     }
