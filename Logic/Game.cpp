@@ -48,7 +48,10 @@ namespace Candies
             board = boardWithSwappedItems;
             observer->itemsSwapped(loc1, loc2);
             observer->itemsRemoved(itemsToRemove.getLocations());
-            auto itemsToAdd = moveItemsDown(itemsToRemove);
+            Movements movedItems;
+            auto itemsToAdd = moveItemsDown(itemsToRemove, movedItems);
+            if (!movedItems.empty())
+                observer->itemsMoved(movedItems);
             addItems(itemsToAdd);
         }
         
@@ -59,28 +62,28 @@ namespace Candies
                     addItemAt({x, y});
         }
         
-        Game::Heights Game::moveItemsDown(const Mask& itemsToRemove)
+        Game::Heights Game::moveItemsDown(const Mask& itemsToRemove, Movements& movedItems)
         {
             Heights itemsToAdd(board.getWidth(), 0);
             for (unsigned x = 0; x < board.getWidth(); ++x)
-                itemsToAdd[x] = moveItemsDown(x, itemsToRemove);
+                itemsToAdd[x] = moveItemsDown(x, itemsToRemove, movedItems);
             return std::move(itemsToAdd);
         }
 
-        unsigned Game::moveItemsDown(unsigned x, const Mask& itemsToRemove)
+        unsigned Game::moveItemsDown(unsigned x, const Mask& itemsToRemove, Movements& movedItems)
         {
             auto markedRange = itemsToRemove.findMarkedRange(x);
             if (markedRange.count == 0)
                 return 0;
             for (unsigned y = markedRange.y; y > 0; --y)
-                moveItem({x, y - 1}, {x, y - 1 + markedRange.count});
+                moveItem({x, y - 1}, {x, y - 1 + markedRange.count}, movedItems);
             return markedRange.count;
         }
         
-        void Game::moveItem(Location from, Location to)
+        void Game::moveItem(Location from, Location to, Movements& movedItems)
         {
             board[to] = board[from];
-            observer->itemMoved(from, to);
+            movedItems.emplace_back(from, to);
         }
 
         Game::Mask Game::findAlignedItems(const Board& boardWithSwappedItems, Location loc1, Location loc2)

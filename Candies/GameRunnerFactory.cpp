@@ -35,9 +35,10 @@ namespace Candies
                 board->removeItem(loc);
         }
         
-        virtual void itemMoved(Logic::Location from, Logic::Location to)
+        virtual void itemsMoved(const Logic::Movements& movements)
         {
-            board->moveItem(from, to);
+            for (auto& m : movements)
+                board->moveItem(m.from, m.to);
         }
 
     private:

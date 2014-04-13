@@ -72,9 +72,9 @@ namespace Candies
             void addItemAt(Location loc);
             void applyChanges(const Board& boardWithSwappedItems, Location loc1, Location loc2, const Mask& itemsToRemove);
             void addItems(const Heights& itemsToAdd);
-            unsigned moveItemsDown(unsigned x, const Mask& itemsToRemove);
-            Heights moveItemsDown(const Mask& itemsToRemove);
-            void moveItem(Location from, Location to);
+            unsigned moveItemsDown(unsigned x, const Mask& itemsToRemove, Movements& movedItems);
+            Heights moveItemsDown(const Mask& itemsToRemove, Movements& movedItems);
+            void moveItem(Location from, Location to, Movements& movedItems);
             Mask findAlignedItems(const Board& boardWithSwappedItems, Location loc1, Location loc2);
             template <unsigned Location:: *Coord>
             void markLocationsAlong(unsigned leftCount, unsigned rightCount, Location loc, Mask& mask);

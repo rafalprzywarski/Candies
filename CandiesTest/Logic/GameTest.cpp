@@ -74,17 +74,16 @@ namespace Candies
                 game->start();
             }
             
-            struct FromTo
+            Expectation expectItemsMoved(std::vector<Movement> moves, ExpectationSet removal)
             {
-                Location from, to;
-            };
-
-            ExpectationSet expectItemsMoved(std::vector<FromTo> moves, ExpectationSet removal)
+                return EXPECT_CALL(*observer, itemsMoved(WhenSorted(sorted(moves)))).After(removal);
+            }
+            
+            template <typename T>
+            T sorted(T c)
             {
-                ExpectationSet moving;
-                for (auto const& move : moves)
-                    moving += EXPECT_CALL(*observer, itemMoved(move.from, move.to)).After(removal);
-                return moving;
+                std::sort(c.begin(), c.end());
+                return std::move(c);
             }
         };
         
@@ -248,7 +247,7 @@ namespace Candies
             EXPECT_CALL(*observer, itemsSwapped(_, _)).Times(0);
             EXPECT_CALL(*observer, itemsRemoved(_)).Times(0);
             EXPECT_CALL(*observer, itemAdded(_, _)).Times(0);
-            EXPECT_CALL(*observer, itemMoved(_, _)).Times(0);
+            EXPECT_CALL(*observer, itemsMoved(_)).Times(0);
             game->swapItems(GetParam().from, GetParam().to);
             
             ASSERT_TRUE(initialBoard == game->getBoard());
@@ -439,8 +438,8 @@ namespace Candies
             expectGenerationOf(GetParam().added);
             
             Expectation swapping = EXPECT_CALL(*observer, itemsSwapped(GetParam().from, GetParam().to));
-            Expectation removal = EXPECT_CALL(*observer, itemsRemoved(WhenSorted(GetParam().removed))).After(swapping);
-            EXPECT_CALL(*observer, itemMoved(_, _)).Times(0);
+            Expectation removal = EXPECT_CALL(*observer, itemsRemoved(WhenSorted(sorted(GetParam().removed)))).After(swapping);
+            EXPECT_CALL(*observer, itemsMoved(_)).Times(0);
             for (std::size_t i = 0; i < GetParam().added.size(); ++i)
                 EXPECT_CALL(*observer, itemAdded(GetParam().added[i], GetParam().removed[i])).After(removal);
             
