@@ -29,24 +29,17 @@ namespace Candies
                 void draw() const;
                 void update(float currentTime);
                 bool isDestroyed() const;
-                bool shouldChainWith(Position from)
-                {
-                    return (!destinations.empty() && destinations.back() == from) || position == from;
-                }
-                void chain(Position to)
-                {
-                    destinations.push_back(to);
-                }
-                void markForDestruction()
-                {
-                    shouldBeDestroyed = true;
-                }
+                bool shouldChainWith(Position from);
+                void chain(Position to);
+                void markForDestruction();
             private:
                 SpritePtr sprite;
                 Position from, position;
                 std::vector<Position> destinations;
                 float startTime;
                 bool shouldBeDestroyed;
+                
+                void finishCurrentTransition();
             };
 
             AnimationTimerPtr timer;

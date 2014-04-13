@@ -65,9 +65,7 @@ namespace Candies
             float completionFactor = currentTime - startTime;
             while (completionFactor >= 1 && !destinations.empty())
             {
-                position = from = destinations.at(0);
-                from = destinations.at(0);
-                destinations.erase(destinations.begin());
+                finishCurrentTransition();
                 completionFactor -= 1;
             }
             if (!destinations.empty())
@@ -77,6 +75,28 @@ namespace Candies
         bool LinearSpriteAnimator::AnimatedSprite::isDestroyed() const
         {
             return destinations.empty() && shouldBeDestroyed;
+        }
+
+        bool LinearSpriteAnimator::AnimatedSprite::shouldChainWith(Position from)
+        {
+            return (!destinations.empty() && destinations.back() == from) || position == from;
+        }
+
+        void LinearSpriteAnimator::AnimatedSprite::chain(Position to)
+        {
+            destinations.push_back(to);
+        }
+        
+        void LinearSpriteAnimator::AnimatedSprite::markForDestruction()
+        {
+            shouldBeDestroyed = true;
+        }
+
+        void LinearSpriteAnimator::AnimatedSprite::finishCurrentTransition()
+        {
+            position = from = destinations.at(0);
+            from = destinations.at(0);
+            destinations.erase(destinations.begin());
         }
 
     }
