@@ -11,14 +11,20 @@ namespace Candies
     {
         struct LinearSpriteAnimatorTest : Test
         {
-            const float ANIMATION_TIME = 1;
+            const float ANIMATION_VELOCITY = 0.25;
             const float CURRENT_TIME = 100;
-            Position FROM{3, 4}, TO{5, 7};
-            Position FROM2{2, 1}, TO2{13, 4};
+            Position FROM{30, 50}, TO{60, 90};
+            Position HALFWAY_BETWEEN_FROM_TO{45, 70};
+            Position FROM2{20, 1}, TO2{50, -40};
+            Position THIRD_BETWEEN_TO_TO2{57, 47};
+            const float DISTANCE = 50; // |FROM - TO| == [FROM2 - TO2|
+            const float ANIMATION_TIME = DISTANCE / ANIMATION_VELOCITY;
+            const float ANIMATION_TIME_TO_TO2 = 130.384048104053f / ANIMATION_VELOCITY;
+            const float ANIMATION_TIME_TO_FROM2 = 89.44271909999159f / ANIMATION_VELOCITY;
             MockSpritePtr sprite = std::make_shared<StrictMock<MockSprite>>();
             MockSpritePtr sprite2 = std::make_shared<StrictMock<MockSprite>>();
             MockAnimationTimerPtr timer = std::make_shared<StrictMock<MockAnimationTimer>>();
-            LinearSpriteAnimator animator{timer, ANIMATION_TIME};
+            LinearSpriteAnimator animator{timer, ANIMATION_VELOCITY};
             
             void setTime(float time)
             {
@@ -66,7 +72,7 @@ namespace Candies
             animator.draw();
             
             setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME / 2);
-            EXPECT_CALL(*sprite, drawAt(Position((FROM.x + TO.x) / 2, (FROM.y + TO.y) / 2)));
+            EXPECT_CALL(*sprite, drawAt(HALFWAY_BETWEEN_FROM_TO));
             
             animator.draw();
         }
@@ -77,7 +83,7 @@ namespace Candies
             setTime(CURRENT_TIME);
             animator.moveSprite(sprite2, FROM2, TO2);
             
-            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME);
+            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME + 1);
             EXPECT_CALL(*sprite, drawAt(TO));
             EXPECT_CALL(*sprite2, drawAt(TO2));
             
@@ -103,12 +109,12 @@ namespace Candies
             animator.moveSprite(sprite, TO, TO2);
             
             setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME / 2);
-            EXPECT_CALL(*sprite, drawAt(Position((FROM.x + TO.x) / 2, (FROM.y + TO.y) / 2)));
+            EXPECT_CALL(*sprite, drawAt(HALFWAY_BETWEEN_FROM_TO));
             
             animator.draw();
             
-            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME * 1.5f);
-            EXPECT_CALL(*sprite, drawAt(Position((TO.x + TO2.x) / 2, (TO.y + TO2.y) / 2)));
+            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME + ANIMATION_TIME_TO_TO2 / 3);
+            EXPECT_CALL(*sprite, drawAt(THIRD_BETWEEN_TO_TO2));
             
             animator.draw();
         }
@@ -118,7 +124,7 @@ namespace Candies
             animator.moveSprite(sprite, FROM, TO);
             setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME * 5);
             animator.moveSprite(sprite, TO, TO2);
-            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME * 6);
+            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME * 5 + ANIMATION_TIME_TO_TO2);
             
             EXPECT_CALL(*sprite, drawAt(_)).Times(1);
             
@@ -143,7 +149,7 @@ namespace Candies
             animator.moveSprite(sprite, TO, FROM2);
             animator.moveSprite(sprite, FROM2, TO2);
             
-            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME * 3);
+            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME + ANIMATION_TIME_TO_FROM2 + ANIMATION_TIME);
             EXPECT_CALL(*sprite, drawAt(TO2));
             
             animator.draw();
@@ -161,7 +167,7 @@ namespace Candies
             
             animator.draw();
             
-            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME * 2);
+            setTimeAndUpdateFrame(CURRENT_TIME + ANIMATION_TIME + ANIMATION_TIME_TO_TO2);
             EXPECT_CALL(*sprite, drawAt(_)).Times(1);
             
             animator.draw();

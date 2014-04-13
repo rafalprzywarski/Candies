@@ -1,5 +1,6 @@
 #include "LinearSpriteAnimator.hpp"
 #include <algorithm>
+#include <cmath>
 
 namespace Candies
 {
@@ -13,7 +14,7 @@ namespace Candies
                     s.chain(to);
                     return;
                 }
-            sprites.emplace_back(sprite, from, to, timer->getTime() / animationTime);
+            sprites.emplace_back(sprite, from, to, timer->getTime(), animationVelocity);
         }
         
         void LinearSpriteAnimator::destroySpriteAt(SpritePtr sprite, Position at)
@@ -39,7 +40,7 @@ namespace Candies
         
         void LinearSpriteAnimator::updateFrame()
         {
-            float currentTime = timer->getTime() / animationTime;
+            float currentTime = timer->getTime();
             for (auto& sprite : sprites)
                 sprite.update(currentTime);
             sprites.erase(std::remove_if(sprites.begin(), sprites.end(), [](const AnimatedSprite& s) { return s.isDestroyed(); }), sprites.end());
@@ -47,7 +48,13 @@ namespace Candies
         
         int LinearSpriteAnimator::lerp(int from, int to, float t)
         {
-            return int(from + (to - from) * t);
+            return int(std::round(from + (to - from) * t));
+        }
+
+        float LinearSpriteAnimator::distance(Position from, Position to)
+        {
+            float dx = from.x - to.x, dy = from.y - to.y;
+            return std::sqrt(dx * dx + dy * dy);
         }
 
         Position LinearSpriteAnimator::lerp(Position from, Position to, float t)
@@ -62,14 +69,15 @@ namespace Candies
         
         void LinearSpriteAnimator::AnimatedSprite::update(float currentTime)
         {
-            float completionFactor = currentTime - startTime;
-            while (completionFactor >= 1 && !destinations.empty())
+            float currentDistance = getCurrentDistance(currentTime);
+            float currentTransitionLength = distance(from, destinations.front());
+            while (!destinations.empty() && currentDistance >= currentTransitionLength)
             {
-                finishCurrentTransition();
-                completionFactor -= 1;
+                finishCurrentTransition(currentTransitionLength);
+                currentDistance = getCurrentDistance(currentTime);
             }
             if (!destinations.empty())
-                position = lerp(from, destinations.at(0), completionFactor);
+                position = lerp(from, destinations.at(0), currentDistance / distance(from, destinations.front()));
         }
 
         bool LinearSpriteAnimator::AnimatedSprite::isDestroyed() const
@@ -92,11 +100,17 @@ namespace Candies
             shouldBeDestroyed = true;
         }
 
-        void LinearSpriteAnimator::AnimatedSprite::finishCurrentTransition()
+        void LinearSpriteAnimator::AnimatedSprite::finishCurrentTransition(float currentTransitionLength)
         {
             position = from = destinations.at(0);
             from = destinations.at(0);
             destinations.erase(destinations.begin());
+            fromTime += currentTransitionLength / velocity;
+        }
+                                                       
+        float LinearSpriteAnimator::AnimatedSprite::getCurrentDistance(float currentTime) const
+        {
+            return (currentTime - fromTime) * velocity;
         }
 
     }
