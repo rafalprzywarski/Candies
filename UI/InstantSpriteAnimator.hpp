@@ -19,6 +19,12 @@ namespace Candies
             {
                 sprites.erase({sprite, at});
             }
+            
+            bool isAnimating() const
+            {
+                return false;
+            }
+            
             void draw() const
             {
                 for (auto const& s : sprites)

@@ -58,7 +58,7 @@ namespace Candies
         
         void AnimatedBoardView::selectItemAt(Position pos)
         {
-            if (!grid->isValid(pos))
+            if (!grid->isValid(pos) || animator->isAnimating())
                 return;
 
             auto itemLoc = grid->toLocation(pos);

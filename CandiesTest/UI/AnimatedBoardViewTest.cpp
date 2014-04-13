@@ -41,6 +41,7 @@ namespace Candies
                 expectGridConversions(ITEM3_LOCATION, ITEM3_POSITION);
                 expectGridConversions(ITEM7_LOCATION, ITEM7_POSITION);
                 expectGridConversions(LOCATION_WITH_NO_ITEM, POSITION_WITH_NO_ITEM);
+                ON_CALL(*animator, isAnimating()).WillByDefault(Return(false));
             }
         };
 
@@ -107,6 +108,16 @@ namespace Candies
             board.addItem(7, ITEM7_LOCATION);
             
             board.selectItemAt(POSITION_WITH_NO_ITEM);
+            ASSERT_TRUE(board.getSelectedItemLocations().empty());
+        }
+        
+        TEST_F(AnimatedBoardViewTest, should_not_select_items_when_animator_is_animating)
+        {
+            EXPECT_CALL(*animator, isAnimating()).WillRepeatedly(Return(true));
+            
+            board.addItem(3, ITEM3_LOCATION);
+            board.selectItemAt(ITEM3_POSITION);
+
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
         }
         

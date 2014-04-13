@@ -10,6 +10,7 @@ namespace Candies
         {
             MOCK_METHOD3(moveSprite, void(SpritePtr sprite, Position from, Position to));
             MOCK_METHOD2(destroySpriteAt, void(SpritePtr sprite, Position at));
+            MOCK_CONST_METHOD0(isAnimating, bool());
             MOCK_CONST_METHOD0(draw, void());
         };
         
