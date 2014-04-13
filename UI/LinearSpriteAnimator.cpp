@@ -1,4 +1,6 @@
 #include "LinearSpriteAnimator.hpp"
+#include <algorithm>
+#include <functional>
 
 namespace Candies
 {
@@ -17,6 +19,12 @@ namespace Candies
         
         void LinearSpriteAnimator::destroySpriteAt(SpritePtr sprite, Position at)
         {
+            for (auto& s : sprites)
+                if (s.destinations.at(0) == at)
+                {
+                    s.shouldBeDestroyed = true;
+                    return;
+                }
         }
         
         bool LinearSpriteAnimator::isAnimating() const
@@ -35,6 +43,7 @@ namespace Candies
             float currentTime = timer->getTime() / animationTime;
             for (auto& sprite : sprites)
                 sprite.update(currentTime);
+            sprites.erase(std::remove_if(sprites.begin(), sprites.end(), std::bind(&SpriteState::isDestroyed, std::placeholders::_1)), sprites.end());
         }
         
         int LinearSpriteAnimator::lerp(int from, int to, float t)
@@ -64,6 +73,11 @@ namespace Candies
             }
             if (!destinations.empty())
                 position = lerp(from, destinations.at(0), completionFactor);
+        }
+
+        bool LinearSpriteAnimator::SpriteState::isDestroyed() const
+        {
+            return destinations.empty() && shouldBeDestroyed;
         }
 
     }

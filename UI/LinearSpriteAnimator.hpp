@@ -25,13 +25,15 @@ namespace Candies
                 Position from, position;
                 std::vector<Position> destinations;
                 float startTime;
+                bool shouldBeDestroyed;
 
                 SpriteState(SpritePtr sprite, Position from, Position to, float startTime)
-                : sprite(sprite), from(from), destinations({to}), position(from), startTime(startTime)
+                : sprite(sprite), from(from), destinations({to}), position(from), startTime(startTime), shouldBeDestroyed(false)
                 { }
                 
                 void draw() const;
                 void update(float currentTime);
+                bool isDestroyed() const;
             };
 
             AnimationTimerPtr timer;
