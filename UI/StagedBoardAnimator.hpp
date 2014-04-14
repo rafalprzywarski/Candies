@@ -23,6 +23,9 @@ namespace Candies
             SwappingAnimationFactoryPtr swappingAnimationFactory;
             SpritesWithPositions sprites;
             AnimationPtr animation;
+            
+            bool shouldCreateNewAnimation() const;
+            void createNewAnimation();
         };
     }
 }

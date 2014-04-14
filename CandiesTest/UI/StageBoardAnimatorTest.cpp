@@ -27,6 +27,17 @@ namespace Candies
                 animator.drawFrame();
             }
             
+            void addAndExpectCreationOfAnimation(MockAnimationPtr animation)
+            {
+                animator.addFallingAnimation(SPRITES);
+                EXPECT_CALL(*fallingAnimationFactory, createAnimation(_, _)).WillOnce(Return(animation));
+            }
+
+            void addAnimation(MockAnimationPtr animation)
+            {
+                animator.addFallingAnimation(SPRITES);
+            }
+            
             StagedBoardAnimatorTest()
             {
                 EXPECT_CALL(*animation, isFinished()).WillRepeatedly(Return(false));
@@ -88,10 +99,7 @@ namespace Candies
         
         TEST_F(StagedBoardAnimatorTest, should_not_discard_the_current_animation_when_there_are_no_pending_animations)
         {
-            animator.addFallingAnimation(SPRITES);
-            
-            EXPECT_CALL(*fallingAnimationFactory, createAnimation(_, _)).WillOnce(Return(animation));
-            
+            addAndExpectCreationOfAnimation(animation);
             animator.updateFrame();
             
             EXPECT_CALL(*animation, isFinished()).WillRepeatedly(Return(true));
@@ -99,6 +107,19 @@ namespace Candies
             animator.updateFrame();
             
             assertDrawAnimation(animation);
+        }
+        
+        TEST_F(StagedBoardAnimatorTest, should_not_discard_the_current_animation_when_it_is_not_finished)
+        {
+            addAndExpectCreationOfAnimation(animation);
+            addAnimation(animation2);
+            
+            animator.updateFrame();
+            animator.updateFrame();
+            animator.updateFrame();
+            
+            assertDrawAnimation(animation);
+            
         }
     }
 }

@@ -16,16 +16,26 @@ namespace Candies
 
         void StagedBoardAnimator::updateFrame()
         {
-            if (createAnimation.empty())
+            if (!shouldCreateNewAnimation())
                 return;
-            animation = createAnimation.front()();
-            createAnimation.pop();
+            createNewAnimation();
         }
         
         void StagedBoardAnimator::drawFrame() const
         {
             if (animation)
                 animation->drawFrame();
+        }
+        
+        bool StagedBoardAnimator::shouldCreateNewAnimation() const
+        {
+            return (!animation || animation->isFinished()) && !createAnimation.empty();
+        }
+        
+        void StagedBoardAnimator::createNewAnimation()
+        {
+            animation = createAnimation.front()();
+            createAnimation.pop();
         }
     }
 }
