@@ -65,6 +65,9 @@ namespace Candies
         UI::Position const TIMER_POSITION = { 80, 435 };
         std::chrono::seconds const GAME_TIME(60);
         UI::AnimationSettings animationSettings;
+        animationSettings.disappearingTime = 0.25;
+        animationSettings.fallingVelocity = 500;
+        animationSettings.swappingVelocity = 200;
         animationSettings.initialFallingHeight = BOARD_POSITION.y - GRID_SIZE - 10;
 
         auto synchronizedTimer = std::make_shared<UI::SynchronizedAnimationTimer>();
