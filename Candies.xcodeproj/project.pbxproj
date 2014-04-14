@@ -104,6 +104,9 @@
 		F0C0A34618FC43E400B1EA57 /* AnimationsFactory.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0C0A34418FC43E400B1EA57 /* AnimationsFactory.hpp */; };
 		F0C0A34918FC483D00B1EA57 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C0A34718FC47F200B1EA57 /* background.png */; };
 		F0C0A34A18FC483F00B1EA57 /* foreground.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C0A34818FC47F200B1EA57 /* foreground.png */; };
+		F0C0A34D18FC4AC900B1EA57 /* SmoothMovingAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C0A34B18FC4AC900B1EA57 /* SmoothMovingAnimation.cpp */; };
+		F0C0A34E18FC4AC900B1EA57 /* SmoothMovingAnimation.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0C0A34C18FC4AC900B1EA57 /* SmoothMovingAnimation.hpp */; };
+		F0C0A35018FC4B3100B1EA57 /* SmoothMovingAnimationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C0A34F18FC4B3100B1EA57 /* SmoothMovingAnimationTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -266,6 +269,9 @@
 		F0C0A34418FC43E400B1EA57 /* AnimationsFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimationsFactory.hpp; sourceTree = "<group>"; };
 		F0C0A34718FC47F200B1EA57 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Resources/background.png; sourceTree = "<group>"; };
 		F0C0A34818FC47F200B1EA57 /* foreground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = foreground.png; path = Resources/foreground.png; sourceTree = "<group>"; };
+		F0C0A34B18FC4AC900B1EA57 /* SmoothMovingAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothMovingAnimation.cpp; sourceTree = "<group>"; };
+		F0C0A34C18FC4AC900B1EA57 /* SmoothMovingAnimation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SmoothMovingAnimation.hpp; sourceTree = "<group>"; };
+		F0C0A34F18FC4B3100B1EA57 /* SmoothMovingAnimationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothMovingAnimationTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -471,6 +477,8 @@
 				F0C0A33E18FC364000B1EA57 /* SpriteMovement.hpp */,
 				F0C0A34318FC43E400B1EA57 /* AnimationsFactory.cpp */,
 				F0C0A34418FC43E400B1EA57 /* AnimationsFactory.hpp */,
+				F0C0A34B18FC4AC900B1EA57 /* SmoothMovingAnimation.cpp */,
+				F0C0A34C18FC4AC900B1EA57 /* SmoothMovingAnimation.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -594,6 +602,7 @@
 				F0C0A32F18FC1BBA00B1EA57 /* MockDisappearingAnimator.hpp */,
 				F0C0A33418FC219900B1EA57 /* ConstantTimeDisappearingAnimatorTest.cpp */,
 				F0C0A33718FC2AC400B1EA57 /* MockBoardAnimator.hpp */,
+				F0C0A34F18FC4B3100B1EA57 /* SmoothMovingAnimationTest.cpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -665,6 +674,7 @@
 				F057A7C818F5CD1300636C2E /* Position.hpp in Headers */,
 				F057A7C118F5CD1300636C2E /* BoardView.hpp in Headers */,
 				F057A7C718F5CD1300636C2E /* MouseItemSwapper.hpp in Headers */,
+				F0C0A34E18FC4AC900B1EA57 /* SmoothMovingAnimation.hpp in Headers */,
 				F00EF2A518FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.hpp in Headers */,
 				F057A83618FA9FE800636C2E /* BoundedGrid.hpp in Headers */,
 				F0C0A32D18FC1A5400B1EA57 /* SmoothDisappearingAnimation.hpp in Headers */,
@@ -860,6 +870,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F057A80618F5D38A00636C2E /* MouseItemSwapperTest.cpp in Sources */,
+				F0C0A35018FC4B3100B1EA57 /* SmoothMovingAnimationTest.cpp in Sources */,
 				F057A83818FAA3C200636C2E /* BoundedGridTest.cpp in Sources */,
 				F0C0A33D18FC2D0400B1EA57 /* AnimatedBoardViewTest2.cpp in Sources */,
 				F0C0A32918FC1A3900B1EA57 /* SmoothDisappearingAnimationTest.cpp in Sources */,
@@ -914,6 +925,7 @@
 				F0C0A33218FC207F00B1EA57 /* ConstantTimeDisappearingAnimator.cpp in Sources */,
 				F00EF2AA18FC0945004ED2B8 /* SmoothFallingAnimation.cpp in Sources */,
 				F00EF29618FBE00E004ED2B8 /* SmoothSwappingAnimation.cpp in Sources */,
+				F0C0A34D18FC4AC900B1EA57 /* SmoothMovingAnimation.cpp in Sources */,
 				F00EF2A418FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.cpp in Sources */,
 				F0C0A33A18FC2CDD00B1EA57 /* AnimatedBoardView2.cpp in Sources */,
 				F07AFB3018FBC153004B1126 /* StagedBoardAnimator.cpp in Sources */,
