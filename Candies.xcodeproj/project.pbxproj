@@ -100,6 +100,9 @@
 		F0B4499A18F4ABC0006C6405 /* Red.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B4499518F4ABC0006C6405 /* Red.png */; };
 		F0B4499B18F4ABC0006C6405 /* Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = F0B4499618F4ABC0006C6405 /* Yellow.png */; };
 		F0B4499C18F4AE04006C6405 /* libGameUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F7718F45DFE008145C2 /* libGameUI.a */; };
+		F0C0A32918FC1A3900B1EA57 /* SmoothDisappearingAnimationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C0A32818FC1A3900B1EA57 /* SmoothDisappearingAnimationTest.cpp */; };
+		F0C0A32C18FC1A5400B1EA57 /* SmoothDisappearingAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C0A32A18FC1A5400B1EA57 /* SmoothDisappearingAnimation.cpp */; };
+		F0C0A32D18FC1A5400B1EA57 /* SmoothDisappearingAnimation.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0C0A32B18FC1A5400B1EA57 /* SmoothDisappearingAnimation.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -257,6 +260,11 @@
 		F0B4499418F4ABC0006C6405 /* Purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Purple.png; path = Resources/Purple.png; sourceTree = "<group>"; };
 		F0B4499518F4ABC0006C6405 /* Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Red.png; path = Resources/Red.png; sourceTree = "<group>"; };
 		F0B4499618F4ABC0006C6405 /* Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Yellow.png; path = Resources/Yellow.png; sourceTree = "<group>"; };
+		F0C0A32818FC1A3900B1EA57 /* SmoothDisappearingAnimationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothDisappearingAnimationTest.cpp; sourceTree = "<group>"; };
+		F0C0A32A18FC1A5400B1EA57 /* SmoothDisappearingAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothDisappearingAnimation.cpp; sourceTree = "<group>"; };
+		F0C0A32B18FC1A5400B1EA57 /* SmoothDisappearingAnimation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SmoothDisappearingAnimation.hpp; sourceTree = "<group>"; };
+		F0C0A32E18FC1B6D00B1EA57 /* DisappearingAnimator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DisappearingAnimator.hpp; sourceTree = "<group>"; };
+		F0C0A32F18FC1BBA00B1EA57 /* MockDisappearingAnimator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockDisappearingAnimator.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,6 +465,9 @@
 				F00EF2A318FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.hpp */,
 				F00EF2A818FC0945004ED2B8 /* SmoothFallingAnimation.cpp */,
 				F00EF2A918FC0945004ED2B8 /* SmoothFallingAnimation.hpp */,
+				F0C0A32A18FC1A5400B1EA57 /* SmoothDisappearingAnimation.cpp */,
+				F0C0A32B18FC1A5400B1EA57 /* SmoothDisappearingAnimation.hpp */,
+				F0C0A32E18FC1B6D00B1EA57 /* DisappearingAnimator.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -580,6 +591,8 @@
 				F00EF29B18FBE64F004ED2B8 /* MockTransitionAnimator.hpp */,
 				F00EF2A618FBF13E004ED2B8 /* ConstantVelocityTransitionAnimatorTest.cpp */,
 				F00EF2AC18FC0A7A004ED2B8 /* SmoothFallingAnimationTest.cpp */,
+				F0C0A32818FC1A3900B1EA57 /* SmoothDisappearingAnimationTest.cpp */,
+				F0C0A32F18FC1BBA00B1EA57 /* MockDisappearingAnimator.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -654,6 +667,7 @@
 				F057A7C718F5CD1300636C2E /* MouseItemSwapper.hpp in Headers */,
 				F00EF2A518FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.hpp in Headers */,
 				F057A83618FA9FE800636C2E /* BoundedGrid.hpp in Headers */,
+				F0C0A32D18FC1A5400B1EA57 /* SmoothDisappearingAnimation.hpp in Headers */,
 				F07AFB3118FBC153004B1126 /* StagedBoardAnimator.hpp in Headers */,
 				F07AFB2518FB5958004B1126 /* ConstantVelocityBoardAnimator.hpp in Headers */,
 				F057A82818F756D000636C2E /* TimeMonitor.hpp in Headers */,
@@ -845,6 +859,7 @@
 			files = (
 				F057A80618F5D38A00636C2E /* MouseItemSwapperTest.cpp in Sources */,
 				F057A83818FAA3C200636C2E /* BoundedGridTest.cpp in Sources */,
+				F0C0A32918FC1A3900B1EA57 /* SmoothDisappearingAnimationTest.cpp in Sources */,
 				F057A80718F5D38A00636C2E /* AnimatedBoardViewTest.cpp in Sources */,
 				F00EF2A718FBF13E004ED2B8 /* ConstantVelocityTransitionAnimatorTest.cpp in Sources */,
 				F07AFB3318FBC1B2004B1126 /* StageBoardAnimatorTest.cpp in Sources */,
@@ -895,6 +910,7 @@
 				F07AFB2418FB5958004B1126 /* ConstantVelocityBoardAnimator.cpp in Sources */,
 				F07AFB1518FADAE9004B1126 /* LinearSpriteAnimator.cpp in Sources */,
 				F057A82718F756D000636C2E /* TimeMonitor.cpp in Sources */,
+				F0C0A32C18FC1A5400B1EA57 /* SmoothDisappearingAnimation.cpp in Sources */,
 				F00EF2AA18FC0945004ED2B8 /* SmoothFallingAnimation.cpp in Sources */,
 				F057A7CB18F5CD1300636C2E /* AnimatedBoardView.cpp in Sources */,
 				F00EF29618FBE00E004ED2B8 /* SmoothSwappingAnimation.cpp in Sources */,
