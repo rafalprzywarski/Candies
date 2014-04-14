@@ -27,5 +27,10 @@ namespace Candies
         {
             return finalSprites;
         }
+        
+        void SmoothSwappingAnimation::updateFrame()
+        {
+            transitionAnimator->updateFrame();
+        }
     }
 }

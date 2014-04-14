@@ -12,6 +12,7 @@ namespace Candies
         public:
             SmoothSwappingAnimation(TransitionAnimatorPtr transitionAnimator, Position first, Position second, const SpritesWithPositions& sprites);
             SpritesWithPositions getFinalSprites() const;
+            void updateFrame();
         private:
             TransitionAnimatorPtr transitionAnimator;
             SpritesWithPositions finalSprites;

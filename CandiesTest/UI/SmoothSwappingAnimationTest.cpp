@@ -31,5 +31,15 @@ namespace Candies
             
             ASSERT_EQ(FINAL_SPRITES, animation.getFinalSprites());
         }
+        
+        TEST_F(SmoothSwappingAnimationTest, should_update_the_transitions)
+        {
+            EXPECT_CALL(*transitionAnimator, addTransition(_, _, _)).Times(AnyNumber());
+            
+            SmoothSwappingAnimation animation(transitionAnimator, FIRST, SECOND, SPRITES);
+            
+            EXPECT_CALL(*transitionAnimator, updateFrame());
+            animation.updateFrame();
+        }
     }
 }
