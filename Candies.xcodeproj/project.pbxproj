@@ -10,6 +10,9 @@
 		F00EF29618FBE00E004ED2B8 /* SmoothSwappingAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F00EF29418FBE00E004ED2B8 /* SmoothSwappingAnimation.cpp */; };
 		F00EF29718FBE00E004ED2B8 /* SmoothSwappingAnimation.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F00EF29518FBE00E004ED2B8 /* SmoothSwappingAnimation.hpp */; };
 		F00EF29918FBE084004ED2B8 /* SmoothSwappingAnimationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F00EF29818FBE084004ED2B8 /* SmoothSwappingAnimationTest.cpp */; };
+		F00EF2A418FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F00EF2A218FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.cpp */; };
+		F00EF2A518FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F00EF2A318FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.hpp */; };
+		F00EF2A718FBF13E004ED2B8 /* ConstantVelocityTransitionAnimatorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F00EF2A618FBF13E004ED2B8 /* ConstantVelocityTransitionAnimatorTest.cpp */; };
 		F02A9ECC18F1FA15008145C2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9ECB18F1FA15008145C2 /* Cocoa.framework */; };
 		F02A9ED618F1FA15008145C2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F02A9ED418F1FA15008145C2 /* InfoPlist.strings */; };
 		F02A9F0218F1FAC3008145C2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9EFF18F1FAC3008145C2 /* main.cpp */; };
@@ -129,6 +132,9 @@
 		F00EF29818FBE084004ED2B8 /* SmoothSwappingAnimationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothSwappingAnimationTest.cpp; sourceTree = "<group>"; };
 		F00EF29A18FBE5C2004ED2B8 /* TransitionAnimator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TransitionAnimator.hpp; sourceTree = "<group>"; };
 		F00EF29B18FBE64F004ED2B8 /* MockTransitionAnimator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockTransitionAnimator.hpp; sourceTree = "<group>"; };
+		F00EF2A218FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantVelocityTransitionAnimator.cpp; sourceTree = "<group>"; };
+		F00EF2A318FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConstantVelocityTransitionAnimator.hpp; sourceTree = "<group>"; };
+		F00EF2A618FBF13E004ED2B8 /* ConstantVelocityTransitionAnimatorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantVelocityTransitionAnimatorTest.cpp; sourceTree = "<group>"; };
 		F02A9EC818F1FA15008145C2 /* Candies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Candies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02A9ECB18F1FA15008145C2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F02A9ED018F1FA15008145C2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -441,6 +447,8 @@
 				F00EF29418FBE00E004ED2B8 /* SmoothSwappingAnimation.cpp */,
 				F00EF29518FBE00E004ED2B8 /* SmoothSwappingAnimation.hpp */,
 				F00EF29A18FBE5C2004ED2B8 /* TransitionAnimator.hpp */,
+				F00EF2A218FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.cpp */,
+				F00EF2A318FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -562,6 +570,7 @@
 				F00EF29318FBDDB1004ED2B8 /* MockDisappearingAnimationFactory.hpp */,
 				F00EF29818FBE084004ED2B8 /* SmoothSwappingAnimationTest.cpp */,
 				F00EF29B18FBE64F004ED2B8 /* MockTransitionAnimator.hpp */,
+				F00EF2A618FBF13E004ED2B8 /* ConstantVelocityTransitionAnimatorTest.cpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -634,6 +643,7 @@
 				F057A7C818F5CD1300636C2E /* Position.hpp in Headers */,
 				F057A7C118F5CD1300636C2E /* BoardView.hpp in Headers */,
 				F057A7C718F5CD1300636C2E /* MouseItemSwapper.hpp in Headers */,
+				F00EF2A518FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.hpp in Headers */,
 				F057A83618FA9FE800636C2E /* BoundedGrid.hpp in Headers */,
 				F07AFB3118FBC153004B1126 /* StagedBoardAnimator.hpp in Headers */,
 				F07AFB2518FB5958004B1126 /* ConstantVelocityBoardAnimator.hpp in Headers */,
@@ -826,6 +836,7 @@
 				F057A80618F5D38A00636C2E /* MouseItemSwapperTest.cpp in Sources */,
 				F057A83818FAA3C200636C2E /* BoundedGridTest.cpp in Sources */,
 				F057A80718F5D38A00636C2E /* AnimatedBoardViewTest.cpp in Sources */,
+				F00EF2A718FBF13E004ED2B8 /* ConstantVelocityTransitionAnimatorTest.cpp in Sources */,
 				F07AFB3318FBC1B2004B1126 /* StageBoardAnimatorTest.cpp in Sources */,
 				F057A80318F5D38A00636C2E /* BoardTest.cpp in Sources */,
 				F02A9F1618F1FF65008145C2 /* main.cpp in Sources */,
@@ -875,6 +886,7 @@
 				F057A82718F756D000636C2E /* TimeMonitor.cpp in Sources */,
 				F057A7CB18F5CD1300636C2E /* AnimatedBoardView.cpp in Sources */,
 				F00EF29618FBE00E004ED2B8 /* SmoothSwappingAnimation.cpp in Sources */,
+				F00EF2A418FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.cpp in Sources */,
 				F07AFB3018FBC153004B1126 /* StagedBoardAnimator.cpp in Sources */,
 				F07AFB1118FAD002004B1126 /* Background.cpp in Sources */,
 			);

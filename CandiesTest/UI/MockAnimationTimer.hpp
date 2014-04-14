@@ -8,7 +8,7 @@ namespace Candies
     {
         struct MockAnimationTimer : AnimationTimer
         {
-            MOCK_METHOD0(getTime, float());
+            MOCK_CONST_METHOD0(getTime, float());
         };
         
         typedef std::shared_ptr<MockAnimationTimer> MockAnimationTimerPtr;

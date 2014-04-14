@@ -9,7 +9,7 @@ namespace Candies
         {
         public:
             virtual ~AnimationTimer() { }
-            virtual float getTime() = 0;
+            virtual float getTime() const = 0;
         };
         
         typedef std::shared_ptr<AnimationTimer> AnimationTimerPtr;
