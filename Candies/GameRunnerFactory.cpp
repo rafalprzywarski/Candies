@@ -78,7 +78,7 @@ namespace Candies
         auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
         auto grid = std::make_shared<UI::BoundedGrid>(BOARD_POSITION, GRID_SIZE, BOARD_WIDTH, BOARD_HEIGHT);
         auto animationsFactory = std::make_shared<UI::AnimationsFactory>(synchronizedTimer, animationSettings);
-        auto boardAnimator = std::make_shared<UI::StagedBoardAnimator>(animationsFactory, animationsFactory, animationsFactory);
+        auto boardAnimator = std::make_shared<UI::StagedBoardAnimator>(animationsFactory, animationsFactory, animationsFactory, animationsFactory);
         auto board = std::make_shared<UI::AnimatedBoardView2>(gems, selectionMarker, grid, boardAnimator);
         auto timerLabel = std::make_shared<UI::SDLLabel>(renderer, FONT, FONT_SIZE, FONT_COLOR, TIMER_POSITION);
         auto background = std::make_shared<UI::Background>(backgroundSprite);

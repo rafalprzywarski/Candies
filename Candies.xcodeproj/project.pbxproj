@@ -272,6 +272,8 @@
 		F0C0A34B18FC4AC900B1EA57 /* SmoothMovingAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothMovingAnimation.cpp; sourceTree = "<group>"; };
 		F0C0A34C18FC4AC900B1EA57 /* SmoothMovingAnimation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SmoothMovingAnimation.hpp; sourceTree = "<group>"; };
 		F0C0A34F18FC4B3100B1EA57 /* SmoothMovingAnimationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothMovingAnimationTest.cpp; sourceTree = "<group>"; };
+		F0C0A35118FC530E00B1EA57 /* MockMovingAnimationFactory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockMovingAnimationFactory.hpp; sourceTree = "<group>"; };
+		F0C0A35218FC534F00B1EA57 /* MovingAnimationFactory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MovingAnimationFactory.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -479,6 +481,7 @@
 				F0C0A34418FC43E400B1EA57 /* AnimationsFactory.hpp */,
 				F0C0A34B18FC4AC900B1EA57 /* SmoothMovingAnimation.cpp */,
 				F0C0A34C18FC4AC900B1EA57 /* SmoothMovingAnimation.hpp */,
+				F0C0A35218FC534F00B1EA57 /* MovingAnimationFactory.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				F0C0A33418FC219900B1EA57 /* ConstantTimeDisappearingAnimatorTest.cpp */,
 				F0C0A33718FC2AC400B1EA57 /* MockBoardAnimator.hpp */,
 				F0C0A34F18FC4B3100B1EA57 /* SmoothMovingAnimationTest.cpp */,
+				F0C0A35118FC530E00B1EA57 /* MockMovingAnimationFactory.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";

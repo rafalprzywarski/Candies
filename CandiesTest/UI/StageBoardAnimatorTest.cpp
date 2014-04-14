@@ -2,6 +2,7 @@
 #include "MockFallingAnimationFactory.hpp"
 #include "MockSwappingAnimationFactory.hpp"
 #include "MockDisappearingAnimationFactory.hpp"
+#include "MockMovingAnimationFactory.hpp"
 #include "MockAnimation.hpp"
 #include <gtest/gtest.h>
 
@@ -18,12 +19,14 @@ namespace Candies
             SpritesWithPositions FINAL_SPRITES{{nullptr, {7, 7}}};
             Position FIRST{1, 2}, SECOND{3, 4};
             Positions POSITIONS{{177, 88}};
+            SpriteMovements MOVEMENTS{{{111, 222}, {333, 444}}};
             MockFallingAnimationFactoryPtr fallingAnimationFactory = std::make_shared<StrictMock<MockFallingAnimationFactory>>();
             MockSwappingAnimationFactoryPtr swappingAnimationFactory = std::make_shared<StrictMock<MockSwappingAnimationFactory>>();
             MockDisappearingAnimationFactoryPtr disappearingAnimationFactory = std::make_shared<StrictMock<MockDisappearingAnimationFactory>>();
+            MockMovingAnimationFactoryPtr movingAnimationFactory = std::make_shared<StrictMock<MockMovingAnimationFactory>>();
             MockAnimationPtr animation = std::make_shared<StrictMock<MockAnimation>>();
             MockAnimationPtr animation2 = std::make_shared<StrictMock<MockAnimation>>();
-            StagedBoardAnimator animator{fallingAnimationFactory, swappingAnimationFactory, disappearingAnimationFactory};
+            StagedBoardAnimator animator{fallingAnimationFactory, movingAnimationFactory, swappingAnimationFactory, disappearingAnimationFactory};
             
             void assertDrawAnimation(MockAnimationPtr animation)
             {
@@ -89,6 +92,18 @@ namespace Candies
             animator.updateFrame();
             
             EXPECT_CALL(*disappearingAnimationFactory, createDisappearingAnimation(_, _)).Times(0);
+            assertDrawAnimation(animation);
+        }
+        
+        TEST_F(StagedBoardAnimatorTest, should_add_moving_animations)
+        {
+            animator.addMovingAnimation(MOVEMENTS);
+            
+            EXPECT_CALL(*movingAnimationFactory, createMovingAnimation(MOVEMENTS, NOTHING)).WillOnce(Return(animation));
+            
+            animator.updateFrame();
+            
+            EXPECT_CALL(*movingAnimationFactory, createMovingAnimation(_, _)).Times(0);
             assertDrawAnimation(animation);
         }
         

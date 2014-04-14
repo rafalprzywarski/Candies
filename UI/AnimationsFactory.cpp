@@ -2,6 +2,7 @@
 #include <UI/SmoothFallingAnimation.hpp>
 #include <UI/SmoothSwappingAnimation.hpp>
 #include <UI/SmoothDisappearingAnimation.hpp>
+#include <UI/SmoothMovingAnimation.hpp>
 #include <UI/ConstantVelocityTransitionAnimator.hpp>
 #include <UI/ConstantTimeDisappearingAnimator.hpp>
 
@@ -13,6 +14,12 @@ namespace Candies
         {
             auto transitionAnimator = std::make_shared<ConstantVelocityTransitionAnimator>(timer, settings.fallingVelocity);
             return std::make_shared<SmoothFallingAnimation>(transitionAnimator, settings.initialFallingHeight, newSprites, oldSprites);
+        }
+
+        AnimationPtr AnimationsFactory::createMovingAnimation(const SpriteMovements& movements, const SpritesWithPositions& oldSprites)
+        {
+            auto transitionAnimator = std::make_shared<ConstantVelocityTransitionAnimator>(timer, settings.fallingVelocity);
+            return std::make_shared<SmoothMovingAnimation>(transitionAnimator, movements, oldSprites);
         }
         
         AnimationPtr AnimationsFactory::createSwappingAnimation(Position first, Position second, const SpritesWithPositions& oldSprites)
