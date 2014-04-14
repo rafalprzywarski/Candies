@@ -86,6 +86,7 @@ namespace Candies
             
             animator.updateFrame();
             
+            InSequence order;
             EXPECT_CALL(*sprite, drawAt(FIRST_SECOND_MIDPOINT));
             EXPECT_CALL(*sprite2, drawAt(FIRST2));
             animator.drawFrame();

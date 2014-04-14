@@ -19,8 +19,8 @@ namespace Candies
                     secondSprite = s.sprite;
                     s.position = first;
                 }
-            transitionAnimator->addTransition(first, second, firstSprite);
             transitionAnimator->addTransition(second, first, secondSprite);
+            transitionAnimator->addTransition(first, second, firstSprite);
         }
         
         SpritesWithPositions SmoothSwappingAnimation::getFinalSprites() const

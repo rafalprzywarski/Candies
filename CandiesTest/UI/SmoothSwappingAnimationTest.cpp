@@ -31,8 +31,9 @@ namespace Candies
         
         TEST_F(SmoothSwappingAnimationTest, should_swap_selected_sprite_positions_and_add_swapping_transitions)
         {
-            EXPECT_CALL(*transitionAnimator, addTransition(FIRST, SECOND, sprite3));
+            InSequence order;
             EXPECT_CALL(*transitionAnimator, addTransition(SECOND, FIRST, sprite1));
+            EXPECT_CALL(*transitionAnimator, addTransition(FIRST, SECOND, sprite3));
 
             SmoothSwappingAnimation animation(transitionAnimator, FIRST, SECOND, SPRITES);
             
