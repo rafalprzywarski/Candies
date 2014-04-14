@@ -271,6 +271,7 @@
 		F0C0A33018FC207F00B1EA57 /* ConstantTimeDisappearingAnimator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantTimeDisappearingAnimator.cpp; sourceTree = "<group>"; };
 		F0C0A33118FC207F00B1EA57 /* ConstantTimeDisappearingAnimator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConstantTimeDisappearingAnimator.hpp; sourceTree = "<group>"; };
 		F0C0A33418FC219900B1EA57 /* ConstantTimeDisappearingAnimatorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantTimeDisappearingAnimatorTest.cpp; sourceTree = "<group>"; };
+		F0C0A33618FC2A0A00B1EA57 /* BoardAnimator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BoardAnimator.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -476,6 +477,7 @@
 				F0C0A32E18FC1B6D00B1EA57 /* DisappearingAnimator.hpp */,
 				F0C0A33018FC207F00B1EA57 /* ConstantTimeDisappearingAnimator.cpp */,
 				F0C0A33118FC207F00B1EA57 /* ConstantTimeDisappearingAnimator.hpp */,
+				F0C0A33618FC2A0A00B1EA57 /* BoardAnimator.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";

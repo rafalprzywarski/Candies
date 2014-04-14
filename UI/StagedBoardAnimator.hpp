@@ -3,13 +3,16 @@
 #include "SwappingAnimationFactory.hpp"
 #include "DisappearingAnimationFactory.hpp"
 #include "SpriteWithPosition.hpp"
+#include "UpdateFrameListener.hpp"
+#include "DrawFrameListener.hpp"
+#include "BoardAnimator.hpp"
 #include <queue>
 
 namespace Candies
 {
     namespace UI
     {
-        class StagedBoardAnimator
+        class StagedBoardAnimator : public BoardAnimator, public DrawFrameListener, UpdateFrameListener
         {
         public:
             StagedBoardAnimator(FallingAnimationFactoryPtr fallingAnimationFactory, SwappingAnimationFactoryPtr swappingAnimationFactory, DisappearingAnimationFactoryPtr disappearingAnimationFactory)
