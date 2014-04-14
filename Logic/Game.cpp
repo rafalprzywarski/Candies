@@ -78,22 +78,22 @@ namespace Candies
                             addItemAt({x, y});
                 }
                 
-                void findAlignedItems(const Locations& locs)
+                void findAlignedItems(Location loc1, Location loc2)
                 {
-                    for (auto& loc : locs)
-                    {
-                        markAlignedLocationsAlong<&Location::x>(loc);
-                        markAlignedLocationsAlong<&Location::y>(loc);
-                    }
+                    markAlignedLocations(loc1);
+                    markAlignedLocations(loc2);
                 }
                 
                 void findAlignedItems(const ItemIdsWithLocations& locs)
                 {
                     for (auto& loc : locs)
-                    {
-                        markAlignedLocationsAlong<&Location::x>(loc.location);
-                        markAlignedLocationsAlong<&Location::y>(loc.location);
-                    }
+                        markAlignedLocations(loc.location);
+                }
+                
+                void findAlignedItems(const Movements& movs)
+                {
+                    for (auto& m : movs)
+                        markAlignedLocations(m.to);
                 }
                 
                 bool hasItemsToRemove() const
@@ -122,6 +122,12 @@ namespace Candies
                 ItemIdsWithLocations addedItems;
                 Movements movedItems;
                
+                void markAlignedLocations(Location loc)
+                {
+                    markAlignedLocationsAlong<&Location::x>(loc);
+                    markAlignedLocationsAlong<&Location::y>(loc);
+                }
+                
                 template <unsigned Location:: *Coord>
                 void markAlignedLocationsAlong(Location loc)
                 {
@@ -213,7 +219,7 @@ namespace Candies
             if (!trialBoard.swapItems(loc1, loc2))
                 return;
             
-            trialBoard.findAlignedItems({loc1, loc2});
+            trialBoard.findAlignedItems(loc1, loc2);
             if (!trialBoard.hasItemsToRemove())
                 return;
 
@@ -223,11 +229,14 @@ namespace Candies
                 trialBoard.removeItems();
                 
                 auto addedItems = trialBoard.getAddedItems();
-                notifyObserver(trialBoard.getItemsToRemove(), trialBoard.getMovedItems(), addedItems);
+                auto movedItems = trialBoard.getMovedItems();
+                
+                notifyObserver(trialBoard.getItemsToRemove(), movedItems, addedItems);
                 
                 board = trialBoard.getBoard();
                 trialBoard = MutableBoard(board, itemGenerator);
                 trialBoard.findAlignedItems(addedItems);
+                trialBoard.findAlignedItems(movedItems);
             }
         }
         
