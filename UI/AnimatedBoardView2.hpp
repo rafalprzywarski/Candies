@@ -24,6 +24,7 @@ namespace Candies
             AnimatedBoardView2(Sprites sprites, SpritePtr selectionMarker, GridPtr grid, BoardAnimatorPtr animator);
             void addItems(const Logic::ItemIdsWithLocations& items);
             void swapItems(Logic::Location loc1, Logic::Location loc2);
+            void dontSwapItems(Logic::Location loc1, Logic::Location loc2);
             void removeItems(const Logic::Locations& locs);
             void moveItems(const Logic::Movements& movements);
             void drawFrame() const;

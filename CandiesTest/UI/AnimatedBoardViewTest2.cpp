@@ -133,6 +133,15 @@ namespace Candies
             board.swapItems(ITEM3_LOCATION, ITEM7_LOCATION);
         }
         
+        TEST_F(AnimatedBoardView2Test, should_swap_and_swap_back_when_items_were_not_swapped)
+        {
+            InSequence order;
+            EXPECT_CALL(*animator, addSwappingAnimation(ITEM3_POSITION, ITEM7_POSITION));
+            EXPECT_CALL(*animator, addSwappingAnimation(ITEM7_POSITION, ITEM3_POSITION));
+            
+            board.dontSwapItems(ITEM3_LOCATION, ITEM7_LOCATION);
+        }
+        
         TEST_F(AnimatedBoardView2Test, should_remove_items)
         {
             EXPECT_CALL(*animator, addDisappearingAnimation(Positions{ITEM3_POSITION, ITEM7_POSITION}));

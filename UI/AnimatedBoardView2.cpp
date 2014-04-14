@@ -28,6 +28,12 @@ namespace Candies
             animator->addSwappingAnimation(grid->toPosition(loc1), grid->toPosition(loc2));
         }
 
+        void AnimatedBoardView2::dontSwapItems(Logic::Location loc1, Logic::Location loc2)
+        {
+            animator->addSwappingAnimation(grid->toPosition(loc1), grid->toPosition(loc2));
+            animator->addSwappingAnimation(grid->toPosition(loc2), grid->toPosition(loc1));
+        }
+
         void AnimatedBoardView2::removeItems(const Logic::Locations& locs)
         {
             Positions positions;
