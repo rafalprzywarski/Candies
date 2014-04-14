@@ -6,7 +6,7 @@
 #include "MouseItemSwapper.hpp"
 #include "SDLRendererFactory.hpp"
 #include "SDLSprite.hpp"
-#include "AnimatedBoardView2.hpp"
+#include "AnimatedBoardView.hpp"
 #include <SDLUI/SDLLabel.hpp>
 #include <UI/TimeMonitor.hpp>
 #include <Logic/ChronoTimer.hpp>
@@ -22,7 +22,7 @@ namespace Candies
     class BoardViewConnector : public Candies::Logic::GameObserver
     {
     public:
-        BoardViewConnector(UI::AnimatedBoardView2Ptr board) : board(board) { }
+        BoardViewConnector(UI::AnimatedBoardViewPtr board) : board(board) { }
         virtual void itemsAdded(const Logic::ItemIdsWithLocations& items)
         {
             board->addItems(items);
@@ -46,13 +46,13 @@ namespace Candies
         }
 
     private:
-        UI::AnimatedBoardView2Ptr board;
+        UI::AnimatedBoardViewPtr board;
     };
     
-    UI::AnimatedBoardView2::Sprites loadGems(std::shared_ptr<SDL_Renderer> renderer)
+    UI::AnimatedBoardView::Sprites loadGems(std::shared_ptr<SDL_Renderer> renderer)
     {
         std::vector<std::string> files = { "Blue.png", "Green.png", "Purple.png", "Red.png", "Yellow.png" };
-        UI::AnimatedBoardView2::Sprites gems;
+        UI::AnimatedBoardView::Sprites gems;
         for (auto& file : files)
             gems.push_back({gems.size(), std::make_shared<UI::SDLSprite>(renderer, file)});
         return gems;
@@ -83,7 +83,7 @@ namespace Candies
         auto grid = std::make_shared<UI::BoundedGrid>(BOARD_POSITION, GRID_SIZE, BOARD_WIDTH, BOARD_HEIGHT);
         auto animationsFactory = std::make_shared<UI::AnimationsFactory>(synchronizedTimer, animationSettings);
         auto boardAnimator = std::make_shared<UI::StagedBoardAnimator>(animationsFactory, animationsFactory, animationsFactory, animationsFactory);
-        auto board = std::make_shared<UI::AnimatedBoardView2>(gems, selectionMarker, grid, boardAnimator);
+        auto board = std::make_shared<UI::AnimatedBoardView>(gems, selectionMarker, grid, boardAnimator);
         auto timerLabel = std::make_shared<UI::SDLLabel>(renderer, FONT, FONT_SIZE, FONT_COLOR, TIMER_POSITION);
         auto background = std::make_shared<UI::Background>(backgroundSprite);
         auto foreground = std::make_shared<UI::Background>(foregroundSprite);

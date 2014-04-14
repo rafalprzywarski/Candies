@@ -1,4 +1,4 @@
-#include <UI/AnimatedBoardView2.hpp>
+#include <UI/AnimatedBoardView.hpp>
 #include "MockSprite.hpp"
 #include "MockGrid.hpp"
 #include "MockBoardAnimator.hpp"
@@ -11,7 +11,7 @@ namespace Candies
 {
     namespace UI
     {
-        struct AnimatedBoardView2Test : Test
+        struct AnimatedBoardViewTest : Test
         {
             SpritePtr item3 = std::make_shared<StrictMock<MockSprite>>();
             SpritePtr item7 = std::make_shared<StrictMock<MockSprite>>();
@@ -27,7 +27,7 @@ namespace Candies
             MockGridPtr grid = std::make_shared<NiceMock<MockGrid>>();
             MockBoardAnimatorPtr animator = std::make_shared<NiceMock<MockBoardAnimator>>();
             
-            AnimatedBoardView2 board{{{3, item3}, {7, item7}, {9, item9}, {13, item13}}, selection, grid, animator};
+            AnimatedBoardView board{{{3, item3}, {7, item7}, {9, item9}, {13, item13}}, selection, grid, animator};
             const Logic::ItemId INVALID_ID = 2;
             
             void defaultGridConversion(Logic::Location loc, Position pos)
@@ -37,7 +37,7 @@ namespace Candies
                 ON_CALL(*grid, isValid(pos)).WillByDefault(Return(true));
             }
             
-            AnimatedBoardView2Test()
+            AnimatedBoardViewTest()
             {
                 ON_CALL(*grid, isValid(_)).WillByDefault(Return(true));
                 defaultGridConversion(ITEM3_LOCATION, ITEM3_POSITION);
@@ -48,17 +48,17 @@ namespace Candies
             }
         };
 
-        TEST_F(AnimatedBoardView2Test, should_draw_nothing_when_created)
+        TEST_F(AnimatedBoardViewTest, should_draw_nothing_when_created)
         {
             board.drawFrame();
         }
         
-        TEST_F(AnimatedBoardView2Test, should_fail_when_added_item_has_invalid_id)
+        TEST_F(AnimatedBoardViewTest, should_fail_when_added_item_has_invalid_id)
         {
             ASSERT_THROW(board.addItems({{INVALID_ID, {0, 0}}}), std::out_of_range);
         }
         
-        TEST_F(AnimatedBoardView2Test, should_not_select_anything_when_position_is_not_valid)
+        TEST_F(AnimatedBoardViewTest, should_not_select_anything_when_position_is_not_valid)
         {
             Position POSITION{2, 3};
             EXPECT_CALL(*grid, isValid(POSITION)).WillRepeatedly(Return(false));
@@ -68,12 +68,12 @@ namespace Candies
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
         }
 
-        TEST_F(AnimatedBoardView2Test, should_select_nothing_when_created)
+        TEST_F(AnimatedBoardViewTest, should_select_nothing_when_created)
         {
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
         }
         
-        TEST_F(AnimatedBoardView2Test, should_select_items_at_given_coordinates_based_on_grid)
+        TEST_F(AnimatedBoardViewTest, should_select_items_at_given_coordinates_based_on_grid)
         {
             Position POSITION{88, 99};
             EXPECT_CALL(*grid, toLocation(POSITION)).WillRepeatedly(Return(ITEM3_LOCATION));
@@ -90,7 +90,7 @@ namespace Candies
             ASSERT_EQ(ITEM7_LOCATION, board.getSelectedItemLocations().at(1));
         }
         
-        TEST_F(AnimatedBoardView2Test, should_not_select_items_when_animator_is_animating)
+        TEST_F(AnimatedBoardViewTest, should_not_select_items_when_animator_is_animating)
         {
             EXPECT_CALL(*animator, isFinished()).WillRepeatedly(Return(false));
             
@@ -99,7 +99,7 @@ namespace Candies
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
         }
         
-        TEST_F(AnimatedBoardView2Test, should_clear_selection)
+        TEST_F(AnimatedBoardViewTest, should_clear_selection)
         {
             board.selectItemAt(ITEM3_POSITION);
             board.selectItemAt(ITEM7_POSITION);
@@ -108,14 +108,14 @@ namespace Candies
             ASSERT_TRUE(board.getSelectedItemLocations().empty());
         }
 
-        TEST_F(AnimatedBoardView2Test, should_not_select_the_same_item_twice)
+        TEST_F(AnimatedBoardViewTest, should_not_select_the_same_item_twice)
         {
             board.selectItemAt(ITEM3_POSITION);
             board.selectItemAt(ITEM3_POSITION);
             ASSERT_EQ(1u, board.getSelectedItemLocations().size());
         }
         
-        TEST_F(AnimatedBoardView2Test, should_draw_items_then_the_selection)
+        TEST_F(AnimatedBoardViewTest, should_draw_items_then_the_selection)
         {
             board.selectItemAt(ITEM3_POSITION);
             board.selectItemAt(ITEM7_POSITION);
@@ -126,14 +126,14 @@ namespace Candies
             board.drawFrame();
         }
         
-        TEST_F(AnimatedBoardView2Test, should_swap_items)
+        TEST_F(AnimatedBoardViewTest, should_swap_items)
         {
             EXPECT_CALL(*animator, addSwappingAnimation(ITEM3_POSITION, ITEM7_POSITION));
 
             board.swapItems(ITEM3_LOCATION, ITEM7_LOCATION);
         }
         
-        TEST_F(AnimatedBoardView2Test, should_swap_and_swap_back_when_items_were_not_swapped)
+        TEST_F(AnimatedBoardViewTest, should_swap_and_swap_back_when_items_were_not_swapped)
         {
             InSequence order;
             EXPECT_CALL(*animator, addSwappingAnimation(ITEM3_POSITION, ITEM7_POSITION));
@@ -142,14 +142,14 @@ namespace Candies
             board.dontSwapItems(ITEM3_LOCATION, ITEM7_LOCATION);
         }
         
-        TEST_F(AnimatedBoardView2Test, should_remove_items)
+        TEST_F(AnimatedBoardViewTest, should_remove_items)
         {
             EXPECT_CALL(*animator, addDisappearingAnimation(Positions{ITEM3_POSITION, ITEM7_POSITION}));
             
             board.removeItems({ITEM3_LOCATION, ITEM7_LOCATION});
         }
         
-        TEST_F(AnimatedBoardView2Test, should_move_items)
+        TEST_F(AnimatedBoardViewTest, should_move_items)
         {
             EXPECT_CALL(*animator, addMovingAnimation(SpriteMovements{{ITEM3_POSITION, ITEM7_POSITION}, {ITEM9_POSITION, ITEM13_POSITION}}));
             

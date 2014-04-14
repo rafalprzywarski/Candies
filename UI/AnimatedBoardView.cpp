@@ -1,16 +1,16 @@
-#include "AnimatedBoardView2.hpp"
+#include "AnimatedBoardView.hpp"
 #include <algorithm>
 
 namespace Candies
 {
     namespace UI
     {
-        AnimatedBoardView2::AnimatedBoardView2(Sprites sprites, SpritePtr selectionMarker, GridPtr grid, BoardAnimatorPtr animator)
+        AnimatedBoardView::AnimatedBoardView(Sprites sprites, SpritePtr selectionMarker, GridPtr grid, BoardAnimatorPtr animator)
         : sprites(sprites.begin(), sprites.end()), selectionMarker(selectionMarker), grid(grid), animator(animator)
         {
         }
 
-        void AnimatedBoardView2::addItems(const Logic::ItemIdsWithLocations& items)
+        void AnimatedBoardView::addItems(const Logic::ItemIdsWithLocations& items)
         {
             SpritesWithPositions itemSprites;
             for (auto& item : items)
@@ -23,18 +23,18 @@ namespace Candies
             animator->addFallingAnimation(itemSprites);
         }
 
-        void AnimatedBoardView2::swapItems(Logic::Location loc1, Logic::Location loc2)
+        void AnimatedBoardView::swapItems(Logic::Location loc1, Logic::Location loc2)
         {
             animator->addSwappingAnimation(grid->toPosition(loc1), grid->toPosition(loc2));
         }
 
-        void AnimatedBoardView2::dontSwapItems(Logic::Location loc1, Logic::Location loc2)
+        void AnimatedBoardView::dontSwapItems(Logic::Location loc1, Logic::Location loc2)
         {
             animator->addSwappingAnimation(grid->toPosition(loc1), grid->toPosition(loc2));
             animator->addSwappingAnimation(grid->toPosition(loc2), grid->toPosition(loc1));
         }
 
-        void AnimatedBoardView2::removeItems(const Logic::Locations& locs)
+        void AnimatedBoardView::removeItems(const Logic::Locations& locs)
         {
             Positions positions;
             positions.reserve(locs.size());
@@ -42,7 +42,7 @@ namespace Candies
             animator->addDisappearingAnimation(positions);
         }
 
-        void AnimatedBoardView2::moveItems(const Logic::Movements& movements)
+        void AnimatedBoardView::moveItems(const Logic::Movements& movements)
         {
             SpriteMovements spriteMovements;
             spriteMovements.reserve(movements.size());
@@ -52,13 +52,13 @@ namespace Candies
             animator->addMovingAnimation(spriteMovements);
         }
 
-        void AnimatedBoardView2::drawFrame() const
+        void AnimatedBoardView::drawFrame() const
         {
             for (auto const& itemLoc : selection)
                 selectionMarker->drawAt(grid->toPosition(itemLoc));
         }
         
-        void AnimatedBoardView2::selectItemAt(Position pos)
+        void AnimatedBoardView::selectItemAt(Position pos)
         {
             if (!grid->isValid(pos) || !animator->isFinished())
                 return;
@@ -68,17 +68,17 @@ namespace Candies
                 selection.push_back(itemLoc);
         }
 
-        Logic::Locations AnimatedBoardView2::getSelectedItemLocations() const
+        Logic::Locations AnimatedBoardView::getSelectedItemLocations() const
         {
             return selection;
         }
         
-        void AnimatedBoardView2::clearSelection()
+        void AnimatedBoardView::clearSelection()
         {
             selection.clear();
         }
 
-        bool AnimatedBoardView2::isItemAlreadySelected(Logic::Location loc)
+        bool AnimatedBoardView::isItemAlreadySelected(Logic::Location loc)
         {
             return std::find(selection.begin(), selection.end(), loc) != selection.end();
         }
