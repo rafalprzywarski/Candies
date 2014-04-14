@@ -14,12 +14,8 @@
 #include <UI/BoundedGrid.hpp>
 #include <UI/Background.hpp>
 #include <UI/StagedBoardAnimator.hpp>
-#include <UI/SmoothFallingAnimation.hpp>
-#include <UI/SmoothSwappingAnimation.hpp>
-#include <UI/SmoothDisappearingAnimation.hpp>
-#include <UI/ConstantVelocityTransitionAnimator.hpp>
-#include <UI/ConstantTimeDisappearingAnimator.hpp>
 #include <UI/SynchronizedAnimationTimer.hpp>
+#include <UI/AnimationsFactory.hpp>
 
 namespace Candies
 {
@@ -49,33 +45,6 @@ namespace Candies
         UI::AnimatedBoardView2Ptr board;
     };
     
-    namespace UI
-    {
-        class AnimationsFactory : public UI::FallingAnimationFactory, public UI::SwappingAnimationFactory, public UI::DisappearingAnimationFactory
-        {
-        public:
-            AnimationsFactory(AnimationTimerPtr timer) : timer(timer) { }
-            AnimationPtr createAnimation(const SpritesWithPositions& newSprites, const SpritesWithPositions& oldSprites)
-            {
-                auto transitionAnimator = std::make_shared<ConstantVelocityTransitionAnimator>(timer, 42);
-                const int INITIAL_HEIGHT = -42;
-                return std::make_shared<SmoothFallingAnimation>(transitionAnimator, INITIAL_HEIGHT, newSprites, oldSprites);
-            }
-            AnimationPtr createAnimation(Position first, Position second, const SpritesWithPositions& oldSprites)
-            {
-                auto transitionAnimator = std::make_shared<ConstantVelocityTransitionAnimator>(timer, 42);
-                return std::make_shared<SmoothSwappingAnimation>(transitionAnimator, first, second, oldSprites);
-            }
-            AnimationPtr createAnimation(const Positions& positions, const SpritesWithPositions& oldSprites)
-            {
-                auto disappearingAnimator = std::make_shared<ConstantTimeDisappearingAnimator>(timer, 1);
-                return std::make_shared<SmoothDisappearingAnimation>(disappearingAnimator, positions, oldSprites);
-            }
-        private:
-            AnimationTimerPtr timer;
-        };
-    }
-    
     UI::AnimatedBoardView2::Sprites loadGems(std::shared_ptr<SDL_Renderer> renderer)
     {
         std::vector<std::string> files = { "Blue.png", "Green.png", "Purple.png", "Red.png", "Yellow.png" };
@@ -95,6 +64,8 @@ namespace Candies
         SDL_Color FONT_COLOR = {230, 45, 25};
         UI::Position const TIMER_POSITION = { 80, 435 };
         std::chrono::seconds const GAME_TIME(60);
+        UI::AnimationSettings animationSettings;
+        animationSettings.initialFallingHeight = BOARD_POSITION.y - GRID_SIZE;
 
         auto synchronizedTimer = std::make_shared<UI::SynchronizedAnimationTimer>();
         auto renderer = UI::SDLRendererFactory().createRenderer(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -102,7 +73,7 @@ namespace Candies
         auto gems = loadGems(renderer);
         auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
         auto grid = std::make_shared<UI::BoundedGrid>(BOARD_POSITION, GRID_SIZE, BOARD_WIDTH, BOARD_HEIGHT);
-        auto animationsFactory = std::make_shared<UI::AnimationsFactory>(synchronizedTimer);
+        auto animationsFactory = std::make_shared<UI::AnimationsFactory>(synchronizedTimer, animationSettings);
         auto boardAnimator = std::make_shared<UI::StagedBoardAnimator>(animationsFactory, animationsFactory, animationsFactory);
         auto board = std::make_shared<UI::AnimatedBoardView2>(gems, selectionMarker, grid, boardAnimator);
         auto timerLabel = std::make_shared<UI::SDLLabel>(renderer, FONT, FONT_SIZE, FONT_COLOR, TIMER_POSITION);

@@ -11,7 +11,7 @@ namespace Candies
         {
         public:
             virtual ~DisappearingAnimationFactory() { }
-            virtual AnimationPtr createAnimation(const Positions& positions, const SpritesWithPositions& oldSprites) = 0;
+            virtual AnimationPtr createDisappearingAnimation(const Positions& positions, const SpritesWithPositions& oldSprites) = 0;
         };
         
         typedef std::shared_ptr<DisappearingAnimationFactory> DisappearingAnimationFactoryPtr;

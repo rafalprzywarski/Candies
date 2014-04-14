@@ -11,7 +11,7 @@ namespace Candies
         {
         public:
             virtual ~SwappingAnimationFactory() { }
-            virtual AnimationPtr createAnimation(Position first, Position second, const SpritesWithPositions& oldSprites) = 0;
+            virtual AnimationPtr createSwappingAnimation(Position first, Position second, const SpritesWithPositions& oldSprites) = 0;
         };
         
         typedef std::shared_ptr<SwappingAnimationFactory> SwappingAnimationFactoryPtr;

@@ -8,7 +8,7 @@ namespace Candies
     {
         struct MockSwappingAnimationFactory : SwappingAnimationFactory
         {
-            MOCK_METHOD3(createAnimation, AnimationPtr(Position first, Position second, const SpritesWithPositions&));
+            MOCK_METHOD3(createSwappingAnimation, AnimationPtr(Position first, Position second, const SpritesWithPositions&));
         };
         
         typedef std::shared_ptr<MockSwappingAnimationFactory> MockSwappingAnimationFactoryPtr;

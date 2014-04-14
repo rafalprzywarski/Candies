@@ -40,7 +40,7 @@ namespace Candies
             void addAndExpectCreationOfAnimation(MockAnimationPtr animation)
             {
                 animator.addFallingAnimation(SPRITES);
-                EXPECT_CALL(*fallingAnimationFactory, createAnimation(_, _)).WillOnce(Return(animation)).RetiresOnSaturation();
+                EXPECT_CALL(*fallingAnimationFactory, createFallingAnimation(_, _)).WillOnce(Return(animation)).RetiresOnSaturation();
             }
 
             void addAnimation(MockAnimationPtr animation)
@@ -59,11 +59,11 @@ namespace Candies
         {
             animator.addFallingAnimation(SPRITES);
             
-            EXPECT_CALL(*fallingAnimationFactory, createAnimation(SPRITES, NOTHING)).WillOnce(Return(animation));;
+            EXPECT_CALL(*fallingAnimationFactory, createFallingAnimation(SPRITES, NOTHING)).WillOnce(Return(animation));;
             
             animator.updateFrame();
             
-            EXPECT_CALL(*fallingAnimationFactory, createAnimation(_, _)).Times(0);
+            EXPECT_CALL(*fallingAnimationFactory, createFallingAnimation(_, _)).Times(0);
             
             assertDrawAnimation(animation);
         }
@@ -72,11 +72,11 @@ namespace Candies
         {
             animator.addSwappingAnimation(FIRST, SECOND);
             
-            EXPECT_CALL(*swappingAnimationFactory, createAnimation(FIRST, SECOND, NOTHING)).WillOnce(Return(animation));
+            EXPECT_CALL(*swappingAnimationFactory, createSwappingAnimation(FIRST, SECOND, NOTHING)).WillOnce(Return(animation));
             
             animator.updateFrame();
             
-            EXPECT_CALL(*swappingAnimationFactory, createAnimation(_, _, _)).Times(0);
+            EXPECT_CALL(*swappingAnimationFactory, createSwappingAnimation(_, _, _)).Times(0);
             assertDrawAnimation(animation);
         }
         
@@ -84,11 +84,11 @@ namespace Candies
         {
             animator.addDisappearingAnimation(POSITIONS);
             
-            EXPECT_CALL(*disappearingAnimationFactory, createAnimation(POSITIONS, NOTHING)).WillOnce(Return(animation));
+            EXPECT_CALL(*disappearingAnimationFactory, createDisappearingAnimation(POSITIONS, NOTHING)).WillOnce(Return(animation));
             
             animator.updateFrame();
             
-            EXPECT_CALL(*swappingAnimationFactory, createAnimation(_, _, _)).Times(0);
+            EXPECT_CALL(*disappearingAnimationFactory, createDisappearingAnimation(_, _)).Times(0);
             assertDrawAnimation(animation);
         }
         
@@ -107,13 +107,13 @@ namespace Candies
             animator.addFallingAnimation(SPRITES);
             animator.addSwappingAnimation(FIRST, SECOND);
             
-            EXPECT_CALL(*fallingAnimationFactory, createAnimation(_, _)).WillOnce(Return(animation));
+            EXPECT_CALL(*fallingAnimationFactory, createFallingAnimation(_, _)).WillOnce(Return(animation));
             
             animator.updateFrame();
 
             EXPECT_CALL(*animation, isFinished()).WillRepeatedly(Return(true));
             EXPECT_CALL(*animation, getFinalSprites()).WillRepeatedly(Return(FINAL_SPRITES));
-            EXPECT_CALL(*swappingAnimationFactory, createAnimation(_, _, FINAL_SPRITES)).WillOnce(Return(animation2));
+            EXPECT_CALL(*swappingAnimationFactory, createSwappingAnimation(_, _, FINAL_SPRITES)).WillOnce(Return(animation2));
             
             assertUpdateAnimation(animation);
             

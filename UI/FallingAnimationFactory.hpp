@@ -11,7 +11,7 @@ namespace Candies
         {
         public:
             virtual ~FallingAnimationFactory() { }
-            virtual AnimationPtr createAnimation(const SpritesWithPositions& newSprites, const SpritesWithPositions& oldSprites) = 0;
+            virtual AnimationPtr createFallingAnimation(const SpritesWithPositions& newSprites, const SpritesWithPositions& oldSprites) = 0;
         };
         
         typedef std::shared_ptr<FallingAnimationFactory> FallingAnimationFactoryPtr;

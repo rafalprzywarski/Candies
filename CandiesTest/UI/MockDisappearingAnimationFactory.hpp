@@ -8,7 +8,7 @@ namespace Candies
     {
         struct MockDisappearingAnimationFactory : DisappearingAnimationFactory
         {
-            MOCK_METHOD2(createAnimation, AnimationPtr(const Positions& positions, const SpritesWithPositions&));
+            MOCK_METHOD2(createDisappearingAnimation, AnimationPtr(const Positions& positions, const SpritesWithPositions&));
         };
         
         typedef std::shared_ptr<MockDisappearingAnimationFactory> MockDisappearingAnimationFactoryPtr;

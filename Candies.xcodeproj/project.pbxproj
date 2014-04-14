@@ -101,6 +101,8 @@
 		F0C0A33D18FC2D0400B1EA57 /* AnimatedBoardViewTest2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C0A33C18FC2D0400B1EA57 /* AnimatedBoardViewTest2.cpp */; };
 		F0C0A34118FC3D1A00B1EA57 /* SynchronizedAnimationTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C0A33F18FC3D1A00B1EA57 /* SynchronizedAnimationTimer.cpp */; };
 		F0C0A34218FC3D1A00B1EA57 /* SynchronizedAnimationTimer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0C0A34018FC3D1A00B1EA57 /* SynchronizedAnimationTimer.hpp */; };
+		F0C0A34518FC43E400B1EA57 /* AnimationsFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C0A34318FC43E400B1EA57 /* AnimationsFactory.cpp */; };
+		F0C0A34618FC43E400B1EA57 /* AnimationsFactory.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0C0A34418FC43E400B1EA57 /* AnimationsFactory.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -260,6 +262,8 @@
 		F0C0A33E18FC364000B1EA57 /* SpriteMovement.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SpriteMovement.hpp; sourceTree = "<group>"; };
 		F0C0A33F18FC3D1A00B1EA57 /* SynchronizedAnimationTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SynchronizedAnimationTimer.cpp; sourceTree = "<group>"; };
 		F0C0A34018FC3D1A00B1EA57 /* SynchronizedAnimationTimer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SynchronizedAnimationTimer.hpp; sourceTree = "<group>"; };
+		F0C0A34318FC43E400B1EA57 /* AnimationsFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationsFactory.cpp; sourceTree = "<group>"; };
+		F0C0A34418FC43E400B1EA57 /* AnimationsFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimationsFactory.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -462,6 +466,8 @@
 				F0C0A33118FC207F00B1EA57 /* ConstantTimeDisappearingAnimator.hpp */,
 				F0C0A33618FC2A0A00B1EA57 /* BoardAnimator.hpp */,
 				F0C0A33E18FC364000B1EA57 /* SpriteMovement.hpp */,
+				F0C0A34318FC43E400B1EA57 /* AnimationsFactory.cpp */,
+				F0C0A34418FC43E400B1EA57 /* AnimationsFactory.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -665,6 +671,7 @@
 				F0C0A33318FC207F00B1EA57 /* ConstantTimeDisappearingAnimator.hpp in Headers */,
 				F00EF2AB18FC0945004ED2B8 /* SmoothFallingAnimation.hpp in Headers */,
 				F0C0A33B18FC2CDD00B1EA57 /* AnimatedBoardView2.hpp in Headers */,
+				F0C0A34618FC43E400B1EA57 /* AnimationsFactory.hpp in Headers */,
 				F00EF29718FBE00E004ED2B8 /* SmoothSwappingAnimation.hpp in Headers */,
 				F057A7C918F5CD1300636C2E /* Sprite.hpp in Headers */,
 			);
@@ -895,6 +902,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0C0A34518FC43E400B1EA57 /* AnimationsFactory.cpp in Sources */,
 				F057A7C618F5CD1300636C2E /* MouseItemSwapper.cpp in Sources */,
 				F057A83518FA9FE800636C2E /* BoundedGrid.cpp in Sources */,
 				F057A82718F756D000636C2E /* TimeMonitor.cpp in Sources */,
