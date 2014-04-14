@@ -6,12 +6,17 @@ namespace Candies
     {
         void StagedBoardAnimator::addFallingAnimation(const SpritesWithPositions& sprites)
         {
-            this->sprites = sprites;
+            createAnimation = [=]() { return fallingAnimationFactory->createAnimation(sprites, {}); };
         }
         
+        void StagedBoardAnimator::addSwappingAnimation(const Position& first, const Position& second)
+        {
+            createAnimation = [=]() { return swappingAnimationFactory->createAnimation(first, second, {}); };
+        }
+
         void StagedBoardAnimator::updateFrame()
         {
-            animation = fallingAnimationFactory->createAnimation(sprites, {});
+            animation = createAnimation();
         }
         
         void StagedBoardAnimator::drawFrame() const

@@ -226,6 +226,8 @@
 		F07AFB3618FBC7AD004B1126 /* MockFallingAnimationFactory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockFallingAnimationFactory.hpp; sourceTree = "<group>"; };
 		F0933DA218FBC86A005E29AF /* Animation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Animation.hpp; sourceTree = "<group>"; };
 		F0933DA318FBC893005E29AF /* MockAnimation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockAnimation.hpp; sourceTree = "<group>"; };
+		F0933DA418FBCC6A005E29AF /* SwappingAnimationFactory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SwappingAnimationFactory.hpp; sourceTree = "<group>"; };
+		F0933DA518FBCE96005E29AF /* MockSwappingAnimationFactory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockSwappingAnimationFactory.hpp; sourceTree = "<group>"; };
 		F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRunnerFactory.cpp; sourceTree = "<group>"; };
 		F0B4498918F4A3BD006C6405 /* GameRunnerFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameRunnerFactory.hpp; sourceTree = "<group>"; };
 		F0B4499218F4ABC0006C6405 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Blue.png; path = Resources/Blue.png; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				F07AFB3418FBC3DB004B1126 /* SpriteWithPosition.hpp */,
 				F07AFB3518FBC6D6004B1126 /* FallingAnimationFactory.hpp */,
 				F0933DA218FBC86A005E29AF /* Animation.hpp */,
+				F0933DA418FBCC6A005E29AF /* SwappingAnimationFactory.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				F07AFB3218FBC1B2004B1126 /* StageBoardAnimatorTest.cpp */,
 				F07AFB3618FBC7AD004B1126 /* MockFallingAnimationFactory.hpp */,
 				F0933DA318FBC893005E29AF /* MockAnimation.hpp */,
+				F0933DA518FBCE96005E29AF /* MockSwappingAnimationFactory.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
