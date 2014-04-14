@@ -109,6 +109,8 @@
 		F0C0A33A18FC2CDD00B1EA57 /* AnimatedBoardView2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C0A33818FC2CDD00B1EA57 /* AnimatedBoardView2.cpp */; };
 		F0C0A33B18FC2CDD00B1EA57 /* AnimatedBoardView2.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0C0A33918FC2CDD00B1EA57 /* AnimatedBoardView2.hpp */; };
 		F0C0A33D18FC2D0400B1EA57 /* AnimatedBoardViewTest2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C0A33C18FC2D0400B1EA57 /* AnimatedBoardViewTest2.cpp */; };
+		F0C0A34118FC3D1A00B1EA57 /* SynchronizedAnimationTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C0A33F18FC3D1A00B1EA57 /* SynchronizedAnimationTimer.cpp */; };
+		F0C0A34218FC3D1A00B1EA57 /* SynchronizedAnimationTimer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0C0A34018FC3D1A00B1EA57 /* SynchronizedAnimationTimer.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -280,6 +282,8 @@
 		F0C0A33918FC2CDD00B1EA57 /* AnimatedBoardView2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimatedBoardView2.hpp; sourceTree = "<group>"; };
 		F0C0A33C18FC2D0400B1EA57 /* AnimatedBoardViewTest2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedBoardViewTest2.cpp; sourceTree = "<group>"; };
 		F0C0A33E18FC364000B1EA57 /* SpriteMovement.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SpriteMovement.hpp; sourceTree = "<group>"; };
+		F0C0A33F18FC3D1A00B1EA57 /* SynchronizedAnimationTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SynchronizedAnimationTimer.cpp; sourceTree = "<group>"; };
+		F0C0A34018FC3D1A00B1EA57 /* SynchronizedAnimationTimer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SynchronizedAnimationTimer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +442,8 @@
 		F057A7B618F5CD1300636C2E /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F0C0A33F18FC3D1A00B1EA57 /* SynchronizedAnimationTimer.cpp */,
+				F0C0A34018FC3D1A00B1EA57 /* SynchronizedAnimationTimer.hpp */,
 				F0C0A33818FC2CDD00B1EA57 /* AnimatedBoardView2.cpp */,
 				F0C0A33918FC2CDD00B1EA57 /* AnimatedBoardView2.hpp */,
 				F057A7B718F5CD1300636C2E /* BoardView.hpp */,
@@ -693,6 +699,7 @@
 				F057A83618FA9FE800636C2E /* BoundedGrid.hpp in Headers */,
 				F0C0A32D18FC1A5400B1EA57 /* SmoothDisappearingAnimation.hpp in Headers */,
 				F07AFB3118FBC153004B1126 /* StagedBoardAnimator.hpp in Headers */,
+				F0C0A34218FC3D1A00B1EA57 /* SynchronizedAnimationTimer.hpp in Headers */,
 				F07AFB2518FB5958004B1126 /* ConstantVelocityBoardAnimator.hpp in Headers */,
 				F057A82818F756D000636C2E /* TimeMonitor.hpp in Headers */,
 				F0C0A33318FC207F00B1EA57 /* ConstantTimeDisappearingAnimator.hpp in Headers */,
@@ -947,6 +954,7 @@
 				F0C0A33A18FC2CDD00B1EA57 /* AnimatedBoardView2.cpp in Sources */,
 				F07AFB3018FBC153004B1126 /* StagedBoardAnimator.cpp in Sources */,
 				F07AFB1118FAD002004B1126 /* Background.cpp in Sources */,
+				F0C0A34118FC3D1A00B1EA57 /* SynchronizedAnimationTimer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

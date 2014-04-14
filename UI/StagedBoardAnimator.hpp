@@ -12,7 +12,7 @@ namespace Candies
 {
     namespace UI
     {
-        class StagedBoardAnimator : public BoardAnimator, public DrawFrameListener, UpdateFrameListener
+        class StagedBoardAnimator : public BoardAnimator, public DrawFrameListener, public UpdateFrameListener
         {
         public:
             StagedBoardAnimator(FallingAnimationFactoryPtr fallingAnimationFactory, SwappingAnimationFactoryPtr swappingAnimationFactory, DisappearingAnimationFactoryPtr disappearingAnimationFactory)

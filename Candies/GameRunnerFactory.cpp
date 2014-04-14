@@ -6,25 +6,30 @@
 #include "MouseItemSwapper.hpp"
 #include "SDLRendererFactory.hpp"
 #include "SDLSprite.hpp"
-#include "AnimatedBoardView.hpp"
+#include "AnimatedBoardView2.hpp"
 #include <SDLUI/SDLLabel.hpp>
 #include <UI/TimeMonitor.hpp>
 #include <Logic/ChronoTimer.hpp>
 #include <Logic/StdItemGenerator.hpp>
 #include <UI/BoundedGrid.hpp>
-#include <UI/InstantSpriteAnimator.hpp>
 #include <UI/Background.hpp>
+#include <UI/StagedBoardAnimator.hpp>
+#include <UI/SmoothFallingAnimation.hpp>
+#include <UI/SmoothSwappingAnimation.hpp>
+#include <UI/SmoothDisappearingAnimation.hpp>
+#include <UI/ConstantVelocityTransitionAnimator.hpp>
+#include <UI/ConstantTimeDisappearingAnimator.hpp>
+#include <UI/SynchronizedAnimationTimer.hpp>
 
 namespace Candies
 {
     class BoardViewConnector : public Candies::Logic::GameObserver
     {
     public:
-        BoardViewConnector(UI::AnimatedBoardViewPtr board) : board(board) { }
+        BoardViewConnector(UI::AnimatedBoardView2Ptr board) : board(board) { }
         virtual void itemsAdded(const Logic::ItemIdsWithLocations& items)
         {
-            for (auto& item : items)
-                board->addItem(item.item, item.location);
+            board->addItems(items);
         }
         virtual void itemsSwapped(Logic::Location loc1, Logic::Location loc2)
         {
@@ -32,24 +37,49 @@ namespace Candies
         }
         virtual void itemsRemoved(const Logic::Locations& locs)
         {
-            for (auto& loc : locs)
-                board->removeItem(loc);
+            board->removeItems(locs);
         }
         
         virtual void itemsMoved(const Logic::Movements& movements)
         {
-            for (auto& m : movements)
-                board->moveItem(m.from, m.to);
+            board->moveItems(movements);
         }
 
     private:
-        UI::AnimatedBoardViewPtr board;
+        UI::AnimatedBoardView2Ptr board;
     };
     
-    UI::AnimatedBoardView::Sprites loadGems(std::shared_ptr<SDL_Renderer> renderer)
+    namespace UI
+    {
+        class AnimationsFactory : public UI::FallingAnimationFactory, public UI::SwappingAnimationFactory, public UI::DisappearingAnimationFactory
+        {
+        public:
+            AnimationsFactory(AnimationTimerPtr timer) : timer(timer) { }
+            AnimationPtr createAnimation(const SpritesWithPositions& newSprites, const SpritesWithPositions& oldSprites)
+            {
+                auto transitionAnimator = std::make_shared<ConstantVelocityTransitionAnimator>(timer, 42);
+                const int INITIAL_HEIGHT = -42;
+                return std::make_shared<SmoothFallingAnimation>(transitionAnimator, INITIAL_HEIGHT, newSprites, oldSprites);
+            }
+            AnimationPtr createAnimation(Position first, Position second, const SpritesWithPositions& oldSprites)
+            {
+                auto transitionAnimator = std::make_shared<ConstantVelocityTransitionAnimator>(timer, 42);
+                return std::make_shared<SmoothSwappingAnimation>(transitionAnimator, first, second, oldSprites);
+            }
+            AnimationPtr createAnimation(const Positions& positions, const SpritesWithPositions& oldSprites)
+            {
+                auto disappearingAnimator = std::make_shared<ConstantTimeDisappearingAnimator>(timer, 1);
+                return std::make_shared<SmoothDisappearingAnimation>(disappearingAnimator, positions, oldSprites);
+            }
+        private:
+            AnimationTimerPtr timer;
+        };
+    }
+    
+    UI::AnimatedBoardView2::Sprites loadGems(std::shared_ptr<SDL_Renderer> renderer)
     {
         std::vector<std::string> files = { "Blue.png", "Green.png", "Purple.png", "Red.png", "Yellow.png" };
-        UI::AnimatedBoardView::Sprites gems;
+        UI::AnimatedBoardView2::Sprites gems;
         for (auto& file : files)
             gems.push_back({gems.size(), std::make_shared<UI::SDLSprite>(renderer, file)});
         return gems;
@@ -66,16 +96,18 @@ namespace Candies
         UI::Position const TIMER_POSITION = { 80, 435 };
         std::chrono::seconds const GAME_TIME(60);
 
+        auto synchronizedTimer = std::make_shared<UI::SynchronizedAnimationTimer>();
         auto renderer = UI::SDLRendererFactory().createRenderer(SCREEN_WIDTH, SCREEN_HEIGHT);
         auto backgroundSprite = std::make_shared<UI::SDLSprite>(renderer, "BackGround.jpg");
         auto gems = loadGems(renderer);
         auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
         auto grid = std::make_shared<UI::BoundedGrid>(BOARD_POSITION, GRID_SIZE, BOARD_WIDTH, BOARD_HEIGHT);
-        auto spriteAnimator = std::make_shared<UI::InstantSpriteAnimator>();
-        auto board = std::make_shared<UI::AnimatedBoardView>(gems, selectionMarker, grid, spriteAnimator);
+        auto animationsFactory = std::make_shared<UI::AnimationsFactory>(synchronizedTimer);
+        auto boardAnimator = std::make_shared<UI::StagedBoardAnimator>(animationsFactory, animationsFactory, animationsFactory);
+        auto board = std::make_shared<UI::AnimatedBoardView2>(gems, selectionMarker, grid, boardAnimator);
         auto timerLabel = std::make_shared<UI::SDLLabel>(renderer, FONT, FONT_SIZE, FONT_COLOR, TIMER_POSITION);
         auto background = std::make_shared<UI::Background>(backgroundSprite);
-        UI::DrawFrameListeners uiElements = { background, board, timerLabel };
+        UI::DrawFrameListeners uiElements = { background, boardAnimator, board, timerLabel };
         auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, uiElements);
         auto itemGenerator = std::make_shared<Candies::Logic::StdItemGenerator>(gems.size());
         auto gameObserver = std::make_shared<BoardViewConnector>(board);
@@ -83,7 +115,7 @@ namespace Candies
         auto mouseItemSwapper = std::make_shared<Candies::UI::MouseItemSwapper>(board, gameLogic);
         auto timer = std::make_shared<Logic::ChronoTimer>(GAME_TIME);
         auto timeMonitor = std::make_shared<UI::TimeMonitor>(timer, timerLabel, mouseItemSwapper);
-        UI::UpdateFrameListeners updateListeners = { timeMonitor };
+        UI::UpdateFrameListeners updateListeners = { timeMonitor, synchronizedTimer, boardAnimator };
         auto dispatcher = std::make_shared<Candies::UI::SDLEventDispatcher>(updateListeners, ui, mouseItemSwapper);
         auto runner = std::make_shared<Candies::GameRunner>(gameLogic, timer, dispatcher);
         return runner;

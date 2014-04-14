@@ -7,7 +7,7 @@ namespace Candies
 {
     namespace UI
     {
-        class SmoothSwappingAnimation
+        class SmoothSwappingAnimation : public Animation
         {
         public:
             SmoothSwappingAnimation(TransitionAnimatorPtr transitionAnimator, Position first, Position second, const SpritesWithPositions& sprites);
