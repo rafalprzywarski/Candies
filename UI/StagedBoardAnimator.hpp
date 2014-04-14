@@ -2,6 +2,7 @@
 #include "FallingAnimationFactory.hpp"
 #include "SwappingAnimationFactory.hpp"
 #include "SpriteWithPosition.hpp"
+#include <queue>
 
 namespace Candies
 {
@@ -17,7 +18,7 @@ namespace Candies
             void updateFrame();
             void drawFrame() const;
         private:
-            std::function<AnimationPtr()> createAnimation;
+            std::queue<std::function<AnimationPtr()>> createAnimation;
             FallingAnimationFactoryPtr fallingAnimationFactory;
             SwappingAnimationFactoryPtr swappingAnimationFactory;
             SpritesWithPositions sprites;

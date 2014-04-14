@@ -9,6 +9,7 @@ namespace Candies
         struct MockAnimation : Animation
         {
             MOCK_CONST_METHOD0(drawFrame, void());
+            MOCK_CONST_METHOD0(isFinished, bool());
         };
         
         typedef std::shared_ptr<MockAnimation> MockAnimationPtr;

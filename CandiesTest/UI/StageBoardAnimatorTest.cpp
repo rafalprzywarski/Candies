@@ -18,7 +18,20 @@ namespace Candies
             MockFallingAnimationFactoryPtr fallingAnimationFactory = std::make_shared<StrictMock<MockFallingAnimationFactory>>();
             MockSwappingAnimationFactoryPtr swappingAnimationFactory = std::make_shared<StrictMock<MockSwappingAnimationFactory>>();
             MockAnimationPtr animation = std::make_shared<StrictMock<MockAnimation>>();
+            MockAnimationPtr animation2 = std::make_shared<StrictMock<MockAnimation>>();
             StagedBoardAnimator animator{fallingAnimationFactory, swappingAnimationFactory};
+            
+            void assertDrawAnimation(MockAnimationPtr animation)
+            {
+                EXPECT_CALL(*animation, drawFrame());
+                animator.drawFrame();
+            }
+            
+            StagedBoardAnimatorTest()
+            {
+                EXPECT_CALL(*animation, isFinished()).WillRepeatedly(Return(false));
+                EXPECT_CALL(*animation2, isFinished()).WillRepeatedly(Return(false));
+            }
         };
         
         TEST_F(StagedBoardAnimatorTest, should_add_falling_animations)
@@ -30,9 +43,8 @@ namespace Candies
             animator.updateFrame();
             
             EXPECT_CALL(*fallingAnimationFactory, createAnimation(_, _)).Times(0);
-            EXPECT_CALL(*animation, drawFrame());
             
-            animator.drawFrame();
+            assertDrawAnimation(animation);
         }
         
         TEST_F(StagedBoardAnimatorTest, should_add_swapping_animations)
@@ -44,9 +56,7 @@ namespace Candies
             animator.updateFrame();
             
             EXPECT_CALL(*swappingAnimationFactory, createAnimation(_, _, _)).Times(0);
-            EXPECT_CALL(*animation, drawFrame());
-            
-            animator.drawFrame();
+            assertDrawAnimation(animation);
         }
         
         TEST_F(StagedBoardAnimatorTest, should_not_fail_when_updated_empty)
@@ -57,6 +67,23 @@ namespace Candies
         TEST_F(StagedBoardAnimatorTest, should_not_fail_when_drawn_empty)
         {
             animator.drawFrame();
+        }
+        
+        TEST_F(StagedBoardAnimatorTest, should_create_next_animation_when_the_previous_one_is_finished)
+        {
+            animator.addFallingAnimation(SPRITES);
+            animator.addSwappingAnimation(FIRST, SECOND);
+            
+            EXPECT_CALL(*fallingAnimationFactory, createAnimation(_, _)).WillOnce(Return(animation));
+            
+            animator.updateFrame();
+
+            EXPECT_CALL(*animation, isFinished()).WillRepeatedly(Return(true));
+            EXPECT_CALL(*swappingAnimationFactory, createAnimation(_, _, _)).WillOnce(Return(animation2));
+            
+            animator.updateFrame();
+            
+            assertDrawAnimation(animation2);
         }
     }
 }
