@@ -25,7 +25,7 @@ namespace Candies
 
         typedef std::vector<ItemId> ItemIds;
 
-        struct GameTest : Test
+        struct GameAcceptanceTest : Test
         {
             const unsigned BOARD_WIDTH = 8, BOARD_HEIGHT = 8;
             
@@ -97,7 +97,7 @@ namespace Candies
             }
         };
         
-        TEST_F(GameTest, board_should_be_filled_with_generated_items_when_game_is_started)
+        TEST_F(GameAcceptanceTest, board_should_be_filled_with_generated_items_when_game_is_started)
         {
             expectGenerationOf(ALL_ITEMS);
             game->start();
@@ -106,14 +106,14 @@ namespace Candies
             EXPECT_THAT(board, IsFilledWith(ALL_ITEMS));
         }
 
-        TEST_F(GameTest, should_notify_observer_about_filling_the_board_with_generated_items_when_game_is_started)
+        TEST_F(GameAcceptanceTest, should_notify_observer_about_filling_the_board_with_generated_items_when_game_is_started)
         {
             expectGenerationOf(ALL_ITEMS);
             expectItemsAddedNotificationFor(ALL_ITEMS);
             game->start();
         }
         
-        TEST_F(GameTest, successful_swap_should_update_the_board)
+        TEST_F(GameAcceptanceTest, successful_swap_should_update_the_board)
         {
             setBoard({
                 4,3,3,0,0,1,3,1,
@@ -151,7 +151,7 @@ namespace Candies
                 1,4,3,2,1,3,3,2 });
         }
         
-        TEST_F(GameTest, items_should_fall_down_when_other_items_below_them_are_removed_and_new_items_should_be_added_above_them)
+        TEST_F(GameAcceptanceTest, items_should_fall_down_when_other_items_below_them_are_removed_and_new_items_should_be_added_above_them)
         {
             setBoard({
                 4,3,3,0,0,1,3,1,
@@ -188,7 +188,7 @@ namespace Candies
                 1,4,3,2,1,3,3,2 });
         }
 
-        TEST_F(GameTest, items_should_fall_to_the_bottom)
+        TEST_F(GameAcceptanceTest, items_should_fall_to_the_bottom)
         {
             setBoard({
                 4,3,3,0,0,1,3,2,
@@ -247,9 +247,9 @@ namespace Candies
         Locations Removed(Locations l) { return l; }
         ItemIds Added(ItemIds l) { return l; }
 
-        struct GameFailingSwappingTest : GameTest, WithParamInterface<FailingExample> {};
+        struct GameFailedSwappingAcceptanceTest : GameAcceptanceTest, WithParamInterface<FailingExample> {};
         
-        TEST_P(GameFailingSwappingTest, should_not_swap)
+        TEST_P(GameFailedSwappingAcceptanceTest, should_not_swap)
         {
             setBoard(GetParam().board);
             Board initialBoard = game->getBoard();
@@ -264,7 +264,7 @@ namespace Candies
         }
         
         INSTANTIATE_TEST_CASE_P(
-            Examples, GameFailingSwappingTest,
+            Examples, GameFailedSwappingAcceptanceTest,
             Values(
                 FailingExample{
                     "not neighbours, vertical",
@@ -438,9 +438,9 @@ namespace Candies
         );
 
 
-        struct GameSuccessfulSwappingTest : GameTest, WithParamInterface<SuccessfulExample> {};
+        struct GameSuccessfulSwappingAcceptanceTest : GameAcceptanceTest, WithParamInterface<SuccessfulExample> {};
         
-        TEST_P(GameSuccessfulSwappingTest, should_replace_3_aligned_items_with_3_new_items)
+        TEST_P(GameSuccessfulSwappingAcceptanceTest, should_replace_3_aligned_items_with_3_new_items)
         {
             ASSERT_EQ(GetParam().added.size(), GetParam().removed.size()) << "must add and remove the same number of elements";
 
@@ -457,7 +457,7 @@ namespace Candies
         }
 
         INSTANTIATE_TEST_CASE_P(
-            Examples, GameSuccessfulSwappingTest,
+            Examples, GameSuccessfulSwappingAcceptanceTest,
             Values(
                 SuccessfulExample{
                     "3 horizontal right",

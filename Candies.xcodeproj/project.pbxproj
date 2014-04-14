@@ -54,7 +54,7 @@
 		F057A7F318F5D1DF00636C2E /* gtest.h in Headers */ = {isa = PBXBuildFile; fileRef = F057A7EF18F5D1DF00636C2E /* gtest.h */; };
 		F057A7F418F5D1DF00636C2E /* gmock-gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = F057A7F118F5D1DF00636C2E /* gmock-gtest-all.cc */; };
 		F057A80318F5D38A00636C2E /* BoardTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7F618F5D38A00636C2E /* BoardTest.cpp */; };
-		F057A80418F5D38A00636C2E /* GameTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7F718F5D38A00636C2E /* GameTest.cpp */; };
+		F057A80418F5D38A00636C2E /* GameAcceptanceTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7F718F5D38A00636C2E /* GameAcceptanceTest.cpp */; };
 		F057A80518F5D38A00636C2E /* GameRunnerTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A7FC18F5D38A00636C2E /* GameRunnerTest.cpp */; };
 		F057A80618F5D38A00636C2E /* MouseItemSwapperTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F057A80118F5D38A00636C2E /* MouseItemSwapperTest.cpp */; };
 		F057A81318F5D4BC00636C2E /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = F057A80A18F5D4BC00636C2E /* ResourcePath.mm */; };
@@ -188,7 +188,7 @@
 		F057A7EF18F5D1DF00636C2E /* gtest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gtest.h; sourceTree = "<group>"; };
 		F057A7F118F5D1DF00636C2E /* gmock-gtest-all.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "gmock-gtest-all.cc"; sourceTree = "<group>"; };
 		F057A7F618F5D38A00636C2E /* BoardTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardTest.cpp; sourceTree = "<group>"; };
-		F057A7F718F5D38A00636C2E /* GameTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameTest.cpp; sourceTree = "<group>"; };
+		F057A7F718F5D38A00636C2E /* GameAcceptanceTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameAcceptanceTest.cpp; sourceTree = "<group>"; };
 		F057A7F818F5D38A00636C2E /* MockGameLogic.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MockGameLogic.hpp; sourceTree = "<group>"; };
 		F057A7F918F5D38A00636C2E /* MockGameObserver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MockGameObserver.hpp; sourceTree = "<group>"; };
 		F057A7FA18F5D38A00636C2E /* MockItemGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MockItemGenerator.hpp; sourceTree = "<group>"; };
@@ -561,7 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				F057A7F618F5D38A00636C2E /* BoardTest.cpp */,
-				F057A7F718F5D38A00636C2E /* GameTest.cpp */,
+				F057A7F718F5D38A00636C2E /* GameAcceptanceTest.cpp */,
 				F057A7F818F5D38A00636C2E /* MockGameLogic.hpp */,
 				F057A7F918F5D38A00636C2E /* MockGameObserver.hpp */,
 				F057A7FA18F5D38A00636C2E /* MockItemGenerator.hpp */,
@@ -883,7 +883,7 @@
 				F07AFB3318FBC1B2004B1126 /* StageBoardAnimatorTest.cpp in Sources */,
 				F057A80318F5D38A00636C2E /* BoardTest.cpp in Sources */,
 				F02A9F1618F1FF65008145C2 /* main.cpp in Sources */,
-				F057A80418F5D38A00636C2E /* GameTest.cpp in Sources */,
+				F057A80418F5D38A00636C2E /* GameAcceptanceTest.cpp in Sources */,
 				F00EF2AD18FC0A7A004ED2B8 /* SmoothFallingAnimationTest.cpp in Sources */,
 				F00EF29918FBE084004ED2B8 /* SmoothSwappingAnimationTest.cpp in Sources */,
 				F057A80518F5D38A00636C2E /* GameRunnerTest.cpp in Sources */,
