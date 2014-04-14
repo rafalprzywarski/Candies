@@ -31,5 +31,10 @@ namespace Candies
         {
             animator.drawFrame();
         }
+
+        TEST_F(ConstantVelocityTransitionAnimatorTest, should_not_fail_when_updated_empty)
+        {
+            animator.updateFrame();
+        }
     }
 }
