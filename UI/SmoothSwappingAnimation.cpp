@@ -32,5 +32,10 @@ namespace Candies
         {
             transitionAnimator->updateFrame();
         }
+
+        bool SmoothSwappingAnimation::isFinished() const
+        {
+            return transitionAnimator->isFinished();
+        }
     }
 }

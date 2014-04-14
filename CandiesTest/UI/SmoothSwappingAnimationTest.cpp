@@ -20,6 +20,13 @@ namespace Candies
             MockTransitionAnimatorPtr transitionAnimator = std::make_shared<StrictMock<MockTransitionAnimator>>();
             SpritesWithPositions SPRITES{{sprite1, SECOND}, {sprite2, {6, 6}}, {sprite3, FIRST}, {sprite4, {2, 3}}};
             SpritesWithPositions FINAL_SPRITES{{sprite1, FIRST}, {sprite2, {6, 6}}, {sprite3, SECOND}, {sprite4, {2, 3}}};
+            
+            SmoothSwappingAnimation create()
+            {
+                EXPECT_CALL(*transitionAnimator, addTransition(_, _, _)).Times(AnyNumber());
+                
+                return SmoothSwappingAnimation(transitionAnimator, FIRST, SECOND, SPRITES);
+            }
         };
         
         TEST_F(SmoothSwappingAnimationTest, should_swap_selected_sprite_positions_and_add_swapping_transitions)
@@ -34,12 +41,21 @@ namespace Candies
         
         TEST_F(SmoothSwappingAnimationTest, should_update_the_transitions)
         {
-            EXPECT_CALL(*transitionAnimator, addTransition(_, _, _)).Times(AnyNumber());
-            
-            SmoothSwappingAnimation animation(transitionAnimator, FIRST, SECOND, SPRITES);
+            auto animation = create();
             
             EXPECT_CALL(*transitionAnimator, updateFrame());
             animation.updateFrame();
+        }
+        
+        TEST_F(SmoothSwappingAnimationTest, should_finish_when_transitions_finish)
+        {
+            auto animation = create();
+            
+            EXPECT_CALL(*transitionAnimator, isFinished()).WillRepeatedly(Return(false));
+            ASSERT_FALSE(animation.isFinished());
+
+            EXPECT_CALL(*transitionAnimator, isFinished()).WillRepeatedly(Return(true));
+            ASSERT_TRUE(animation.isFinished());
         }
     }
 }
