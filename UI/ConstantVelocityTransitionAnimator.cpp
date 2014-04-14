@@ -17,7 +17,8 @@ namespace Candies
         
         void ConstantVelocityTransitionAnimator::drawFrame() const
         {
-            sprite->drawAt(first);
+            if (sprite)
+                sprite->drawAt(first);
         }
         
         bool ConstantVelocityTransitionAnimator::isFinished() const

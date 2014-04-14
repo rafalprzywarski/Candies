@@ -26,5 +26,10 @@ namespace Candies
             EXPECT_CALL(*sprite, drawAt(FIRST));
             animator.drawFrame();
         }
+        
+        TEST_F(ConstantVelocityTransitionAnimatorTest, should_not_fail_when_drawn_empty)
+        {
+            animator.drawFrame();
+        }
     }
 }
