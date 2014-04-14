@@ -217,10 +217,7 @@ namespace Candies
         {
             MutableBoard trialBoard(board, itemGenerator);
             if (!trialBoard.swapItems(loc1, loc2))
-            {
-                observer->itemsNotSwapped(loc1, loc2);
                 return;
-            }
             
             trialBoard.findAlignedItems(loc1, loc2);
             if (!trialBoard.hasItemsToRemove())

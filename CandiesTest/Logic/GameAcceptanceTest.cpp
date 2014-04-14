@@ -338,7 +338,11 @@ namespace Candies
             ItemIds board;
             Location from;
             Location to;
+            bool triggerNotSwapped;
         };
+        
+        constexpr bool TRIGGER_NOT_SWAPPED = true;
+        constexpr bool DONT_TRIGGER_NOT_SWAPPED = false;
         
         std::ostream& operator<<(std::ostream& os, const FailingExample& example)
         {
@@ -372,7 +376,7 @@ namespace Candies
             setBoard(GetParam().board);
             Board initialBoard = game->getBoard();
             
-            EXPECT_CALL(*observer, itemsNotSwapped(GetParam().from, GetParam().to));
+            EXPECT_CALL(*observer, itemsNotSwapped(GetParam().from, GetParam().to)).Times(GetParam().triggerNotSwapped);
             EXPECT_CALL(*observer, itemsSwapped(_, _)).Times(0);
             EXPECT_CALL(*observer, itemsRemoved(_)).Times(0);
             EXPECT_CALL(*observer, itemsAdded(_)).Times(0);
@@ -396,7 +400,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({2, 2}), To({2, 4})},
+                    From({2, 2}), To({2, 4}), DONT_TRIGGER_NOT_SWAPPED},
                 FailingExample{
                     "not neighbours, vertical, reverse swap",
                     {
@@ -408,7 +412,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({2, 4}), To({2, 2})},
+                    From({2, 4}), To({2, 2}), DONT_TRIGGER_NOT_SWAPPED},
                 FailingExample{
                     "not neighbours, horizontal",
                     {
@@ -420,7 +424,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({2, 0}), To({4, 0})},
+                    From({2, 0}), To({4, 0}), DONT_TRIGGER_NOT_SWAPPED},
                 FailingExample{
                     "not neighbours, horizontal, reverse swap",
                     {
@@ -432,7 +436,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({4, 0}), To({2, 0})},
+                    From({4, 0}), To({2, 0}), DONT_TRIGGER_NOT_SWAPPED},
                 FailingExample{
                     "not neighbours, touching corners",
                     {
@@ -444,7 +448,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({2, 0}), To({3, 1})},
+                    From({2, 0}), To({3, 1}), DONT_TRIGGER_NOT_SWAPPED},
                 FailingExample{
                     "2 horizontal right",
                     {
@@ -456,7 +460,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({4, 1}), To({4, 0})},
+                    From({4, 1}), To({4, 0}), TRIGGER_NOT_SWAPPED},
                 FailingExample{
                     "2 horizontal right, reverse",
                     {
@@ -468,7 +472,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({4, 0}), To({4, 1})},
+                    From({4, 0}), To({4, 1}), TRIGGER_NOT_SWAPPED},
                                 FailingExample{
                     "2 horizontal left",
                     {
@@ -480,7 +484,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({4, 1}), To({4, 0})},
+                    From({4, 1}), To({4, 0}), TRIGGER_NOT_SWAPPED},
                 FailingExample{
                     "2 horizontal left, reverse",
                     {
@@ -492,7 +496,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({4, 0}), To({4, 1})},
+                    From({4, 0}), To({4, 1}), TRIGGER_NOT_SWAPPED},
                 FailingExample{
                     "no horizontal alignment left",
                     {
@@ -504,7 +508,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({0, 0}), To({0, 1})},
+                    From({0, 0}), To({0, 1}), TRIGGER_NOT_SWAPPED},
                 FailingExample{
                     "no horizontal alignment left, margin 1",
                     {
@@ -516,7 +520,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({1, 0}), To({1, 1})},
+                    From({1, 0}), To({1, 1}), TRIGGER_NOT_SWAPPED},
                 FailingExample{
                     "no horizontal alignment right",
                     {
@@ -528,7 +532,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({7, 0}), To({7, 1})},
+                    From({7, 0}), To({7, 1}), TRIGGER_NOT_SWAPPED},
                 FailingExample{
                     "no horizontal alignment right, margin 1",
                     {
@@ -540,7 +544,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({6, 0}), To({6, 1})},
+                    From({6, 0}), To({6, 1}), TRIGGER_NOT_SWAPPED},
                 FailingExample{
                     "2 horizontal, move to middle",
                     {
@@ -552,7 +556,7 @@ namespace Candies
                         2,3,4,1,1,0,1,4,
                         3,1,4,2,4,1,1,0,
                         1,4,3,2,1,3,3,2 },
-                    From({2, 0}), To({3, 0})}
+                    From({2, 0}), To({3, 0}), TRIGGER_NOT_SWAPPED}
             )
         );
 
