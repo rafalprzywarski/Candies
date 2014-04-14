@@ -11,15 +11,15 @@ namespace Candies
     {
         struct SmoothSwappingAnimationTest : Test
         {
-            Position FIRST{4, 5}, SECOND{2, 5};
+            Position FIRST{4, 5}, SECOND{2, 5}, POSITION2{6, 6}, POSITION4{2, 3};
             SpritePtr sprite1 = std::make_shared<StrictMock<MockSprite>>();
-            SpritePtr sprite2 = std::make_shared<StrictMock<MockSprite>>();
+            MockSpritePtr sprite2 = std::make_shared<StrictMock<MockSprite>>();
             SpritePtr sprite3 = std::make_shared<StrictMock<MockSprite>>();
-            SpritePtr sprite4 = std::make_shared<StrictMock<MockSprite>>();
+            MockSpritePtr sprite4 = std::make_shared<StrictMock<MockSprite>>();
 
             MockTransitionAnimatorPtr transitionAnimator = std::make_shared<StrictMock<MockTransitionAnimator>>();
-            SpritesWithPositions SPRITES{{sprite1, SECOND}, {sprite2, {6, 6}}, {sprite3, FIRST}, {sprite4, {2, 3}}};
-            SpritesWithPositions FINAL_SPRITES{{sprite1, FIRST}, {sprite2, {6, 6}}, {sprite3, SECOND}, {sprite4, {2, 3}}};
+            SpritesWithPositions SPRITES{{sprite1, SECOND}, {sprite2, POSITION2}, {sprite3, FIRST}, {sprite4, POSITION4}};
+            SpritesWithPositions FINAL_SPRITES{{sprite1, FIRST}, {sprite2, POSITION2}, {sprite3, SECOND}, {sprite4, POSITION4}};
             
             SmoothSwappingAnimation create()
             {
@@ -56,6 +56,17 @@ namespace Candies
 
             EXPECT_CALL(*transitionAnimator, isFinished()).WillRepeatedly(Return(true));
             ASSERT_TRUE(animation.isFinished());
+        }
+        
+        TEST_F(SmoothSwappingAnimationTest, should_draw_transitions_and_every_sprite_except_the_swapped_ones)
+        {
+            auto animation = create();
+            
+            EXPECT_CALL(*transitionAnimator, drawFrame());
+            EXPECT_CALL(*sprite2, drawAt(POSITION2));
+            EXPECT_CALL(*sprite4, drawAt(POSITION4));
+            
+            animation.drawFrame();
         }
     }
 }

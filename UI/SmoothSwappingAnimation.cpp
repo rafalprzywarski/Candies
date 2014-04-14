@@ -5,7 +5,7 @@ namespace Candies
     namespace UI
     {
         SmoothSwappingAnimation::SmoothSwappingAnimation(TransitionAnimatorPtr transitionAnimator, Position first, Position second, const SpritesWithPositions& sprites)
-        : transitionAnimator(transitionAnimator), finalSprites(sprites)
+        : transitionAnimator(transitionAnimator), first(first), second(second), finalSprites(sprites)
         {
             SpritePtr firstSprite, secondSprite;
             for (auto& s : finalSprites)
@@ -31,6 +31,14 @@ namespace Candies
         void SmoothSwappingAnimation::updateFrame()
         {
             transitionAnimator->updateFrame();
+        }
+
+        void SmoothSwappingAnimation::drawFrame() const
+        {
+            transitionAnimator->drawFrame();
+            for (auto& s : finalSprites)
+                if (s.position != first && s.position != second)
+                    s.sprite->drawAt(s.position);
         }
 
         bool SmoothSwappingAnimation::isFinished() const
