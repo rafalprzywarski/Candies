@@ -22,6 +22,9 @@ namespace Candies
             Board board;
             
             void notifyObserver(const Locations& removed, const Movements& moved, const ItemIdsWithLocations& added);
+
+            template <typename MutableBoard>
+            void removeAllAlignedItems(MutableBoard& trialBoard);
         };
         
         typedef std::shared_ptr<Game> GamePtr;

@@ -205,8 +205,12 @@ namespace Candies
         {
             MutableBoard initialBoard(board, itemGenerator);
             initialBoard.fillWithItems();
-            observer->itemsAdded(initialBoard.getAddedItems());
+            auto addedItems = initialBoard.getAddedItems();
+            observer->itemsAdded(addedItems);
             board = initialBoard.getBoard();
+            MutableBoard trialBoard(board, itemGenerator);
+            trialBoard.findAlignedItems(addedItems);
+            removeAllAlignedItems(trialBoard);
         }
 
         void Game::swapItems(Location loc1, Location loc2)
@@ -220,6 +224,13 @@ namespace Candies
                 return;
 
             observer->itemsSwapped(loc1, loc2);
+            
+            removeAllAlignedItems(trialBoard);
+        }
+        
+        template <typename MutableBoard>
+        void Game::removeAllAlignedItems(MutableBoard& trialBoard)
+        {
             while (trialBoard.hasItemsToRemove())
             {
                 trialBoard.removeItems();

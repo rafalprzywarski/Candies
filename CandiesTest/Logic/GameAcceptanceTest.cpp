@@ -117,7 +117,36 @@ namespace Candies
             expectItemsAddedNotificationFor(ALL_ITEMS);
             game->start();
         }
-        
+
+        TEST_F(GameAcceptanceTest, should_removed_aligned_items_when_started)
+        {
+            expectGenerationOf({1, 2, 3});
+            expectGenerationOf({5, 5, 5});
+            expectGenerationOf({4, 4, 4});
+
+            expectGenerationOf({
+                3,3,3,0,0,1,3,1,
+                2,2,0,4,1,4,4,0,
+                2,0,4,0,2,0,2,3,
+                4,1,4,1,4,2,4,4,
+                1,2,2,3,4,0,4,0,
+                2,3,4,1,1,0,1,4,
+                3,1,4,2,4,1,1,0,
+                1,4,3,2,1,3,3,2 });
+            game->start();
+            auto board = game->getBoard();
+            
+            expectBoardWith({
+                1,2,3,0,0,1,3,1,
+                2,2,0,4,1,4,4,0,
+                2,0,4,0,2,0,2,3,
+                4,1,4,1,4,2,4,4,
+                1,2,2,3,4,0,4,0,
+                2,3,4,1,1,0,1,4,
+                3,1,4,2,4,1,1,0,
+                1,4,3,2,1,3,3,2 });
+        }
+
         TEST_F(GameAcceptanceTest, successful_swap_should_update_the_board)
         {
             setBoard({
