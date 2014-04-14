@@ -49,9 +49,8 @@ namespace Candies
         UI::AnimatedBoardViewPtr board;
     };
     
-    UI::AnimatedBoardView::Sprites loadGems(std::shared_ptr<SDL_Renderer> renderer)
+    UI::AnimatedBoardView::Sprites loadGems(std::shared_ptr<SDL_Renderer> renderer, std::vector<std::string> files)
     {
-        std::vector<std::string> files = { "Blue.png", "Green.png", "Purple.png", "Red.png", "Yellow.png" };
         UI::AnimatedBoardView::Sprites gems;
         for (auto& file : files)
             gems.push_back({gems.size(), std::make_shared<UI::SDLSprite>(renderer, file)});
@@ -64,6 +63,10 @@ namespace Candies
         auto const GRID_SIZE = 42, BOARD_WIDTH = 8, BOARD_HEIGHT = 8;
         UI::Position BOARD_POSITION = { 330, 105 };
         std::string const FONT = "comicate.ttf";
+        std::vector<std::string> GEM_FILES{ "Blue.png", "Green.png", "Purple.png", "Red.png", "Yellow.png" };
+        std::string BACKGROUND = "background.png";
+        std::string FOREGROUND = "foreground.png";
+        std::string SELECTED_IMAGE = "Selected.png";
         auto const FONT_SIZE = 60;
         SDL_Color FONT_COLOR = {230, 45, 25};
         UI::Position const TIMER_POSITION = { 80, 435 };
@@ -76,10 +79,10 @@ namespace Candies
 
         auto synchronizedTimer = std::make_shared<UI::SynchronizedAnimationTimer>();
         auto renderer = UI::SDLRendererFactory().createRenderer(SCREEN_WIDTH, SCREEN_HEIGHT);
-        auto backgroundSprite = std::make_shared<UI::SDLSprite>(renderer, "background.png");
-        auto foregroundSprite = std::make_shared<UI::SDLSprite>(renderer, "foreground.png");
-        auto gems = loadGems(renderer);
-        auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
+        auto backgroundSprite = std::make_shared<UI::SDLSprite>(renderer, BACKGROUND);
+        auto foregroundSprite = std::make_shared<UI::SDLSprite>(renderer, FOREGROUND);
+        auto gems = loadGems(renderer, GEM_FILES);
+        auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, SELECTED_IMAGE);
         auto grid = std::make_shared<UI::BoundedGrid>(BOARD_POSITION, GRID_SIZE, BOARD_WIDTH, BOARD_HEIGHT);
         auto animationsFactory = std::make_shared<UI::AnimationsFactory>(synchronizedTimer, animationSettings);
         auto boardAnimator = std::make_shared<UI::StagedBoardAnimator>(animationsFactory, animationsFactory, animationsFactory, animationsFactory);
