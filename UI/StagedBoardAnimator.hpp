@@ -18,6 +18,7 @@ namespace Candies
             StagedBoardAnimator(FallingAnimationFactoryPtr fallingAnimationFactory, SwappingAnimationFactoryPtr swappingAnimationFactory, DisappearingAnimationFactoryPtr disappearingAnimationFactory)
             : fallingAnimationFactory(fallingAnimationFactory), swappingAnimationFactory(swappingAnimationFactory), disappearingAnimationFactory(disappearingAnimationFactory) { }
             void addFallingAnimation(const SpritesWithPositions& sprites);
+            void addMovingAnimation(const SpriteMovements& movements) { }
             void addSwappingAnimation(const Position& first, const Position& second);
             void addDisappearingAnimation(const Positions& positions);
             void updateFrame();
