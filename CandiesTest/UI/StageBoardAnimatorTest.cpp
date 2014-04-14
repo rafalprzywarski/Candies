@@ -48,5 +48,10 @@ namespace Candies
             
             animator.drawFrame();
         }
+        
+        TEST_F(StagedBoardAnimatorTest, should_not_fail_when_updated_empty)
+        {
+            animator.updateFrame();
+        }
     }
 }

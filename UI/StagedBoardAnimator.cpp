@@ -16,7 +16,8 @@ namespace Candies
 
         void StagedBoardAnimator::updateFrame()
         {
-            animation = createAnimation();
+            if (createAnimation)
+                animation = createAnimation();
         }
         
         void StagedBoardAnimator::drawFrame() const
