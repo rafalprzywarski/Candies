@@ -90,5 +90,25 @@ namespace Candies
             EXPECT_CALL(*sprite2, drawAt(FIRST2));
             animator.drawFrame();
         }
+        
+        TEST_F(ConstantVelocityTransitionAnimatorTest, should_when_there_are_no_active_transitions)
+        {
+            ASSERT_TRUE(animator.isFinished());
+            
+            animator.addTransition(FIRST, SECOND, sprite);
+            animator.addTransition(FIRST2, SECOND2, sprite2);
+            
+            ASSERT_FALSE(animator.isFinished());
+
+            setElapsedTime(FIRST_SECOND_DISTANCE / VELOCITY + 1);
+            animator.updateFrame();
+            
+            ASSERT_FALSE(animator.isFinished());
+
+            setElapsedTime(FIRST2_SECOND2_DISTANCE / VELOCITY + 1);
+            animator.updateFrame();
+            
+            ASSERT_TRUE(animator.isFinished());
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace Candies
         
         bool ConstantVelocityTransitionAnimator::isFinished() const
         {
-            return false;
+            return !std::any_of(transitions.begin(), transitions.end(), [](const Transition& t) { return !t.isFinished(); });
         }
         
         int ConstantVelocityTransitionAnimator::lerp(int from, int to, float t)

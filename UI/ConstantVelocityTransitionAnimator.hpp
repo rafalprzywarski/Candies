@@ -26,6 +26,7 @@ namespace Candies
                 : first(first), second(second), position(first), startTime(startTime), sprite(sprite) { }
                 void update(float time, float velocity);
                 void draw() const;
+                bool isFinished() const { return position == second; }
             };
             
             float velocity;
