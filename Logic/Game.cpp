@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include <iostream>
 
 namespace Candies
 {
@@ -77,13 +78,22 @@ namespace Candies
                             addItemAt({x, y});
                 }
                 
-                Mask findAlignedItems(Location loc1, Location loc2)
+                void findAlignedItems(const Locations& locs)
                 {
-                    markAlignedLocationsAlong<&Location::x>(loc2);
-                    markAlignedLocationsAlong<&Location::x>(loc1);
-                    markAlignedLocationsAlong<&Location::y>(loc2);
-                    markAlignedLocationsAlong<&Location::y>(loc1);
-                    return itemsToRemove;
+                    for (auto& loc : locs)
+                    {
+                        markAlignedLocationsAlong<&Location::x>(loc);
+                        markAlignedLocationsAlong<&Location::y>(loc);
+                    }
+                }
+                
+                void findAlignedItems(const ItemIdsWithLocations& locs)
+                {
+                    for (auto& loc : locs)
+                    {
+                        markAlignedLocationsAlong<&Location::x>(loc.location);
+                        markAlignedLocationsAlong<&Location::y>(loc.location);
+                    }
                 }
                 
                 bool hasItemsToRemove() const
@@ -102,8 +112,6 @@ namespace Candies
                 const ItemIdsWithLocations& getAddedItems() const { return addedItems; }
                 
                 Locations getItemsToRemove() const { return itemsToRemove.getLocations(); }
-                
-                bool hasMovedItems() const { return !movedItems.empty(); }
                 
                 const Movements& getMovedItems() const { return movedItems; }
                 
@@ -201,27 +209,39 @@ namespace Candies
 
         void Game::swapItems(Location loc1, Location loc2)
         {
-            MutableBoard boardWithSwappedItems(board, itemGenerator);
-            if (!boardWithSwappedItems.swapItems(loc1, loc2))
+            MutableBoard trialBoard(board, itemGenerator);
+            if (!trialBoard.swapItems(loc1, loc2))
                 return;
             
-            boardWithSwappedItems.findAlignedItems(loc1, loc2);
-            if (!boardWithSwappedItems.hasItemsToRemove())
+            trialBoard.findAlignedItems({loc1, loc2});
+            if (!trialBoard.hasItemsToRemove())
                 return;
-            
-            boardWithSwappedItems.removeItems();
-            
+
             observer->itemsSwapped(loc1, loc2);
-            observer->itemsRemoved(boardWithSwappedItems.getItemsToRemove());
-            if (boardWithSwappedItems.hasMovedItems())
-                observer->itemsMoved(boardWithSwappedItems.getMovedItems());
-            observer->itemsAdded(boardWithSwappedItems.getAddedItems());
-            board = boardWithSwappedItems.getBoard();
+            while (trialBoard.hasItemsToRemove())
+            {
+                trialBoard.removeItems();
+                
+                auto addedItems = trialBoard.getAddedItems();
+                notifyObserver(trialBoard.getItemsToRemove(), trialBoard.getMovedItems(), addedItems);
+                
+                board = trialBoard.getBoard();
+                trialBoard = MutableBoard(board, itemGenerator);
+                trialBoard.findAlignedItems(addedItems);
+            }
         }
         
         Board Game::getBoard() const
         {
             return board;
+        }
+        
+        void Game::notifyObserver(const Locations& removed, const Movements& moved, const ItemIdsWithLocations& added)
+        {
+            observer->itemsRemoved(removed);
+            if (!moved.empty())
+                observer->itemsMoved(moved);
+            observer->itemsAdded(added);
         }
     }
 }

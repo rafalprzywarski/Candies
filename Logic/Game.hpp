@@ -20,6 +20,8 @@ namespace Candies
             ItemGeneratorPtr itemGenerator;
             GameObserverPtr observer;
             Board board;
+            
+            void notifyObserver(const Locations& removed, const Movements& moved, const ItemIdsWithLocations& added);
         };
         
         typedef std::shared_ptr<Game> GamePtr;
