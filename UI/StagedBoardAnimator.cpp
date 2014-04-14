@@ -22,6 +22,7 @@ namespace Candies
         
         void StagedBoardAnimator::drawFrame() const
         {
+            if (animation)
             animation->drawFrame();
         }
     }
