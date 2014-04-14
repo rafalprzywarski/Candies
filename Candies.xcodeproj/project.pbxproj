@@ -23,7 +23,6 @@
 		F02A9F0718F1FB15008145C2 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F0518F1FB15008145C2 /* SDL2.framework */; };
 		F02A9F0918F1FB3F008145C2 /* SDL2_image.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F0418F1FB15008145C2 /* SDL2_image.framework */; };
 		F02A9F0A18F1FB3F008145C2 /* SDL2.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F0518F1FB15008145C2 /* SDL2.framework */; };
-		F02A9F0C18F1FCEE008145C2 /* BackGround.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F02A9F0B18F1FCEE008145C2 /* BackGround.jpg */; };
 		F02A9F1618F1FF65008145C2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9F1518F1FF65008145C2 /* main.cpp */; };
 		F02A9F4C18F327F1008145C2 /* libGameCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F3E18F324C1008145C2 /* libGameCore.a */; };
 		F02A9F6018F3507C008145C2 /* libGoogleMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9F5B18F35056008145C2 /* libGoogleMock.a */; };
@@ -103,6 +102,8 @@
 		F0C0A34218FC3D1A00B1EA57 /* SynchronizedAnimationTimer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0C0A34018FC3D1A00B1EA57 /* SynchronizedAnimationTimer.hpp */; };
 		F0C0A34518FC43E400B1EA57 /* AnimationsFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0C0A34318FC43E400B1EA57 /* AnimationsFactory.cpp */; };
 		F0C0A34618FC43E400B1EA57 /* AnimationsFactory.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F0C0A34418FC43E400B1EA57 /* AnimationsFactory.hpp */; };
+		F0C0A34918FC483D00B1EA57 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C0A34718FC47F200B1EA57 /* background.png */; };
+		F0C0A34A18FC483F00B1EA57 /* foreground.png in Resources */ = {isa = PBXBuildFile; fileRef = F0C0A34818FC47F200B1EA57 /* foreground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -152,7 +153,6 @@
 		F02A9EFF18F1FAC3008145C2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F02A9F0418F1FB15008145C2 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		F02A9F0518F1FB15008145C2 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = Frameworks/SDL2.framework; sourceTree = "<group>"; };
-		F02A9F0B18F1FCEE008145C2 /* BackGround.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = BackGround.jpg; path = Resources/BackGround.jpg; sourceTree = "<group>"; };
 		F02A9F1318F1FF65008145C2 /* CandiesTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CandiesTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02A9F1518F1FF65008145C2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F02A9F3E18F324C1008145C2 /* libGameCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGameCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -264,6 +264,8 @@
 		F0C0A34018FC3D1A00B1EA57 /* SynchronizedAnimationTimer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SynchronizedAnimationTimer.hpp; sourceTree = "<group>"; };
 		F0C0A34318FC43E400B1EA57 /* AnimationsFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationsFactory.cpp; sourceTree = "<group>"; };
 		F0C0A34418FC43E400B1EA57 /* AnimationsFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimationsFactory.hpp; sourceTree = "<group>"; };
+		F0C0A34718FC47F200B1EA57 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Resources/background.png; sourceTree = "<group>"; };
+		F0C0A34818FC47F200B1EA57 /* foreground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = foreground.png; path = Resources/foreground.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,6 +389,8 @@
 		F02A9F0E18F1FD01008145C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F0C0A34718FC47F200B1EA57 /* background.png */,
+				F0C0A34818FC47F200B1EA57 /* foreground.png */,
 				F057A82118F74BF100636C2E /* comicate.ttf */,
 				F057A7B118F5C03800636C2E /* Selected.png */,
 				F0B4499218F4ABC0006C6405 /* Blue.png */,
@@ -394,7 +398,6 @@
 				F0B4499418F4ABC0006C6405 /* Purple.png */,
 				F0B4499518F4ABC0006C6405 /* Red.png */,
 				F0B4499618F4ABC0006C6405 /* Yellow.png */,
-				F02A9F0B18F1FCEE008145C2 /* BackGround.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -827,8 +830,9 @@
 				F0B4499818F4ABC0006C6405 /* Green.png in Resources */,
 				F0B4499B18F4ABC0006C6405 /* Yellow.png in Resources */,
 				F0B4499A18F4ABC0006C6405 /* Red.png in Resources */,
+				F0C0A34918FC483D00B1EA57 /* background.png in Resources */,
+				F0C0A34A18FC483F00B1EA57 /* foreground.png in Resources */,
 				F02A9ED618F1FA15008145C2 /* InfoPlist.strings in Resources */,
-				F02A9F0C18F1FCEE008145C2 /* BackGround.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

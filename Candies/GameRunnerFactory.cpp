@@ -65,11 +65,12 @@ namespace Candies
         UI::Position const TIMER_POSITION = { 80, 435 };
         std::chrono::seconds const GAME_TIME(60);
         UI::AnimationSettings animationSettings;
-        animationSettings.initialFallingHeight = BOARD_POSITION.y - GRID_SIZE;
+        animationSettings.initialFallingHeight = BOARD_POSITION.y - GRID_SIZE - 10;
 
         auto synchronizedTimer = std::make_shared<UI::SynchronizedAnimationTimer>();
         auto renderer = UI::SDLRendererFactory().createRenderer(SCREEN_WIDTH, SCREEN_HEIGHT);
-        auto backgroundSprite = std::make_shared<UI::SDLSprite>(renderer, "BackGround.jpg");
+        auto backgroundSprite = std::make_shared<UI::SDLSprite>(renderer, "background.png");
+        auto foregroundSprite = std::make_shared<UI::SDLSprite>(renderer, "foreground.png");
         auto gems = loadGems(renderer);
         auto selectionMarker = std::make_shared<UI::SDLSprite>(renderer, "Selected.png");
         auto grid = std::make_shared<UI::BoundedGrid>(BOARD_POSITION, GRID_SIZE, BOARD_WIDTH, BOARD_HEIGHT);
@@ -78,7 +79,8 @@ namespace Candies
         auto board = std::make_shared<UI::AnimatedBoardView2>(gems, selectionMarker, grid, boardAnimator);
         auto timerLabel = std::make_shared<UI::SDLLabel>(renderer, FONT, FONT_SIZE, FONT_COLOR, TIMER_POSITION);
         auto background = std::make_shared<UI::Background>(backgroundSprite);
-        UI::DrawFrameListeners uiElements = { background, boardAnimator, board, timerLabel };
+        auto foreground = std::make_shared<UI::Background>(foregroundSprite);
+        UI::DrawFrameListeners uiElements = { background, boardAnimator, foreground, board, timerLabel };
         auto ui = std::make_shared<Candies::UI::SDLGameUI>(renderer, uiElements);
         auto itemGenerator = std::make_shared<Candies::Logic::StdItemGenerator>(gems.size());
         auto gameObserver = std::make_shared<BoardViewConnector>(board);
