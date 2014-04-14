@@ -372,6 +372,7 @@ namespace Candies
             setBoard(GetParam().board);
             Board initialBoard = game->getBoard();
             
+            EXPECT_CALL(*observer, itemsNotSwapped(GetParam().from, GetParam().to));
             EXPECT_CALL(*observer, itemsSwapped(_, _)).Times(0);
             EXPECT_CALL(*observer, itemsRemoved(_)).Times(0);
             EXPECT_CALL(*observer, itemsAdded(_)).Times(0);

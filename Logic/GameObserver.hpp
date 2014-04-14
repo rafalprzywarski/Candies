@@ -62,6 +62,7 @@ namespace Candies
             virtual ~GameObserver() { }
             virtual void itemsAdded(const ItemIdsWithLocations& items) = 0;
             virtual void itemsSwapped(Location loc1, Location loc2) = 0;
+            virtual void itemsNotSwapped(Location loc1, Location loc2) = 0;
             virtual void itemsRemoved(const Locations& locs) = 0;
             virtual void itemsMoved(const Movements& movements) = 0;
         };

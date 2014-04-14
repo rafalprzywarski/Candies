@@ -31,6 +31,9 @@ namespace Candies
         {
             board->swapItems(loc1, loc2);
         }
+        virtual void itemsNotSwapped(Logic::Location loc1, Logic::Location loc2)
+        {
+        }
         virtual void itemsRemoved(const Logic::Locations& locs)
         {
             board->removeItems(locs);
