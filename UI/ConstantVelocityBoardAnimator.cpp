@@ -6,6 +6,8 @@ namespace Candies
     {
         void ConstantVelocityBoardAnimator::addItems(const SpritesWithPositions& newSprites)
         {
+            if (newSprites.empty())
+                return;
             auto lowestHeight = getLowestHeight(newSprites);
             for (auto& s : newSprites)
                 sprites.push_back(SpriteWithPosition(s.sprite, {s.position.x, s.position.y - lowestHeight + fallingHeight}));

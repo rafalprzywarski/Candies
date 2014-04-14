@@ -39,5 +39,10 @@ namespace Candies
             
             animator.drawFrame();
         }
+        
+        TEST_F(ConstantVelocityBoardAnimatorTest, should_do_nothing_when_adding_an_empty_collection)
+        {
+            animator.addItems({});
+        }
     }
 }
