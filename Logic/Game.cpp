@@ -39,15 +39,6 @@ namespace Candies
                                 locs.emplace_back(x, y);
                     return locs;
                 }
-                ColumnRange findMarkedRange(unsigned x) const
-                {
-                    ColumnRange range;
-                    while (range.y < height && !isMarked({x, range.y}))
-                        ++range.y;
-                    while ((range.y + range.count) < height && isMarked({x, range.y + range.count}))
-                        ++range.count;
-                    return range;
-                }
             private:
                 unsigned width, height;
                 std::vector<bool> mask;
@@ -179,14 +170,19 @@ namespace Candies
                 
                 unsigned moveItemsDown(unsigned x)
                 {
-                    auto markedRange = itemsToRemove.findMarkedRange(x);
-                    if (markedRange.count == 0)
-                        return 0;
-                    for (unsigned y = markedRange.y; y > 0; --y)
-                        moveItem({x, y - 1}, {x, y - 1 + markedRange.count});
-                    return markedRange.count;
+                    unsigned dy = board.getHeight();
+                    for (unsigned sy = board.getHeight(); sy > 0; --sy)
+                    {
+                        if (!itemsToRemove.isMarked({x, sy - 1}))
+                        {
+                            if (dy != sy)
+                                moveItem({x, sy - 1}, {x, dy - 1});
+                            --dy;
+                        }
+                    }
+                    return dy;
                 }
-                
+
                 void moveItem(Location from, Location to)
                 {
                     board[to] = board[from];

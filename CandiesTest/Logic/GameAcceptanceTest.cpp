@@ -42,6 +42,11 @@ namespace Candies
                 3,1,4,2,4,1,1,0,
                 1,4,3,2,1,3,3,2 };
             
+            GameAcceptanceTest()
+            {
+                ON_CALL(*itemGenerator, generate()).WillByDefault(Throw(std::out_of_range("too many")));
+            }
+            
             void expectGenerationOf(ItemIds items)
             {
                 InSequence seq;
@@ -265,6 +270,34 @@ namespace Candies
                 2,0,1,1,9,2,4,3,
                 4,1,4,3,2,1,1,4,
                 1,2,2,3,1,0,4,2,
+                2,3,4,4,1,4,3,4,
+                3,1,4,2,4,1,1,3,
+                1,4,3,2,1,3,2,3 });
+        }
+
+        TEST_F(GameAcceptanceTest, holes_cause_by_falling_items_are_handled_properly)
+        {
+            setBoard({
+                4,3,2,1,2,4,1,1,
+                2,2,8,1,8,3,4,3,
+                2,0,2,2,1,3,4,3,
+                4,1,8,1,8,1,1,4,
+                1,3,2,1,2,0,4,2,
+                2,3,4,4,1,4,3,4,
+                3,1,4,2,4,1,1,3,
+                1,4,3,2,1,3,2,3 });
+            
+            
+            expectGenerationOf({2, 2, 2, 2, 2, 7, 9, 7, 9, 7, 9, 7, 9, 7, 9, 7 });
+            EXPECT_CALL(*observer, itemsSwapped(_, _));
+            game->swapItems({4, 2}, {3, 2});
+            
+            expectBoardWith({
+                4,3,7,9,7,4,1,1,
+                2,2,9,7,9,3,4,3,
+                2,0,7,9,7,3,4,3,
+                4,1,8,7,8,1,1,4,
+                1,3,8,9,8,0,4,2,
                 2,3,4,4,1,4,3,4,
                 3,1,4,2,4,1,1,3,
                 1,4,3,2,1,3,2,3 });

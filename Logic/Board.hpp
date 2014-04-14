@@ -93,15 +93,15 @@ namespace Candies
         
         inline std::ostream& operator<<(std::ostream& os, const Board& board)
         {
-            os << "Board " << board.getWidth() << "x" << board.getHeight() << " [ ";
+            os << "Board " << board.getWidth() << "x" << board.getHeight() << "\n";
             for (unsigned y = 0; y < board.getHeight(); ++y)
             {
                 os << "[ ";
                 for (unsigned x = 0; x < board.getWidth(); ++x)
                     os << board[{x, y}] << " ";
-                os << "] ";
+                os << "]\n";
             }
-            return os << "]";
+            return os;
         }
     }
 }
