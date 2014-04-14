@@ -19,6 +19,7 @@ namespace Candies
             TransitionAnimatorPtr transitionAnimator;
             int initialHeight;
             SpritesWithPositions newSprites, oldSprites;
+            int getLowestYFromNewSprites() const;
         };
     }
 }

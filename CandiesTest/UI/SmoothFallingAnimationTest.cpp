@@ -80,5 +80,10 @@ namespace Candies
             
             animation.drawFrame();
         }
+        
+        TEST_F(SmoothFallingAnimationTest, should_fail_when_given_no_new_sprites)
+        {
+            ASSERT_THROW(SmoothFallingAnimation(transitionAnimator, FALLING_HEIGHT, {}, OLD_SPRITES), std::invalid_argument);
+        }
     }
 }

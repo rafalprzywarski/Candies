@@ -7,10 +7,7 @@ namespace Candies
         SmoothFallingAnimation::SmoothFallingAnimation(TransitionAnimatorPtr transitionAnimator, int initialHeight, const SpritesWithPositions& newSprites, const SpritesWithPositions& oldSprites)
         : transitionAnimator(transitionAnimator), initialHeight(initialHeight), newSprites(newSprites), oldSprites(oldSprites)
         {
-            auto lowestY = std::min_element(newSprites.begin(), newSprites.end(), [](const SpriteWithPosition& left, const SpriteWithPosition& right)
-            {
-                return left.position.y > right.position.y;
-            })->position.y;
+            auto lowestY = getLowestYFromNewSprites();
             for (auto const& s : newSprites)
                 transitionAnimator->addTransition({s.position.x, s.position.y - lowestY + initialHeight}, s.position, s.sprite);
         }
@@ -37,6 +34,16 @@ namespace Candies
         bool SmoothFallingAnimation::isFinished() const
         {
             return transitionAnimator->isFinished();
+        }
+        
+        int SmoothFallingAnimation::getLowestYFromNewSprites() const
+        {
+            if (newSprites.empty())
+                throw std::invalid_argument("SmoothFallingAnimation given no new sprites");
+            return std::min_element(newSprites.begin(), newSprites.end(), [](const SpriteWithPosition& left, const SpriteWithPosition& right)
+            {
+                return left.position.y > right.position.y;
+            })->position.y;
         }
     }
 }
