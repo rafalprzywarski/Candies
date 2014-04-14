@@ -85,5 +85,20 @@ namespace Candies
             
             assertDrawAnimation(animation2);
         }
+        
+        TEST_F(StagedBoardAnimatorTest, should_not_discard_the_current_animation_when_there_are_no_pending_animations)
+        {
+            animator.addFallingAnimation(SPRITES);
+            
+            EXPECT_CALL(*fallingAnimationFactory, createAnimation(_, _)).WillOnce(Return(animation));
+            
+            animator.updateFrame();
+            
+            EXPECT_CALL(*animation, isFinished()).WillRepeatedly(Return(true));
+            
+            animator.updateFrame();
+            
+            assertDrawAnimation(animation);
+        }
     }
 }
