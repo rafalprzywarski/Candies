@@ -12,10 +12,14 @@ namespace Candies
         struct ConstantVelocityTransitionAnimatorTest : Test
         {
             Position FIRST{10, 50}, SECOND{40, 90};
+            Position FIRST_SECOND_MIDPOINT{(FIRST.x + SECOND.x) / 2, (FIRST.y + SECOND.y) / 2};
             float const FIRST_SECOND_DISTANCE = 50;
             float const CURRENT_TIME = 100;
             float const VELOCITY = 4;
+            Position FIRST2{30, 100}, SECOND2{90, 180};
+            float const FIRST2_SECOND2_DISTANCE = 100;
             MockSpritePtr sprite = std::make_shared<StrictMock<MockSprite>>();
+            MockSpritePtr sprite2 = std::make_shared<StrictMock<MockSprite>>();
             MockAnimationTimerPtr timer = std::make_shared<StrictMock<MockAnimationTimer>>();
 
             ConstantVelocityTransitionAnimator animator{timer, VELOCITY};
@@ -65,12 +69,26 @@ namespace Candies
             setElapsedTime(FIRST_SECOND_DISTANCE / VELOCITY / 2);
             animator.updateFrame();
 
-            assertDrawAt(sprite, {(FIRST.x + SECOND.x) / 2, (FIRST.y + SECOND.y) / 2});
+            assertDrawAt(sprite, FIRST_SECOND_MIDPOINT);
 
             setElapsedTime(FIRST_SECOND_DISTANCE / VELOCITY + 1); // saturate
             animator.updateFrame();
             
             assertDrawAt(sprite, SECOND);
+        }
+        
+        TEST_F(ConstantVelocityTransitionAnimatorTest, should_handle_multiple_transitions)
+        {
+            animator.addTransition(FIRST, SECOND, sprite);
+            
+            setElapsedTime(FIRST_SECOND_DISTANCE / VELOCITY / 2);
+            animator.addTransition(FIRST2, SECOND2, sprite2);
+            
+            animator.updateFrame();
+            
+            EXPECT_CALL(*sprite, drawAt(FIRST_SECOND_MIDPOINT));
+            EXPECT_CALL(*sprite2, drawAt(FIRST2));
+            animator.drawFrame();
         }
     }
 }

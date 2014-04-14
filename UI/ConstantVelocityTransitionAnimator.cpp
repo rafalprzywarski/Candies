@@ -7,23 +7,20 @@ namespace Candies
     {
         void ConstantVelocityTransitionAnimator::addTransition(Position first, Position second, SpritePtr sprite)
         {
-            position = this->first = first;
-            this->second = second;
-            this->sprite = sprite;
-            startTime = timer->getTime();
+            transitions.emplace_back(first, second, timer->getTime(), sprite);
         }
         
         void ConstantVelocityTransitionAnimator::updateFrame()
         {
-            float elapsedTime = timer->getTime() - startTime;
-            float factor = elapsedTime * velocity / distance(first, second);
-            position = lerp(first, second, std::min(factor, 1.0f));
+            auto time = timer->getTime();
+            for (auto& t : transitions)
+                t.update(time, velocity);
         }
         
         void ConstantVelocityTransitionAnimator::drawFrame() const
         {
-            if (sprite)
-                sprite->drawAt(position);
+            for (auto& t : transitions)
+                t.draw();
         }
         
         bool ConstantVelocityTransitionAnimator::isFinished() const
@@ -47,5 +44,16 @@ namespace Candies
             return {lerp(from.x, to.x, t), lerp(from.y, to.y, t)};
         }
 
+        void ConstantVelocityTransitionAnimator::Transition::update(float time, float velocity)
+        {
+            float elapsedTime = time - startTime;
+            float factor = elapsedTime * velocity / distance(first, second);
+            position = lerp(first, second, std::min(factor, 1.0f));
+        }
+        
+        void ConstantVelocityTransitionAnimator::Transition::draw() const
+        {
+            sprite->drawAt(position);
+        }
     }
 }

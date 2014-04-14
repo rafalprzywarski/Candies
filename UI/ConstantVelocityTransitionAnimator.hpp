@@ -16,11 +16,22 @@ namespace Candies
             void drawFrame() const;
             bool isFinished() const;
         private:
+            struct Transition
+            {
+                Position first, second, position;
+                float startTime;
+                SpritePtr sprite;
+
+                Transition(Position first, Position second, float startTime, SpritePtr sprite)
+                : first(first), second(second), position(first), startTime(startTime), sprite(sprite) { }
+                void update(float time, float velocity);
+                void draw() const;
+            };
+            
             float velocity;
             AnimationTimerPtr timer;
-            Position first{0, 0}, second{0, 0}, position{0, 0};
-            float startTime{0};
-            SpritePtr sprite;
+            std::vector<Transition> transitions;
+            
             static int lerp(int from, int to, float t);
             static Position lerp(Position from, Position to, float t);
             static float distance(Position from, Position to);
