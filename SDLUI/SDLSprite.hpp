@@ -17,6 +17,7 @@ namespace Candies
         public:
             SDLSprite(std::shared_ptr<SDL_Renderer> renderer, const std::string& filename);
             virtual void drawAt(Position p);
+            virtual void drawWithAlphaAt(float alpha, Position p);
         private:
             std::shared_ptr<SDL_Renderer> renderer;
             std::shared_ptr<SDL_Texture> texture;

@@ -16,11 +16,18 @@ namespace Candies
 
         void SDLSprite::drawAt(Position p)
         {
+            drawWithAlphaAt(1, p);
+        }
+        
+        void SDLSprite::drawWithAlphaAt(float alpha, Position p)
+        {
             SDL_Rect target{};
             target.x = p.x;
             target.y = p.y;
             SDL_QueryTexture(&*texture, nullptr, nullptr, &target.w, &target.h);
+            SDL_SetTextureAlphaMod(&*texture, 255 * alpha);
             SDL_RenderCopy(&*renderer, &*texture, nullptr, &target);
         }
+
     }
 }

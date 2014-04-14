@@ -11,6 +11,7 @@ namespace Candies
         public:
             virtual ~Sprite() { }
             virtual void drawAt(Position p) = 0;
+            virtual void drawWithAlphaAt(float alpha, Position p) = 0;
         };
         
         typedef std::shared_ptr<Sprite> SpritePtr;

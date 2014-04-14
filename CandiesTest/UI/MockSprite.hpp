@@ -9,6 +9,7 @@ namespace Candies
         struct MockSprite : Sprite
         {
             MOCK_METHOD1(drawAt, void(Position));
+            MOCK_METHOD2(drawWithAlphaAt, void(float, Position));
         };
         
         typedef std::shared_ptr<MockSprite> MockSpritePtr;
