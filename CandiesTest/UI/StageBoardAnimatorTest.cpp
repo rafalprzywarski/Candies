@@ -1,6 +1,7 @@
 #include <UI/StagedBoardAnimator.hpp>
 #include "MockFallingAnimationFactory.hpp"
 #include "MockSwappingAnimationFactory.hpp"
+#include "MockDisappearingAnimationFactory.hpp"
 #include "MockAnimation.hpp"
 #include <gtest/gtest.h>
 
@@ -16,11 +17,13 @@ namespace Candies
             SpritesWithPositions NOTHING;
             SpritesWithPositions FINAL_SPRITES{{nullptr, {7, 7}}};
             Position FIRST{1, 2}, SECOND{3, 4};
+            Positions POSITIONS{{177, 88}};
             MockFallingAnimationFactoryPtr fallingAnimationFactory = std::make_shared<StrictMock<MockFallingAnimationFactory>>();
             MockSwappingAnimationFactoryPtr swappingAnimationFactory = std::make_shared<StrictMock<MockSwappingAnimationFactory>>();
+            MockDisappearingAnimationFactoryPtr disappearingAnimationFactory = std::make_shared<StrictMock<MockDisappearingAnimationFactory>>();
             MockAnimationPtr animation = std::make_shared<StrictMock<MockAnimation>>();
             MockAnimationPtr animation2 = std::make_shared<StrictMock<MockAnimation>>();
-            StagedBoardAnimator animator{fallingAnimationFactory, swappingAnimationFactory};
+            StagedBoardAnimator animator{fallingAnimationFactory, swappingAnimationFactory, disappearingAnimationFactory};
             
             void assertDrawAnimation(MockAnimationPtr animation)
             {
@@ -70,6 +73,18 @@ namespace Candies
             animator.addSwappingAnimation(FIRST, SECOND);
             
             EXPECT_CALL(*swappingAnimationFactory, createAnimation(FIRST, SECOND, NOTHING)).WillOnce(Return(animation));
+            
+            animator.updateFrame();
+            
+            EXPECT_CALL(*swappingAnimationFactory, createAnimation(_, _, _)).Times(0);
+            assertDrawAnimation(animation);
+        }
+        
+        TEST_F(StagedBoardAnimatorTest, should_add_disappearing_animations)
+        {
+            animator.addDisappearingAnimation(POSITIONS);
+            
+            EXPECT_CALL(*disappearingAnimationFactory, createAnimation(POSITIONS, NOTHING)).WillOnce(Return(animation));
             
             animator.updateFrame();
             

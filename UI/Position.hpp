@@ -1,5 +1,6 @@
 #pragma once
 #include <ostream>
+#include <vector>
 
 namespace Candies
 {
@@ -20,6 +21,8 @@ namespace Candies
         {
             return os << "[" << p.x << " " << p.y << "]";
         }
+        
+        typedef std::vector<Position> Positions;
     }
 }
 

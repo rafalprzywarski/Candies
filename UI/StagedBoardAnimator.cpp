@@ -13,6 +13,11 @@ namespace Candies
         {
             createAnimation.push([=](const SpritesWithPositions& finalSprites) { return swappingAnimationFactory->createAnimation(first, second, finalSprites); });
         }
+        
+        void StagedBoardAnimator::addDisappearingAnimation(const Positions& positions)
+        {
+            createAnimation.push([=](const SpritesWithPositions& finalSprites) { return disappearingAnimationFactory->createAnimation(positions, finalSprites); });
+        }
 
         void StagedBoardAnimator::updateFrame()
         {

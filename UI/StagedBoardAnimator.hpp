@@ -1,6 +1,7 @@
 #pragma once
 #include "FallingAnimationFactory.hpp"
 #include "SwappingAnimationFactory.hpp"
+#include "DisappearingAnimationFactory.hpp"
 #include "SpriteWithPosition.hpp"
 #include <queue>
 
@@ -11,10 +12,11 @@ namespace Candies
         class StagedBoardAnimator
         {
         public:
-            StagedBoardAnimator(FallingAnimationFactoryPtr fallingAnimationFactory, SwappingAnimationFactoryPtr swappingAnimationFactory)
-            : fallingAnimationFactory(fallingAnimationFactory), swappingAnimationFactory(swappingAnimationFactory) { }
+            StagedBoardAnimator(FallingAnimationFactoryPtr fallingAnimationFactory, SwappingAnimationFactoryPtr swappingAnimationFactory, DisappearingAnimationFactoryPtr disappearingAnimationFactory)
+            : fallingAnimationFactory(fallingAnimationFactory), swappingAnimationFactory(swappingAnimationFactory), disappearingAnimationFactory(disappearingAnimationFactory) { }
             void addFallingAnimation(const SpritesWithPositions& sprites);
             void addSwappingAnimation(const Position& first, const Position& second);
+            void addDisappearingAnimation(const Positions& positions);
             void updateFrame();
             void drawFrame() const;
             bool isFinished() const;
@@ -22,6 +24,7 @@ namespace Candies
             std::queue<std::function<AnimationPtr(const SpritesWithPositions& finalSprites)>> createAnimation;
             FallingAnimationFactoryPtr fallingAnimationFactory;
             SwappingAnimationFactoryPtr swappingAnimationFactory;
+            DisappearingAnimationFactoryPtr disappearingAnimationFactory;
             SpritesWithPositions sprites;
             AnimationPtr animation;
             

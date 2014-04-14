@@ -119,6 +119,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F00EF29218FBDD5C004ED2B8 /* DisappearingAnimationFactory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DisappearingAnimationFactory.hpp; sourceTree = "<group>"; };
+		F00EF29318FBDDB1004ED2B8 /* MockDisappearingAnimationFactory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockDisappearingAnimationFactory.hpp; sourceTree = "<group>"; };
 		F02A9EC818F1FA15008145C2 /* Candies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Candies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02A9ECB18F1FA15008145C2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F02A9ED018F1FA15008145C2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -427,6 +429,7 @@
 				F07AFB3518FBC6D6004B1126 /* FallingAnimationFactory.hpp */,
 				F0933DA218FBC86A005E29AF /* Animation.hpp */,
 				F0933DA418FBCC6A005E29AF /* SwappingAnimationFactory.hpp */,
+				F00EF29218FBDD5C004ED2B8 /* DisappearingAnimationFactory.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				F07AFB3618FBC7AD004B1126 /* MockFallingAnimationFactory.hpp */,
 				F0933DA318FBC893005E29AF /* MockAnimation.hpp */,
 				F0933DA518FBCE96005E29AF /* MockSwappingAnimationFactory.hpp */,
+				F00EF29318FBDDB1004ED2B8 /* MockDisappearingAnimationFactory.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
