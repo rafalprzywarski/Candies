@@ -13,6 +13,9 @@
 		F00EF2A418FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F00EF2A218FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.cpp */; };
 		F00EF2A518FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F00EF2A318FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.hpp */; };
 		F00EF2A718FBF13E004ED2B8 /* ConstantVelocityTransitionAnimatorTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F00EF2A618FBF13E004ED2B8 /* ConstantVelocityTransitionAnimatorTest.cpp */; };
+		F00EF2AA18FC0945004ED2B8 /* SmoothFallingAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F00EF2A818FC0945004ED2B8 /* SmoothFallingAnimation.cpp */; };
+		F00EF2AB18FC0945004ED2B8 /* SmoothFallingAnimation.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F00EF2A918FC0945004ED2B8 /* SmoothFallingAnimation.hpp */; };
+		F00EF2AD18FC0A7A004ED2B8 /* SmoothFallingAnimationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F00EF2AC18FC0A7A004ED2B8 /* SmoothFallingAnimationTest.cpp */; };
 		F02A9ECC18F1FA15008145C2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A9ECB18F1FA15008145C2 /* Cocoa.framework */; };
 		F02A9ED618F1FA15008145C2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F02A9ED418F1FA15008145C2 /* InfoPlist.strings */; };
 		F02A9F0218F1FAC3008145C2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F02A9EFF18F1FAC3008145C2 /* main.cpp */; };
@@ -135,6 +138,9 @@
 		F00EF2A218FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantVelocityTransitionAnimator.cpp; sourceTree = "<group>"; };
 		F00EF2A318FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConstantVelocityTransitionAnimator.hpp; sourceTree = "<group>"; };
 		F00EF2A618FBF13E004ED2B8 /* ConstantVelocityTransitionAnimatorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantVelocityTransitionAnimatorTest.cpp; sourceTree = "<group>"; };
+		F00EF2A818FC0945004ED2B8 /* SmoothFallingAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothFallingAnimation.cpp; sourceTree = "<group>"; };
+		F00EF2A918FC0945004ED2B8 /* SmoothFallingAnimation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SmoothFallingAnimation.hpp; sourceTree = "<group>"; };
+		F00EF2AC18FC0A7A004ED2B8 /* SmoothFallingAnimationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothFallingAnimationTest.cpp; sourceTree = "<group>"; };
 		F02A9EC818F1FA15008145C2 /* Candies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Candies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02A9ECB18F1FA15008145C2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F02A9ED018F1FA15008145C2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -449,6 +455,8 @@
 				F00EF29A18FBE5C2004ED2B8 /* TransitionAnimator.hpp */,
 				F00EF2A218FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.cpp */,
 				F00EF2A318FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.hpp */,
+				F00EF2A818FC0945004ED2B8 /* SmoothFallingAnimation.cpp */,
+				F00EF2A918FC0945004ED2B8 /* SmoothFallingAnimation.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -571,6 +579,7 @@
 				F00EF29818FBE084004ED2B8 /* SmoothSwappingAnimationTest.cpp */,
 				F00EF29B18FBE64F004ED2B8 /* MockTransitionAnimator.hpp */,
 				F00EF2A618FBF13E004ED2B8 /* ConstantVelocityTransitionAnimatorTest.cpp */,
+				F00EF2AC18FC0A7A004ED2B8 /* SmoothFallingAnimationTest.cpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -648,6 +657,7 @@
 				F07AFB3118FBC153004B1126 /* StagedBoardAnimator.hpp in Headers */,
 				F07AFB2518FB5958004B1126 /* ConstantVelocityBoardAnimator.hpp in Headers */,
 				F057A82818F756D000636C2E /* TimeMonitor.hpp in Headers */,
+				F00EF2AB18FC0945004ED2B8 /* SmoothFallingAnimation.hpp in Headers */,
 				F00EF29718FBE00E004ED2B8 /* SmoothSwappingAnimation.hpp in Headers */,
 				F057A7C918F5CD1300636C2E /* Sprite.hpp in Headers */,
 				F057A7CC18F5CD1300636C2E /* AnimatedBoardView.hpp in Headers */,
@@ -841,6 +851,7 @@
 				F057A80318F5D38A00636C2E /* BoardTest.cpp in Sources */,
 				F02A9F1618F1FF65008145C2 /* main.cpp in Sources */,
 				F057A80418F5D38A00636C2E /* GameTest.cpp in Sources */,
+				F00EF2AD18FC0A7A004ED2B8 /* SmoothFallingAnimationTest.cpp in Sources */,
 				F00EF29918FBE084004ED2B8 /* SmoothSwappingAnimationTest.cpp in Sources */,
 				F057A80518F5D38A00636C2E /* GameRunnerTest.cpp in Sources */,
 				F057A82B18F7588500636C2E /* TimerMonitorTest.cpp in Sources */,
@@ -884,6 +895,7 @@
 				F07AFB2418FB5958004B1126 /* ConstantVelocityBoardAnimator.cpp in Sources */,
 				F07AFB1518FADAE9004B1126 /* LinearSpriteAnimator.cpp in Sources */,
 				F057A82718F756D000636C2E /* TimeMonitor.cpp in Sources */,
+				F00EF2AA18FC0945004ED2B8 /* SmoothFallingAnimation.cpp in Sources */,
 				F057A7CB18F5CD1300636C2E /* AnimatedBoardView.cpp in Sources */,
 				F00EF29618FBE00E004ED2B8 /* SmoothSwappingAnimation.cpp in Sources */,
 				F00EF2A418FBF0C3004ED2B8 /* ConstantVelocityTransitionAnimator.cpp in Sources */,
