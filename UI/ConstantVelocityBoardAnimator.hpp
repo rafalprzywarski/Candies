@@ -4,22 +4,13 @@
 #include "AnimationTimer.hpp"
 #include "TimedInterpolator.hpp"
 #include "Sprite.hpp"
+#include "SpriteWithPosition.hpp"
 #include <vector>
 
 namespace Candies
 {
     namespace UI
     {
-        struct SpriteWithPosition
-        {
-            SpritePtr sprite;
-            Position position;
-            SpriteWithPosition(SpritePtr sprite, Position position)
-            : sprite(std::move(sprite)), position(position) { }
-        };
-        
-        typedef std::vector<SpriteWithPosition> SpritesWithPositions;
-
         class ConstantVelocityBoardAnimator : public DrawFrameListener
         {
         public:
