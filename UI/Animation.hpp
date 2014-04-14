@@ -10,6 +10,7 @@ namespace Candies
         {
         public:
             virtual ~Animation() { }
+            virtual void updateFrame() = 0;
             virtual void drawFrame() const = 0;
             virtual bool isFinished() const = 0;
             virtual SpritesWithPositions getFinalSprites() const = 0;

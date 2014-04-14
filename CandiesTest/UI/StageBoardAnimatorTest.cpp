@@ -28,6 +28,12 @@ namespace Candies
                 animator.drawFrame();
             }
             
+            void assertUpdateAnimation(MockAnimationPtr animation)
+            {
+                EXPECT_CALL(*animation, updateFrame());
+                animator.updateFrame();
+            }
+            
             void addAndExpectCreationOfAnimation(MockAnimationPtr animation)
             {
                 animator.addFallingAnimation(SPRITES);
@@ -94,7 +100,7 @@ namespace Candies
             EXPECT_CALL(*animation, getFinalSprites()).WillRepeatedly(Return(FINAL_SPRITES));
             EXPECT_CALL(*swappingAnimationFactory, createAnimation(_, _, FINAL_SPRITES)).WillOnce(Return(animation2));
             
-            animator.updateFrame();
+            assertUpdateAnimation(animation);
             
             assertDrawAnimation(animation2);
         }
@@ -106,7 +112,7 @@ namespace Candies
             
             EXPECT_CALL(*animation, isFinished()).WillRepeatedly(Return(true));
             
-            animator.updateFrame();
+            assertUpdateAnimation(animation);
             
             assertDrawAnimation(animation);
         }
@@ -115,13 +121,10 @@ namespace Candies
         {
             addAndExpectCreationOfAnimation(animation);
             addAnimation(animation2);
-            
             animator.updateFrame();
-            animator.updateFrame();
-            animator.updateFrame();
-            
-            assertDrawAnimation(animation);
-            
+
+            assertUpdateAnimation(animation);
+            assertUpdateAnimation(animation);
         }
     }
 }

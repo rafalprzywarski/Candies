@@ -8,6 +8,7 @@ namespace Candies
     {
         struct MockAnimation : Animation
         {
+            MOCK_METHOD0(updateFrame, void());
             MOCK_CONST_METHOD0(drawFrame, void());
             MOCK_CONST_METHOD0(isFinished, bool());
             MOCK_CONST_METHOD0(getFinalSprites, SpritesWithPositions());
