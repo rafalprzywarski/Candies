@@ -8,15 +8,23 @@ namespace Candies
         {
             if (newSprites.empty())
                 return;
+            startTime = timer->getTime();
             auto lowestHeight = getLowestHeight(newSprites);
             for (auto& s : newSprites)
-                sprites.push_back(SpriteWithPosition(s.sprite, {s.position.x, s.position.y - lowestHeight + fallingHeight}));
+                sprites.emplace_back(s.sprite, s.position.y - lowestHeight + fallingHeight, s.position);
         }
 
         void ConstantVelocityBoardAnimator::drawFrame() const
         {
             for (auto& s : sprites)
                 s.sprite->drawAt(s.position);
+        }
+
+        void ConstantVelocityBoardAnimator::updateFrame()
+        {
+            auto currentTime = timer->getTime() - startTime;
+            for (auto& s : sprites)
+                s.position = { s.finalPosition.x, interpolator->interpolate(s.startingHeight, s.finalPosition.y, currentTime) };
         }
         
         int ConstantVelocityBoardAnimator::getLowestHeight(const SpritesWithPositions& sprites)

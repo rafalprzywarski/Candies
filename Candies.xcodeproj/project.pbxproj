@@ -213,6 +213,8 @@
 		F07AFB2218FB5958004B1126 /* ConstantVelocityBoardAnimator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantVelocityBoardAnimator.cpp; sourceTree = "<group>"; };
 		F07AFB2318FB5958004B1126 /* ConstantVelocityBoardAnimator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ConstantVelocityBoardAnimator.hpp; sourceTree = "<group>"; };
 		F07AFB2618FB59D2004B1126 /* ConstantVelocityBoardAnimatorTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantVelocityBoardAnimatorTest.cpp; sourceTree = "<group>"; };
+		F07AFB2818FB69FF004B1126 /* MockTimedInterpolator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockTimedInterpolator.hpp; sourceTree = "<group>"; };
+		F07AFB2918FB6A3C004B1126 /* TimedInterpolator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimedInterpolator.hpp; sourceTree = "<group>"; };
 		F0B4498818F4A3BD006C6405 /* GameRunnerFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameRunnerFactory.cpp; sourceTree = "<group>"; };
 		F0B4498918F4A3BD006C6405 /* GameRunnerFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameRunnerFactory.hpp; sourceTree = "<group>"; };
 		F0B4499218F4ABC0006C6405 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Blue.png; path = Resources/Blue.png; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				F07AFB1918FAE0DA004B1126 /* AnimationTimer.hpp */,
 				F07AFB2218FB5958004B1126 /* ConstantVelocityBoardAnimator.cpp */,
 				F07AFB2318FB5958004B1126 /* ConstantVelocityBoardAnimator.hpp */,
+				F07AFB2918FB6A3C004B1126 /* TimedInterpolator.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				F07AFB1718FADB59004B1126 /* LinearSpriteAnimatorTest.cpp */,
 				F07AFB1A18FAE23E004B1126 /* MockAnimationTimer.hpp */,
 				F07AFB2618FB59D2004B1126 /* ConstantVelocityBoardAnimatorTest.cpp */,
+				F07AFB2818FB69FF004B1126 /* MockTimedInterpolator.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
