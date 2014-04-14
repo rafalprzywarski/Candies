@@ -127,6 +127,8 @@
 		F00EF29418FBE00E004ED2B8 /* SmoothSwappingAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothSwappingAnimation.cpp; sourceTree = "<group>"; };
 		F00EF29518FBE00E004ED2B8 /* SmoothSwappingAnimation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SmoothSwappingAnimation.hpp; sourceTree = "<group>"; };
 		F00EF29818FBE084004ED2B8 /* SmoothSwappingAnimationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmoothSwappingAnimationTest.cpp; sourceTree = "<group>"; };
+		F00EF29A18FBE5C2004ED2B8 /* TransitionAnimator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TransitionAnimator.hpp; sourceTree = "<group>"; };
+		F00EF29B18FBE64F004ED2B8 /* MockTransitionAnimator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MockTransitionAnimator.hpp; sourceTree = "<group>"; };
 		F02A9EC818F1FA15008145C2 /* Candies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Candies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02A9ECB18F1FA15008145C2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F02A9ED018F1FA15008145C2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -438,6 +440,7 @@
 				F00EF29218FBDD5C004ED2B8 /* DisappearingAnimationFactory.hpp */,
 				F00EF29418FBE00E004ED2B8 /* SmoothSwappingAnimation.cpp */,
 				F00EF29518FBE00E004ED2B8 /* SmoothSwappingAnimation.hpp */,
+				F00EF29A18FBE5C2004ED2B8 /* TransitionAnimator.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				F0933DA518FBCE96005E29AF /* MockSwappingAnimationFactory.hpp */,
 				F00EF29318FBDDB1004ED2B8 /* MockDisappearingAnimationFactory.hpp */,
 				F00EF29818FBE084004ED2B8 /* SmoothSwappingAnimationTest.cpp */,
+				F00EF29B18FBE64F004ED2B8 /* MockTransitionAnimator.hpp */,
 			);
 			path = UI;
 			sourceTree = "<group>";

@@ -1,6 +1,7 @@
 #pragma once
 #include "Animation.hpp"
 #include "SpriteWithPosition.hpp"
+#include "TransitionAnimator.hpp"
 
 namespace Candies
 {
@@ -9,9 +10,10 @@ namespace Candies
         class SmoothSwappingAnimation
         {
         public:
-            SmoothSwappingAnimation(Position first, Position second, const SpritesWithPositions& sprites);
+            SmoothSwappingAnimation(TransitionAnimatorPtr transitionAnimator, Position first, Position second, const SpritesWithPositions& sprites);
             SpritesWithPositions getFinalSprites() const;
         private:
+            TransitionAnimatorPtr transitionAnimator;
             SpritesWithPositions finalSprites;
         };
     }
