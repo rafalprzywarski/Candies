@@ -10,6 +10,7 @@ namespace Candies
         {
             MOCK_CONST_METHOD0(drawFrame, void());
             MOCK_CONST_METHOD0(isFinished, bool());
+            MOCK_CONST_METHOD0(getFinalSprites, SpritesWithPositions());
         };
         
         typedef std::shared_ptr<MockAnimation> MockAnimationPtr;

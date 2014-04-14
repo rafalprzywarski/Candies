@@ -18,7 +18,7 @@ namespace Candies
             void updateFrame();
             void drawFrame() const;
         private:
-            std::queue<std::function<AnimationPtr()>> createAnimation;
+            std::queue<std::function<AnimationPtr(const SpritesWithPositions& finalSprites)>> createAnimation;
             FallingAnimationFactoryPtr fallingAnimationFactory;
             SwappingAnimationFactoryPtr swappingAnimationFactory;
             SpritesWithPositions sprites;

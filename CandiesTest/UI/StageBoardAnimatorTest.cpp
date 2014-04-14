@@ -14,6 +14,7 @@ namespace Candies
         {
             SpritesWithPositions SPRITES{{nullptr, {4, 5}}};
             SpritesWithPositions NOTHING;
+            SpritesWithPositions FINAL_SPRITES{{nullptr, {7, 7}}};
             Position FIRST{1, 2}, SECOND{3, 4};
             MockFallingAnimationFactoryPtr fallingAnimationFactory = std::make_shared<StrictMock<MockFallingAnimationFactory>>();
             MockSwappingAnimationFactoryPtr swappingAnimationFactory = std::make_shared<StrictMock<MockSwappingAnimationFactory>>();
@@ -80,7 +81,7 @@ namespace Candies
             animator.drawFrame();
         }
         
-        TEST_F(StagedBoardAnimatorTest, should_create_next_animation_when_the_previous_one_is_finished)
+        TEST_F(StagedBoardAnimatorTest, should_create_next_animation_when_the_previous_one_is_finished_and_pass_the_final_sprites)
         {
             animator.addFallingAnimation(SPRITES);
             animator.addSwappingAnimation(FIRST, SECOND);
@@ -90,7 +91,8 @@ namespace Candies
             animator.updateFrame();
 
             EXPECT_CALL(*animation, isFinished()).WillRepeatedly(Return(true));
-            EXPECT_CALL(*swappingAnimationFactory, createAnimation(_, _, _)).WillOnce(Return(animation2));
+            EXPECT_CALL(*animation, getFinalSprites()).WillRepeatedly(Return(FINAL_SPRITES));
+            EXPECT_CALL(*swappingAnimationFactory, createAnimation(_, _, FINAL_SPRITES)).WillOnce(Return(animation2));
             
             animator.updateFrame();
             

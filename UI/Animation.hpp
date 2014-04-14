@@ -1,4 +1,5 @@
 #pragma once
+#include "SpriteWithPosition.hpp"
 #include <memory>
 
 namespace Candies
@@ -11,6 +12,7 @@ namespace Candies
             virtual ~Animation() { }
             virtual void drawFrame() const = 0;
             virtual bool isFinished() const = 0;
+            virtual SpritesWithPositions getFinalSprites() const = 0;
         };
         
         typedef std::shared_ptr<Animation> AnimationPtr;
