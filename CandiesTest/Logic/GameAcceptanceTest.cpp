@@ -440,7 +440,7 @@ namespace Candies
 
         struct GameSuccessfulSwappingAcceptanceTest : GameAcceptanceTest, WithParamInterface<SuccessfulExample> {};
         
-        TEST_P(GameSuccessfulSwappingAcceptanceTest, should_replace_3_aligned_items_with_3_new_items)
+        TEST_P(GameSuccessfulSwappingAcceptanceTest, should_replace_3_or_more_aligned_items_with_new_items)
         {
             ASSERT_EQ(GetParam().added.size(), GetParam().removed.size()) << "must add and remove the same number of elements";
 
